@@ -10,7 +10,8 @@ class Lead extends Model
     protected $fillable = [
         'number',
         'branch_id',
-        'sales_contact_id'
+        'sales_contact_id',
+        'lead_source_id'
     ];
 
 
@@ -22,6 +23,12 @@ class Lead extends Model
     public function salesContact()
     {
         return $this->belongsTo(SalesContact::class);
+    }
+
+
+    public function leadSource()
+    {
+        return $this->belongsTo(LeadSource::class);
     }
 
 }

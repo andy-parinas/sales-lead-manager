@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Branch;
 use App\Lead;
+use App\LeadSource;
 use App\SalesContact;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -29,6 +30,16 @@ class LeadTest extends TestCase
 
        $this->assertInstanceOf(SalesContact::class, $lead->salesContact);
        $this->assertEquals($salesContact->first_name, $lead->salesContact->first_name);
+   }
+
+   public function testLeadBelongsToALeadSource()
+   {
+       $leadSource = factory(LeadSource::class)->create();
+       $lead = factory(Lead::class)->create(['lead_source_id' => $leadSource->id]);
+
+       $this->assertInstanceOf(LeadSource::class, $lead->leadSource);
+       $this->assertEquals($leadSource->name, $lead->leadSource->name);
+
    }
 
 }
