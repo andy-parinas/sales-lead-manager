@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/DesignAssessor.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Product.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/factories/DesignAssessorFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/factories/ProductFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_03_10_055924_create_products_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_03_10_060549_create_design_assessors_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/JobType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/factories/JobTypeFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_03_10_061848_create_job_types_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Unit/JobTypeTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -157,7 +155,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1583719966966</updated>
-      <workItem from="1583719974640" duration="27924000" />
+      <workItem from="1583719974640" duration="30283000" />
     </task>
     <task id="LOCAL-00001" summary="Created SalesContact Model.&#10;Established relationships to Lead Model. &#10;Created unit test for SalesContact">
       <created>1583810285742</created>
@@ -180,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583819848564</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Created Product and DesignAccessor Model, Migrations, and Factory">
+      <created>1583820925606</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1583820925606</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,21 +198,22 @@
     <MESSAGE value="Created SalesContact Model.&#10;Established relationships to Lead Model. &#10;Created unit test for SalesContact" />
     <MESSAGE value="Created LeadSource Model&#10;Created the relationship to Lead Model&#10;created unit test" />
     <MESSAGE value="Refactor migration name to correct the sequence&#10;To fix the error when referencing a foreign key" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor migration name to correct the sequence&#10;To fix the error when referencing a foreign key" />
+    <MESSAGE value="Created Product and DesignAccessor Model, Migrations, and Factory" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created Product and DesignAccessor Model, Migrations, and Factory" />
   </component>
   <component name="WindowStateProjectService">
     <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1583814455109">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583814455109" />
-    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1583819847290">
+    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1583820924728">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="114" key="CommitChangelistDialog2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583819847290" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1583819850485">
+    <state x="585" y="114" key="CommitChangelistDialog2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583820924728" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1583820927752">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583819850485" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583820927752" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1583809743968">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
