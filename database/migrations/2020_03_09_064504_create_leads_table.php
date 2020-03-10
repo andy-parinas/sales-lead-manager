@@ -17,10 +17,11 @@ class CreateLeadsTable extends Migration
             $table->id();
             $table->string('number');
             $table->unsignedBigInteger('branch_id');
+            $table->unsignedBigInteger('sales_contact_id');
             $table->timestamps();
 
             $table->foreign('branch_id')->references('id')->on('branches');
-
+            $table->foreign('sales_contact_id')->references('id')->on('sales_contacts');
         });
     }
 
