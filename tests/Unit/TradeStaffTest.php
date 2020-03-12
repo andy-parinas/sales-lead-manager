@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Branch;
 use App\TradeStaff;
 use App\TradeType;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -34,6 +35,17 @@ class TradeStaffTest extends TestCase
         ]);
 
         $this->assertEquals($fullName, $tradeStaff->full_name);
+
+    }
+
+    public function testTradeStaffBelongsToBranch()
+    {
+        $branch = factory(Branch::class)->create();
+        $tradeStaff = factory(TradeStaff::class)->create(['branch_id' => $branch->id]);
+
+
+        $this->assertInstanceOf(Branch::class, $tradeStaff->branch);
+
 
     }
 }

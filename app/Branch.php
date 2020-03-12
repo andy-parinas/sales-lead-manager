@@ -35,4 +35,14 @@ class Branch extends Model
         return $this->hasMany(Lead::class);
     }
 
+    public function tradeStaffs()
+    {
+        return $this->hasMany(TradeStaff::class);
+    }
+
+    public function salesStaffs()
+    {
+        return $this->hasMany(SalesStaff::class);
+    }
+
 }

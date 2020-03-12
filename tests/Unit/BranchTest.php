@@ -4,6 +4,8 @@ namespace Tests\Unit;
 
 use App\Branch;
 use App\Lead;
+use App\SalesStaff;
+use App\TradeStaff;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -60,6 +62,22 @@ class BranchTest extends TestCase
 
         $this->assertContainsOnlyInstancesOf(Lead::class, $branch->leads);
         $this->assertCount(3, $branch->leads);
+    }
+
+    public function testBranchHasTradeStaffs()
+    {
+        $branch = factory(Branch::class)->create();
+        factory(TradeStaff::class, 3)->create(['branch_id' => $branch->id]);
+
+        $this->assertContainsOnlyInstancesOf(TradeStaff::class, $branch->tradeStaffs);
+    }
+
+    public function testBranchHasSalesStaffs()
+    {
+        $branch = factory(Branch::class)->create();
+        factory(SalesStaff::class, 3)->create(['branch_id' => $branch->id]);
+
+        $this->assertContainsOnlyInstancesOf(SalesStaff::class, $branch->salesStaffs);
     }
 
 }
