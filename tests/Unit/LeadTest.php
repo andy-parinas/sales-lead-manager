@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Appointment;
 use App\Branch;
+use App\Document;
 use App\JobType;
 use App\Lead;
 use App\LeadSource;
@@ -58,6 +59,14 @@ class LeadTest extends TestCase
         factory(Appointment::class)->create(['lead_id' => $lead->id]);
 
         $this->assertInstanceOf(Appointment::class, $lead->appointment);
+   }
+
+   public function testLeadHasDocuments()
+   {
+       $lead = factory(Lead::class)->create();
+       factory(Document::class, 3)->create(['lead_id' => $lead->id]);
+
+       $this->assertContainsOnlyInstancesOf(Document::class, $lead->documents);
    }
 
 }

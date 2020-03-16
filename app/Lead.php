@@ -41,4 +41,9 @@ class Lead extends Model
         return $this->hasOne(Appointment::class);
     }
 
+    public function documents()
+    {
+        return $this->hasMany(Document::class);
+    }
+
 }
