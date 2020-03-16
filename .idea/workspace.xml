@@ -2,22 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/SalesStaff.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/factories/SalesStaffFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_03_12_034902_create_sales_staff_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Unit/SalesStaffTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Appointment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/factories/AppointmentFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_03_12_045709_create_appointments_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Branch.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Branch.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/TradeStaff.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/TradeStaff.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/BranchTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/BranchTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/TradeStaffTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/TradeStaffTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
       <executable />
@@ -140,7 +136,9 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="TODO_SCOPE" value="Project Files" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager">
@@ -159,7 +157,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1583719966966</updated>
-      <workItem from="1583719974640" duration="38167000" />
+      <workItem from="1583719974640" duration="39805000" />
+      <workItem from="1584315444638" duration="1279000" />
+      <workItem from="1584317083713" duration="84000" />
     </task>
     <task id="LOCAL-00001" summary="Created SalesContact Model.&#10;Established relationships to Lead Model. &#10;Created unit test for SalesContact">
       <created>1583810285742</created>
@@ -210,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583976385121</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Created SalesStaff model, migration, and factory.&#10;created relationship for StaleStaff and Branch&#10;created inverse relations on Branch to SalesStaff and TradeStaff&#10;created unit test.">
+      <created>1583985988974</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1583985988974</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,7 +234,8 @@
     <MESSAGE value="Created JobType model, factory and migration&#10;created relationship to Lead, Product, DesignAssessor&#10;created unit test" />
     <MESSAGE value="Created Relationship: DesignAssessor and Product to JobType.&#10;Created unit test for Product and DesignAssessor" />
     <MESSAGE value="Created TradeStaff and TradeType models, migration, and factory.&#10;Created relationship between TradeStaff and TradeType&#10;Created unit test." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created TradeStaff and TradeType models, migration, and factory.&#10;Created relationship between TradeStaff and TradeType&#10;Created unit test." />
+    <MESSAGE value="Created SalesStaff model, migration, and factory.&#10;created relationship for StaleStaff and Branch&#10;created inverse relations on Branch to SalesStaff and TradeStaff&#10;created unit test." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created SalesStaff model, migration, and factory.&#10;created relationship for StaleStaff and Branch&#10;created inverse relations on Branch to SalesStaff and TradeStaff&#10;created unit test." />
   </component>
   <component name="WindowStateProjectService">
     <state x="491" y="192" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1583985431396">
@@ -235,16 +243,24 @@
     </state>
     <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583814455109" />
     <state x="491" y="192" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1583985431396" />
-    <state x="572" y="0" key="CommitChangelistDialog2" timestamp="1583976384186">
+    <state x="544" y="0" key="CommitChangelistDialog2" timestamp="1583985987975">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="827" y="126" key="CommitChangelistDialog2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583823148385" />
-    <state x="572" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1583976384186" />
-    <state x="393" y="176" key="Vcs.Push.Dialog.v2" timestamp="1583976387795">
+    <state x="544" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1583985987975" />
+    <state x="393" y="176" key="Vcs.Push.Dialog.v2" timestamp="1583985991863">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583823151397" />
-    <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1583976387795" />
+    <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1583985991863" />
+    <state x="667" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1584317085912">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="667" y="347" key="com.intellij.ide.util.TipDialog/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1584317085912" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1583989375799">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1583989375799" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1583809743968">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

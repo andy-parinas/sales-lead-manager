@@ -2,7 +2,9 @@
 
 namespace Tests\Unit;
 
+use App\Appointment;
 use App\Branch;
+use App\JobType;
 use App\Lead;
 use App\LeadSource;
 use App\SalesContact;
@@ -40,6 +42,22 @@ class LeadTest extends TestCase
        $this->assertInstanceOf(LeadSource::class, $lead->leadSource);
        $this->assertEquals($leadSource->name, $lead->leadSource->name);
 
+   }
+
+   public function testLeadHasJobType()
+   {
+       $lead = factory(Lead::class)->create();
+       factory(JobType::class)->create(['lead_id' => $lead->id]);
+
+       $this->assertInstanceOf(JobType::class, $lead->jobType);
+   }
+
+   public function testLeadHasAppointment()
+   {
+        $lead = factory(Lead::class)->create();
+        factory(Appointment::class)->create(['lead_id' => $lead->id]);
+
+        $this->assertInstanceOf(Appointment::class, $lead->appointment);
    }
 
 }

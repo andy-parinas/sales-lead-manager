@@ -31,4 +31,14 @@ class Lead extends Model
         return $this->belongsTo(LeadSource::class);
     }
 
+    public function jobType()
+    {
+        return $this->hasOne(JobType::class);
+    }
+
+    public function appointment()
+    {
+        return $this->hasOne(Appointment::class);
+    }
+
 }
