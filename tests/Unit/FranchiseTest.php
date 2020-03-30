@@ -27,9 +27,7 @@ class FranchiseTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+
     public function testFranchiseHasChildrenFranchise()
     {
         $main = factory(Franchise::class)->create();
@@ -40,21 +38,22 @@ class FranchiseTest extends TestCase
         $this->assertCount(3, $main->children);
     }
 
-    /**
-     * @test
-     */
-    // public function testFranchiseHasUsers()
-    // {
-    //     $this->withoutExceptionHandling();
 
-    //     $branch = factory(Franchise::class)->create();
-    //     factory(User::class, 3)->create(['franchise_id' => $branch->id]);
+    public function testFranchiseBelongsToManyUser()
+    {
+        $this->withoutExceptionHandling();
+
+        $franchise = factory(Franchise::class)->create();
+        $user1 = factory(User::class)->create();
+        $user2 = factory(User::class)->create();
+
+        $franchise->users()->attach([$user1->id, $user2->id]);
 
 
-    //     $this->assertContainsOnlyInstancesOf(User::class, $branch->users);
-    //     $this->assertCount(3, $branch->users);
+        $this->assertContainsOnlyInstancesOf(User::class, $franchise->users);
+        $this->assertCount(2, $franchise->users);
 
-    // }
+    }
 
     public function testFranchiseHasLeads()
     {

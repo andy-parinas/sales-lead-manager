@@ -12,15 +12,20 @@ class UserTest extends TestCase
     use RefreshDatabase;
 
 
-    // public function testUserBelongsToAFranchise()
-    // {
-    //     $branch = factory(Franchise::class)->create();
-    //     $user = factory(User::class)->create(['franchise_id' => $branch->id]);
+    public function testUserBelongsToManyFranchise()
+    {
+        $user = factory(User::class)->create();
 
-    //     $this->assertInstanceOf(Franchise::class, $user->branch);
-    //     $this->assertEquals($branch->name, $user->branch->name);
+        $franchise1 = factory(Franchise::class)->create();
+        $franchise2 = factory(Franchise::class)->create();
 
-    // }
+        $user->franchises()->attach([$franchise1->id, $franchise2->id]);
+        
+
+        $this->assertContainsOnlyInstancesOf(Franchise::class, $user->franchises);
+        $this->assertCount(2, $user->franchises);
+
+    }
 
 
 

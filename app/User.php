@@ -38,8 +38,8 @@ class User extends Authenticatable
     ];
 
 
-    public function branch()
+    public function franchises()
     {
-        return $this->belongsTo(Branch::class);
+        return $this->belongsToMany(Franchise::class);
     }
 }

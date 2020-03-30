@@ -25,10 +25,6 @@ class Franchise extends Model
         return $this->hasMany(Franchise::class, 'parent_id');
     }
 
-    public function users()
-    {
-        return $this->hasMany(User::class);
-    }
 
     public function leads()
     {
@@ -43,6 +39,11 @@ class Franchise extends Model
     public function salesStaffs()
     {
         return $this->hasMany(SalesStaff::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
     }
 
 }
