@@ -5,6 +5,7 @@ namespace Tests\Unit;
 
 use App\Franchise;
 use App\Lead;
+use App\Postcode;
 use App\SalesStaff;
 use App\TradeStaff;
 use App\User;
@@ -78,6 +79,21 @@ class FranchiseTest extends TestCase
         factory(SalesStaff::class, 3)->create(['franchise_id' => $branch->id]);
 
         $this->assertContainsOnlyInstancesOf(SalesStaff::class, $branch->salesStaffs);
+    }
+
+    public function testFranchiseBelongsToManyPostcode()
+    {
+        
+        $franchise = factory(Franchise::class)->create();
+
+        $postcode1 = factory(Postcode::class)->create();
+        $postcode2 = factory(Postcode::class)->create();
+
+        $franchise->postcodes()->attach([$postcode1->id, $postcode2->id]);
+
+        $this->assertContainsOnlyInstancesOf(Postcode::class, $franchise->postcodes);
+        $this->assertCount(2, $franchise->postcodes);
+
     }
 
 }

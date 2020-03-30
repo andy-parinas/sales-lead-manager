@@ -46,4 +46,9 @@ class Franchise extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function postcodes()
+    {
+        return $this->belongsToMany(Postcode::class);
+    }
+
 }
