@@ -6,6 +6,7 @@ use App\Franchise;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FranchiseController extends ApiController
 {
@@ -16,7 +17,13 @@ class FranchiseController extends ApiController
      */
     public function index()
     {
+        // DB::enableQueryLog();
+
+        // $franchises = Franchise::with('leads')->paginate(15);
         $franchises = Franchise::all();
+
+
+        // dd(DB::getQueryLog());
 
         return $this->showAll($franchises);
     }
