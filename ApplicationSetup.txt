@@ -1,0 +1,6 @@
+
+Makesure the following is setup in the .env file:
+
+SESSION_DOMAIN=[.domainname] example: SESSION_DOMAIN=.homestead.test
+    - This is setup for working with CORS using Laravel Sanctum
+
