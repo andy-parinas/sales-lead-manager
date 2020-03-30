@@ -21,7 +21,7 @@ class TradeStaff extends Model
         return $this->belongsTo(TradeType::class);
     }
 
-    public function branch(){
-        return $this->belongsTo(Branch::class);
+    public function franchise(){
+        return $this->belongsTo(Franchise::class);
     }
 }

@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Appointment;
 use App\Branch;
 use App\Document;
+use App\Franchise;
 use App\JobType;
 use App\Lead;
 use App\LeadSource;
@@ -17,13 +18,13 @@ class LeadTest extends TestCase
 {
    use RefreshDatabase;
 
-   public function testLeadBelongsToABranch()
+   public function testLeadBelongsToAFranchise()
    {
-       $branch = factory(Branch::class)->create();
-       $lead = factory(Lead::class)->create(['branch_id' => $branch->id]);
+       $branch = factory(Franchise::class)->create();
+       $lead = factory(Lead::class)->create(['franchise_id' => $branch->id]);
 
-       $this->assertInstanceOf(Branch::class, $lead->branch);
-       $this->assertEquals($branch->number, $lead->branch->number);
+       $this->assertInstanceOf(Franchise::class, $lead->franchise);
+       $this->assertEquals($branch->number, $lead->franchise->number);
    }
 
    public function testLeadBelongsToASalesContact()

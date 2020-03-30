@@ -11,6 +11,6 @@ $factory->define(SalesStaff::class, function (Faker $faker) {
         'last_name' => $faker->lastName,
         'email' => $faker->email,
         'contact_number' => $faker->phoneNumber,
-        'branch_id' => factory(\App\Branch::class)
+        'franchise_id' => factory(\App\Franchise::class)
     ];
 });

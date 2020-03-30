@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Branch extends Model
+class Franchise extends Model
 {
 
 
@@ -17,12 +17,12 @@ class Branch extends Model
 
     public function parent()
     {
-        return $this->belongsTo(Branch::class, 'parent_id');
+        return $this->belongsTo(Franchise::class, 'parent_id');
     }
 
     public function children()
     {
-        return $this->hasMany(Branch::class, 'parent_id');
+        return $this->hasMany(Franchise::class, 'parent_id');
     }
 
     public function users()

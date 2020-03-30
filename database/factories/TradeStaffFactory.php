@@ -12,6 +12,6 @@ $factory->define(TradeStaff::class, function (Faker $faker) {
         'email' => $faker->email,
         'contact_number' => $faker->phoneNumber,
         'trade_type_id' => factory(\App\TradeType::class),
-        'branch_id' => factory(\App\Branch::class)
+        'franchise_id' => factory(\App\Franchise::class)
     ];
 });

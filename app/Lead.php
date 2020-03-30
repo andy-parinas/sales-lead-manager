@@ -15,9 +15,9 @@ class Lead extends Model
     ];
 
 
-    public function branch()
+    public function franchise()
     {
-        return $this->belongsTo(Branch::class);
+        return $this->belongsTo(Franchise::class);
     }
 
     public function salesContact()

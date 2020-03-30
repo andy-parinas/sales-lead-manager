@@ -20,11 +20,11 @@ class CreateTradeStaffTable extends Migration
             $table->string('email');
             $table->string('contact_number');
             $table->unsignedBigInteger('trade_type_id');
-            $table->unsignedBigInteger('branch_id');
+            $table->unsignedBigInteger('franchise_id');
             $table->timestamps();
 
             $table->foreign('trade_type_id')->references('id')->on('trade_types');
-            $table->foreign('branch_id')->references('id')->on('branches');
+            $table->foreign('franchise_id')->references('id')->on('franchises');
         });
     }
 

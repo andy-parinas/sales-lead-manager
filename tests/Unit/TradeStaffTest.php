@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Branch;
+use App\Franchise;
 use App\TradeStaff;
 use App\TradeType;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -40,11 +40,11 @@ class TradeStaffTest extends TestCase
 
     public function testTradeStaffBelongsToBranch()
     {
-        $branch = factory(Branch::class)->create();
-        $tradeStaff = factory(TradeStaff::class)->create(['branch_id' => $branch->id]);
+        $branch = factory(Franchise::class)->create();
+        $tradeStaff = factory(TradeStaff::class)->create(['franchise_id' => $branch->id]);
 
 
-        $this->assertInstanceOf(Branch::class, $tradeStaff->branch);
+        $this->assertInstanceOf(Franchise::class, $tradeStaff->franchise);
 
 
     }
