@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Franchise;
 
 use App\Franchise;
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class FranchiseController extends Controller
+class FranchiseController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +18,7 @@ class FranchiseController extends Controller
     {
         $franchises = Franchise::all();
 
-        return $franchises;
+        return $this->showAll($franchises);
     }
 
     
