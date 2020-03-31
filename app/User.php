@@ -11,6 +11,10 @@ class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
 
+    const HEAD_OFFICE = 'head_office';
+    const FRANCHISE_ADMIN = 'franchise_admin';
+    const STAFF_USER = 'staff_user';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -43,4 +47,22 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Franchise::class);
     }
+
+
+    public function isHeadOffice()
+    {
+        return $this->user_type === User::HEAD_OFFICE;
+    }
+
+    public function isFranchiseAdmin()
+    {
+        return $this->user_type === User::FRANCHISE_ADMIN;
+    }
+
+    public function isStaffUser()
+    {
+        return $this->user_type === User::STAFF_USER;
+    }
+
+
 }
