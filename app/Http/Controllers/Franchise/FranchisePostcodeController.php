@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Franchise;
 use App\Franchise;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Postcode;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -63,8 +64,22 @@ class FranchisePostcodeController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Franchise $franchise, Postcode $postcode)
     {
-        //
+        $this->authorize('delete', $franchise);
+
+        //Check if the postcode is assigned to the child franchise
+        $children = $franchise->children;
+        
+        foreach ($children as $child) {
+            if($child->postcodes->contains('id', $postcode->id)){
+                return $this->errorResponse("Postcode is associated to a sub-franchise. Cannot be deleted", Response::HTTP_BAD_REQUEST);
+            }
+        }
+        
+        $franchise->postcodes()->detach($postcode->id);
+
+        return response()->json($postcode);
+
     }
 }
