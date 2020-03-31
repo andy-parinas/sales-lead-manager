@@ -12,6 +12,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class FranchiseController extends ApiController
 {
+
+    public function __construct() {
+        $this->middleware('auth:sanctum');
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -28,3 +28,4 @@ Route::get('auth-test', 'HomeController@index');
  * Franchise Route
  */
 Route::resource('franchises', 'Franchise\FranchiseController', ['except' => ['create', 'edit']]);
+Route::resource('franchises.postcodes', 'Franchise\FranchisePostcodeController', ['only' => ['index', 'store', 'destroy']]);
