@@ -20,6 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 /**
+ * Authentication Test Route
+ */
+Route::get('auth-test', 'HomeController@index');
+
+/**
  * Franchise Route
  */
 Route::resource('franchises', 'Franchise\FranchiseController', ['except' => ['create', 'edit']]);
