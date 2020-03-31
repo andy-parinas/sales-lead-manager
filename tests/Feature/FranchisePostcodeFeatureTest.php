@@ -88,5 +88,58 @@ class FranchisePostcodeFeatureTest extends TestCase
         
     }
 
+    public function testCanAttachPostcodeToFranchiseByHeadOffice()
+    {
+
+        // $this->withoutExceptionHandling();
+
+        $headOffice = factory(User::class)->create(['user_type' => User::HEAD_OFFICE]);
+        
+        $franchise = factory(Franchise::class)->create();
+
+        $p1 = factory(Postcode::class)->create();
+        $p2 = factory(Postcode::class)->create();
+        $p3 = factory(Postcode::class)->create();
+
+        Sanctum::actingAs(
+            $headOffice,
+            ['*']
+        );
+
+        $data = ['postcodes' => [$p1->id, $p2->id, $p3->id]];
+
+        $this->post('api/franchises/' . $franchise->id . '/postcodes/', $data)
+            ->assertStatus(Response::HTTP_CREATED)
+            ->assertJsonCount(3, 'data');
+
+
+    }
+
+
+    public function testCanNotAttachPostCodeToFranchiseNonHeadOffice()
+    {
+        
+     
+       $user = factory(User::class)->create(['user_type' => User::STAFF_USER ]);
+       $franchise = factory(Franchise::class)->create();
+       $user->franchises()->attach($franchise->id);
+
+       $p1 = factory(Postcode::class)->create();
+       $p2 = factory(Postcode::class)->create();
+       $p3 = factory(Postcode::class)->create();
+
+       Sanctum::actingAs(
+           $user,
+           ['*']
+       );
+
+       $data = ['postcodes' => [$p1->id, $p2->id, $p3->id]];
+
+       $this->post('api/franchises/' . $franchise->id . '/postcodes/', $data)
+           ->assertStatus(Response::HTTP_FORBIDDEN);
+
+        $this->assertCount(0, Franchise::first()->postcodes);
+    }
+
 
 }

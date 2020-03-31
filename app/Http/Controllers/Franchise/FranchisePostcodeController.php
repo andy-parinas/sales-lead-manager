@@ -6,6 +6,8 @@ use App\Franchise;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class FranchisePostcodeController extends ApiController
 {
@@ -37,9 +39,21 @@ class FranchisePostcodeController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Franchise $franchise)
     {
-        //
+
+        $this->authorize('create', $franchise);
+
+        $rules = [
+            'postcodes' => 'required|array'
+        ];
+
+        $this->validate($request, $rules);
+
+        $franchise->postcodes()->attach($request['postcodes']);
+
+        return $this->showAll($franchise->postcodes, Response::HTTP_CREATED);
+        
     }
 
   
