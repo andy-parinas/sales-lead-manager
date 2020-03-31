@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Response;
 
 class FranchiseController extends ApiController
 {
@@ -46,7 +47,20 @@ class FranchiseController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('create', Franchise::class);
+
+        $rules = [
+            'number' => 'required',
+            'name' => 'required',
+        ];
+
+        $this->validate($request, $rules);
+
+        $franchise = Franchise::create($request->all());
+
+
+        return $this->showOne($franchise, Response::HTTP_CREATED);
+
     }
 
     /**
@@ -64,8 +78,6 @@ class FranchiseController extends ApiController
 
     }
 
-   
-
     /**
      * Update the specified resource in storage.
      *
@@ -73,9 +85,15 @@ class FranchiseController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Franchise $franchise)
     {
-        //
+
+        $this->authorize('update', $franchise);
+        
+        $franchise->update($request->all());
+
+        return $this->showOne($franchise);
+
     }
 
     /**
@@ -84,8 +102,13 @@ class FranchiseController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Franchise $franchise)
     {
-        //
+        $this->authorize('delete', $franchise);
+
+        $franchise->delete();
+
+        return $this->showOne($franchise);
+        
     }
 }

@@ -41,7 +41,7 @@ class FranchisePolicy
      */
     public function create(User $user)
     {
-        return true;
+        return $user->isHeadOffice();
     }
 
     /**
@@ -53,7 +53,7 @@ class FranchisePolicy
      */
     public function update(User $user, Franchise $franchise)
     {
-        //
+        return $user->isHeadOffice();
     }
 
     /**
@@ -65,7 +65,7 @@ class FranchisePolicy
      */
     public function delete(User $user, Franchise $franchise)
     {
-        //
+        return $user->isHeadOffice();
     }
 
     /**

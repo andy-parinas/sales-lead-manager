@@ -14,7 +14,7 @@ class FranchiseFeatureTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testCanListAllFranchiseByAdmin()
+    public function testCanListAllFranchiseByHeadOffice()
     {
 
         $headOffice = factory(User::class)->create(['user_type' => User::HEAD_OFFICE]);
@@ -101,7 +101,7 @@ class FranchiseFeatureTest extends TestCase
     }
 
 
-    public function testCanShowFranchiseByAdmin()
+    public function testCanShowFranchiseByHeadOffice()
     {
         $user = factory(User::class)->create(['user_type' => User::HEAD_OFFICE]);
 
@@ -117,6 +117,134 @@ class FranchiseFeatureTest extends TestCase
 
     }
 
+    public function testCanOnlyCreateFranchiseByHeadOffice()
+    {
+        Sanctum::actingAs(
+            factory(User::class)->create(['user_type' => User::HEAD_OFFICE]),
+            ['*']
+        );
+
+        $franchiseData = factory(Franchise::class)->raw();
+
+        $this->post('api/franchises', $franchiseData)
+            ->assertStatus(Response::HTTP_CREATED);
+
+        $this->assertCount(1, Franchise::all());
+    }
+
+
+    public function testCanNotCreateFranchiseByNonHeadOffice()
+    {
+
+        $franchiseData = factory(Franchise::class)->raw();
+
+
+        Sanctum::actingAs(
+            factory(User::class)->create(['user_type' => User::FRANCHISE_ADMIN]),
+            ['*']
+        );
+
+        $this->post('api/franchises', $franchiseData)
+        ->assertStatus(Response::HTTP_FORBIDDEN);
+
+        $this->assertCount(0, Franchise::all());
+
+        Sanctum::actingAs(
+            factory(User::class)->create(['user_type' => User::STAFF_USER]),
+            ['*']
+        );
+
+        $this->post('api/franchises', $franchiseData)
+        ->assertStatus(Response::HTTP_FORBIDDEN);
+
+        $this->assertCount(0, Franchise::all());
+        
+    }
+
+
+    public function testCanUpdateFranchiseByHeadOffice()
+    {
+        $franchise = factory(Franchise::class)->create();
+
+        Sanctum::actingAs(
+            factory(User::class)->create(['user_type' => User::HEAD_OFFICE]),
+            ['*']
+        );
+
+        $this->put('api/franchises/' . $franchise->id, ['number' => 'updated'])
+            ->assertStatus(Response::HTTP_OK);
+
+        $this->assertEquals('updated', Franchise::first()->number);
+
+
+    }
+
+    public function testCanNotUpdateFranchiseByNonHeadOffice()
+    {
+        $franchise = factory(Franchise::class)->create();
+
+        Sanctum::actingAs(
+            factory(User::class)->create(['user_type' => User::FRANCHISE_ADMIN]),
+            ['*']
+        );
+
+        $this->put('api/franchises/' . $franchise->id, ['number' => 'updated'])
+            ->assertStatus(Response::HTTP_FORBIDDEN);
+        $this->assertEquals($franchise->number, Franchise::first()->number);
+
+        Sanctum::actingAs(
+            factory(User::class)->create(['user_type' => User::STAFF_USER]),
+            ['*']
+        );
+
+        $this->put('api/franchises/' . $franchise->id, ['number' => 'updated'])
+            ->assertStatus(Response::HTTP_FORBIDDEN);
+        $this->assertEquals($franchise->number, Franchise::first()->number);
+
+
+    }
+
+
+
+    public function testCanDeleteFranchiseByHeadOffice()
+    {
+
+        $franchise = factory(Franchise::class)->create();
+
+        Sanctum::actingAs(
+            factory(User::class)->create(['user_type' => User::HEAD_OFFICE]),
+            ['*']
+        );
+
+        $this->delete('api/franchises/' . $franchise->id)
+            ->assertStatus(Response::HTTP_OK);
+        $this->assertCount(0, Franchise::all());
+
+    }
+
+    public function testCanNotDeleteFranchiseByNonHeadOffice()
+    {
+        $franchise = factory(Franchise::class)->create();
+
+        Sanctum::actingAs(
+            factory(User::class)->create(['user_type' => User::FRANCHISE_ADMIN]),
+            ['*']
+        );
+
+        $this->delete('api/franchises/' . $franchise->id)
+            ->assertStatus(Response::HTTP_FORBIDDEN);
+        $this->assertCount(1, Franchise::all());
+
+        Sanctum::actingAs(
+            factory(User::class)->create(['user_type' => User::STAFF_USER]),
+            ['*']
+        );
+
+        $this->delete('api/franchises/' . $franchise->id)
+            ->assertStatus(Response::HTTP_FORBIDDEN);
+        $this->assertCount(1, Franchise::all());
+
+    }
 
 
 }
