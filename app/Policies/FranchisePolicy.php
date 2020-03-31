@@ -30,7 +30,7 @@ class FranchisePolicy
      */
     public function view(User $user, Franchise $franchise)
     {
-        
+        return $user->franchises->contains('id', $franchise->id) || $user->isHeadOffice();
     }
 
     /**

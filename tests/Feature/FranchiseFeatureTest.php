@@ -64,4 +64,59 @@ class FranchiseFeatureTest extends TestCase
 
     }
 
+    public function testCanShowFranchiseUnderUsersFranchise()
+    {
+
+        // $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create(['user_type' => User::FRANCHISE_ADMIN]);
+        $franchise = factory(Franchise::class)->create();
+
+        $user->franchises()->attach($franchise->id);
+
+        Sanctum::actingAs(
+            $user,
+            ['*']
+        );
+
+        $response = $this->get('api/franchises/' . $franchise->id);
+        $response->assertStatus(Response::HTTP_OK);
+
+    }
+
+    public function testCanNotShowFranchiseUnderUsersFranchise()
+    {
+
+        $user = factory(User::class)->create(['user_type' => User::FRANCHISE_ADMIN]);
+        $franchise = factory(Franchise::class)->create();
+
+        Sanctum::actingAs(
+            $user,
+            ['*']
+        );
+
+        $response = $this->get('api/franchises/' . $franchise->id);
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
+
+    }
+
+
+    public function testCanShowFranchiseByAdmin()
+    {
+        $user = factory(User::class)->create(['user_type' => User::HEAD_OFFICE]);
+
+        $franchise = factory(Franchise::class)->create();
+
+        Sanctum::actingAs(
+            $user,
+            ['*']
+        );
+
+        $response = $this->get('api/franchises/' . $franchise->id);
+        $response->assertStatus(Response::HTTP_OK);
+
+    }
+
+
+
 }

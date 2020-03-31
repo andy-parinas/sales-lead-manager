@@ -55,9 +55,13 @@ class FranchiseController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Franchise $franchise)
     {
-        //
+
+        $this->authorize('view', $franchise);
+
+        return $this->showOne($franchise);
+
     }
 
    
