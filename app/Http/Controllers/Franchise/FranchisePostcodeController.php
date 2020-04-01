@@ -63,7 +63,7 @@ class FranchisePostcodeController extends ApiController
             foreach ($postcodes as $postcode) {
 
                 if(!in_array($postcode, $parentPostcodes)){
-                    dump("Error encountered");
+
                     return $this->errorResponse("Some Postcode is not within the Parent Postcodes", Response::HTTP_BAD_REQUEST);
                 }
             }
