@@ -12,9 +12,21 @@ class ApiController extends Controller
 
     protected function getRequestParams()
     {
+        
         $column = request()->has('sortBy') ? request()->sortBy : 'number';
         $direction = request()->has('direction') ? request()->direction : 'asc';
         $size = request()->has('size') ? request()->size : 15;
+
+        if(request()->has('search') && request()->has('on')){
+
+            return [
+                'column' => $column,
+                'direction' => $direction,
+                'size' => $size,
+                'search' => request()->search,
+                'on' => request()->on
+            ];
+        }
 
         return [
             'column' => $column,

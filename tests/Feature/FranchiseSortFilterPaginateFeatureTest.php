@@ -123,4 +123,31 @@ class FranchiseSortFilterPaginateFeatureTest extends TestCase
 
     }
 
+
+    public function testCanSearchFranchiseByHeadOffice()
+    {
+        
+        //Haystack
+        factory(Franchise::class, 5)->create();
+
+        //Needles
+       factory(Franchise::class)->create(['name' => 'AAAAAAA', 'number' => '111111']);
+       factory(Franchise::class)->create(['name' => 'AAAAABB', 'number' => '111122']);
+       factory(Franchise::class)->create(['name' => 'AAAAACC', 'number' => '333322']);
+
+        Sanctum::actingAs(
+            $this->createHeadOfficeUser(),
+            ['*']
+        );
+
+        $this->get('api/franchises?search=AAAA&on=name')
+            ->assertJsonCount(3, 'data');
+
+        $this->get('api/franchises?search=1111&on=number')
+            ->assertJsonCount(2, 'data');
+
+
+    }
+
+
 }
