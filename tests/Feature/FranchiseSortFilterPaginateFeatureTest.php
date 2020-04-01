@@ -93,4 +93,34 @@ class FranchiseSortFilterPaginateFeatureTest extends TestCase
         $this->assertEquals('A', end($results->data)->name);
     }
 
+    public function testCanSortFranchiseQueriedFromUser()
+    {
+        $user = $this->createFranchiseAdminUser();
+
+        foreach (range('A', 'J') as $name) {
+            $franchise = factory(Franchise::class)->create(['name' => $name]);
+            $user->franchises()->attach($franchise->id);
+        }
+
+
+        Sanctum::actingAs(
+            $user,
+            ['*']
+        );
+
+
+        $response = $this->get('api/franchises?sortBy=name&direction=asc&size=15');
+        $results = json_decode($response->content());
+        // dd($results->data);
+        $this->assertEquals('A', $results->data[0]->name);
+        $this->assertEquals('J', end($results->data)->name);
+
+        $response = $this->get('api/franchises?sortBy=name&direction=desc&size=15');
+        $results = json_decode($response->content());
+        // dd($results->data);
+        $this->assertEquals('J', $results->data[0]->name);
+        $this->assertEquals('A', end($results->data)->name);
+
+    }
+
 }

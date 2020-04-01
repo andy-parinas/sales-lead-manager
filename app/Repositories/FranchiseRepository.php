@@ -21,9 +21,11 @@ class FranchiseRepository implements FranchiseRepositoryInterface
 
     }
 
-    public function findByUser(User $user )
+    public function findByUser(User $user, Array $params)
     {
-        return $user->franchises;
+        return $user->franchises()
+            ->orderBy($params['column'], $params['direction'])
+            ->paginate($params['size']);
     }
 
     public function sortAndPaginate(Array $params)

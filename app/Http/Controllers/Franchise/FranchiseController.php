@@ -38,9 +38,9 @@ class FranchiseController extends ApiController
         }
         else
         {
-            $franchises = $this->franchiseRepository->findByUser(Auth::user());
+            $franchises = $this->franchiseRepository->findByUser(Auth::user(), $this->getRequestParams());
 
-            return $this->showAll($franchises);
+            return $this->showPaginated($franchises);
         }
 
         
