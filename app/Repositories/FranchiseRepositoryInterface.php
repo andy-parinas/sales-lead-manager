@@ -10,7 +10,7 @@ interface FranchiseRepositoryInterface
 
     public function all();
 
-    public function sortAndPaginate($column, $direction, $perPage);
+    public function sortAndPaginate(Array $params);
 
     public function findById($franchiseId);
 

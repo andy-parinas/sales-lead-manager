@@ -54,4 +54,43 @@ class FranchiseSortFilterPaginateFeatureTest extends TestCase
         $this->assertEquals('101', end($results->data)->number);
     }
 
+    public function testCanSorByNameAscending()
+    {
+        foreach (range('A', 'J') as $name) {
+            factory(Franchise::class)->create(['name' => $name]);
+        }
+
+        Sanctum::actingAs(
+            $this->createHeadOfficeUser(),
+            ['*']
+        );
+
+
+        $response = $this->get('api/franchises?sortBy=name&direction=asc&size=15');
+        $results = json_decode($response->content());
+        // dd($results->data);
+        $this->assertEquals('A', $results->data[0]->name);
+        $this->assertEquals('J', end($results->data)->name);
+        
+    }
+
+    public function testCanSortByNameDescending()
+    {
+        foreach (range('A', 'J') as $name) {
+            factory(Franchise::class)->create(['name' => $name]);
+        }
+
+        Sanctum::actingAs(
+            $this->createHeadOfficeUser(),
+            ['*']
+        );
+
+
+        $response = $this->get('api/franchises?sortBy=name&direction=desc&size=15');
+        $results = json_decode($response->content());
+        // dd($results->data);
+        $this->assertEquals('J', $results->data[0]->name);
+        $this->assertEquals('A', end($results->data)->name);
+    }
+
 }

@@ -30,14 +30,9 @@ class FranchiseController extends ApiController
     public function index()
     {
         
-        $column = request()->has('sortBy') ? request()->sortBy : 'number';
-        $direction = request()->has('direction') ? request()->direction : 'asc';
-        $size = request()->has('size') ? request()->size : 15;
-
-        // dd($column, $direction, $size);
         if(Auth::user()->can('viewAny', Franchise::class))
         {
-            $franchises = $this->franchiseRepository->sortAndPaginate($column, $direction, $size);
+            $franchises = $this->franchiseRepository->sortAndPaginate($this->getSortingParams());
             return $this->showPaginated($franchises);
 
         }
