@@ -3,16 +3,18 @@
 namespace Tests\Feature;
 
 use App\Franchise;
+use App\Lead;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Sanctum\Sanctum;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
+use Tests\TestHelper;
 
 class FranchiseFeatureTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, TestHelper;
 
     public function testCanListAllFranchiseByHeadOffice()
     {
@@ -243,6 +245,24 @@ class FranchiseFeatureTest extends TestCase
         $this->delete('api/franchises/' . $franchise->id)
             ->assertStatus(Response::HTTP_FORBIDDEN);
         $this->assertCount(1, Franchise::all());
+
+    }
+
+    public function testCanNoDeleteFranchiseWithRelatedData()
+    {
+        $franchise = factory(Franchise::class)->create();
+        factory(Lead::class)->create(['franchise_id' => $franchise->id]);
+
+        Sanctum::actingAs(
+            $this->createHeadOfficeUser(),
+            ['*']
+        );
+
+        $this->delete('api/franchises/' . $franchise->id)
+            ->assertStatus(Response::HTTP_CONFLICT);
+        $this->assertCount(1, Franchise::all());
+
+        // dump(Lead::first()->franchise);
 
     }
 

@@ -14,6 +14,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
+use Symfony\Component\HttpFoundation\Response;
 
 class Handler extends ExceptionHandler
 {
@@ -95,11 +96,31 @@ class Handler extends ExceptionHandler
         }
 
         if ($exception instanceof QueryException){
-            $errorCode = $exception->errorInfo[1];
-            if($errorCode == 1451){
+
+            $errorCode = $exception->getCode();
+
+            if($errorCode == '23000'){
+
                 return $this->errorResponse("Cannot remove resource permanently. It is related with another resource", 409);
+
+            }else {
+
+                if(config('app.debug')){
+
+                    return $this->errorResponse($exception->getMessage(), 500);
+                }
+
+                return $this->errorResponse("Error in database operations. Please try again", 500);
             }
+
         }
+
+        if(config('app.debug')){
+            
+            return $this->errorResponse($exception->getMessage(), 500);
+        }
+
+        return $this->errorResponse('Unexpected Error. Please Try again', 500);
         
     }
 
