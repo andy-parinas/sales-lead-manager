@@ -4,6 +4,7 @@
 namespace App\Traits;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Symfony\Component\HttpFoundation\Response;
 
 trait ApiResponser
@@ -23,6 +24,11 @@ trait ApiResponser
     protected function showAll(Collection $collection, $code=Response::HTTP_OK)
     {
         return $this->successResponse(['data' => $collection], $code);
+    }
+
+    protected function showPaginated(LengthAwarePaginator $data, $code=Response::HTTP_OK)
+    {
+        return $this->successResponse($data, $code);
     }
 
     protected function showOne($data, $code=Response::HTTP_OK)

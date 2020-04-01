@@ -26,4 +26,9 @@ class FranchiseRepository implements FranchiseRepositoryInterface
         return $user->franchises;
     }
 
+    public function sortAndPaginate($column, $direction, $perPage)
+    {
+        return Franchise::orderBy($column, $direction)->paginate($perPage);
+    }
+
 }
