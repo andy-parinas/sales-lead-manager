@@ -51,6 +51,25 @@ class FranchisePostcodeController extends ApiController
 
         $this->validate($request, $rules);
 
+        $postcodes = $request['postcodes'];
+
+        //Check if the Postcode is within the Parent Franchise
+        $parent = $franchise->parent;
+
+        if($parent !== null){
+
+            $parentPostcodes = $parent->postcodes->pluck('id')->toArray();
+            
+            foreach ($postcodes as $postcode) {
+
+                if(!in_array($postcode, $parentPostcodes)){
+                    dump("Error encountered");
+                    return $this->errorResponse("Some Postcode is not within the Parent Postcodes", Response::HTTP_BAD_REQUEST);
+                }
+            }
+         
+        }
+
         $franchise->postcodes()->attach($request['postcodes']);
 
         return $this->showAll($franchise->postcodes, Response::HTTP_CREATED);
