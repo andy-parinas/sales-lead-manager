@@ -6,6 +6,7 @@ use App\Franchise;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class FranchiseChildrenController extends ApiController
 {
@@ -37,9 +38,21 @@ class FranchiseChildrenController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Franchise $franchise)
     {
-        //
+        
+        $this->authorize('create', $franchise);
+
+        $rules = [
+            'number' => 'required',
+            'name' => 'required'
+        ];
+
+        $this->validate($request, $rules);
+
+        $createdChild = $franchise->children()->create($request->all());
+
+        return $this->showOne($createdChild, Response::HTTP_CREATED);
     }
 
   

@@ -73,6 +73,42 @@ class FranchiseChildrenFeatureTest extends TestCase
             ->assertJsonCount(5, 'data');
     }
 
-    
+    public function testCanStoreChildrenFranchiseInParentByHeadOffice()
+    {
+        
+        $parent = factory(Franchise::class)->create();
+
+        $childData = factory(Franchise::class)->raw();
+
+        Sanctum::actingAs(
+            factory(User::class)->create(['user_type' => User::HEAD_OFFICE]),
+            ['*']
+        );
+
+        $this->post('api/franchises/' . $parent->id . '/children', $childData)
+            ->assertStatus(Response::HTTP_CREATED);
+
+        $this->assertCount(1, Franchise::find($parent->id)->children);
+
+
+    }
+
+    public function testCanNotStoreChildrenFranchiseInParentByNonHeadOffice()
+    {
+
+        $parent = factory(Franchise::class)->create();
+
+        $childData = factory(Franchise::class)->raw();
+
+        Sanctum::actingAs(
+            factory(User::class)->create(['user_type' => User::FRANCHISE_ADMIN]),
+            ['*']
+        );
+
+        $this->post('api/franchises/' . $parent->id . '/children', $childData)
+            ->assertStatus(Response::HTTP_FORBIDDEN);
+
+        $this->assertCount(0, Franchise::find($parent->id)->children);
+    }
 
 }
