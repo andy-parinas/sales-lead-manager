@@ -32,7 +32,7 @@ class FranchiseController extends ApiController
         
         if(Auth::user()->can('viewAny', Franchise::class))
         {
-            $franchises = $this->franchiseRepository->sortAndPaginate($this->getSortingParams());
+            $franchises = $this->franchiseRepository->sortAndPaginate($this->getRequestParams());
             return $this->showPaginated($franchises);
 
         }

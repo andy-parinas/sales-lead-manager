@@ -10,7 +10,7 @@ class ApiController extends Controller
     use ApiResponser;
 
 
-    protected function getSortingParams()
+    protected function getRequestParams()
     {
         $column = request()->has('sortBy') ? request()->sortBy : 'number';
         $direction = request()->has('direction') ? request()->direction : 'asc';
