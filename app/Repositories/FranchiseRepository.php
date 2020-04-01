@@ -4,7 +4,7 @@
 namespace App\Repositories;
 
 use App\Franchise;
-use App\Repositories\FranchiseRepositoryInterface;
+use App\Repositories\Interfaces\FranchiseRepositoryInterface;
 use App\User;
 
 class FranchiseRepository implements FranchiseRepositoryInterface

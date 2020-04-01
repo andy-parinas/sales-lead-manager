@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Repositories\FranchiseRepository;
-use App\Repositories\FranchiseRepositoryInterface;
+use App\Repositories\Interfaces\FranchiseRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
