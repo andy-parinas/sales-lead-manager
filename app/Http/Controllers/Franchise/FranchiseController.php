@@ -5,16 +5,21 @@ namespace App\Http\Controllers\Franchise;
 use App\Franchise;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Repositories\FranchiseRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
+
 class FranchiseController extends ApiController
 {
 
-    public function __construct() {
+    private $franchiseRepository;
+
+    public function __construct(FranchiseRepositoryInterface $franchiseRepository) {
         $this->middleware('auth:sanctum');
+        $this->franchiseRepository = $franchiseRepository;
     }
 
     /**
@@ -29,13 +34,13 @@ class FranchiseController extends ApiController
         
         if($user->can('viewAny', Franchise::class))
         {
-            $franchises = Franchise::all();
+            $franchises = $this->franchiseRepository->all();
             return $this->showAll($franchises);
 
         }
         else
         {
-            $franchises = $user->franchises;
+            $franchises = $this->franchiseRepository->findByUser($user);
 
             return $this->showAll($franchises);
         }

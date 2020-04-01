@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Respositories\FranchiseRepository;
+use App\Respositories\FranchiseRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // $this->app->bind(FranchiseRepositoryInterface::class, FranchiseRepository::class);
+        
     }
 }

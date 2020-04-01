@@ -16,7 +16,7 @@ class FranchiseFeatureTest extends TestCase
 
     public function testCanListAllFranchiseByHeadOffice()
     {
-
+        $this->withoutExceptionHandling();
         $headOffice = factory(User::class)->create(['user_type' => User::HEAD_OFFICE]);
 
         Sanctum::actingAs(
