@@ -149,5 +149,31 @@ class FranchiseSortFilterPaginateFeatureTest extends TestCase
 
     }
 
+    public function testCanSearchFranchiseByFranchiseAdmin()
+    {
+        $user = $this->createFranchiseAdminUser();
+        
+        //Haystack
+        factory(Franchise::class, 5)->create()->each(function($franchise) use ($user){
+            $user->franchises()->attach($franchise->id);
+        });
+
+        //Needles
+       factory(Franchise::class)->create(['name' => 'AAAAAAA', 'number' => '111111'])->users()->attach($user->id);
+       factory(Franchise::class)->create(['name' => 'AAAAABB', 'number' => '111122'])->users()->attach($user->id);
+       factory(Franchise::class)->create(['name' => 'AAAAACC', 'number' => '333322'])->users()->attach($user->id);
+
+        Sanctum::actingAs(
+            $user,
+            ['*']
+        );
+
+        $this->get('api/franchises?search=AAAA&on=name')
+            ->assertJsonCount(3, 'data');
+
+        $this->get('api/franchises?search=1111&on=number')
+            ->assertJsonCount(2, 'data');
+    }
+
 
 }

@@ -24,6 +24,14 @@ class FranchiseRepository implements FranchiseRepositoryInterface
 
     public function findByUser(User $user, Array $params)
     {
+
+        if(key_exists('search', $params) && key_exists('on', $params))
+        {
+            return $user->franchises()->where($params['on'], 'LIKE', '%' . $params['search'] . '%')
+                ->orderBy($params['column'], $params['direction'])
+                ->paginate($params['size']);
+        }
+
         return $user->franchises()
             ->orderBy($params['column'], $params['direction'])
             ->paginate($params['size']);
