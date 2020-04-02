@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Franchise;
 use App\Franchise;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Lead;
 use Illuminate\Http\Request;
 
 class FranchiseLeadController extends ApiController
@@ -48,9 +49,11 @@ class FranchiseLeadController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Franchise $franchise, Lead $lead)
     {
-        //
+        $this->authorize('view', $franchise);
+        
+        return $this->showOne($lead);
     }
 
 

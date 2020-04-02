@@ -75,6 +75,88 @@ class FranchiseLeadFeatureTest extends TestCase
 
     }
 
+    public function testCanShowLeadUnderUsersFranchise()
+    {
+        
+        $franchise = factory(Franchise::class)->create();
+        $lead = factory(Lead::class)->create(['franchise_id' => $franchise->id]);
+
+        $user = $this->createStaffUser();
+        $user->franchises()->attach($franchise->id);
+
+        $franchiseAdmin = $this->createFranchiseAdminUser();
+        $franchiseAdmin->franchises()->attach($franchise->id);
+
+        Sanctum::actingAs(
+            $user,
+            ['*']
+        );
+
+        $response = $this->get('api/franchises/' . $franchise->id . '/leads/' . $lead->id);
+        $result = json_decode($response->content());
+
+        $response->assertStatus(Response::HTTP_OK);
+        $this->assertEquals($lead->number, $result->data->number);
+
+        Sanctum::actingAs(
+            $franchiseAdmin,
+            ['*']
+        );
+
+        $response = $this->get('api/franchises/' . $franchise->id . '/leads/' . $lead->id);
+        $result = json_decode($response->content());
+
+        $response->assertStatus(Response::HTTP_OK);
+        $this->assertEquals($lead->number, $result->data->number);
+
+    }
+
+    public function testCanNotShowLeadOutsideUsersFranchise()
+    {
+         
+        $franchise = factory(Franchise::class)->create();
+        $lead = factory(Lead::class)->create(['franchise_id' => $franchise->id]);
+
+        $user = $this->createStaffUser();
+        $franchiseAdmin = $this->createFranchiseAdminUser();
+
+
+        Sanctum::actingAs(
+            $user,
+            ['*']
+        );
+
+        $response = $this->get('api/franchises/' . $franchise->id . '/leads/' . $lead->id)
+            ->assertStatus(Response::HTTP_FORBIDDEN);
+
+        Sanctum::actingAs(
+            $franchiseAdmin,
+            ['*']
+        );
+
+        $response = $this->get('api/franchises/' . $franchise->id . '/leads/' . $lead->id)
+            ->assertStatus(Response::HTTP_FORBIDDEN);
+    }
+
+    public function testCanShowAnyLeadByHeadOfficeUsers()
+    {
+        $franchise = factory(Franchise::class)->create();
+        $lead = factory(Lead::class)->create(['franchise_id' => $franchise->id]);
+
+
+        Sanctum::actingAs(
+            $this->createHeadOfficeUser(),
+            ['*']
+        );
+
+        $response = $this->get('api/franchises/' . $franchise->id . '/leads/' . $lead->id);
+        $result = json_decode($response->content());
+
+        $response->assertStatus(Response::HTTP_OK);
+        $this->assertEquals($lead->number, $result->data->number);
+
+      
+    }
 
 
 
