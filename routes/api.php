@@ -31,3 +31,9 @@ Route::resource('franchises', 'Franchise\FranchiseController', ['except' => ['cr
 Route::resource('franchises.postcodes', 'Franchise\FranchisePostcodeController', ['only' => ['index', 'store', 'destroy']]);
 Route::resource('franchises.children', 'Franchise\FranchiseChildrenController', ['only' => ['index', 'store']]);
 Route::resource('franchises.leads', 'Franchise\FranchiseLeadController', ['except' => ['create', 'edit']]);
+
+
+/**
+ * Lead Route
+ */
+Route::resource('leads', 'Lead\LeadController', ['only' => ['index', 'show', 'destroy']]);
