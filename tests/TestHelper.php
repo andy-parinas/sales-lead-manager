@@ -17,5 +17,10 @@ trait TestHelper
         return factory(User::class)->create(['user_type' => User::FRANCHISE_ADMIN]);
     }
 
+    protected function createStaffUser()
+    {
+        return factory(User::class)->create(['user_type' => User::STAFF_USER]);
+    }
+
 
 }
