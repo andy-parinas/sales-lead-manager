@@ -20,6 +20,7 @@ class CreateSalesContactsTable extends Migration
             $table->string('last_name');
             $table->string('email');
             $table->string('contact_number');
+            $table->string('postcode');
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Franchise;
 use App\Lead;
 use App\LeadSource;
+use App\Postcode;
 use App\SalesContact;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -21,6 +22,8 @@ class FranchiseLeadFeatureTest extends TestCase
 
     public function testCanListLeadsUnderUsersFranchise()
     {
+        $this->withoutExceptionHandling();
+
         $franchise = factory(Franchise::class)->create();
         factory(Lead::class, 10)->create(['franchise_id' => $franchise->id]);
 
@@ -166,12 +169,15 @@ class FranchiseLeadFeatureTest extends TestCase
 
         $this->withoutExceptionHandling();
         
+        $postcode = factory(Postcode::class)->create();
         $franchise = factory(Franchise::class)->create();
+        $franchise->postcodes()->attach($postcode->id);
+
 
         $user = $this->createStaffUser();
         $user->franchises()->attach($franchise->id);
 
-        $salesContact = factory(SalesContact::class)->create();
+        $salesContact = factory(SalesContact::class)->create(['postcode' => $postcode->pcode]);
         $leadSource = factory(LeadSource::class)->create();
 
         $leadData = [
@@ -225,7 +231,67 @@ class FranchiseLeadFeatureTest extends TestCase
         $this->assertCount(0, Lead::all());       
 
 
+    }
 
+    public function testCreatedLeadHasPostcodeStatusInside()
+    {
+       
+        $postcode = factory(Postcode::class)->create();
+        $franchise = factory(Franchise::class)->create();
+        $franchise->postcodes()->attach($postcode->id);
+
+
+        $user = $this->createStaffUser();
+        $user->franchises()->attach($franchise->id);
+
+        $salesContact = factory(SalesContact::class)->create(['postcode' => $postcode->pcode]);
+        $leadSource = factory(LeadSource::class)->create();
+
+        $leadData = [
+            'number' => '1234567890',
+            'sales_contact_id' => $salesContact->id,
+            'lead_source_id' => $leadSource->id,
+            'lead_date' => '2020-03-30'
+        ];
+
+        Sanctum::actingAs(
+            $user,
+            ['*']
+        );
+
+        $this->post('api/franchises/' . $franchise->id . '/leads', $leadData);
+        $this->assertEquals(Lead::INSIDE_OF_FRANCHISE, Lead::first()->postcode_status);
+        
+
+    }
+
+    public function testCreatedLeadHasPostcodeStatusOutside()
+    {
+        $postcode = factory(Postcode::class)->create();
+        $franchise = factory(Franchise::class)->create();
+        $franchise->postcodes()->attach($postcode->id);
+
+
+        $user = $this->createStaffUser();
+        $user->franchises()->attach($franchise->id);
+
+        $salesContact = factory(SalesContact::class)->create();
+        $leadSource = factory(LeadSource::class)->create();
+
+        $leadData = [
+            'number' => '1234567890',
+            'sales_contact_id' => $salesContact->id,
+            'lead_source_id' => $leadSource->id,
+            'lead_date' => '2020-03-30'
+        ];
+
+        Sanctum::actingAs(
+            $user,
+            ['*']
+        );
+
+        $this->post('api/franchises/' . $franchise->id . '/leads', $leadData);
+        $this->assertEquals(Lead::OUTSIDE_OF_FRANCHISE, Lead::first()->postcode_status);
     }
 
 

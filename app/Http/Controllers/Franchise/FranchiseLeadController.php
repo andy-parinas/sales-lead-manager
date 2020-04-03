@@ -7,14 +7,18 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Lead;
 use App\SalesContact;
+use App\Services\Interfaces\PostcodeServiceInterface;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class FranchiseLeadController extends ApiController
 {
 
-    public function __construct() {
+    private $postcodeService;
+
+    public function __construct(PostcodeServiceInterface $postcodeService) {
         $this->middleware('auth:sanctum');
+        $this->postcodeService = $postcodeService;
     }
 
 
@@ -40,12 +44,14 @@ class FranchiseLeadController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Franchise $franchise)
+    public function store(Request $request, $franchise_id)
     {
+
+        $franchise = Franchise::with('postcodes')->findOrFail($franchise_id);
 
         $this->authorize('createLead', $franchise);
 
-        $this->validate($request, [
+        $data = $this->validate($request, [
             'number' => 'required',
             'sales_contact_id' => 'required|integer',
             'lead_source_id' => 'required|integer',
@@ -57,11 +63,10 @@ class FranchiseLeadController extends ApiController
          * If not, Need to tag the Lead as Outside-of-franchise
          */
         $salesContact = SalesContact::findOrFail($request->sales_contact_id);
-        // dd($salesContact);
-        // $postcode_check = $this->checkPostcode($franchise, $salesContact); 
-
+        $data['postcode_status'] = $this->postcodeService->checkSalesContactPostcode($salesContact, $franchise);
+ 
         $lead = $franchise->leads()
-            ->create($request->only(['number', 'sales_contact_id', 'lead_source_id', 'lead_date']));
+            ->create($data);
 
         return $this->showOne($lead, Response::HTTP_CREATED);
 
