@@ -45,6 +45,15 @@ class FranchisePolicy
     }
 
     /**
+     * Determine wether the user can create a lead inside the Franchise
+     */
+    public function createLead(User $user, Franchise $franchise)
+    {
+        return $user->franchises->contains('id', $franchise->id) || $user->isHeadOffice();
+        
+    }
+
+    /**
      * Determine whether the user can update the franchise.
      *
      * @param  \App\User  $user

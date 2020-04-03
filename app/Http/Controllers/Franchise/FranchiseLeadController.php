@@ -7,6 +7,7 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Lead;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class FranchiseLeadController extends ApiController
 {
@@ -38,9 +39,23 @@ class FranchiseLeadController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Franchise $franchise)
     {
-        //
+
+        $this->authorize('createLead', $franchise);
+
+        $this->validate($request, [
+            'number' => 'required',
+            'sales_contact_id' => 'required|integer',
+            'lead_source_id' => 'required|integer',
+            'lead_date' => 'required'
+        ]);
+
+        $lead = $franchise->leads()
+            ->create($request->only(['number', 'sales_contact_id', 'lead_source_id', 'lead_date']));
+
+        return $this->showOne($lead, Response::HTTP_CREATED);
+
     }
 
     /**

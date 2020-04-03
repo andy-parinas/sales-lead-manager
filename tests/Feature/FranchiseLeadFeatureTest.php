@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use App\Franchise;
 use App\Lead;
+use App\LeadSource;
+use App\SalesContact;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Sanctum\Sanctum;
@@ -158,6 +160,73 @@ class FranchiseLeadFeatureTest extends TestCase
       
     }
 
+
+    public function testCanCreateLeadUnderStaffUsersFranchise()
+    {
+
+        $this->withoutExceptionHandling();
+        
+        $franchise = factory(Franchise::class)->create();
+
+        $user = $this->createStaffUser();
+        $user->franchises()->attach($franchise->id);
+
+        $salesContact = factory(SalesContact::class)->create();
+        $leadSource = factory(LeadSource::class)->create();
+
+        $leadData = [
+            'number' => '1234567890',
+            'sales_contact_id' => $salesContact->id,
+            'lead_source_id' => $leadSource->id,
+            'lead_date' => '2020-03-30'
+        ];
+
+        Sanctum::actingAs(
+            $user,
+            ['*']
+        );
+
+        $this->post('api/franchises/' . $franchise->id . '/leads', $leadData)
+            ->assertStatus(Response::HTTP_CREATED);
+
+        $this->assertCount(1, Lead::all());       
+
+    }
+
+    public function testCanNotCreateLeadOutsideStaffUsersFranchise()
+    {
+        
+        
+        // $this->withoutExceptionHandling();
+        
+        $franchise = factory(Franchise::class)->create();
+
+        $user = $this->createStaffUser();
+        $user->franchises()->attach($franchise->id);
+
+        $salesContact = factory(SalesContact::class)->create();
+        $leadSource = factory(LeadSource::class)->create();
+
+        $leadData = [
+            'number' => '1234567890',
+            'sales_contact_id' => $salesContact->id,
+            'lead_source_id' => $leadSource->id,
+            'lead_date' => '2020-03-30'
+        ];
+
+        Sanctum::actingAs(
+            $this->createStaffUser(), //Create a new staff user acting as a User
+            ['*']
+        );
+
+        $this->post('api/franchises/' . $franchise->id . '/leads', $leadData)
+            ->assertStatus(Response::HTTP_FORBIDDEN);
+
+        $this->assertCount(0, Lead::all());       
+
+
+
+    }
 
 
 

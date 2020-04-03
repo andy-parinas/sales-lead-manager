@@ -11,7 +11,8 @@ class Lead extends Model
         'number',
         'branch_id',
         'sales_contact_id',
-        'lead_source_id'
+        'lead_source_id',
+        'lead_date'
     ];
 
 
