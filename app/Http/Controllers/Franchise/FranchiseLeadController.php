@@ -6,6 +6,7 @@ use App\Franchise;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Lead;
+use App\SalesContact;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -50,6 +51,14 @@ class FranchiseLeadController extends ApiController
             'lead_source_id' => 'required|integer',
             'lead_date' => 'required'
         ]);
+
+        /**
+         * Check if the SalesContact postcode is within the franchise postcode assignment. 
+         * If not, Need to tag the Lead as Outside-of-franchise
+         */
+        $salesContact = SalesContact::findOrFail($request->sales_contact_id);
+        // dd($salesContact);
+        // $postcode_check = $this->checkPostcode($franchise, $salesContact); 
 
         $lead = $franchise->leads()
             ->create($request->only(['number', 'sales_contact_id', 'lead_source_id', 'lead_date']));

@@ -7,12 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Lead extends Model
 {
 
+    const INSIDE_OF_FRANCHISE = 'inside_of_franchise';
+    const OUTSIDE_OF_FRANCHISE = 'outside_of_franchise';
+
     protected $fillable = [
         'number',
         'branch_id',
         'sales_contact_id',
         'lead_source_id',
-        'lead_date'
+        'lead_date',
+        'postcode_status'
     ];
 
 
