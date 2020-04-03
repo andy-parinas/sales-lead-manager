@@ -6,6 +6,7 @@ use App\Franchise;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Lead;
+use App\Repositories\Interfaces\LeadRepositoryInterface;
 use App\SalesContact;
 use App\Services\Interfaces\PostcodeServiceInterface;
 use Illuminate\Http\Request;
@@ -15,10 +16,12 @@ class FranchiseLeadController extends ApiController
 {
 
     private $postcodeService;
+    private $leadRepository;
 
-    public function __construct(PostcodeServiceInterface $postcodeService) {
+    public function __construct(PostcodeServiceInterface $postcodeService, LeadRepositoryInterface $leadRepository) {
         $this->middleware('auth:sanctum');
         $this->postcodeService = $postcodeService;
+        $this->leadRepository = $leadRepository;
     }
 
 
@@ -32,9 +35,9 @@ class FranchiseLeadController extends ApiController
 
         $this->authorize('view', $franchise);
 
-        $leads = $franchise->leads;
+        $leads = $this->leadRepository->findSortPaginateByFranchise($franchise, $this->getRequestParams());
 
-        return $this->showAll($leads);
+        return $this->showPaginated($leads);
     }
 
    
