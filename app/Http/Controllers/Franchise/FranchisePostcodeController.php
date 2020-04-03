@@ -6,6 +6,7 @@ use App\Franchise;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Postcode;
+use App\Services\Interfaces\PostcodeServiceInterface;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -13,8 +14,11 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 class FranchisePostcodeController extends ApiController
 {
 
-    public function __construct() {
+    private $postcodeService;
+
+    public function __construct(PostcodeServiceInterface $postcodeService) {
         $this->middleware('auth:sanctum');
+        $this->postcodeService = $postcodeService;
     }
 
     /**
@@ -40,37 +44,20 @@ class FranchisePostcodeController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Franchise $franchise)
+    public function store(Request $request, $franchise_id)
     {
+
+        $franchise = Franchise::with('parent')->findOrFail($franchise_id);
 
         $this->authorize('create', $franchise);
 
-        $rules = [
+        $data = $this->validate($request, [
             'postcodes' => 'required|array'
-        ];
+        ]);
 
-        $this->validate($request, $rules);
+        $postcodes = $this->postcodeService->checkParentPostcodes($franchise, $data['postcodes']);
 
-        $postcodes = $request['postcodes'];
-
-        //Check if the Postcode is within the Parent Franchise
-        $parent = $franchise->parent;
-
-        if($parent !== null){
-
-            $parentPostcodes = $parent->postcodes->pluck('id')->toArray();
-            
-            foreach ($postcodes as $postcode) {
-
-                if(!in_array($postcode, $parentPostcodes)){
-
-                    return $this->errorResponse("Some Postcode is not within the Parent Postcodes", Response::HTTP_BAD_REQUEST);
-                }
-            }
-         
-        }
-
-        $franchise->postcodes()->attach($request['postcodes']);
+        $franchise->postcodes()->attach($postcodes);
 
         return $this->showAll($franchise->postcodes, Response::HTTP_CREATED);
         

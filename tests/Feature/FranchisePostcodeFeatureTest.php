@@ -91,7 +91,7 @@ class FranchisePostcodeFeatureTest extends TestCase
     public function testCanAttachPostcodeToFranchiseByHeadOffice()
     {
 
-        // $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
 
         $headOffice = factory(User::class)->create(['user_type' => User::HEAD_OFFICE]);
         
@@ -249,9 +249,16 @@ class FranchisePostcodeFeatureTest extends TestCase
         $p2 = factory(Postcode::class)->create();
         $p3 = factory(Postcode::class)->create();
 
+        // Out of bounds postcodes. Not in the parent postcode
+        // This will not be included in the franchise postcode
+        $p4 = factory(Postcode::class)->create();
+        $p5 = factory(Postcode::class)->create();
+
         $parent->postcodes()->attach([$p1->id, $p2->id, $p3->id]);
 
-        $data = ['postcodes' => [$p1->id, $p2->id]];
+        $data = ['postcodes' => [$p1->id, $p2->id, $p4->id, $p5->id]];
+        // $data = ['postcodes' => [$p4->id, $p5->id]];
+
 
         Sanctum::actingAs(
             $headOffice,
@@ -261,10 +268,11 @@ class FranchisePostcodeFeatureTest extends TestCase
         $this->post('api/franchises/' . $child->id . '/postcodes/', $data)
         ->assertStatus(Response::HTTP_CREATED)
         ->assertJsonCount(2, 'data');
+        $this->assertCount(2, Franchise::find($child->id)->postcodes);
 
     }
 
-    public function testCanNotAttachPostcodeInChildIfOutsideParentPostcode()
+    public function testWillNotAttachPostcodeInChildIfOutsideParentPostcode()
     {
         $headOffice = factory(User::class)->create(['user_type' => User::HEAD_OFFICE]);
         
@@ -287,7 +295,7 @@ class FranchisePostcodeFeatureTest extends TestCase
         );
 
         $this->post('api/franchises/' . $child->id . '/postcodes/', $data)
-        ->assertStatus(Response::HTTP_BAD_REQUEST);
+        ->assertStatus(Response::HTTP_CREATED);
 
         $this->assertCount(0, Franchise::find($child->id)->postcodes);
 

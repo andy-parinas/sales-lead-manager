@@ -9,6 +9,8 @@ interface PostcodeServiceInterface
 {
 
     public function checkSalesContactPostcode(SalesContact $salesContact, Franchise $franchise);
+
+    public function checkParentPostcodes(Franchise $franchise, Array $postcodes);
     
     
 }
