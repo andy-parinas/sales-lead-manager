@@ -12,6 +12,18 @@ class LeadRepository implements LeadRepositoryInterface
     public function findSortPaginateByFranchise(Franchise $franchise, Array $params)
     {   
 
+        if(key_exists('search', $params) && key_exists('on', $params))
+        {
+
+            return  DB::table('leads')->where('franchise_id', $franchise->id)
+                ->join('sales_contacts', 'sales_contacts.id', '=', 'leads.sales_contact_id')
+                ->join('lead_sources', 'lead_sources.id', '=', 'leads.lead_source_id')
+                ->select('leads.number', 'leads.lead_date', 'lead_sources.name as source', 'sales_contacts.*')
+                ->where($params['on'], 'LIKE', '%' . $params['search'] . '%')
+                ->orderBy($params['column'], $params['direction'])
+                ->paginate($params['size']);
+
+        }
 
         return DB::table('leads')->where('franchise_id', $franchise->id)
             ->join('sales_contacts', 'sales_contacts.id', '=', 'leads.sales_contact_id')
