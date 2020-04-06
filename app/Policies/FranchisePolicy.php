@@ -53,6 +53,18 @@ class FranchisePolicy
         
     }
 
+
+    public function updateLead(User $user, Franchise $franchise)
+    {
+        return $user->franchises->contains('id', $franchise->id) || $user->isHeadOffice();
+
+    }
+
+    public function changeLeadFranchise(User $user, Franchise $franchise)
+    {
+        return $user->isFranchiseAdmin() || $user->isHeadOffice();
+    }
+
     /**
      * Determine whether the user can update the franchise.
      *

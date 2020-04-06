@@ -16,7 +16,8 @@ class Lead extends Model
         'sales_contact_id',
         'lead_source_id',
         'lead_date',
-        'postcode_status'
+        'postcode_status',
+        'franchise_id'
     ];
 
 

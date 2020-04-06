@@ -295,5 +295,110 @@ class FranchiseLeadFeatureTest extends TestCase
     }
 
 
+    public function testCanUpdateLeadDataExceptNumberByStaffUsers()
+    {
+
+        $franchise = factory(Franchise::class)->create();
+        $lead = factory(Lead::class)->create(['franchise_id' => $franchise->id]);
+
+        $user = $this->createStaffUser();
+        $user->franchises()->attach($franchise->id);
+
+        $leadSource = factory(LeadSource::class)->create();
+
+        Sanctum::actingAs(
+            $user,
+            ['*']
+        );
+
+        $updates = [
+            'lead_source_id' => $leadSource->id,
+            'lead_date' => '2020-04-30'
+        ];
+
+        $this->put('api/franchises/' . $franchise->id . '/leads/' . $lead->id, $updates)
+            ->assertStatus(Response::HTTP_OK);
+
+        $this->assertEquals($leadSource->id, Lead::first()->lead_source_id);
+        $this->assertEquals('2020-04-30', Lead::first()->lead_date);
+        
+    }
+
+    public function testCanNotUpdateLeadDataByUserOutsideFranchise()
+    {
+        $franchise = factory(Franchise::class)->create();
+        $lead = factory(Lead::class)->create(['franchise_id' => $franchise->id]);
+
+        $user = $this->createStaffUser();
+        $user->franchises()->attach($franchise->id);
+
+        Sanctum::actingAs(
+            $this->createStaffUser(),
+            ['*']
+        );
+
+        $updates = [
+            'lead_date' => '2020-04-30'
+        ];
+
+        $this->put('api/franchises/' . $franchise->id . '/leads/' . $lead->id, $updates)
+            ->assertStatus(Response::HTTP_FORBIDDEN);
+
+        $this->assertEquals($lead->lead_date, Lead::first()->lead_date);
+    }
+
+
+    public function testCanChangeFranchiseByAdminUnderTheirAssignedFranchise()
+    {
+        
+        $franchise = factory(Franchise::class)->create();
+        $lead = factory(Lead::class)->create(['franchise_id' => $franchise->id]);
+
+        //Will Transfer the Lead to this Franchise
+        $franchise2= factory(Franchise::class)->create();
+
+        $user = $this->createFranchiseAdminUser();
+        $user->franchises()->attach([$franchise->id, $franchise2->id]);
+
+        Sanctum::actingAs(
+            $user,
+            ['*']
+        );
+
+        $updates = [
+            'franchise_id' => $franchise2->id
+        ];
+
+        $this->put('api/franchises/' . $franchise->id . '/leads/' . $lead->id, $updates)
+            ->assertStatus(Response::HTTP_OK);
+
+        $this->assertEquals($franchise2->id, Lead::first()->franchise_id);
+    }
+
+    public function testCanNotChangeLeadFranchiseByStaffUsers()
+    {
+
+        $franchise = factory(Franchise::class)->create();
+        $lead = factory(Lead::class)->create(['franchise_id' => $franchise->id]);
+
+        $franchise2= factory(Franchise::class)->create();
+
+        $user = $this->createStaffUser();
+        $user->franchises()->attach([$franchise->id, $franchise2->id]);
+
+        Sanctum::actingAs(
+            $user,
+            ['*']
+        );
+
+        $updates = [
+            'franchise_id' => $franchise2->id
+        ];
+
+        $this->put('api/franchises/' . $franchise->id . '/leads/' . $lead->id, $updates)
+            ->assertStatus(Response::HTTP_OK);
+
+        $this->assertEquals($franchise->id, Lead::first()->franchise_id);
+    }
 
 }

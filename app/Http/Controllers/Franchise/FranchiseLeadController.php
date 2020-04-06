@@ -10,6 +10,7 @@ use App\Repositories\Interfaces\LeadRepositoryInterface;
 use App\SalesContact;
 use App\Services\Interfaces\PostcodeServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class FranchiseLeadController extends ApiController
@@ -96,9 +97,27 @@ class FranchiseLeadController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Franchise $franchise, Lead $lead)
     {
-        //
+
+        $this->authorize('updateLead', $franchise);
+
+        if(Auth::user()->can('changeFranchise', $franchise)){
+
+            //Need to check if the New Franchise is under the users Franchise
+
+            $lead->update($request->only(['franchise_id', 'lead_source_id','lead_date' ]));
+
+        }else {
+
+            $lead->update($request->only(['lead_source_id','lead_date' ]));
+
+
+        }
+
+
+
+        return $this->showOne($lead);
     }
 
     /**
