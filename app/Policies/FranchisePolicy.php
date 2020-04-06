@@ -62,7 +62,7 @@ class FranchisePolicy
 
     public function changeLeadFranchise(User $user, Franchise $franchise)
     {
-        return $user->isFranchiseAdmin() || $user->isHeadOffice();
+        return $user->franchises->contains('id', $franchise->id) && ( $user->isFranchiseAdmin() || $user->isHeadOffice());
     }
 
     /**

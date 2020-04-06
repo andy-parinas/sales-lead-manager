@@ -369,10 +369,36 @@ class FranchiseLeadFeatureTest extends TestCase
             'franchise_id' => $franchise2->id
         ];
 
-        $this->put('api/franchises/' . $franchise->id . '/leads/' . $lead->id, $updates)
+        $this->put('api/franchises/' . $franchise->id . '/leads/' . $lead->id . '/franchise', $updates)
             ->assertStatus(Response::HTTP_OK);
 
         $this->assertEquals($franchise2->id, Lead::first()->franchise_id);
+    }
+
+    public function testCanNotChangeFranchiseByAdminOutsideFranchiseAssignment()
+    {
+        $franchise = factory(Franchise::class)->create();
+        $lead = factory(Lead::class)->create(['franchise_id' => $franchise->id]);
+
+        //Will Transfer the Lead to this Franchise
+        $franchise2= factory(Franchise::class)->create();
+
+        $user = $this->createFranchiseAdminUser();
+        $user->franchises()->attach([$franchise->id]);
+
+        Sanctum::actingAs(
+            $user,
+            ['*']
+        );
+
+        $updates = [
+            'franchise_id' => $franchise2->id
+        ];
+
+        $this->put('api/franchises/' . $franchise->id . '/leads/' . $lead->id . '/franchise', $updates)
+            ->assertStatus(Response::HTTP_FORBIDDEN);
+
+        $this->assertEquals($franchise->id, Lead::first()->franchise_id);
     }
 
     public function testCanNotChangeLeadFranchiseByStaffUsers()
@@ -395,8 +421,8 @@ class FranchiseLeadFeatureTest extends TestCase
             'franchise_id' => $franchise2->id
         ];
 
-        $this->put('api/franchises/' . $franchise->id . '/leads/' . $lead->id, $updates)
-            ->assertStatus(Response::HTTP_OK);
+        $this->put('api/franchises/' . $franchise->id . '/leads/' . $lead->id . '/franchise', $updates)
+            ->assertStatus(Response::HTTP_FORBIDDEN);
 
         $this->assertEquals($franchise->id, Lead::first()->franchise_id);
     }
