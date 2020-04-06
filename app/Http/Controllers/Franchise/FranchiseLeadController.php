@@ -99,23 +99,10 @@ class FranchiseLeadController extends ApiController
      */
     public function update(Request $request, Franchise $franchise, Lead $lead)
     {
-
+        
         $this->authorize('updateLead', $franchise);
 
-        if(Auth::user()->can('changeFranchise', $franchise)){
-
-            //Need to check if the New Franchise is under the users Franchise
-
-            $lead->update($request->only(['franchise_id', 'lead_source_id','lead_date' ]));
-
-        }else {
-
-            $lead->update($request->only(['lead_source_id','lead_date' ]));
-
-
-        }
-
-
+        $lead->update($request->only(['lead_source_id','lead_date' ]));
 
         return $this->showOne($lead);
     }
