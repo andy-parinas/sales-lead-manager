@@ -22,7 +22,7 @@ class FranchiseLeadSFPFeatureTest extends TestCase
         // $this->withoutExceptionHandling();
 
         $franchise = factory(Franchise::class)->create();
-        for ($i=101; $i <= 115; $i++) { 
+        for ($i=101; $i <= 130; $i++) { 
             factory(Lead::class)->create(['number' => strval($i), 'franchise_id' => $franchise->id]);
         }
 
@@ -38,8 +38,8 @@ class FranchiseLeadSFPFeatureTest extends TestCase
         $results = json_decode($response->content());
 
         // dd($results);
-        $this->assertEquals('115', $results->data[0]->number);
-        $this->assertEquals('101', end($results->data)->number);
+        $this->assertEquals('130', $results->data[0]->number);
+        $this->assertEquals('116', end($results->data)->number);
 
     }
 
@@ -49,7 +49,7 @@ class FranchiseLeadSFPFeatureTest extends TestCase
         $this->withoutExceptionHandling();
 
         $franchise = factory(Franchise::class)->create();
-        for ($i=101; $i <= 115; $i++) { 
+        for ($i=101; $i <= 130; $i++) { 
             factory(Lead::class)->create(['number' => strval($i), 'franchise_id' => $franchise->id]);
         }
 
@@ -64,7 +64,6 @@ class FranchiseLeadSFPFeatureTest extends TestCase
         $response = $this->get('api/franchises/' . $franchise->id . '/leads?sort=number&direction=asc');
         $results = json_decode($response->content());
 
-        dd($results->data);
         $this->assertEquals('101', $results->data[0]->number);
         $this->assertEquals('115', end($results->data)->number);
     }
