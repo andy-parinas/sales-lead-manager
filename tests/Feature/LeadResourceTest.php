@@ -18,6 +18,38 @@ class LeadResourceTest extends TestCase
 
     public function testShowLeadHaveTheFollowingProperties()
     {
+
+        $responseStructure = [
+            'data' => [
+                'id',
+                'number',
+                'leadDate',
+                'postcodeStatus',
+                'franchiseNumber',
+                'leadSource',
+                'firstName',
+                'lastName',
+                'email',
+                'contactNumber',
+                'postcode',
+                'jobType' => [
+                    'takenBy',
+                    'dateAllocated',
+                    'description',
+                    'productId',
+                    'product',
+                    'designAdvisorId',
+                    'designAdvisor' 
+                ],
+                'appointment' => [
+                    'date',
+                    'notes',
+                    'quotedPrice',
+                    'outcome',
+                    'comments'
+                ]
+            ]
+        ];
         
         $franchise = factory(Franchise::class)->create();
         $lead = factory(Lead::class)->create(['franchise_id' => $franchise->id]);
@@ -29,11 +61,12 @@ class LeadResourceTest extends TestCase
             ['*']
         );
 
-        $responose = $this->get('api/franchises/' . $franchise->id . '/leads/' .$lead->id);
+        $response = $this->get('api/franchises/' . $franchise->id . '/leads/' .$lead->id);
+        $response->assertJsonStructure($responseStructure);
 
-        $results = json_decode($responose->content());
+        // $results = json_decode($response->content());
 
-        dd($results);
+        // dd($results);
 
     }
 }
