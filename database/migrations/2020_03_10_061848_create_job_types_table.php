@@ -23,7 +23,7 @@ class CreateJobTypesTable extends Migration
             $table->unsignedBigInteger('design_assessor_id');
             $table->timestamps();
 
-            $table->foreign('lead_id')->references('id')->on('leads');
+            $table->foreign('lead_id')->references('id')->on('leads')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('design_assessor_id')->references('id')->on('design_assessors');
         });

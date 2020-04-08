@@ -23,7 +23,7 @@ class CreateAppointmentsTable extends Migration
             $table->unsignedBigInteger('lead_id');
             $table->timestamps();
 
-            $table->foreign('lead_id')->references('id')->on('leads');
+            $table->foreign('lead_id')->references('id')->on('leads')->onDelete('cascade');
         });
     }
 

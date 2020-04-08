@@ -2,7 +2,10 @@
 
 namespace Tests\Feature;
 
+use App\Appointment;
+use App\Document;
 use App\Franchise;
+use App\JobType;
 use App\Lead;
 use App\LeadSource;
 use App\Postcode;
@@ -547,6 +550,26 @@ class FranchiseLeadFeatureTest extends TestCase
         $this->assertCount(1, Lead::all());
 
 
+    }
+
+    public function testCanCascadeToRelatedModelsWhenLeadIsDeleted()
+    {
+        
+        $franchise = factory(Franchise::class)->create();
+        $lead = factory(Lead::class)->create(['franchise_id' => $franchise->id]);
+        factory(JobType::class)->create(['lead_id' => $lead->id]);
+        factory(Appointment::class)->create(['lead_id' => $lead->id]);
+        factory(Document::class)->create(['lead_id' => $lead->id]);
+
+        $this->authenticateHeadOfficeUser();
+
+        $this->delete('api/franchises/' . $franchise->id . '/leads/' . $lead->id)
+            ->assertStatus(Response::HTTP_OK);
+
+        $this->assertCount(0, Lead::all());
+        $this->assertCount(0, JobType::all());
+        $this->assertCount(0, Appointment::all());
+        $this->assertCount(0, Document::all());
     }
 
 }
