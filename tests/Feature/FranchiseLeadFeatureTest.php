@@ -427,4 +427,90 @@ class FranchiseLeadFeatureTest extends TestCase
         $this->assertEquals($franchise->id, Lead::first()->franchise_id);
     }
 
+    public function testCanUpdatePostcodeStatusAutomaticallyInsideToOut()
+    {
+
+        Sanctum::actingAs(
+            $this->createHeadOfficeUser(),
+            ['*']
+        );
+
+        //SEtup the required Data
+        $postcode = factory(Postcode::class)->create();
+        $salesContact = factory(SalesContact::class)->create(['postcode' => $postcode->pcode]);
+
+
+        $franchise = factory(Franchise::class)->create();
+        $franchise->postcodes()->attach($postcode->id);
+        $lead = factory(Lead::class)->create([
+            'franchise_id' => $franchise->id, 
+            'postcode_status' => Lead::INSIDE_OF_FRANCHISE,
+            'sales_contact_id' => $salesContact->id
+        ]);
+
+
+        //THis Franchise will have different postcode assignment
+        $postcode2 = factory(Postcode::class)->create();
+        $salesContact2 = factory(SalesContact::class)->create(['postcode' => $postcode2->pcode]); 
+        
+        $franchise2 = factory(Franchise::class)->create();
+        $franchise2->postcodes()->attach($postcode2->id);
+
+
+        $updates = [
+            'franchise_id' => $franchise2->id
+        ];
+
+        $this->put('api/franchises/' . $franchise->id . '/leads/' . $lead->id . '/franchise', $updates)
+            ->assertStatus(Response::HTTP_OK);
+
+        $this->assertEquals($franchise2->id, Lead::first()->franchise_id);
+        $this->assertEquals(Lead::OUTSIDE_OF_FRANCHISE,Lead::first()->postcode_status);
+
+    }
+
+
+    public function testCanUpdatePostcodeStatusAutomaticallyOutsideIn()
+    {
+
+        Sanctum::actingAs(
+            $this->createHeadOfficeUser(),
+            ['*']
+        );
+
+        //SEtup the required Data
+        $postcode = factory(Postcode::class)->create();
+        $postcode2 = factory(Postcode::class)->create();
+        $salesContact = factory(SalesContact::class)->create(['postcode' => $postcode->pcode]);
+
+
+        $franchise = factory(Franchise::class)->create();
+        $franchise->postcodes()->attach($postcode2->id);
+        $lead = factory(Lead::class)->create([
+            'franchise_id' => $franchise->id, 
+            'postcode_status' => Lead::OUTSIDE_OF_FRANCHISE,
+            'sales_contact_id' => $salesContact->id
+        ]);
+
+
+        //THis Franchise will have different postcode assignment
+
+        
+        $franchise2 = factory(Franchise::class)->create();
+        $franchise2->postcodes()->attach($postcode->id);
+
+
+        $updates = [
+            'franchise_id' => $franchise2->id
+        ];
+
+        $this->put('api/franchises/' . $franchise->id . '/leads/' . $lead->id . '/franchise', $updates)
+            ->assertStatus(Response::HTTP_OK);
+
+        $this->assertEquals($franchise2->id, Lead::first()->franchise_id);
+        $this->assertEquals(Lead::INSIDE_OF_FRANCHISE,Lead::first()->postcode_status);
+
+
+    }
+
 }

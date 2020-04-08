@@ -6,10 +6,18 @@ use App\Franchise;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Lead;
+use App\Services\Interfaces\PostcodeServiceInterface;
 use Illuminate\Http\Request;
 
 class FranchiseLeadFranchiseController extends ApiController
 {
+
+    private $postcodeService;
+
+    public function __construct(PostcodeServiceInterface $postcodeService) {
+        $this->middleware('auth:sanctum');
+        $this->postcodeService = $postcodeService;
+    }
    
     /**
      * Update the specified resource in storage.
@@ -23,10 +31,15 @@ class FranchiseLeadFranchiseController extends ApiController
         $this->authorize('updateLead', $franchise);
 
         $newFranchise = Franchise::findOrFail($request['franchise_id']);
-
         $this->authorize('changeLeadFranchise', $newFranchise);
 
-        $lead->update($request->only(['franchise_id']));
+        //Need to adjust the postcode_status based on the Franchise postcodes.
+        $data = [
+            'franchise_id' => $request['franchise_id'],
+            'postcode_status' => $this->postcodeService->checkSalesContactPostcode($lead->salesContact, $newFranchise)
+        ];
+
+        $lead->update($data);
         
         return $this->showOne($lead);
     }
