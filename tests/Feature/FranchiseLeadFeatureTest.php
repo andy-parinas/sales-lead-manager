@@ -513,4 +513,40 @@ class FranchiseLeadFeatureTest extends TestCase
 
     }
 
+
+    public function testCanDeleteLeadByHeadOfficeUsers()
+    {
+        $franchise = factory(Franchise::class)->create();
+        $lead = factory(Lead::class)->create(['franchise_id' => $franchise->id]);
+
+        $this->authenticateHeadOfficeUser();
+
+        $this->delete('api/franchises/' . $franchise->id . '/leads/' . $lead->id)
+            ->assertStatus(Response::HTTP_OK);
+
+
+        $this->assertCount(0, Lead::all());
+
+    }
+
+    public function testCanNotDeleteLeadByNonHeadOfficeUser()
+    {
+        $franchise = factory(Franchise::class)->create();
+        $lead = factory(Lead::class)->create(['franchise_id' => $franchise->id]);
+
+        $this->authenticateStaffUser();
+
+        $this->delete('api/franchises/' . $franchise->id . '/leads/' . $lead->id)
+            ->assertStatus(Response::HTTP_FORBIDDEN);
+        $this->assertCount(1, Lead::all());
+
+        $this->authenticateFranchiseAdmin();
+
+        $this->delete('api/franchises/' . $franchise->id . '/leads/' . $lead->id)
+            ->assertStatus(Response::HTTP_FORBIDDEN);
+        $this->assertCount(1, Lead::all());
+
+
+    }
+
 }

@@ -65,7 +65,7 @@ class LeadPolicy
      */
     public function delete(User $user, Lead $lead)
     {
-        //
+        return $user->isHeadOffice();
     }
 
     /**

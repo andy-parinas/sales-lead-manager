@@ -3,6 +3,7 @@
 namespace Tests;
 
 use App\User;
+use Laravel\Sanctum\Sanctum;
 
 trait TestHelper 
 {
@@ -22,5 +23,28 @@ trait TestHelper
         return factory(User::class)->create(['user_type' => User::STAFF_USER]);
     }
 
+    protected function authenticateHeadOfficeUser()
+    {
+        Sanctum::actingAs(
+            $this->createHeadOfficeUser(),
+            ['*']
+        );
+    }
+
+    protected function authenticateStaffUser()
+    {
+        Sanctum::actingAs(
+            $this->createStaffUser(),
+            ['*']
+        );
+    }
+
+    protected function authenticateFranchiseAdmin()
+    {
+        Sanctum::actingAs(
+            $this->createFranchiseAdminUser(),
+            ['*']
+        );
+    }
 
 }
