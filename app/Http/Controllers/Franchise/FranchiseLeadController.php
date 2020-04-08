@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Franchise;
 use App\Franchise;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Lead as LeadResource;
 use App\Lead;
 use App\Repositories\Interfaces\LeadRepositoryInterface;
 use App\SalesContact;
 use App\Services\Interfaces\PostcodeServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
 class FranchiseLeadController extends ApiController
@@ -82,11 +84,20 @@ class FranchiseLeadController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Franchise $franchise, Lead $lead)
+    public function show(Franchise $franchise, $lead_id)
     {
         $this->authorize('view', $franchise);
+
+        // DB::enableQueryLog();
+
+        $lead = Lead::with(['franchise', 'salesContact', 'leadSource', 'jobType', 
+                            'appointment' ,'jobType.product', 'jobType.designAssessor'])->findOrFail($lead_id);
+
+        // $lead = $this->leadRepository->findLeadById($lead_id);
+
+        // dump(DB::getQueryLog());
         
-        return $this->showOne($lead);
+        return $this->showOne(new LeadResource($lead));
     }
 
 
