@@ -51,6 +51,16 @@ class FranchiseRepository implements FranchiseRepositoryInterface
     }
 
     
+    public function findUsersParentFranchise(User $user)
+    {
+        foreach ($user->franchises as $franchise) {
+            if($franchise->isParent()){
+                return $franchise;
+            }else {
+                return null;
+            }
+        }
+    }
 
 
 }

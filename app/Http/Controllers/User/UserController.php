@@ -40,7 +40,7 @@ class UserController extends ApiController
     public function store(Request $request)
     {
         
-        $this->isAllow('create_user');
+        $this->isAllowed('create_user');
 
         $this->validate($request, [
             'username' => ['required', 'string', 'max:50'],

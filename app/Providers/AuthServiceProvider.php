@@ -35,5 +35,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('create_user', function($user){
             return $user->isHeadOffice();
         });
+
+        Gate::define('attach_franchise', function($user){
+            return $user->isHeadOffice();
+        });
     }
 }

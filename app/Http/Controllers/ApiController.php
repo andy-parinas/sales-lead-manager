@@ -37,7 +37,7 @@ class ApiController extends Controller
         ];
     }
 
-    public function isAllow($ability)
+    public function isAllowed($ability)
     {
         if(Gate::denies($ability)){
             // return $this->errorResponse("Not authorized to create user", Response::HTTP_FORBIDDEN);

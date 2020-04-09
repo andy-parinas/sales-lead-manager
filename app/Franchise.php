@@ -51,4 +51,9 @@ class Franchise extends Model
         return $this->belongsToMany(Postcode::class);
     }
 
+    public function isParent()
+    {
+        return $this->parent_id == null;
+    }
+
 }

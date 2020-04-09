@@ -43,3 +43,4 @@ Route::resource('leads', 'Lead\LeadController', ['only' => ['index', 'show', 'de
  *  User Routes
  */
 Route::resource('users', 'User\UserController', ['except' => ['create', 'edit']]);
+Route::resource('users.franchises', 'User\UserFranchiseController', ['only' => ['index', 'store', 'destroy']]);
