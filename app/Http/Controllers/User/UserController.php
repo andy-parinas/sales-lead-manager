@@ -40,10 +40,7 @@ class UserController extends ApiController
     public function store(Request $request)
     {
         
-        if(Gate::denies('create_user')){
-            // return $this->errorResponse("Not authorized to create user", Response::HTTP_FORBIDDEN);
-            throw new AuthorizationException();
-        }
+        $this->isAllow('create_user');
 
         $this->validate($request, [
             'username' => ['required', 'string', 'max:50'],
