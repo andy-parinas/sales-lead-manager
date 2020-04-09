@@ -3,7 +3,10 @@
 namespace App\Providers;
 
 use App\Franchise;
+use App\Lead;
 use App\Policies\FranchisePolicy;
+use App\Policies\LeadPolicy;
+use App\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -16,7 +19,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Model' => 'App\Policies\ModelPolicy',
-        Franchise::class => FranchisePolicy::class
+        Franchise::class => FranchisePolicy::class,
+        Lead::class => LeadPolicy::class
     ];
 
     /**
@@ -28,6 +32,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('create_user', function($user){
+            return $user->isHeadOffice();
+        });
     }
 }

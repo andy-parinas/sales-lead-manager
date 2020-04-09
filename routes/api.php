@@ -38,3 +38,8 @@ Route::put('franchises/{franchise}/leads/{lead}/franchise', 'Franchise\Franchise
  * Lead Route
  */
 Route::resource('leads', 'Lead\LeadController', ['only' => ['index', 'show', 'destroy']]);
+
+/**
+ *  User Routes
+ */
+Route::resource('users', 'User\UserController', ['except' => ['create', 'edit']]);
