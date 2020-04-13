@@ -15,7 +15,7 @@ class ApiController extends Controller
     protected function getRequestParams()
     {
         
-        $column = request()->has('sortBy') ? request()->sortBy : 'number';
+        $column = request()->has('sort') ? request()->sort : 'created_at';
         $direction = request()->has('direction') ? request()->direction : 'asc';
         $size = request()->has('size') ? request()->size : 15;
 

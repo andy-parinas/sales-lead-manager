@@ -47,7 +47,7 @@ class UserController extends ApiController
     public function store(Request $request)
     {
         
-        $this->isAllowed('user_crud');
+        $this->isAllowed('user_access');
 
         $this->validate($request, [
             'username' => ['required', 'string', 'max:50'],

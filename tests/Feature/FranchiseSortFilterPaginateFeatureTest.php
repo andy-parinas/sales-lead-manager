@@ -27,7 +27,7 @@ class FranchiseSortFilterPaginateFeatureTest extends TestCase
         );
 
 
-        $response = $this->get('api/franchises?sortBy=number&direction=asc&size=15');
+        $response = $this->get('api/franchises?sort=number&direction=asc&size=15');
         $results = json_decode($response->content());
         // dd(end($results->data)->number);
         $this->assertEquals('101', $results->data[0]->number);
@@ -47,7 +47,7 @@ class FranchiseSortFilterPaginateFeatureTest extends TestCase
         );
 
 
-        $response = $this->get('api/franchises?sortBy=number&direction=desc&size=15');
+        $response = $this->get('api/franchises?sort=number&direction=desc&size=15');
         $results = json_decode($response->content());
         // dd($results->data);
         $this->assertEquals('115', $results->data[0]->number);
@@ -66,7 +66,7 @@ class FranchiseSortFilterPaginateFeatureTest extends TestCase
         );
 
 
-        $response = $this->get('api/franchises?sortBy=name&direction=asc&size=15');
+        $response = $this->get('api/franchises?sort=name&direction=asc&size=15');
         $results = json_decode($response->content());
         // dd($results->data);
         $this->assertEquals('A', $results->data[0]->name);
@@ -86,7 +86,7 @@ class FranchiseSortFilterPaginateFeatureTest extends TestCase
         );
 
 
-        $response = $this->get('api/franchises?sortBy=name&direction=desc&size=15');
+        $response = $this->get('api/franchises?sort=name&direction=desc&size=15');
         $results = json_decode($response->content());
         // dd($results->data);
         $this->assertEquals('J', $results->data[0]->name);
@@ -109,13 +109,13 @@ class FranchiseSortFilterPaginateFeatureTest extends TestCase
         );
 
 
-        $response = $this->get('api/franchises?sortBy=name&direction=asc&size=15');
+        $response = $this->get('api/franchises?sort=name&direction=asc&size=15');
         $results = json_decode($response->content());
         // dd($results->data);
         $this->assertEquals('A', $results->data[0]->name);
         $this->assertEquals('J', end($results->data)->name);
 
-        $response = $this->get('api/franchises?sortBy=name&direction=desc&size=15');
+        $response = $this->get('api/franchises?sort=name&direction=desc&size=15');
         $results = json_decode($response->content());
         // dd($results->data);
         $this->assertEquals('J', $results->data[0]->name);
