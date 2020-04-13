@@ -5,7 +5,9 @@ namespace App\Providers;
 use App\Repositories\FranchiseRepository;
 use App\Repositories\Interfaces\FranchiseRepositoryInterface;
 use App\Repositories\Interfaces\LeadRepositoryInterface;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\LeadRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -30,5 +32,6 @@ class RepositoryServiceProvider extends ServiceProvider
 
         $this->app->bind(FranchiseRepositoryInterface::class, FranchiseRepository::class);
         $this->app->bind(LeadRepositoryInterface::class, LeadRepository::class);
+        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
     }
 }

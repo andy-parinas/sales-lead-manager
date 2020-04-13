@@ -32,7 +32,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('create_user', function($user){
+        Gate::define('user_access', function($user){
             return $user->isHeadOffice();
         });
 

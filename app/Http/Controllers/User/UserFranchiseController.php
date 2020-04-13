@@ -44,7 +44,7 @@ class UserFranchiseController extends ApiController
     public function store(Request $request, User $user)
     {
 
-        $this->isAllowed('attach_franchise');
+        $this->isAllowed('user_access');
 
 
         $data = $this->validate($request, [

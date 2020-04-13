@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
@@ -14,9 +15,11 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends ApiController
 {
 
+    private $userRepository;
 
-    public function __construct() {
+    public function __construct(UserRepositoryInterface $userRepository) {
         $this->middleware('auth:sanctum');
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -26,7 +29,11 @@ class UserController extends ApiController
      */
     public function index()
     {
-        //
+        $this->isAllowed('user_access');
+
+        $users = $this->userRepository->findUsersSortedAndPaginated($this->getRequestParams());
+
+        return $this->showPaginated($users);
     }
 
   
@@ -40,7 +47,7 @@ class UserController extends ApiController
     public function store(Request $request)
     {
         
-        $this->isAllowed('create_user');
+        $this->isAllowed('user_crud');
 
         $this->validate($request, [
             'username' => ['required', 'string', 'max:50'],

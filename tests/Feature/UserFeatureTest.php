@@ -90,4 +90,36 @@ class UserFeatureTest extends TestCase
         $this->assertCount(0, User::all());
     }
 
+
+    public function testCanListUserByHeadOffice()
+    {
+
+        $this->withoutExceptionHandling();
+
+        factory(User::class, 30)->create();
+
+        $this->authenticateHeadOfficeUser();
+
+        $this->get('api/users')
+            ->assertStatus(Response::HTTP_OK)
+            ->assertJsonCount(15, 'data');
+    }
+
+
+    public function testCanNotListUserByNonHeadOffice()
+    {
+        
+        // $this->withoutExceptionHandling();
+
+        factory(User::class, 30)->create();
+
+        $this->authenticateFranchiseAdmin();
+
+        $this->get('api/users')
+            ->assertStatus(Response::HTTP_FORBIDDEN);
+
+
+    }
+
+
 }
