@@ -51,9 +51,9 @@ class UserController extends ApiController
         Gate::authorize('head-office-only');
 
         $this->validate($request, [
-            'username' => ['required', 'string', 'max:50'],
+            'username' => ['required', 'string', 'max:50','unique:users'],
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255' ],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
@@ -65,7 +65,7 @@ class UserController extends ApiController
             'password' => Hash::make($request['password']),
         ]);
 
-        return $this->showOne($user, Response::HTTP_CREATED);
+        return $this->showOne(new UserResource($user), Response::HTTP_CREATED);
 
     }
 
@@ -95,7 +95,21 @@ class UserController extends ApiController
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $data = $this->validate($request, [
+            'username' => ['string', 'max:50', 'unique:users'],
+            'name' => ['string', 'max:255'],
+            'email' => ['string', 'email', 'max:255'],
+            'password' => ['string', 'min:8', 'confirmed'],
+        ]);
+        
+        $user->update($data);
+
+        $user->refresh();
+
+        $this->showOne(new UserResource($user));
+
     }
 
     /**

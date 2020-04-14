@@ -150,4 +150,28 @@ class UserFeatureTest extends TestCase
     }
 
 
+    public function testCanUpdateUserByHeadOffice()
+    {
+        $user = factory(User::class)->create();
+
+        $this->authenticateHeadOfficeUser();
+
+        $updates = [
+            'username' => 'update',
+            'name' => 'update',
+            'email' => 'update@email.com' 
+        ];
+
+
+        $this->put('api/users/' . $user->id , $updates)
+            ->assertStatus(Response::HTTP_OK);
+
+        $user->refresh();
+
+        $this->assertEquals('update', $user->username);
+        $this->assertEquals('update', $user->name);
+        $this->assertEquals('update@email.com', $user->email);
+
+    }
+
 }
