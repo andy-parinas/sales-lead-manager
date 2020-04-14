@@ -9,6 +9,7 @@ use App\Repositories\Interfaces\FranchiseRepositoryInterface;
 use App\Services\Interfaces\FranchiseServiceInterface;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserFranchiseController extends ApiController
@@ -44,7 +45,7 @@ class UserFranchiseController extends ApiController
     public function store(Request $request, User $user)
     {
 
-        $this->isAllowed('user_access');
+        Gate::authorize('head-office-only');
 
 
         $data = $this->validate($request, [

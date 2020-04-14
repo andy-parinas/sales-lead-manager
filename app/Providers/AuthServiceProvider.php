@@ -32,12 +32,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('user_access', function($user){
+        Gate::define('head-office-only', function($user){
             return $user->isHeadOffice();
         });
 
-        Gate::define('attach_franchise', function($user){
-            return $user->isHeadOffice();
-        });
     }
 }

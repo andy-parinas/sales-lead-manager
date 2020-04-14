@@ -122,4 +122,32 @@ class UserFeatureTest extends TestCase
     }
 
 
+    public function testCanShowUserByHeadOffice()
+    {
+
+        $this->authenticateHeadOfficeUser();
+
+
+        $user = factory(User::class)->create();
+
+        $response = $this->get('api/users/' . $user->id );
+        $result = json_decode($response->content())->data;
+
+        $response->assertStatus(Response::HTTP_OK);
+        $this->assertEquals($user->username, $result->username);
+
+    }
+
+    public function testCanNotShowUserByNonHeadOffice()
+    {
+        $user = factory(User::class)->create();
+
+        $this->authenticateStaffUser();
+
+        $this->get('api/users/' . $user->id )
+            ->assertStatus(Response::HTTP_FORBIDDEN);
+
+    }
+
+
 }

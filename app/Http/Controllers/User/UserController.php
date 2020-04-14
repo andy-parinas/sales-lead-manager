@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\User as UserResource;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\User;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -29,7 +30,7 @@ class UserController extends ApiController
      */
     public function index()
     {
-        $this->isAllowed('user_access');
+        Gate::authorize('head-office-only');
 
         $users = $this->userRepository->findUsersSortedAndPaginated($this->getRequestParams());
 
@@ -47,7 +48,7 @@ class UserController extends ApiController
     public function store(Request $request)
     {
         
-        $this->isAllowed('user_access');
+        Gate::authorize('head-office-only');
 
         $this->validate($request, [
             'username' => ['required', 'string', 'max:50'],
@@ -76,7 +77,12 @@ class UserController extends ApiController
      */
     public function show($id)
     {
-        //
+
+        Gate::authorize('head-office-only');
+
+        $user = User::findOrFail($id);
+
+        return $this->showOne(new UserResource($user));;
     }
 
   
