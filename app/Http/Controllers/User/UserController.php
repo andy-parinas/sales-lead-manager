@@ -95,6 +95,9 @@ class UserController extends ApiController
      */
     public function update(Request $request, $id)
     {
+
+        Gate::authorize('head-office-only');
+
         $user = User::findOrFail($id);
 
         $data = $this->validate($request, [
@@ -108,7 +111,7 @@ class UserController extends ApiController
 
         $user->refresh();
 
-        $this->showOne(new UserResource($user));
+        return $this->showOne(new UserResource($user));
 
     }
 
@@ -120,6 +123,18 @@ class UserController extends ApiController
      */
     public function destroy($id)
     {
-        //
+
+        Gate::authorize('head-office-only');
+
+        $user = User::findOrFail($id);
+
+        //Check for the franchises attached to the user.
+        $franchises = $user->franchises()->pluck('id');
+        
+        $user->franchises()->detach($franchises);
+
+        $user->delete();
+
+        return $this->showOne($user);
     }
 }
