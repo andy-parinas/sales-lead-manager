@@ -229,4 +229,91 @@ class UserFranchiseFeatureTest extends TestCase
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
+
+
+    public function testCanDetachFranchiseFromUserByHeadOffice()
+    {
+        $user = factory(User::class)->create();
+        $franchise = factory(Franchise::class)->create();
+
+        $user->franchises()->attach($franchise->id);
+
+        $this->authenticateHeadOfficeUser();
+
+        $this->delete('api/users/' . $user->id . '/franchises/' . $franchise->id)
+            ->assertStatus(Response::HTTP_OK);
+
+        $user->refresh();
+        
+        $this->assertCount(0, $user->franchises);
+
+    }
+
+    public function testCanNotDetachFranchiseFromUserByNonHeadOffice()
+    {
+        $user = factory(User::class)->create();
+        $franchise = factory(Franchise::class)->create();
+
+        $user->franchises()->attach($franchise->id);
+
+        $this->authenticateFranchiseAdmin();
+
+        $this->delete('api/users/' . $user->id . '/franchises/' . $franchise->id)
+        ->assertStatus(Response::HTTP_FORBIDDEN);
+        $user->refresh();   
+        $this->assertCount(1, $user->franchises);
+
+        $this->authenticateStaffUser();
+
+        $this->delete('api/users/' . $user->id . '/franchises/' . $franchise->id)
+        ->assertStatus(Response::HTTP_FORBIDDEN);
+        $user->refresh();   
+        $this->assertCount(1, $user->franchises);
+
+    }
+
+    public function testCanNotDetachParentFranchiseWithChildren()
+    {
+
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+        $franchise = factory(Franchise::class)->create();
+        $c1 = factory(Franchise::class)->create(['parent_id' => $franchise->id]);
+        $c2 = factory(Franchise::class)->create(['parent_id' => $franchise->id]);
+
+        $user->franchises()->attach([$franchise->id, $c1->id, $c2->id]);
+
+        $this->authenticateHeadOfficeUser();
+
+        $this->delete('api/users/' . $user->id . '/franchises/' . $franchise->id)
+            ->assertStatus(Response::HTTP_BAD_REQUEST);
+
+        $user->refresh();
+        
+        $this->assertCount(3, $user->franchises);
+
+    }
+
+
+    public function testCanDetachChildrenFranchiseFromUserByHeadOffice()
+    {
+
+        $user = factory(User::class)->create();
+        $franchise = factory(Franchise::class)->create();
+        $c1 = factory(Franchise::class)->create(['parent_id' => $franchise->id]);
+        $c2 = factory(Franchise::class)->create(['parent_id' => $franchise->id]);
+
+        $user->franchises()->attach([$franchise->id, $c1->id, $c2->id]);
+
+        $this->authenticateHeadOfficeUser();
+
+        $this->delete('api/users/' . $user->id . '/franchises/' . $c1->id)
+            ->assertStatus(Response::HTTP_OK);
+
+        $user->refresh();
+        
+        $this->assertCount(2, $user->franchises);
+    }
+
 }
