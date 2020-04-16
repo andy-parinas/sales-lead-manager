@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Lead;
 use App\Postcode;
 use App\SalesContact;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -120,6 +121,58 @@ class SalesContactFeatureTest extends TestCase
             $this->assertEquals('AAAAAAAAAA', $result[0]->{$field});
 
         });
+    }
+
+
+    public function testCanUpdateSalesContactInformation()
+    {
+
+        $this->authenticateStaffUser();
+
+        $contact = factory(SalesContact::class)->create();
+
+
+        $updates = [
+            'title' => 'update',
+            'first_name' => 'update',
+            'last_name' => 'update',
+            'email' => 'update@email.com',
+            'contact_number' => 'update',
+            'street1' => 'update',
+            'street2' => 'update'
+        ];
+
+
+        $this->put('api/contacts/' . $contact->id, $updates)
+            ->assertStatus(Response::HTTP_OK);
+
+
+        $contact->refresh();
+
+        $this->assertEquals('update', $contact->first_name );
+
+
+    }
+
+    public function testCanNotUpdateSalesContactPostcodeSateSuburbWhenAlreadyReferenceToLead()
+    {
+        $this->authenticateStaffUser();
+
+        $contact = factory(SalesContact::class)->create();
+        factory(Lead::class)->create(['sales_contact_id' => $contact->id]);
+
+
+        $updates = [
+            'postcode' => 'update',
+            'state' => 'update',
+            'suburb' => 'update',
+        ];
+
+
+        $this->put('api/contacts/' . $contact->id, $updates)
+            ->assertStatus(Response::HTTP_BAD_REQUEST);
+
+        $this->assertEquals($contact->postcode, SalesContact::first()->postcode);
     }
 
 }

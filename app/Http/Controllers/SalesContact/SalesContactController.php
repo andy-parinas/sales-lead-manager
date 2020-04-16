@@ -89,9 +89,34 @@ class SalesContactController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, SalesContact $contact)
     {
-        //
+        $data = $this->validate($request, [
+            'title' => 'string',
+            'first_name' => 'string|max:50',
+            'last_name' => 'string|max:50',
+            'email' => 'email',
+            'contact_number' => '|string',
+            'street1' => 'string',
+            'street2' => 'string|nullable',
+            'suburb' => 'string',
+            'state' => 'string',
+            'postcode' => 'string|max:10',
+            'customer_type' => 'in:' . SalesContact::COMMERCIAL . ',' . SalesContact::RESIDENTIAL,
+            'status' => 'in:'. SalesContact::ACTIVE . ',' . SalesContact::ARCHIVED,
+        ]);
+
+        // dd($data);
+
+        if(($request['postcode'] || $request['state'] || $request['suburb']) && $contact->leads()->count() > 0)
+        {
+            return $this->errorResponse("Cannot update postode, state, or suburb when Contact is already a lead", Response::HTTP_BAD_REQUEST);
+        }
+
+        $contact->update($data);
+
+        return $this->showOne($contact);
+
     }
 
     /**
