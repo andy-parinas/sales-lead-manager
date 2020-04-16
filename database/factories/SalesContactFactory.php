@@ -12,6 +12,10 @@ $factory->define(SalesContact::class, function (Faker $faker) {
         'last_name' => $faker->lastName,
         'email' => $faker->email,
         'contact_number' => $faker->phoneNumber,
-        'postcode' => $faker->postcode
+        'street1' => $faker->streetAddress,
+        'suburb' => $faker->city,
+        'state' => $faker->state,
+        'postcode' => $faker->postcode,
+        'customer_type' => $faker->randomElement([SalesContact::COMMERCIAL, SalesContact::RESIDENTIAL])
     ];
 });

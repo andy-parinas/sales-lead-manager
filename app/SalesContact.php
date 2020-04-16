@@ -6,8 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class SalesContact extends Model
 {
+
+    const RESIDENTIAL = 'residential';
+    const COMMERCIAL = 'commercial';
+
     protected $fillable = [
-        'title', 'first_name', 'last_name', 'email', 'contact_number'
+        'title', 'first_name', 'last_name', 'email', 
+        'contact_number', 'street1', 'street2', 'suburb', 'state', 'postcode', 'customer_type'
     ];
 
 

@@ -15,12 +15,17 @@ class CreateSalesContactsTable extends Migration
     {
         Schema::create('sales_contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email');
             $table->string('contact_number');
+            $table->string('street1');
+            $table->string('street2')->nullable();
+            $table->string('suburb');
+            $table->string('state');
             $table->string('postcode');
+            $table->string('customer_type');
             $table->timestamps();
         });
     }

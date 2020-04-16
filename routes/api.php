@@ -44,3 +44,8 @@ Route::resource('leads', 'Lead\LeadController', ['only' => ['index', 'show', 'de
  */
 Route::resource('users', 'User\UserController', ['except' => ['create', 'edit']]);
 Route::resource('users.franchises', 'User\UserFranchiseController', ['only' => ['index', 'store', 'destroy']]);
+
+/**
+ *  SalesContact Routes
+ */
+Route::resource('contacts', 'SalesContact\SalesContactController', ['except' => ['edit', 'create']]);
