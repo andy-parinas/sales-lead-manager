@@ -10,6 +10,9 @@ class SalesContact extends Model
     const RESIDENTIAL = 'residential';
     const COMMERCIAL = 'commercial';
 
+    const ACTIVE = 'active';
+    const ARCHIVED = 'archived';
+
     protected $fillable = [
         'title', 'first_name', 'last_name', 'email', 
         'contact_number', 'street1', 'street2', 'suburb', 'state', 'postcode', 'customer_type'

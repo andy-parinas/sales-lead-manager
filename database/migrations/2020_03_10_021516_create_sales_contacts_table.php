@@ -1,5 +1,6 @@
 <?php
 
+use App\SalesContact;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -26,6 +27,7 @@ class CreateSalesContactsTable extends Migration
             $table->string('state');
             $table->string('postcode');
             $table->string('customer_type');
+            $table->string('status')->default(SalesContact::ACTIVE);
             $table->timestamps();
         });
     }
