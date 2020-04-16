@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SalesContact;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Postcode;
+use App\Repositories\Interfaces\SalesContactRepositoryInterface;
 use App\SalesContact;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,9 +13,11 @@ use Symfony\Component\HttpFoundation\Response;
 class SalesContactController extends ApiController
 {
 
+    private $salesContactRepository;
 
-    public function __construct() {
+    public function __construct(SalesContactRepositoryInterface $salesContactRepository) {
         $this->middleware('auth:sanctum');
+        $this->salesContactRepository = $salesContactRepository;
     }
 
     /**
@@ -24,7 +27,9 @@ class SalesContactController extends ApiController
      */
     public function index()
     {
-        //
+        $salesContacts = $this->salesContactRepository->sortAndPaginate($this->getRequestParams());
+
+        return $this->showPaginated($salesContacts);
     }
 
 
