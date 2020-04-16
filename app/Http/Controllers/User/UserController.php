@@ -55,6 +55,7 @@ class UserController extends ApiController
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255' ],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'user_type' => ['required']
         ]);
 
 
@@ -63,7 +64,10 @@ class UserController extends ApiController
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
+            'user_type' => $request['user_type']
         ]);
+
+        // dd($user->user_type);
 
         return $this->showOne(new UserResource($user), Response::HTTP_CREATED);
 

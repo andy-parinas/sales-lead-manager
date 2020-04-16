@@ -16,7 +16,7 @@ class User extends JsonResource
     {
 
         $type = explode("_", $this->user_type);
-
+        // dd($type);
         return [
             'id' => $this->id,
             'username' => $this->username,

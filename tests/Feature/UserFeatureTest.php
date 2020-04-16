@@ -31,8 +31,10 @@ class UserFeatureTest extends TestCase
             'name' => $this->faker->name,
             'email' => $this->faker->email,
             'password' => 'password',
-            'password_confirmation' => 'password'
+            'password_confirmation' => 'password',
+            'user_type' => $this->faker->randomElement([User::STAFF_USER, User::FRANCHISE_ADMIN])
         ];
+
 
         
         $response = $this->post('api/users', $userData);
