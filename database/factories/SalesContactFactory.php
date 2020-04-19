@@ -11,6 +11,7 @@ $factory->define(SalesContact::class, function (Faker $faker) {
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
         'email' => $faker->email,
+        'email2' => $faker->email,
         'contact_number' => $faker->phoneNumber,
         'street1' => $faker->streetAddress,
         'suburb' => $faker->city,

@@ -20,6 +20,7 @@ class CreateSalesContactsTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email');
+            $table->string('email2')->nullable();
             $table->string('contact_number');
             $table->string('street1');
             $table->string('street2')->nullable();
