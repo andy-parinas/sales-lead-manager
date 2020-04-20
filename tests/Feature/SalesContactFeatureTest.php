@@ -188,7 +188,8 @@ class SalesContactFeatureTest extends TestCase
 
         $contact->refresh();
 
-        collect(['first_name', 'last_name', 'postcode', 'suburb', 'state', 'contact_number', 'email', 'email2', 'customer_type', 'status'])
+        collect(['first_name', 'last_name', 'postcode', 'suburb', 'state', 
+                    'contact_number', 'email', 'email2', 'customer_type', 'status'])
             ->each(function($field) use ($contact, $result) {
                 $this->assertEquals($contact->{$field}, $result->{$this->toCamelCase($field)});
         });
@@ -208,4 +209,47 @@ class SalesContactFeatureTest extends TestCase
         $this->assertCount(5, $result->leads);
     }
 
+
+    public function testCanDeleteSalesContactByHeadOffice()
+    {
+        $this->authenticateHeadOfficeUser();
+
+        $contact = factory(SalesContact::class)->create();
+
+        $this->delete('api/contacts/' . $contact->id)
+            ->assertStatus(Response::HTTP_OK);
+
+        $this->assertCount(0, SalesContact::all());
+    }
+
+
+    public function testCanNotDeleteSalesContactByNonHeadOffice()
+    {
+
+
+        $contact = factory(SalesContact::class)->create();
+
+
+        $this->authenticateFranchiseAdmin();
+        $this->delete('api/contacts/' . $contact->id)
+            ->assertStatus(Response::HTTP_FORBIDDEN);
+        $this->assertCount(1, SalesContact::all());
+
+        $this->authenticateStaffUser();
+        $this->delete('api/contacts/' . $contact->id)
+            ->assertStatus(Response::HTTP_FORBIDDEN);
+        $this->assertCount(1, SalesContact::all());
+
+    }
+
+    public function testCanNotDeleteSalesContactWithRelatedLead()
+    {
+        $this->authenticateHeadOfficeUser();
+
+        $contact = factory(SalesContact::class)->create();
+        factory(Lead::class, 5)->create(['sales_contact_id' => $contact->id]);
+
+        $this->delete('api/contacts/' . $contact->id)
+        ->assertStatus(Response::HTTP_CONFLICT);
+    }
 }

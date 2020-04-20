@@ -10,6 +10,7 @@ use App\SalesContact;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Resources\SalesContact as SalesContactResource;
+use Illuminate\Support\Facades\Gate;
 
 class SalesContactController extends ApiController
 {
@@ -126,8 +127,13 @@ class SalesContactController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(SalesContact $contact)
     {
-        //
+
+        Gate::authorize('head-office-only');
+        
+        $contact->delete();
+
+        return $this->showOne($contact);
     }
 }
