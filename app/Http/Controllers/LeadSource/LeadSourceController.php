@@ -51,17 +51,6 @@ class LeadSourceController extends ApiController
         return $this->showOne($leadSource, Response::HTTP_CREATED);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
 
     /**
      * Update the specified resource in storage.
@@ -72,7 +61,19 @@ class LeadSourceController extends ApiController
      */
     public function update(Request $request, $id)
     {
-        //
+
+        Gate::authorize('head-office-only');
+
+        $source = LeadSource::findOrFail($id);
+
+        $data = $this->validate($request, [
+            'name' => 'string|max:100'
+        ]);
+
+
+        $source->update($data);
+
+        return $this->showOne($source);
     }
 
     /**

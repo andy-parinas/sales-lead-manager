@@ -62,4 +62,29 @@ class LeadSourceFeatureTest extends TestCase
         $this->get('api/lead-sources')
             ->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
+
+    public function testCanUpdateLeadSourceByHeadOffice()
+    {
+        $source = factory(LeadSource::class)->create();
+
+        $this->authenticateHeadOfficeUser();
+
+        $this->put('api/lead-sources/' . $source->id, ['name' => 'updated'] )
+            ->assertStatus(Response::HTTP_OK);
+
+        $source->refresh();
+
+        $this->assertEquals('updated', $source->name);
+    }
+
+    public function testCanNotUpdateLeadSourceByNonHeadOffice()
+    {
+        $source = factory(LeadSource::class)->create();
+
+
+        $this->authenticateFranchiseAdmin();
+
+        $this->put('api/lead-sources/' . $source->id, ['name' => 'updated'] )
+            ->assertStatus(Response::HTTP_FORBIDDEN);
+    }
 }
