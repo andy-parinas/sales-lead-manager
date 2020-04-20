@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\LeadSource;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Symfony\Component\HttpFoundation\Response;
@@ -41,5 +42,24 @@ class LeadSourceFeatureTest extends TestCase
         $this->authenticateStaffUser();
         $this->post('api/lead-sources', $data)
             ->assertStatus(Response::HTTP_FORBIDDEN);
+    }
+
+    public function testCanListLeadSourceByAuthenticatedUsers()
+    {
+        factory(LeadSource::class, 5)->create();
+
+        $this->authenticateStaffUser();
+
+        $this->get('api/lead-sources')
+            ->assertStatus(Response::HTTP_OK)
+            ->assertJsonCount(5, 'data');
+    }
+
+    public function testCanNotListLeadSourceByNonAuthenticatedUser()
+    {
+        factory(LeadSource::class, 5)->create();
+
+        $this->get('api/lead-sources')
+            ->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 }

@@ -11,6 +11,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class LeadSourceController extends ApiController
 {
+
+    public function __construct() {
+        $this->middleware('auth:sanctum');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +24,9 @@ class LeadSourceController extends ApiController
      */
     public function index()
     {
-        //
+        $sources = LeadSource::all();
+
+        return $this->showAll($sources);
     }
 
 
