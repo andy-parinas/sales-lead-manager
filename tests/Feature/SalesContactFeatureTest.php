@@ -174,5 +174,38 @@ class SalesContactFeatureTest extends TestCase
 
         $this->assertEquals($contact->postcode, SalesContact::first()->postcode);
     }
+    
+    public function testCanShowSalesContact()
+    {
+        $this->authenticateStaffUser();
+
+        $contact = factory(SalesContact::class)->create();
+
+        $response = $this->get('api/contacts/' . $contact->id);
+        $result = json_decode($response->content())->data;
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $contact->refresh();
+
+        collect(['first_name', 'last_name', 'postcode', 'suburb', 'state', 'contact_number', 'email', 'email2', 'customer_type', 'status'])
+            ->each(function($field) use ($contact, $result) {
+                $this->assertEquals($contact->{$field}, $result->{$this->toCamelCase($field)});
+        });
+        
+    }
+
+    public function testCanShowTheLeadsForSalesContact()
+    {
+        $this->authenticateStaffUser();
+
+        $contact = factory(SalesContact::class)->create();
+        factory(Lead::class, 5)->create(['sales_contact_id' => $contact->id]);
+
+        $response = $this->get('api/contacts/' . $contact->id);
+        $result = json_decode($response->content())->data;
+
+        $this->assertCount(5, $result->leads);
+    }
 
 }

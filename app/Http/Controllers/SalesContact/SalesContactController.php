@@ -9,6 +9,7 @@ use App\Repositories\Interfaces\SalesContactRepositoryInterface;
 use App\SalesContact;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\SalesContact as SalesContactResource;
 
 class SalesContactController extends ApiController
 {
@@ -78,7 +79,9 @@ class SalesContactController extends ApiController
      */
     public function show($id)
     {
-        //
+        $contact = SalesContact::with('leads')->findOrFail($id);
+
+        return $this->showOne(new SalesContactResource($contact));
     }
 
 
@@ -105,8 +108,6 @@ class SalesContactController extends ApiController
             'customer_type' => 'in:' . SalesContact::COMMERCIAL . ',' . SalesContact::RESIDENTIAL,
             'status' => 'in:'. SalesContact::ACTIVE . ',' . SalesContact::ARCHIVED,
         ]);
-
-        // dd($data);
 
         if(($request['postcode'] || $request['state'] || $request['suburb']) && $contact->leads()->count() > 0)
         {

@@ -47,4 +47,11 @@ trait TestHelper
         );
     }
 
+    protected function toCamelCase($value)
+    {
+        $convert = ucwords(str_replace('_', ' ', $value));
+        $convert = str_replace(' ', '', $convert);
+        return lcfirst($convert);
+    }
+
 }
