@@ -14,7 +14,7 @@ $factory->define(Lead::class, function (Faker $faker) {
         'franchise_id' => factory(Franchise::class),
         'sales_contact_id' =>factory(SalesContact::class),
         'lead_source_id' =>factory(LeadSource::class),
-        'lead_date' => $faker->date('d-m-Y'),
+        'lead_date' => date("Y/m/d"),
         'postcode_status' => $faker->randomElement([Lead::INSIDE_OF_FRANCHISE, Lead::OUTSIDE_OF_FRANCHISE])
     ];
 });
