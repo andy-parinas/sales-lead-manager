@@ -87,4 +87,31 @@ class LeadSourceFeatureTest extends TestCase
         $this->put('api/lead-sources/' . $source->id, ['name' => 'updated'] )
             ->assertStatus(Response::HTTP_FORBIDDEN);
     }
+
+    public function testCanDeleteLeadSourceByHeadOffice()
+    {
+        $source = factory(LeadSource::class)->create();
+
+        $this->authenticateHeadOfficeUser();
+
+        $this->delete('api/lead-sources/' . $source->id)
+            ->assertStatus(Response::HTTP_OK);
+
+        $this->assertCount(0, LeadSource::all());
+
+    }
+
+    public function testCanNotDeleteLeadSourceByNonHeadOffice()
+    {
+
+        $source = factory(LeadSource::class)->create();
+
+        $this->authenticateFranchiseAdmin();
+        $this->delete('api/lead-sources/' . $source->id)
+            ->assertStatus(Response::HTTP_FORBIDDEN);
+
+        $this->authenticateStaffUser();
+        $this->delete('api/lead-sources/' . $source->id)
+            ->assertStatus(Response::HTTP_FORBIDDEN);
+    }
 }

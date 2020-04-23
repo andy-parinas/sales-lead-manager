@@ -84,6 +84,12 @@ class LeadSourceController extends ApiController
      */
     public function destroy($id)
     {
-        //
+        Gate::authorize('head-office-only');
+
+        $leadSource = LeadSource::findOrFail($id);
+
+        $leadSource->delete();
+
+        return $this->showOne($leadSource);
     }
 }

@@ -20,10 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/cors.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/cors.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LeadSource/LeadSourceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LeadSource/LeadSourceController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/LeadSourceFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/LeadSourceFeatureTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +180,7 @@
       <workItem from="1584317083713" duration="84000" />
       <workItem from="1587435939367" duration="6825000" />
       <workItem from="1587508196676" duration="1504000" />
-      <workItem from="1587599539164" duration="4341000" />
+      <workItem from="1587599539164" duration="7246000" />
     </task>
     <task id="LOCAL-00001" summary="Created SalesContact Model.&#10;Established relationships to Lead Model. &#10;Created unit test for SalesContact">
       <created>1583810285742</created>
@@ -246,7 +245,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587442470417</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added CORS configuration on cors.php under config folder">
+      <created>1587607602516</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1587607602516</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -277,7 +283,8 @@
     <MESSAGE value="Created TradeStaff and TradeType models, migration, and factory.&#10;Created relationship between TradeStaff and TradeType&#10;Created unit test." />
     <MESSAGE value="Created SalesStaff model, migration, and factory.&#10;created relationship for StaleStaff and Branch&#10;created inverse relations on Branch to SalesStaff and TradeStaff&#10;created unit test." />
     <MESSAGE value="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder" />
+    <MESSAGE value="Added CORS configuration on cors.php under config folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added CORS configuration on cors.php under config folder" />
   </component>
   <component name="WindowStateProjectService">
     <state x="491" y="192" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1583985431396">
