@@ -59,3 +59,23 @@ Route::resource('contacts', 'SalesContact\SalesContactController', ['except' => 
  *  LeadSource Routes
  */
 Route::resource('lead-sources', 'LeadSource\LeadSourceController', ['except' => ['edit', 'create', 'show']]);
+
+/**
+ * Product Routes
+ */
+Route::resource('products', 'Product\ProductController', ['except' => ['edit', 'create', 'show']]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
