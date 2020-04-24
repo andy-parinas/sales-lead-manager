@@ -11,6 +11,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends ApiController
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +25,9 @@ class ProductController extends ApiController
      */
     public function index()
     {
-        //
+        $products = Product::all();
+
+        return $this->showAll($products);
     }
 
 
@@ -52,7 +61,21 @@ class ProductController extends ApiController
      */
     public function update(Request $request, $id)
     {
-        //
+        Gate::authorize('head-office-only');
+
+        $product = Product::findOrFail($id);
+
+        $updates = $this->validate($request, [
+            'name' => 'max:50',
+            'description' => ''
+        ]);
+
+        $product->update($updates);
+
+        $product->refresh();
+
+        return $this->showOne($product);
+
     }
 
     /**
@@ -63,6 +86,13 @@ class ProductController extends ApiController
      */
     public function destroy($id)
     {
-        //
+        Gate::authorize('head-office-only');
+
+        $product = Product::findOrFail($id);
+
+        $product->delete();
+
+        return $this->showOne($product);
+
     }
 }
