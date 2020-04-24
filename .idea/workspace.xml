@@ -20,9 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
+      <change afterPath="$PROJECT_DIR$/.idea/php-test-framework.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/TradeType/TradeTypeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Product/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Product/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ProductFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ProductFeatureTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +37,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.3">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
       <path value="$PROJECT_DIR$/vendor/nesbot/carbon" />
@@ -156,14 +163,54 @@
     <property name="TODO_SCOPE" value="Project Files" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.general" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHPUnit.TradeTypeFeatureTest.testCanNotDeleteTradeTypeByNonHeadOffice">
+    <configuration name="TradeTypeFeatureTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP 7.3" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="Tests\Feature\TradeTypeFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/TradeTypeFeatureTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TradeTypeFeatureTest.testCanDeleteTradeTypeByHeadOffice" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\TradeTypeFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/TradeTypeFeatureTest.php" method="testCanDeleteTradeTypeByHeadOffice" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TradeTypeFeatureTest.testCanNotDeleteTradeTypeByNonHeadOffice" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\TradeTypeFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/TradeTypeFeatureTest.php" method="testCanNotDeleteTradeTypeByNonHeadOffice" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TradeTypeFeatureTest.testCanNotUpdateTradeTypeByNonHeadOffice" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\TradeTypeFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/TradeTypeFeatureTest.php" method="testCanNotUpdateTradeTypeByNonHeadOffice" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TradeTypeFeatureTest.testCanUpdateTradeTypeByHeadOffice" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\TradeTypeFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/TradeTypeFeatureTest.php" method="testCanUpdateTradeTypeByHeadOffice" scope="Method" />
+      <method v="2" />
+    </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHPUnit.TradeTypeFeatureTest.testCanNotDeleteTradeTypeByNonHeadOffice" />
+        <item itemvalue="PHPUnit.TradeTypeFeatureTest.testCanDeleteTradeTypeByHeadOffice" />
+        <item itemvalue="PHPUnit.TradeTypeFeatureTest.testCanNotUpdateTradeTypeByNonHeadOffice" />
+        <item itemvalue="PHPUnit.TradeTypeFeatureTest.testCanUpdateTradeTypeByHeadOffice" />
+        <item itemvalue="PHPUnit.TradeTypeFeatureTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -181,7 +228,9 @@
       <workItem from="1587435939367" duration="6825000" />
       <workItem from="1587508196676" duration="1504000" />
       <workItem from="1587599539164" duration="12681000" />
-      <workItem from="1587687614519" duration="4648000" />
+      <workItem from="1587687614519" duration="6097000" />
+      <workItem from="1587701600902" duration="1174000" />
+      <workItem from="1587703576592" duration="4598000" />
     </task>
     <task id="LOCAL-00001" summary="Created SalesContact Model.&#10;Established relationships to Lead Model. &#10;Created unit test for SalesContact">
       <created>1583810285742</created>
@@ -267,7 +316,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587622493405</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Can delete Product by HeadOffice&#10;Functionality and Test">
+      <created>1587700634341</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1587700634341</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,9 +357,26 @@
     <MESSAGE value="Added CORS configuration on cors.php under config folder" />
     <MESSAGE value="Can Delete LeadSource by Head Office&#10;Functionality and Test" />
     <MESSAGE value="Can Create Product by HeadOffice&#10;Functionality and Test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Can Create Product by HeadOffice&#10;Functionality and Test" />
+    <MESSAGE value="Can delete Product by HeadOffice&#10;Functionality and Test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Can delete Product by HeadOffice&#10;Functionality and Test" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="258" y="-888" key="#CLI_Interpreters" timestamp="1587704920240">
+      <screen x="-162" y="-1050" width="1680" height="1010" />
+    </state>
+    <state x="258" y="-888" key="#CLI_Interpreters/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587704920240" />
+    <state x="374" y="-911" width="621" height="732" key="#TradeTypeFeatureTest" timestamp="1587705116497">
+      <screen x="-162" y="-1050" width="1680" height="1010" />
+    </state>
+    <state x="374" y="-926" key="#TradeTypeFeatureTest.testCanListTradeTypeByAuthenticatedUsers" timestamp="1587704943030">
+      <screen x="-162" y="-1050" width="1680" height="1010" />
+    </state>
+    <state x="374" y="-926" key="#TradeTypeFeatureTest.testCanListTradeTypeByAuthenticatedUsers/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587704943030" />
+    <state x="374" y="-926" width="621" height="761" key="#TradeTypeFeatureTest.testCanNotListTradeTypeByNonAuthenticatedUser" timestamp="1587705013696">
+      <screen x="-162" y="-1050" width="1680" height="1010" />
+    </state>
+    <state x="374" y="-926" width="621" height="761" key="#TradeTypeFeatureTest.testCanNotListTradeTypeByNonAuthenticatedUser/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587705013696" />
+    <state x="374" y="-911" width="621" height="732" key="#TradeTypeFeatureTest/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587705116497" />
     <state x="491" y="192" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1583985431396">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -314,15 +387,31 @@
     </state>
     <state x="827" y="126" key="CommitChangelistDialog2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583823148385" />
     <state x="544" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1583985987975" />
-    <state x="179" y="-901" key="SettingsEditor" timestamp="1587623765468">
+    <state width="1637" height="272" key="GridCell.Tab.0.bottom" timestamp="1587708740913">
       <screen x="-162" y="-1050" width="1680" height="1010" />
     </state>
-    <state x="179" y="-901" key="SettingsEditor/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587623765468" />
-    <state x="321" y="-806" key="Vcs.Push.Dialog.v2" timestamp="1587622495317">
+    <state width="1637" height="272" key="GridCell.Tab.0.bottom/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587708740913" />
+    <state width="1637" height="272" key="GridCell.Tab.0.center" timestamp="1587708740912">
+      <screen x="-162" y="-1050" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="272" key="GridCell.Tab.0.center/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587708740912" />
+    <state width="1637" height="272" key="GridCell.Tab.0.left" timestamp="1587708740912">
+      <screen x="-162" y="-1050" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="272" key="GridCell.Tab.0.left/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587708740912" />
+    <state width="1637" height="272" key="GridCell.Tab.0.right" timestamp="1587708740913">
+      <screen x="-162" y="-1050" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="272" key="GridCell.Tab.0.right/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587708740913" />
+    <state x="179" y="-901" key="SettingsEditor" timestamp="1587705147994">
+      <screen x="-162" y="-1050" width="1680" height="1010" />
+    </state>
+    <state x="179" y="-901" key="SettingsEditor/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587705147994" />
+    <state x="321" y="-806" key="Vcs.Push.Dialog.v2" timestamp="1587700636917">
       <screen x="-162" y="-1050" width="1680" height="1010" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583823151397" />
-    <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587622495317" />
+    <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587700636917" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1583985991863" />
     <state x="667" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1584317085912">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -332,9 +421,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1583989375799" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1583809743968">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="383" y="-831" width="672" height="659" key="search.everywhere.popup" timestamp="1587704138895">
+      <screen x="-162" y="-1050" width="1680" height="1010" />
     </state>
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583809743968" />
+    <state x="383" y="-831" width="672" height="659" key="search.everywhere.popup/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587704138895" />
   </component>
 </project>

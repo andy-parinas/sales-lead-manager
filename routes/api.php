@@ -65,6 +65,12 @@ Route::resource('lead-sources', 'LeadSource\LeadSourceController', ['except' => 
  */
 Route::resource('products', 'Product\ProductController', ['except' => ['edit', 'create', 'show']]);
 
+/**
+ * TradeType Routes
+ */
+Route::resource('trade-types', 'TradeType\TradeTypeController', ['except' => ['edit', 'create', 'show']]);
+
+
 
 
 
