@@ -20,10 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
-      <change afterPath="$PROJECT_DIR$/.idea/php-test-framework.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/TradeType/TradeTypeController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/FranchiseSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/LeadSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/UserSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/AppointmentFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/AppointmentFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +233,9 @@
       <workItem from="1587599539164" duration="12681000" />
       <workItem from="1587687614519" duration="6097000" />
       <workItem from="1587701600902" duration="1174000" />
-      <workItem from="1587703576592" duration="4598000" />
+      <workItem from="1587703576592" duration="4856000" />
+      <workItem from="1587814114581" duration="86000" />
+      <workItem from="1587943322556" duration="4828000" />
     </task>
     <task id="LOCAL-00001" summary="Created SalesContact Model.&#10;Established relationships to Lead Model. &#10;Created unit test for SalesContact">
       <created>1583810285742</created>
@@ -323,7 +328,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587700634341</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="TradeType CRUD&#10;Functionality and Test">
+      <created>1587708921351</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1587708921351</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -358,7 +370,8 @@
     <MESSAGE value="Can Delete LeadSource by Head Office&#10;Functionality and Test" />
     <MESSAGE value="Can Create Product by HeadOffice&#10;Functionality and Test" />
     <MESSAGE value="Can delete Product by HeadOffice&#10;Functionality and Test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Can delete Product by HeadOffice&#10;Functionality and Test" />
+    <MESSAGE value="TradeType CRUD&#10;Functionality and Test" />
+    <option name="LAST_COMMIT_MESSAGE" value="TradeType CRUD&#10;Functionality and Test" />
   </component>
   <component name="WindowStateProjectService">
     <state x="258" y="-888" key="#CLI_Interpreters" timestamp="1587704920240">
@@ -387,31 +400,31 @@
     </state>
     <state x="827" y="126" key="CommitChangelistDialog2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583823148385" />
     <state x="544" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1583985987975" />
-    <state width="1637" height="272" key="GridCell.Tab.0.bottom" timestamp="1587708740913">
+    <state width="1637" height="272" key="GridCell.Tab.0.bottom" timestamp="1587709042449">
       <screen x="-162" y="-1050" width="1680" height="1010" />
     </state>
-    <state width="1637" height="272" key="GridCell.Tab.0.bottom/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587708740913" />
-    <state width="1637" height="272" key="GridCell.Tab.0.center" timestamp="1587708740912">
+    <state width="1637" height="272" key="GridCell.Tab.0.bottom/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587709042449" />
+    <state width="1637" height="272" key="GridCell.Tab.0.center" timestamp="1587709042449">
       <screen x="-162" y="-1050" width="1680" height="1010" />
     </state>
-    <state width="1637" height="272" key="GridCell.Tab.0.center/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587708740912" />
-    <state width="1637" height="272" key="GridCell.Tab.0.left" timestamp="1587708740912">
+    <state width="1637" height="272" key="GridCell.Tab.0.center/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587709042449" />
+    <state width="1637" height="272" key="GridCell.Tab.0.left" timestamp="1587709042449">
       <screen x="-162" y="-1050" width="1680" height="1010" />
     </state>
-    <state width="1637" height="272" key="GridCell.Tab.0.left/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587708740912" />
-    <state width="1637" height="272" key="GridCell.Tab.0.right" timestamp="1587708740913">
+    <state width="1637" height="272" key="GridCell.Tab.0.left/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587709042449" />
+    <state width="1637" height="272" key="GridCell.Tab.0.right" timestamp="1587709042449">
       <screen x="-162" y="-1050" width="1680" height="1010" />
     </state>
-    <state width="1637" height="272" key="GridCell.Tab.0.right/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587708740913" />
+    <state width="1637" height="272" key="GridCell.Tab.0.right/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587709042449" />
     <state x="179" y="-901" key="SettingsEditor" timestamp="1587705147994">
       <screen x="-162" y="-1050" width="1680" height="1010" />
     </state>
     <state x="179" y="-901" key="SettingsEditor/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587705147994" />
-    <state x="321" y="-806" key="Vcs.Push.Dialog.v2" timestamp="1587700636917">
+    <state x="321" y="-806" key="Vcs.Push.Dialog.v2" timestamp="1587708928687">
       <screen x="-162" y="-1050" width="1680" height="1010" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583823151397" />
-    <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587700636917" />
+    <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587708928687" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1583985991863" />
     <state x="667" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1584317085912">
       <screen x="0" y="0" width="1920" height="1040" />

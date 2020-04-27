@@ -9,7 +9,7 @@ $factory->define(Appointment::class, function (Faker $faker) {
     return [
         'appointment_date' => $faker->dateTime,
         'appointment_notes' => $faker->paragraph,
-        'quoted_price' => $faker->randomNumber(),
+        'quoted_price' => $faker->randomFloat(2, 100, 1000),
         'outcome' => $faker->randomElement([
             'pending', 'follow-up', 'lost', 'success', 'deferred', 'cancelled', 'did not proceed'
         ]),
