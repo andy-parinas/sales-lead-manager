@@ -21,9 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SalesContact/SalesContactController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SalesContact/SalesContactController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/SalesContact.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/SalesContact.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/SalesContactRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/SalesContactRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,7 +234,7 @@
       <workItem from="1587703576592" duration="4856000" />
       <workItem from="1587814114581" duration="86000" />
       <workItem from="1587943322556" duration="10425000" />
-      <workItem from="1588031786593" duration="1056000" />
+      <workItem from="1588031786593" duration="4891000" />
     </task>
     <task id="LOCAL-00001" summary="Created SalesContact Model.&#10;Established relationships to Lead Model. &#10;Created unit test for SalesContact">
       <created>1583810285742</created>
@@ -340,7 +341,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587948673870</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="troublehsooting CSRF issues.">
+      <created>1588040658006</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1588040658006</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -377,7 +385,8 @@
     <MESSAGE value="Can delete Product by HeadOffice&#10;Functionality and Test" />
     <MESSAGE value="TradeType CRUD&#10;Functionality and Test" />
     <MESSAGE value="Implemented more complete seeder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented more complete seeder" />
+    <MESSAGE value="troublehsooting CSRF issues." />
+    <option name="LAST_COMMIT_MESSAGE" value="troublehsooting CSRF issues." />
   </component>
   <component name="WindowStateProjectService">
     <state x="258" y="-888" key="#CLI_Interpreters" timestamp="1587704920240">

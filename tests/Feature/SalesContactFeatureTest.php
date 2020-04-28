@@ -21,7 +21,7 @@ class SalesContactFeatureTest extends TestCase
     {
 
         $this->withoutExceptionHandling();
-        
+
         $postcode = factory(Postcode::class)->create();
         $data = factory(SalesContact::class)->raw(['postcode' => $postcode->pcode]);
 
@@ -47,7 +47,7 @@ class SalesContactFeatureTest extends TestCase
 
     public function testCanNotCreateSalesContactWithInvalidPostcode()
     {
-        
+
         $data = factory(SalesContact::class)->raw();
 
         $this->authenticateStaffUser();
@@ -78,18 +78,18 @@ class SalesContactFeatureTest extends TestCase
 
 
         collect(['first_name', 'last_name', 'postcode', 'suburb', 'state'])->each(function($field){
-            
+
             $c1 = factory(SalesContact::class)->create([$field => 'AAAAAAAAAA']);
             $c2 = factory(SalesContact::class)->create([$field => 'ZZZZZZZZZZ']);
 
             $response =  $this->get('api/contacts?sort=' . $field . '&direction=asc');
             $result = json_decode($response->content())->data;
-    
+
             $this->assertEquals('AAAAAAAAAA', $result[0]->{$field});
-    
+
             $response =  $this->get('api/contacts?sort=' . $field . '&direction=desc');
             $result = json_decode($response->content())->data;
-    
+
             $this->assertEquals('ZZZZZZZZZZ', $result[0]->{$field});
 
             //Delete all the record to start fresh
@@ -107,7 +107,7 @@ class SalesContactFeatureTest extends TestCase
 
 
         collect(['first_name', 'last_name', 'postcode', 'suburb', 'state'])->each(function($field){
-            
+
             //Needle
             factory(SalesContact::class)->create([$field => 'AAAAAAAAAA']);
 
@@ -117,7 +117,7 @@ class SalesContactFeatureTest extends TestCase
 
             $response =  $this->get('api/contacts?on=' . $field . '&search=AAAAAAAAAA');
             $result = json_decode($response->content())->data;
-    
+
             $this->assertEquals('AAAAAAAAAA', $result[0]->{$field});
 
         });
@@ -174,7 +174,7 @@ class SalesContactFeatureTest extends TestCase
 
         $this->assertEquals($contact->postcode, SalesContact::first()->postcode);
     }
-    
+
     public function testCanShowSalesContact()
     {
         $this->authenticateStaffUser();
@@ -188,12 +188,12 @@ class SalesContactFeatureTest extends TestCase
 
         $contact->refresh();
 
-        collect(['first_name', 'last_name', 'postcode', 'suburb', 'state', 
+        collect(['first_name', 'last_name', 'postcode', 'suburb', 'state',
                     'contact_number', 'email', 'email2', 'customer_type', 'status'])
             ->each(function($field) use ($contact, $result) {
                 $this->assertEquals($contact->{$field}, $result->{$this->toCamelCase($field)});
         });
-        
+
     }
 
     public function testCanShowTheLeadsForSalesContact()

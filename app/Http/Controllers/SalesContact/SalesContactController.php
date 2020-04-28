@@ -31,6 +31,7 @@ class SalesContactController extends ApiController
     {
         $salesContacts = $this->salesContactRepository->sortAndPaginate($this->getRequestParams());
 
+
         return $this->showPaginated($salesContacts);
     }
 
@@ -65,8 +66,8 @@ class SalesContactController extends ApiController
         }
 
         $salesContact = SalesContact::create($data);
-        
-        
+
+
         return $this->showOne($salesContact, Response::HTTP_CREATED);
 
 
@@ -131,7 +132,7 @@ class SalesContactController extends ApiController
     {
 
         Gate::authorize('head-office-only');
-        
+
         $contact->delete();
 
         return $this->showOne($contact);

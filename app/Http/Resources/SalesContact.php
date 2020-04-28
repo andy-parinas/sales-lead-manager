@@ -28,7 +28,7 @@ class SalesContact extends JsonResource
             'postcode' => $this->postcode,
             'customerType' => $this->customer_type,
             'status' => $this->status,
-            'leads' => $this->leads
+            'leads' => $this->whenLoaded('leads')
         ];
     }
 }
