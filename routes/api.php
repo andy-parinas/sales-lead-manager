@@ -28,6 +28,7 @@ Route::get('auth-test', 'HomeController@index');
  * Authentication Route
  */
 Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout');
 
 /**
  * Franchise Route

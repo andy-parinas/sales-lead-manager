@@ -45,10 +45,23 @@ class LoginController extends ApiController
         ]);
 
         if(Auth::attempt($loginData)){
-            return response()->json(Auth::user(), Response::HTTP_OK);
+            return response()->json(['data' => Auth::user()], Response::HTTP_OK);
         }
 
         return $this->errorResponse("Invalid Username or Password", Response::HTTP_UNAUTHORIZED);
+
+    }
+
+    public function logout(Request $request){
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return response('', Response::HTTP_NO_CONTENT);
+
+//        Auth::guard('web')->logout();
+
 
     }
 }
