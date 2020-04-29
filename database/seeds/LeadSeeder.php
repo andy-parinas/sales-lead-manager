@@ -22,7 +22,7 @@ class LeadSeeder extends Seeder
             foreach ($franchises as $franchise){
                 if(!$franchise->isParent()){
                     dump('Creating Sales Contact');
-                    factory(SalesContact::class, 5)->create(['postcode' => $postcode->pcode])
+                    factory(SalesContact::class, 60)->create(['postcode' => $postcode->pcode])
                         ->each(function ($contact) use ($franchise) {
 
                             dump('Creating Lead');
