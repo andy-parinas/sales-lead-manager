@@ -68,7 +68,7 @@ class SalesContactController extends ApiController
         $salesContact = SalesContact::create($data);
 
 
-        return $this->showOne($salesContact, Response::HTTP_CREATED);
+        return $this->showOne(new SalesContactResource($salesContact), Response::HTTP_CREATED);
 
 
     }
@@ -118,7 +118,7 @@ class SalesContactController extends ApiController
 
         $contact->update($data);
 
-        return $this->showOne($contact);
+        return $this->showOne(new SalesContactResource($contact));
 
     }
 
