@@ -22,16 +22,17 @@ class PostcodeController extends ApiController
      */
     public function index(Request $request)
     {
+        $postcodes = [];
+
         if($request->has('search')){
 
-            $postcodes = Postcode::where('pcode', 'LIKE', '%' . $request['search'] . '%')->get();
+            $postcodes = Postcode::where('pcode', 'LIKE', '%'.  $request['search'] .'%' )
+                ->get()
+                ->pluck('pcode');
 
-            return $this->showAll($postcodes);
         }
 
-        $postcodes = Postcode::paginate(10)->get();
-
-        return $this->showPaginated($postcodes);
+        return $this->showAll($postcodes);
 
     }
 

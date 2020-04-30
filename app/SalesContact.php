@@ -14,7 +14,7 @@ class SalesContact extends Model
     const ARCHIVED = 'archived';
 
     protected $fillable = [
-        'title', 'first_name', 'last_name', 'email',
+        'title', 'first_name', 'last_name', 'email', 'email2',
         'contact_number', 'street1', 'street2', 'suburb', 'state', 'postcode', 'customer_type', 'status'
     ];
 
