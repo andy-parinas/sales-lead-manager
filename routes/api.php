@@ -71,6 +71,11 @@ Route::resource('products', 'Product\ProductController', ['except' => ['edit', '
  */
 Route::resource('trade-types', 'TradeType\TradeTypeController', ['except' => ['edit', 'create', 'show']]);
 
+/**
+ * Postcode Routes
+ */
+Route::resource('postcodes', 'Postcode\PostcodeController', ['only' => ['index']]);
+
 
 
 
