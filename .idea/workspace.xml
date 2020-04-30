@@ -22,6 +22,8 @@
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SalesContact/SalesContactController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SalesContact/SalesContactController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/SalesContact.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/SalesContact.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,7 +233,7 @@
       <workItem from="1587703576592" duration="4856000" />
       <workItem from="1587814114581" duration="86000" />
       <workItem from="1587943322556" duration="10425000" />
-      <workItem from="1588031786593" duration="14071000" />
+      <workItem from="1588031786593" duration="16847000" />
     </task>
     <task id="LOCAL-00001" summary="Created SalesContact Model.&#10;Established relationships to Lead Model. &#10;Created unit test for SalesContact">
       <created>1583810285742</created>
@@ -359,7 +361,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588125825604</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Added api resource response to update and create">
+      <created>1588159300593</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1588159300593</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -399,7 +408,8 @@
     <MESSAGE value="troublehsooting CSRF issues." />
     <MESSAGE value="Refactor the SalesContact output from the DB Builder.&#10;Use standard JSON namin for the frontend" />
     <MESSAGE value="Changed default page size to 10&#10;Increase Number of Items to seed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed default page size to 10&#10;Increase Number of Items to seed" />
+    <MESSAGE value="Added api resource response to update and create" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added api resource response to update and create" />
   </component>
   <component name="WindowStateProjectService">
     <state x="258" y="-888" key="#CLI_Interpreters" timestamp="1587704920240">
@@ -449,11 +459,12 @@
       <screen x="-162" y="-1050" width="1680" height="1010" />
     </state>
     <state x="179" y="-901" key="SettingsEditor/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587705147994" />
-    <state x="321" y="-806" key="Vcs.Push.Dialog.v2" timestamp="1588125827175">
-      <screen x="-162" y="-1050" width="1680" height="1010" />
+    <state x="393" y="176" key="Vcs.Push.Dialog.v2" timestamp="1588159304780">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583823151397" />
     <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588125827175" />
+    <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@0.0.1366.728" timestamp="1588159304780" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1583985991863" />
     <state x="667" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1584317085912">
       <screen x="0" y="0" width="1920" height="1040" />

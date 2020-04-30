@@ -175,6 +175,22 @@ class SalesContactFeatureTest extends TestCase
         $this->assertEquals($contact->postcode, SalesContact::first()->postcode);
     }
 
+    public function testCanUpdateContactStatusByStaffUser(){
+
+        $this->authenticateStaffUser();
+
+        $contact = factory(SalesContact::class)->create(['status' => 'active']);
+
+        $this->put('api/contacts/' . $contact->id, ['status' => 'archived'])
+            ->assertStatus(Response::HTTP_OK);
+
+
+        $contact->refresh();
+
+        $this->assertEquals('archived', $contact->status );
+
+    }
+
     public function testCanShowSalesContact()
     {
         $this->authenticateStaffUser();
