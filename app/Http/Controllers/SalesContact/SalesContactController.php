@@ -57,7 +57,8 @@ class SalesContactController extends ApiController
             'suburb' => 'required|string',
             'state' => 'required|string',
             'postcode' => 'required|string|max:10',
-            'customer_type' => 'required|in:' . SalesContact::COMMERCIAL . ',' . SalesContact::RESIDENTIAL
+            'customer_type' => 'required|in:' . SalesContact::COMMERCIAL . ',' . SalesContact::RESIDENTIAL,
+            'status' => 'in:'. SalesContact::ACTIVE . ',' . SalesContact::ARCHIVED,
         ]);
 
         $postcode = Postcode::where('pcode', $data['postcode'])->first();
@@ -67,7 +68,6 @@ class SalesContactController extends ApiController
         }
 
         $salesContact = SalesContact::create($data);
-
 
         return $this->showOne(new SalesContactResource($salesContact), Response::HTTP_CREATED);
 

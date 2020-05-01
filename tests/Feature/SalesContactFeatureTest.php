@@ -268,4 +268,26 @@ class SalesContactFeatureTest extends TestCase
         $this->delete('api/contacts/' . $contact->id)
         ->assertStatus(Response::HTTP_CONFLICT);
     }
+
+    /**
+     * Some of the torubleshooting test
+     */
+
+    public function testStatusIsIncludedWhenSalesContactIsCreated()
+    {
+        $this->authenticateStaffUser();
+
+
+        $postcode = factory(Postcode::class)->create();
+        $data = factory(SalesContact::class)->raw(['postcode' => $postcode->pcode, 'status' => 'active']);
+
+        $this->authenticateStaffUser();
+
+        $response = $this->post('api/contacts', $data)
+            ->assertStatus(Response::HTTP_CREATED);
+
+        $results = json_decode($response->content())->data;
+
+        dd($results);
+    }
 }

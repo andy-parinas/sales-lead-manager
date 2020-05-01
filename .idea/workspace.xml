@@ -21,10 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Postcode/PostcodeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Postcode/PostcodeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SalesContact/SalesContactController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SalesContact/SalesContactController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/SalesContact.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/SalesContact.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Traits/ApiResponser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Traits/ApiResponser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,7 +227,7 @@
       <workItem from="1587703576592" duration="4856000" />
       <workItem from="1587814114581" duration="86000" />
       <workItem from="1587943322556" duration="10425000" />
-      <workItem from="1588031786593" duration="24280000" />
+      <workItem from="1588031786593" duration="26264000" />
     </task>
     <task id="LOCAL-00001" summary="Created SalesContact Model.&#10;Established relationships to Lead Model. &#10;Created unit test for SalesContact">
       <created>1583810285742</created>
@@ -378,7 +376,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588210993996</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="created postcode search functionality. &#10;Corrected some of the missing fillable in SalesContact">
+      <created>1588228904009</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1588228904009</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -421,7 +426,8 @@
     <MESSAGE value="Added api resource response to update and create" />
     <MESSAGE value="Corrected issue on not updating the SalesContact status.&#10;need to add status in fillable" />
     <MESSAGE value="created postcode search functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="created postcode search functionality" />
+    <MESSAGE value="created postcode search functionality. &#10;Corrected some of the missing fillable in SalesContact" />
+    <option name="LAST_COMMIT_MESSAGE" value="created postcode search functionality. &#10;Corrected some of the missing fillable in SalesContact" />
   </component>
   <component name="WindowStateProjectService">
     <state x="258" y="-888" key="#CLI_Interpreters" timestamp="1587704920240">
