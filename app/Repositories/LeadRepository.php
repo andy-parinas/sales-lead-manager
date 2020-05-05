@@ -21,8 +21,17 @@ class LeadRepository implements LeadRepositoryInterface
                 ->select(
                     'leads.number',
                     'leads.lead_date',
+                    'leads.created_at as created_at',
                     'lead_sources.name as source',
-                    'sales_contacts.*')
+                    'sales_contacts.id as salesContactId',
+                    'sales_contacts.first_name as firstName',
+                    'sales_contacts.last_name as lastName',
+                    'sales_contacts.email as email',
+                    'sales_contacts.contact_number as contactNumber',
+                    'sales_contacts.suburb',
+                    'sales_contacts.state',
+                    'sales_contacts.postcode'
+                )
                 ->where($params['on'], 'LIKE', '%' . $params['search'] . '%')
                 ->orderBy($params['column'], $params['direction'])
                 ->paginate($params['size']);
@@ -35,8 +44,17 @@ class LeadRepository implements LeadRepositoryInterface
             ->select(
                 'leads.number',
                 'leads.lead_date',
+                'leads.created_at as created_at',
                 'lead_sources.name as source',
-                'sales_contacts.*')
+                'sales_contacts.id as salesContactId',
+                'sales_contacts.first_name as firstName',
+                'sales_contacts.last_name as lastName',
+                'sales_contacts.email as email',
+                'sales_contacts.contact_number as contactNumber',
+                'sales_contacts.suburb',
+                'sales_contacts.state',
+                'sales_contacts.postcode'
+            )
             ->orderBy($params['column'], $params['direction'])
             ->paginate($params['size']);
 
@@ -55,7 +73,12 @@ class LeadRepository implements LeadRepositoryInterface
                 ->join('design_assessors', 'design_assessors.id', '=', 'job_types.design_assessor_id');
             })
             ->leftJoin('appointments', 'appointments.lead_id', '=', $lead_id)
-            ->select('leads.id', 'leads.number', 'leads.lead_date', 'lead_sources.name as source',
+            ->select(
+                'leads.id',
+                    'leads.number',
+                    'leads.lead_date',
+                    'lead_sources.name as source',
+                    'sales_contacts.id as salesContactId',
                     'sales_contacts.first_name',
                     'sales_contacts.last_name',
                     'sales_contacts.email',
@@ -92,9 +115,17 @@ class LeadRepository implements LeadRepositoryInterface
                 ->select(
                     'leads.number',
                     'franchises.number as franchiseNumber',
-                    'leads.lead_date',
+                    'leads.lead_date as leadDate',
+                    'leads.created_at as created_at',
                     'lead_sources.name as source',
-                    'sales_contacts.*')
+                    'sales_contacts.first_name as firstName',
+                    'sales_contacts.last_name as lastName',
+                    'sales_contacts.email as email',
+                    'sales_contacts.contact_number as contactNumber',
+                    'sales_contacts.suburb',
+                    'sales_contacts.state',
+                    'sales_contacts.postcode'
+                )
                 ->where($params['on'], 'LIKE', '%' . $params['search'] . '%')
                 ->orderBy($params['column'], $params['direction'])
                 ->paginate($params['size']);
@@ -108,9 +139,18 @@ class LeadRepository implements LeadRepositoryInterface
             ->select(
                 'leads.number',
                 'franchises.number as franchiseNumber',
-                'leads.lead_date',
+                'leads.lead_date as leadDate',
+                'leads.created_at as created_at',
                 'lead_sources.name as source',
-                'sales_contacts.*')
+                'sales_contacts.id as salesContactId',
+                'sales_contacts.first_name as firstName',
+                'sales_contacts.last_name as lastName',
+                'sales_contacts.email as email',
+                'sales_contacts.contact_number as contactNumber',
+                'sales_contacts.suburb',
+                'sales_contacts.state',
+                'sales_contacts.postcode'
+            )
             ->orderBy($params['column'], $params['direction'])
             ->paginate($params['size']);
 
@@ -127,9 +167,18 @@ class LeadRepository implements LeadRepositoryInterface
                 ->select(
                     'leads.number',
                     'franchises.number as franchiseNumber',
-                    'leads.lead_date',
+                    'leads.lead_date as leadDate',
+                    'leads.created_at as created_at',
                     'lead_sources.name as source',
-                    'sales_contacts.*')
+                    'sales_contacts.id as salesContactId',
+                    'sales_contacts.first_name as firstName',
+                    'sales_contacts.last_name as lastName',
+                    'sales_contacts.email as email',
+                    'sales_contacts.contact_number as contactNumber',
+                    'sales_contacts.suburb',
+                    'sales_contacts.state',
+                    'sales_contacts.postcode'
+                )
                 ->where($params['on'], 'LIKE', '%' . $params['search'] . '%')
                 ->orderBy($params['column'], $params['direction'])
                 ->paginate($params['size']);
@@ -143,9 +192,18 @@ class LeadRepository implements LeadRepositoryInterface
             ->select(
                 'leads.number',
                 'franchises.number as franchiseNumber',
-                'leads.lead_date',
+                'leads.lead_date as leadDate',
+                'leads.created_at as created_at',
                 'lead_sources.name as source',
-                'sales_contacts.*')
+                'sales_contacts.id as salesContactId',
+                'sales_contacts.first_name as firstName',
+                'sales_contacts.last_name as lastName',
+                'sales_contacts.email as email',
+                'sales_contacts.contact_number as contactNumber',
+                'sales_contacts.suburb',
+                'sales_contacts.state',
+                'sales_contacts.postcode'
+            )
             ->orderBy($params['column'], $params['direction'])
             ->paginate($params['size']);
     }
