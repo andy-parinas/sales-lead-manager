@@ -5,13 +5,18 @@ namespace App\Http\Controllers\Lead;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Lead;
+use App\Repositories\Interfaces\LeadRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LeadController extends ApiController
 {
 
-    public function __construct() {
+    private $leadRepository;
+
+    public function __construct(LeadRepositoryInterface $leadRepository) {
         $this->middleware('auth:sanctum');
+        $this->leadRepository = $leadRepository;
     }
 
 
@@ -22,12 +27,25 @@ class LeadController extends ApiController
      */
     public function index()
     {
+        //$this->authorize('viewAny', Lead::class);
 
-        $this->authorize('viewAny', Lead::class);
+        $user = Auth::user();
 
-        $leads = Lead::all();
+        if ($user->isHeadOffice()){
 
-        return $this->showAll($leads);
+            $leads = $this->leadRepository->getAllLeads($this->getRequestParams());
+
+            return $this->showPaginated($leads);
+        }
+
+        $franchiseIds = $user->franchises->pluck('id')->toArray();
+
+        $leads = $this->leadRepository->findLeadsByUsersFranchise($franchiseIds, $this->getRequestParams());
+
+//        dd($leads);
+
+        return $this->showPaginated($leads);
+
     }
 
 

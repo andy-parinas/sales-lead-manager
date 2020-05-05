@@ -19,7 +19,7 @@ class LeadFeatureTest extends TestCase
     public function testCanListAllLeadsByHeadOfficeUsers()
     {
 
-        // Each Lead here will have its own Franchise. 
+        // Each Lead here will have its own Franchise.
         // this should be listed by HeadOffice User without referencing to a franchise
         factory(Lead::class, 10)->create();
 
@@ -33,9 +33,39 @@ class LeadFeatureTest extends TestCase
             ->assertJsonCount(10, 'data');
     }
 
+
+    public function testCanListLeadsByUser()
+    {
+
+        $this->withoutExceptionHandling();
+
+        $user = $this->createStaffUser();
+        $franchise1 = factory(Franchise::class)->create();
+        $franchise2 = factory(Franchise::class)->create();
+
+        $user->franchises()->attach([$franchise1->id, $franchise2->id]);
+
+        factory(Lead::class,5)->create(['franchise_id'=>$franchise1->id]);
+        factory(Lead::class,5)->create(['franchise_id'=>$franchise2->id]);
+
+        //Haystack
+        factory(Lead::class,5)->create();
+
+        Sanctum::actingAs(
+            $user,
+            ['*']
+        );
+
+        $response = $this->get('api/leads/');
+
+        $response->assertStatus(Response::HTTP_OK)
+            ->assertJsonCount(10, 'data');
+
+    }
+
     public function testCanNotListAllLeadsNyNonHeadOfficeUsers()
     {
-        
+
         factory(Lead::class, 10)->create();
 
         Sanctum::actingAs(
@@ -46,7 +76,7 @@ class LeadFeatureTest extends TestCase
         $this->get('api/leads/')
             ->assertStatus(Response::HTTP_FORBIDDEN);
 
-        
+
         Sanctum::actingAs(
             $this->createStaffUser(),
             ['*']

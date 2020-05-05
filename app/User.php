@@ -48,7 +48,6 @@ class User extends Authenticatable
         return $this->belongsToMany(Franchise::class);
     }
 
-
     public function isHeadOffice()
     {
         return $this->user_type === User::HEAD_OFFICE;

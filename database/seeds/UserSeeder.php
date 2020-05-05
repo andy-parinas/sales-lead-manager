@@ -22,16 +22,18 @@ class UserSeeder extends Seeder
         Franchise::all()->each(function ($franchise)  {
             if($franchise->isParent()){
                 dump('Creating Franchise Admin');
-                factory(User::class)->create([
+                $user = factory(User::class)->create([
                     'username' => 'franchiseadmin' . $franchise->id,
                     'user_type' => User::FRANCHISE_ADMIN
                 ]);
+                $user->franchises()->attach($franchise->id);
             }else {
                 dump('Creating Staff User');
-                factory(User::class)->create([
+                $user = factory(User::class)->create([
                     'username' => 'staffuser' . $franchise->id,
                     'user_type' => User::STAFF_USER
                 ]);
+                $user->franchises()->attach($franchise->id);
             }
 
         });

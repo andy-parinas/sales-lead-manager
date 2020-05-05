@@ -45,7 +45,11 @@ class LoginController extends ApiController
         ]);
 
         if(Auth::attempt($loginData)){
-            return response()->json(['data' => Auth::user()], Response::HTTP_OK);
+
+            $user = Auth::user();
+            $franchises = $user->franchises->pluck('number', 'id');
+
+            return response()->json(['data' => Auth::user(), 'franchises' => $franchises], Response::HTTP_OK);
         }
 
         return $this->errorResponse("Invalid Username or Password", Response::HTTP_UNAUTHORIZED);
