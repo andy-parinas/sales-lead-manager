@@ -63,28 +63,28 @@ class LeadFeatureTest extends TestCase
 
     }
 
-    public function testCanNotListAllLeadsNyNonHeadOfficeUsers()
-    {
-
-        factory(Lead::class, 10)->create();
-
-        Sanctum::actingAs(
-            $this->createFranchiseAdminUser(),
-            ['*']
-        );
-
-        $this->get('api/leads/')
-            ->assertStatus(Response::HTTP_FORBIDDEN);
-
-
-        Sanctum::actingAs(
-            $this->createStaffUser(),
-            ['*']
-        );
-
-        $this->get('api/leads/')
-            ->assertStatus(Response::HTTP_FORBIDDEN);
-    }
+//    public function testCanNotListAllLeadsNyNonHeadOfficeUsers()
+//    {
+//
+//        factory(Lead::class, 10)->create();
+//
+//        Sanctum::actingAs(
+//            $this->createFranchiseAdminUser(),
+//            ['*']
+//        );
+//
+//        $this->get('api/leads/')
+//            ->assertStatus(Response::HTTP_FORBIDDEN);
+//
+//
+//        Sanctum::actingAs(
+//            $this->createStaffUser(),
+//            ['*']
+//        );
+//
+//        $this->get('api/leads/')
+//            ->assertStatus(Response::HTTP_FORBIDDEN);
+//    }
 
     public function testCanShowLeadWithoutReferenceToFranchiseByHeadOfficeUsers( )
     {
