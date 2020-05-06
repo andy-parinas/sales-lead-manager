@@ -65,7 +65,9 @@ class FranchiseLeadFeatureTest extends TestCase
 
     public function testCanListAllLeadByHeadOffice()
     {
-        
+
+        $this->withoutExceptionHandling();
+
         $franchise = factory(Franchise::class)->create();
         factory(Lead::class, 10)->create(['franchise_id' => $franchise->id]);
 
@@ -85,7 +87,7 @@ class FranchiseLeadFeatureTest extends TestCase
 
     public function testCanShowLeadUnderUsersFranchise()
     {
-        
+
         $franchise = factory(Franchise::class)->create();
         $lead = factory(Lead::class)->create(['franchise_id' => $franchise->id]);
 
@@ -104,7 +106,7 @@ class FranchiseLeadFeatureTest extends TestCase
         $result = json_decode($response->content());
 
         $response->assertStatus(Response::HTTP_OK);
-        $this->assertEquals($lead->number, $result->data->number);
+        $this->assertEquals($lead->lead_number, $result->data->leadNumber);
 
         Sanctum::actingAs(
             $franchiseAdmin,
@@ -115,13 +117,13 @@ class FranchiseLeadFeatureTest extends TestCase
         $result = json_decode($response->content());
 
         $response->assertStatus(Response::HTTP_OK);
-        $this->assertEquals($lead->number, $result->data->number);
+        $this->assertEquals($lead->lead_number, $result->data->leadNumber);
 
     }
 
     public function testCanNotShowLeadOutsideUsersFranchise()
     {
-         
+
         $franchise = factory(Franchise::class)->create();
         $lead = factory(Lead::class)->create(['franchise_id' => $franchise->id]);
 
@@ -161,9 +163,9 @@ class FranchiseLeadFeatureTest extends TestCase
         $result = json_decode($response->content());
 
         $response->assertStatus(Response::HTTP_OK);
-        $this->assertEquals($lead->number, $result->data->number);
+        $this->assertEquals($lead->lead_number, $result->data->leadNumber);
 
-      
+
     }
 
 
@@ -171,7 +173,7 @@ class FranchiseLeadFeatureTest extends TestCase
     {
 
         $this->withoutExceptionHandling();
-        
+
         $postcode = factory(Postcode::class)->create();
         $franchise = factory(Franchise::class)->create();
         $franchise->postcodes()->attach($postcode->id);
@@ -184,7 +186,7 @@ class FranchiseLeadFeatureTest extends TestCase
         $leadSource = factory(LeadSource::class)->create();
 
         $leadData = [
-            'number' => '1234567890',
+            'lead_number' => '1234567890',
             'sales_contact_id' => $salesContact->id,
             'lead_source_id' => $leadSource->id,
             'lead_date' => '2020-03-30'
@@ -198,16 +200,16 @@ class FranchiseLeadFeatureTest extends TestCase
         $this->post('api/franchises/' . $franchise->id . '/leads', $leadData)
             ->assertStatus(Response::HTTP_CREATED);
 
-        $this->assertCount(1, Lead::all());       
+        $this->assertCount(1, Lead::all());
 
     }
 
     public function testCanNotCreateLeadOutsideStaffUsersFranchise()
     {
-        
-        
+
+
         // $this->withoutExceptionHandling();
-        
+
         $franchise = factory(Franchise::class)->create();
 
         $user = $this->createStaffUser();
@@ -231,14 +233,14 @@ class FranchiseLeadFeatureTest extends TestCase
         $this->post('api/franchises/' . $franchise->id . '/leads', $leadData)
             ->assertStatus(Response::HTTP_FORBIDDEN);
 
-        $this->assertCount(0, Lead::all());       
+        $this->assertCount(0, Lead::all());
 
 
     }
 
     public function testCreatedLeadHasPostcodeStatusInside()
     {
-       
+
         $postcode = factory(Postcode::class)->create();
         $franchise = factory(Franchise::class)->create();
         $franchise->postcodes()->attach($postcode->id);
@@ -251,7 +253,7 @@ class FranchiseLeadFeatureTest extends TestCase
         $leadSource = factory(LeadSource::class)->create();
 
         $leadData = [
-            'number' => '1234567890',
+            'lead_number' => '1234567890',
             'sales_contact_id' => $salesContact->id,
             'lead_source_id' => $leadSource->id,
             'lead_date' => '2020-03-30'
@@ -264,7 +266,7 @@ class FranchiseLeadFeatureTest extends TestCase
 
         $this->post('api/franchises/' . $franchise->id . '/leads', $leadData);
         $this->assertEquals(Lead::INSIDE_OF_FRANCHISE, Lead::first()->postcode_status);
-        
+
 
     }
 
@@ -282,7 +284,7 @@ class FranchiseLeadFeatureTest extends TestCase
         $leadSource = factory(LeadSource::class)->create();
 
         $leadData = [
-            'number' => '1234567890',
+            'lead_number' => '1234567890',
             'sales_contact_id' => $salesContact->id,
             'lead_source_id' => $leadSource->id,
             'lead_date' => '2020-03-30'
@@ -324,7 +326,7 @@ class FranchiseLeadFeatureTest extends TestCase
 
         $this->assertEquals($leadSource->id, Lead::first()->lead_source_id);
         $this->assertEquals('2020-04-30', Lead::first()->lead_date);
-        
+
     }
 
     public function testCanNotUpdateLeadDataByUserOutsideFranchise()
@@ -353,7 +355,7 @@ class FranchiseLeadFeatureTest extends TestCase
 
     public function testCanChangeFranchiseByAdminUnderTheirAssignedFranchise()
     {
-        
+
         $franchise = factory(Franchise::class)->create();
         $lead = factory(Lead::class)->create(['franchise_id' => $franchise->id]);
 
@@ -446,7 +448,7 @@ class FranchiseLeadFeatureTest extends TestCase
         $franchise = factory(Franchise::class)->create();
         $franchise->postcodes()->attach($postcode->id);
         $lead = factory(Lead::class)->create([
-            'franchise_id' => $franchise->id, 
+            'franchise_id' => $franchise->id,
             'postcode_status' => Lead::INSIDE_OF_FRANCHISE,
             'sales_contact_id' => $salesContact->id
         ]);
@@ -454,8 +456,8 @@ class FranchiseLeadFeatureTest extends TestCase
 
         //THis Franchise will have different postcode assignment
         $postcode2 = factory(Postcode::class)->create();
-        $salesContact2 = factory(SalesContact::class)->create(['postcode' => $postcode2->pcode]); 
-        
+        $salesContact2 = factory(SalesContact::class)->create(['postcode' => $postcode2->pcode]);
+
         $franchise2 = factory(Franchise::class)->create();
         $franchise2->postcodes()->attach($postcode2->id);
 
@@ -490,7 +492,7 @@ class FranchiseLeadFeatureTest extends TestCase
         $franchise = factory(Franchise::class)->create();
         $franchise->postcodes()->attach($postcode2->id);
         $lead = factory(Lead::class)->create([
-            'franchise_id' => $franchise->id, 
+            'franchise_id' => $franchise->id,
             'postcode_status' => Lead::OUTSIDE_OF_FRANCHISE,
             'sales_contact_id' => $salesContact->id
         ]);
@@ -498,7 +500,7 @@ class FranchiseLeadFeatureTest extends TestCase
 
         //THis Franchise will have different postcode assignment
 
-        
+
         $franchise2 = factory(Franchise::class)->create();
         $franchise2->postcodes()->attach($postcode->id);
 
@@ -554,7 +556,7 @@ class FranchiseLeadFeatureTest extends TestCase
 
     public function testCanCascadeToRelatedModelsWhenLeadIsDeleted()
     {
-        
+
         $franchise = factory(Franchise::class)->create();
         $lead = factory(Lead::class)->create(['franchise_id' => $franchise->id]);
         factory(JobType::class)->create(['lead_id' => $lead->id]);

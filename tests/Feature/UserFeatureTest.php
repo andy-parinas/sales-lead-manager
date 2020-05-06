@@ -36,7 +36,7 @@ class UserFeatureTest extends TestCase
         ];
 
 
-        
+
         $response = $this->post('api/users', $userData);
         $response->assertStatus(Response::HTTP_CREATED);
 
@@ -63,7 +63,7 @@ class UserFeatureTest extends TestCase
         ];
 
         $this->authenticateStaffUser();
-        
+
         $this->post('api/users', $userData)
             ->assertStatus(Response::HTTP_FORBIDDEN);
         $this->assertCount(1, User::all()); //No extra user is created except for the one used in authentication
@@ -79,7 +79,7 @@ class UserFeatureTest extends TestCase
 
     public function testCanNotCreateUserByUnAuthenticatedUser()
     {
-        
+
         $userData = [
             'username' => $this->faker->userName,
             'name' => $this->faker->name,
@@ -105,13 +105,13 @@ class UserFeatureTest extends TestCase
 
         $this->get('api/users')
             ->assertStatus(Response::HTTP_OK)
-            ->assertJsonCount(15, 'data');
+            ->assertJsonCount(10, 'data');
     }
 
 
     public function testCanNotListUserByNonHeadOffice()
     {
-        
+
         // $this->withoutExceptionHandling();
 
         factory(User::class, 30)->create();
@@ -162,7 +162,7 @@ class UserFeatureTest extends TestCase
         $updates = [
             'username' => 'update',
             'name' => 'update',
-            'email' => 'update@email.com' 
+            'email' => 'update@email.com'
         ];
 
 
@@ -185,7 +185,7 @@ class UserFeatureTest extends TestCase
         $updates = [
             'username' => 'update',
             'name' => 'update',
-            'email' => 'update@email.com' 
+            'email' => 'update@email.com'
         ];
 
         $this->authenticateStaffUser();
@@ -220,7 +220,7 @@ class UserFeatureTest extends TestCase
             ->assertStatus(Response::HTTP_OK);
 
         $this->assertCount(1, User::all()); // Only one user remained. The Headoffice used for logging in.
-        
+
         $franchise->refresh();
 
         $this->assertCount(0, $franchise->users);

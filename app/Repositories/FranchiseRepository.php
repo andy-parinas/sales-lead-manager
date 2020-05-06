@@ -6,6 +6,7 @@ namespace App\Repositories;
 use App\Franchise;
 use App\Repositories\Interfaces\FranchiseRepositoryInterface;
 use App\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class FranchiseRepository implements FranchiseRepositoryInterface
@@ -39,18 +40,24 @@ class FranchiseRepository implements FranchiseRepositoryInterface
 
     public function sortAndPaginate(Array $params)
     {
+        $query = DB::table('franchises')
+            ->select(
+                'franchise_number as franchiseNumber',
+                'name',
+                'description'
+            );
 
         if(key_exists('search', $params) && key_exists('on', $params))
         {
-            return Franchise::where($params['on'], 'LIKE', '%' . $params['search'] . '%')
+            return $query->where($params['on'], 'LIKE', '%' . $params['search'] . '%')
                 ->orderBy($params['column'], $params['direction'])
                 ->paginate($params['size']);
         }
 
-        return Franchise::orderBy($params['column'], $params['direction'])->paginate($params['size']);
+        return $query->orderBy($params['column'], $params['direction'])->paginate($params['size']);
     }
 
-    
+
     public function findUsersParentFranchise(User $user)
     {
         foreach ($user->franchises as $franchise) {

@@ -11,7 +11,7 @@ class Lead extends Model
     const OUTSIDE_OF_FRANCHISE = 'outside_of_franchise';
 
     protected $fillable = [
-        'number',
+        'lead_number',
         'branch_id',
         'sales_contact_id',
         'lead_source_id',

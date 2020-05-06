@@ -29,11 +29,11 @@ class FranchiseController extends ApiController
      */
     public function index()
     {
-        
+
         if(Auth::user()->can('viewAny', Franchise::class))
         {
             $franchises = $this->franchiseRepository->sortAndPaginate($this->getRequestParams());
-            
+
             return $this->showPaginated($franchises);
 
         }
@@ -44,10 +44,10 @@ class FranchiseController extends ApiController
             return $this->showPaginated($franchises);
         }
 
-        
+
     }
 
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -59,7 +59,7 @@ class FranchiseController extends ApiController
         $this->authorize('create', Franchise::class);
 
         $rules = [
-            'number' => 'required',
+            'franchise_number' => 'required',
             'name' => 'required',
         ];
 
@@ -98,7 +98,7 @@ class FranchiseController extends ApiController
     {
 
         $this->authorize('update', $franchise);
-        
+
         $franchise->update($request->all());
 
         return $this->showOne($franchise);
@@ -118,6 +118,6 @@ class FranchiseController extends ApiController
         $franchise->delete();
 
         return $this->showOne($franchise);
-        
+
     }
 }

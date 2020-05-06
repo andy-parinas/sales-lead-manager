@@ -8,6 +8,7 @@ use App\Lead;
 use App\Repositories\Interfaces\LeadRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\Lead as LeadResource;
 
 class LeadController extends ApiController
 {
@@ -64,7 +65,7 @@ class LeadController extends ApiController
 
         // $lead = Lead::findOrFail($id);
 
-        return $this->showOne($lead);
+        return $this->showOne(new LeadResource($lead));
     }
 
 

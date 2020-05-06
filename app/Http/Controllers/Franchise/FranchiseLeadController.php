@@ -43,7 +43,7 @@ class FranchiseLeadController extends ApiController
         return $this->showPaginated($leads);
     }
 
-   
+
     /**
      * Store a newly created resource in storage.
      *
@@ -58,19 +58,19 @@ class FranchiseLeadController extends ApiController
         $this->authorize('createLead', $franchise);
 
         $data = $this->validate($request, [
-            'number' => 'required',
+            'lead_number' => 'required',
             'sales_contact_id' => 'required|integer',
             'lead_source_id' => 'required|integer',
             'lead_date' => 'required'
         ]);
 
         /**
-         * Check if the SalesContact postcode is within the franchise postcode assignment. 
+         * Check if the SalesContact postcode is within the franchise postcode assignment.
          * If not, Need to tag the Lead as Outside-of-franchise
          */
         $salesContact = SalesContact::findOrFail($request->sales_contact_id);
         $data['postcode_status'] = $this->postcodeService->checkSalesContactPostcode($salesContact, $franchise);
- 
+
         $lead = $franchise->leads()
             ->create($data);
 
@@ -90,13 +90,13 @@ class FranchiseLeadController extends ApiController
 
         // DB::enableQueryLog();
 
-        $lead = Lead::with(['franchise', 'salesContact', 'leadSource', 'jobType', 
+        $lead = Lead::with(['franchise', 'salesContact', 'leadSource', 'jobType',
                             'appointment' ,'jobType.product', 'jobType.designAssessor'])->findOrFail($lead_id);
 
         // $lead = $this->leadRepository->findLeadById($lead_id);
 
         // dump(DB::getQueryLog());
-        
+
         return $this->showOne(new LeadResource($lead));
     }
 
@@ -110,7 +110,7 @@ class FranchiseLeadController extends ApiController
      */
     public function update(Request $request, Franchise $franchise, Lead $lead)
     {
-        
+
         $this->authorize('updateLead', $franchise);
 
         $lead->update($request->only(['lead_source_id','lead_date' ]));

@@ -68,7 +68,7 @@ class SalesContactFeatureTest extends TestCase
 
         $this->get('api/contacts')
             ->assertStatus(Response::HTTP_OK)
-            ->assertJsonCount(15, 'data');
+            ->assertJsonCount(10, 'data');
     }
 
     public function testCanSortSalesContactByFields()
@@ -82,15 +82,15 @@ class SalesContactFeatureTest extends TestCase
             $c1 = factory(SalesContact::class)->create([$field => 'AAAAAAAAAA']);
             $c2 = factory(SalesContact::class)->create([$field => 'ZZZZZZZZZZ']);
 
-            $response =  $this->get('api/contacts?sort=' . $field . '&direction=asc');
+            $response =  $this->get('api/contacts?sort=' . $this->toCamelCase($field) . '&direction=asc');
             $result = json_decode($response->content())->data;
 
-            $this->assertEquals('AAAAAAAAAA', $result[0]->{$field});
+            $this->assertEquals('AAAAAAAAAA', $result[0]->{$this->toCamelCase($field)});
 
-            $response =  $this->get('api/contacts?sort=' . $field . '&direction=desc');
+            $response =  $this->get('api/contacts?sort=' . $this->toCamelCase($field) . '&direction=desc');
             $result = json_decode($response->content())->data;
 
-            $this->assertEquals('ZZZZZZZZZZ', $result[0]->{$field});
+            $this->assertEquals('ZZZZZZZZZZ', $result[0]->{$this->toCamelCase($field)});
 
             //Delete all the record to start fresh
             $c1->delete();
@@ -118,7 +118,7 @@ class SalesContactFeatureTest extends TestCase
             $response =  $this->get('api/contacts?on=' . $field . '&search=AAAAAAAAAA');
             $result = json_decode($response->content())->data;
 
-            $this->assertEquals('AAAAAAAAAA', $result[0]->{$field});
+            $this->assertEquals('AAAAAAAAAA', $result[0]->{$this->toCamelCase($field)});
 
         });
     }
@@ -288,6 +288,6 @@ class SalesContactFeatureTest extends TestCase
 
         $results = json_decode($response->content())->data;
 
-        dd($results);
+//        dd($results);
     }
 }

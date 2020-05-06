@@ -16,10 +16,10 @@ class Lead extends JsonResource
     {
         return [
             'id' => $this->id,
-            'number' => $this->number,
+            'leadNumber' => $this->lead_number,
             'leadDate' => $this->lead_date,
             'postcodeStatus' => $this->postcode_status,
-            'franchiseNumber' => $this->franchise->number,
+            'franchiseNumber' => $this->franchise->franchise_number,
             'leadSource' => $this->leadSource->name,
             'firstName' => $this->salesContact->first_name,
             'lastName' => $this->salesContact->last_name,
@@ -33,7 +33,7 @@ class Lead extends JsonResource
                 'productId' => $this->jobType->product->id,
                 'product' => $this->jobType->product->name,
                 'designAdvisorId' => $this->jobType->designAssessor->id,
-                'designAdvisor' => $this->jobType->designAssessor->full_name 
+                'designAdvisor' => $this->jobType->designAssessor->full_name
             ] : null,
             'appointment' => $this->appointment ? [
                 'date' => $this->appointment->appointment_date,

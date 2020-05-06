@@ -14,11 +14,11 @@ class FranchiseSortFilterPaginateFeatureTest extends TestCase
 {
 
     use RefreshDatabase, TestHelper;
-    
+
     public function testCanSortByNumberAscending()
     {
-        for ($i=101; $i <= 115; $i++) { 
-            factory(Franchise::class)->create(['number' => strval($i)]);
+        for ($i=101; $i <= 115; $i++) {
+            factory(Franchise::class)->create(['franchise_number' => strval($i)]);
         }
 
         Sanctum::actingAs(
@@ -27,18 +27,18 @@ class FranchiseSortFilterPaginateFeatureTest extends TestCase
         );
 
 
-        $response = $this->get('api/franchises?sort=number&direction=asc&size=15');
+        $response = $this->get('api/franchises?sort=number&direction=asc&size=10');
         $results = json_decode($response->content());
-        // dd(end($results->data)->number);
-        $this->assertEquals('101', $results->data[0]->number);
-        $this->assertEquals('115', end($results->data)->number);
+
+        $this->assertEquals('101', $results->data[0]->franchiseNumber);
+        $this->assertEquals('110', end($results->data)->franchiseNumber);
 
     }
 
     public function testCanSortByNumberDescending()
     {
-        for ($i=101; $i <= 115; $i++) { 
-            factory(Franchise::class)->create(['number' => strval($i)]);
+        for ($i=101; $i <= 115; $i++) {
+            factory(Franchise::class)->create(['franchise_number' => strval($i)]);
         }
 
         Sanctum::actingAs(
@@ -47,11 +47,10 @@ class FranchiseSortFilterPaginateFeatureTest extends TestCase
         );
 
 
-        $response = $this->get('api/franchises?sort=number&direction=desc&size=15');
+        $response = $this->get('api/franchises?sort=franchiseNumber&direction=desc&size=10');
         $results = json_decode($response->content());
-        // dd($results->data);
-        $this->assertEquals('115', $results->data[0]->number);
-        $this->assertEquals('101', end($results->data)->number);
+        $this->assertEquals('115', $results->data[0]->franchiseNumber);
+        $this->assertEquals('106', end($results->data)->franchiseNumber);
     }
 
     public function testCanSorByNameAscending()
@@ -71,7 +70,7 @@ class FranchiseSortFilterPaginateFeatureTest extends TestCase
         // dd($results->data);
         $this->assertEquals('A', $results->data[0]->name);
         $this->assertEquals('J', end($results->data)->name);
-        
+
     }
 
     public function testCanSortByNameDescending()
@@ -126,14 +125,14 @@ class FranchiseSortFilterPaginateFeatureTest extends TestCase
 
     public function testCanSearchFranchiseByHeadOffice()
     {
-        
+
         //Haystack
         factory(Franchise::class, 5)->create();
 
         //Needles
-       factory(Franchise::class)->create(['name' => 'AAAAAAA', 'number' => '111111']);
-       factory(Franchise::class)->create(['name' => 'AAAAABB', 'number' => '111122']);
-       factory(Franchise::class)->create(['name' => 'AAAAACC', 'number' => '333322']);
+       factory(Franchise::class)->create(['name' => 'AAAAAAA', 'franchise_number' => '111111']);
+       factory(Franchise::class)->create(['name' => 'AAAAABB', 'franchise_number' => '111122']);
+       factory(Franchise::class)->create(['name' => 'AAAAACC', 'franchise_number' => '333322']);
 
         Sanctum::actingAs(
             $this->createHeadOfficeUser(),
@@ -143,7 +142,7 @@ class FranchiseSortFilterPaginateFeatureTest extends TestCase
         $this->get('api/franchises?search=AAAA&on=name')
             ->assertJsonCount(3, 'data');
 
-        $this->get('api/franchises?search=1111&on=number')
+        $this->get('api/franchises?search=1111&on=franchise_number')
             ->assertJsonCount(2, 'data');
 
 
@@ -152,16 +151,16 @@ class FranchiseSortFilterPaginateFeatureTest extends TestCase
     public function testCanSearchFranchiseByFranchiseAdmin()
     {
         $user = $this->createFranchiseAdminUser();
-        
+
         //Haystack
         factory(Franchise::class, 5)->create()->each(function($franchise) use ($user){
             $user->franchises()->attach($franchise->id);
         });
 
         //Needles
-       factory(Franchise::class)->create(['name' => 'AAAAAAA', 'number' => '111111'])->users()->attach($user->id);
-       factory(Franchise::class)->create(['name' => 'AAAAABB', 'number' => '111122'])->users()->attach($user->id);
-       factory(Franchise::class)->create(['name' => 'AAAAACC', 'number' => '333322'])->users()->attach($user->id);
+       factory(Franchise::class)->create(['name' => 'AAAAAAA', 'franchise_number' => '111111'])->users()->attach($user->id);
+       factory(Franchise::class)->create(['name' => 'AAAAABB', 'franchise_number' => '111122'])->users()->attach($user->id);
+       factory(Franchise::class)->create(['name' => 'AAAAACC', 'franchise_number' => '333322'])->users()->attach($user->id);
 
         Sanctum::actingAs(
             $user,
@@ -171,7 +170,7 @@ class FranchiseSortFilterPaginateFeatureTest extends TestCase
         $this->get('api/franchises?search=AAAA&on=name')
             ->assertJsonCount(3, 'data');
 
-        $this->get('api/franchises?search=1111&on=number')
+        $this->get('api/franchises?search=1111&on=franchise_number')
             ->assertJsonCount(2, 'data');
     }
 

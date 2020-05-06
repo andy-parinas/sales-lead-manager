@@ -22,7 +22,7 @@ class LeadResourceTest extends TestCase
         $responseStructure = [
             'data' => [
                 'id',
-                'number',
+                'leadNumber',
                 'leadDate',
                 'postcodeStatus',
                 'franchiseNumber',
@@ -39,7 +39,7 @@ class LeadResourceTest extends TestCase
                     'productId',
                     'product',
                     'designAdvisorId',
-                    'designAdvisor' 
+                    'designAdvisor'
                 ],
                 'appointment' => [
                     'date',
@@ -50,7 +50,7 @@ class LeadResourceTest extends TestCase
                 ]
             ]
         ];
-        
+
         $franchise = factory(Franchise::class)->create();
         $lead = factory(Lead::class)->create(['franchise_id' => $franchise->id]);
         factory(JobType::class)->create(['lead_id' => $lead->id]);

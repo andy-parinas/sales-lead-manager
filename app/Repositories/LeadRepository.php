@@ -16,7 +16,7 @@ class LeadRepository implements LeadRepositoryInterface
             ->join('sales_contacts', 'sales_contacts.id', '=', 'leads.sales_contact_id')
             ->join('lead_sources', 'lead_sources.id', '=', 'leads.lead_source_id')
             ->select(
-                'leads.number',
+                'leads.lead_number as leadNumber',
                 'leads.lead_date',
                 'leads.created_at as created_at',
                 'lead_sources.name as source',
@@ -32,7 +32,6 @@ class LeadRepository implements LeadRepositoryInterface
 
         if(key_exists('search', $params) && key_exists('on', $params))
         {
-
             return $query->where($params['on'], 'LIKE', '%' . $params['search'] . '%')
                     ->orderBy($params['column'], $params['direction'])
                     ->paginate($params['size']);
@@ -59,15 +58,15 @@ class LeadRepository implements LeadRepositoryInterface
             ->leftJoin('appointments', 'appointments.lead_id', '=', $lead_id)
             ->select(
                 'leads.id',
-                    'leads.number',
-                    'leads.lead_date',
+                    'leads.lead_number as leadNumber',
+                    'leads.lead_date as leadDate',
                     'lead_sources.name as source',
                     'sales_contacts.id as salesContactId',
                     'sales_contacts.first_name',
                     'sales_contacts.last_name',
                     'sales_contacts.email',
                     'sales_contacts.postcode',
-                    'franchises.number as franchise_number',
+                    'franchises.franchise_number as franchiseNumber',
                     'job_types.id as job_type_id',
                     'job_types.taken_by',
                     'job_types.date_allocated',
@@ -101,8 +100,8 @@ class LeadRepository implements LeadRepositoryInterface
             })
             ->leftJoin('appointments', 'appointments.lead_id', '=', 'leads.id')
             ->select(
-                'leads.number',
-                'franchises.number as franchiseNumber',
+                'leads.lead_number as leadNumber',
+                'franchises.franchise_number as franchiseNumber',
                 'leads.lead_date as leadDate',
                 'leads.created_at as created_at',
                 'lead_sources.name as source',
@@ -143,8 +142,8 @@ class LeadRepository implements LeadRepositoryInterface
             })
             ->leftJoin('appointments', 'appointments.lead_id', '=', 'leads.id')
             ->select(
-                'leads.number',
-                'franchises.number as franchiseNumber',
+                'leads.lead_number as leadNumber',
+                'franchises.franchise_number as franchiseNumber',
                 'leads.lead_date as leadDate',
                 'leads.created_at as created_at',
                 'lead_sources.name as source',

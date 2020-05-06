@@ -160,7 +160,7 @@ class FranchiseFeatureTest extends TestCase
         ->assertStatus(Response::HTTP_FORBIDDEN);
 
         $this->assertCount(0, Franchise::all());
-        
+
     }
 
 
@@ -173,10 +173,10 @@ class FranchiseFeatureTest extends TestCase
             ['*']
         );
 
-        $this->put('api/franchises/' . $franchise->id, ['number' => 'updated'])
+        $this->put('api/franchises/' . $franchise->id, ['franchise_number' => 'updated'])
             ->assertStatus(Response::HTTP_OK);
 
-        $this->assertEquals('updated', Franchise::first()->number);
+        $this->assertEquals('updated', Franchise::first()->franchise_number);
 
 
     }

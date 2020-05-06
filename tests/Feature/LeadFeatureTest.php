@@ -103,7 +103,7 @@ class LeadFeatureTest extends TestCase
 
         $response->assertStatus(Response::HTTP_OK);
 
-        $this->assertEquals($lead->number, $result->number);
+        $this->assertEquals($lead->lead_number, $result->leadNumber);
     }
 
     public function testCanNotShowLeadWithOutFranchiseReferenceByNonHeadOffice()

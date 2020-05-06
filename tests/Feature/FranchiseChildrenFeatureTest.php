@@ -17,11 +17,11 @@ class FranchiseChildrenFeatureTest extends TestCase
 
     public function testCanListChildrenFranchiseByFranchiseAdminFranchise()
     {
-        
+
         $parent = factory(Franchise::class)->create();
         factory(Franchise::class, 5)->create(['parent_id' => $parent->id]);
 
-        $user = factory(User::class)->create(['user_type' => User::FRANCHISE_ADMIN]);        
+        $user = factory(User::class)->create(['user_type' => User::FRANCHISE_ADMIN]);
         $user->franchises()->attach($parent->id);
 
         Sanctum::actingAs(
@@ -41,7 +41,7 @@ class FranchiseChildrenFeatureTest extends TestCase
         $parent = factory(Franchise::class)->create();
         factory(Franchise::class, 5)->create(['parent_id' => $parent->id]);
 
-        $user = factory(User::class)->create(['user_type' => User::FRANCHISE_ADMIN]);        
+        $user = factory(User::class)->create(['user_type' => User::FRANCHISE_ADMIN]);
         $user->franchises()->attach($parent->id);
 
         Sanctum::actingAs(
@@ -59,7 +59,7 @@ class FranchiseChildrenFeatureTest extends TestCase
         $parent = factory(Franchise::class)->create();
         factory(Franchise::class, 5)->create(['parent_id' => $parent->id]);
 
-        $user = factory(User::class)->create(['user_type' => User::FRANCHISE_ADMIN]);        
+        $user = factory(User::class)->create(['user_type' => User::FRANCHISE_ADMIN]);
         $user->franchises()->attach($parent->id);
 
         Sanctum::actingAs(
@@ -75,7 +75,9 @@ class FranchiseChildrenFeatureTest extends TestCase
 
     public function testCanStoreChildrenFranchiseInParentByHeadOffice()
     {
-        
+
+        $this->withoutExceptionHandling();
+
         $parent = factory(Franchise::class)->create();
 
         $childData = factory(Franchise::class)->raw();

@@ -9,7 +9,7 @@ class Franchise extends Model
 
 
     protected $fillable = [
-        'number',
+        'franchise_number',
         'name',
         'description'
     ];

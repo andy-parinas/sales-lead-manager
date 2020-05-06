@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(\App\Franchise::class, function (Faker $faker) {
     return [
-        'number' => strval($faker->randomNumber(4)),
+        'franchise_number' => strval($faker->randomNumber(4)),
         'name' => $faker->words(2, true),
         'description' => $faker->sentence,
     ];

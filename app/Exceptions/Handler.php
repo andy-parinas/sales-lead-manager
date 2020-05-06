@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 class Handler extends ExceptionHandler
 {
     use ApiResponser;
-    
+
     /**
      * A list of the exception types that are not reported.
      *
@@ -101,6 +101,10 @@ class Handler extends ExceptionHandler
 
             if($errorCode == '23000'){
 
+                if('app.debug'){
+                    return $this->errorResponse($exception->getMessage(), 409);
+                }
+
                 return $this->errorResponse("Cannot remove resource permanently. It is related with another resource", 409);
 
             }else {
@@ -116,12 +120,12 @@ class Handler extends ExceptionHandler
         }
 
         if(config('app.debug')){
-            
+
             return $this->errorResponse($exception->getMessage(), 500);
         }
 
         return $this->errorResponse('Unexpected Error. Please Try again', 500);
-        
+
     }
 
 

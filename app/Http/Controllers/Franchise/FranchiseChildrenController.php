@@ -27,7 +27,7 @@ class FranchiseChildrenController extends ApiController
 
         $children = $franchise->children;
 
-        return $this->showAll($children);        
+        return $this->showAll($children);
 
     }
 
@@ -40,11 +40,11 @@ class FranchiseChildrenController extends ApiController
      */
     public function store(Request $request, Franchise $franchise)
     {
-        
+
         $this->authorize('create', $franchise);
 
         $rules = [
-            'number' => 'required',
+            'franchise_number' => 'required',
             'name' => 'required'
         ];
 
@@ -55,7 +55,7 @@ class FranchiseChildrenController extends ApiController
         return $this->showOne($createdChild, Response::HTTP_CREATED);
     }
 
-  
+
     /**
      * Remove the specified resource from storage.
      *
