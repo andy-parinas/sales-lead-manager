@@ -30,7 +30,9 @@ class LeadPolicy
      */
     public function view(User $user, Lead $lead)
     {
-        return $user->isHeadOffice();
+        //return $user->isHeadOffice();
+        $franchise = $lead->franchise;
+        return $user->franchises->contains('id', $franchise->id) || $user->isHeadOffice();
     }
 
     /**

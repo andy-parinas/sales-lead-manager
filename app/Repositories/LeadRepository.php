@@ -62,26 +62,26 @@ class LeadRepository implements LeadRepositoryInterface
                     'leads.lead_date as leadDate',
                     'lead_sources.name as source',
                     'sales_contacts.id as salesContactId',
-                    'sales_contacts.first_name',
-                    'sales_contacts.last_name',
+                    'sales_contacts.first_name as firstName',
+                    'sales_contacts.last_name as lastName',
                     'sales_contacts.email',
                     'sales_contacts.postcode',
                     'franchises.franchise_number as franchiseNumber',
                     'job_types.id as job_type_id',
-                    'job_types.taken_by',
-                    'job_types.date_allocated',
-                    'job_types.description as job_type_description',
+                    'job_types.taken_by as takenBy',
+                    'job_types.date_allocated as dateAllocated',
+                    'job_types.description as job_type_description as jobDescription',
                     'appointments.id as appointment_id',
-                    'appointments.appointment_date',
-                    'appointments.appointment_notes',
-                    'appointments.quoted_price',
+                    'appointments.appointment_date as appointmentDate ',
+                    'appointments.appointment_notes as appointmentNotes',
+                    'appointments.quoted_price as quotedPrice',
                     'appointments.outcome',
                     'appointments.comments',
                     'products.id as product_id',
-                    'products.name as product_name',
+                    'products.name as product_name as productName',
                     'design_assessors.id as design_assessor_id',
-                    'design_assessors.first_name as design_assessors_first_name',
-                    'design_assessors.last_name as design_assessors_last_name')
+                    'design_assessors.first_name as design_assessors_first_name as designAssessorFirstName',
+                    'design_assessors.last_name as design_assessors_last_name as designAssessorLastName')
             ->first();
     }
 
@@ -93,13 +93,14 @@ class LeadRepository implements LeadRepositoryInterface
             ->join('franchises', 'franchises.id', '=', 'leads.franchise_id')
             ->join('sales_contacts', 'sales_contacts.id', '=', 'leads.sales_contact_id')
             ->join('lead_sources', 'lead_sources.id', '=', 'leads.lead_source_id')
-            ->leftJoin('job_types', function($join) {
-                $join->on( 'job_types.lead_id', '=', 'leads.id')
-                    ->join('products', 'products.id', '=', 'job_types.product_id')
-                    ->join('design_assessors', 'design_assessors.id', '=', 'job_types.design_assessor_id');
-            })
+//            ->leftJoin('job_types', function($join) {
+//                $join->on( 'job_types.lead_id', '=', 'leads.id')
+//                    ->join('products', 'products.id', '=', 'job_types.product_id')
+//                    ->join('design_assessors', 'design_assessors.id', '=', 'job_types.design_assessor_id');
+//            })
             ->leftJoin('appointments', 'appointments.lead_id', '=', 'leads.id')
             ->select(
+                'leads.id as leadId',
                 'leads.lead_number as leadNumber',
                 'franchises.franchise_number as franchiseNumber',
                 'leads.lead_date as leadDate',
@@ -135,19 +136,19 @@ class LeadRepository implements LeadRepositoryInterface
             ->join('franchises', 'franchises.id', '=', 'leads.franchise_id')
             ->join('sales_contacts', 'sales_contacts.id', '=', 'leads.sales_contact_id')
             ->join('lead_sources', 'lead_sources.id', '=', 'leads.lead_source_id')
-            ->leftJoin('job_types', function($join) {
-                $join->on( 'job_types.lead_id', '=', 'leads.id')
-                    ->join('products', 'products.id', '=', 'job_types.product_id')
-                    ->join('design_assessors', 'design_assessors.id', '=', 'job_types.design_assessor_id');
-            })
+//            ->leftJoin('job_types', function($join) {
+//                $join->on( 'job_types.lead_id', '=', 'leads.id')
+//                    ->join('products', 'products.id', '=', 'job_types.product_id')
+//                    ->join('design_assessors', 'design_assessors.id', '=', 'job_types.design_assessor_id');
+//            })
             ->leftJoin('appointments', 'appointments.lead_id', '=', 'leads.id')
             ->select(
+                'leads.id as leadId',
                 'leads.lead_number as leadNumber',
                 'franchises.franchise_number as franchiseNumber',
                 'leads.lead_date as leadDate',
                 'leads.created_at as created_at',
                 'lead_sources.name as source',
-                'sales_contacts.id as salesContactId',
                 'sales_contacts.first_name as firstName',
                 'sales_contacts.last_name as lastName',
                 'sales_contacts.email as email',

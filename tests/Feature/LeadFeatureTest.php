@@ -45,8 +45,10 @@ class LeadFeatureTest extends TestCase
 
         $user->franchises()->attach([$franchise1->id, $franchise2->id]);
 
+
         factory(Lead::class,5)->create(['franchise_id'=>$franchise1->id]);
         factory(Lead::class,5)->create(['franchise_id'=>$franchise2->id]);
+
 
         //Haystack
         factory(Lead::class,5)->create();
@@ -61,6 +63,43 @@ class LeadFeatureTest extends TestCase
         $response->assertStatus(Response::HTTP_OK)
             ->assertJsonCount(10, 'data');
 
+    }
+
+    public function testCanListLeadsByLeadNumber(){
+
+        $this->withoutExceptionHandling();
+
+        $user = $this->createStaffUser();
+        $franchise1 = factory(Franchise::class)->create();
+        $franchise2 = factory(Franchise::class)->create();
+
+        $user->franchises()->attach([$franchise1->id, $franchise2->id]);
+
+        for ($i =1; $i<= 10; $i++){
+            factory(Lead::class)->create(['lead_number' => $i + 20, 'franchise_id'=>$franchise1->id]);
+            factory(Lead::class)->create(['lead_number' => $i + 10, 'franchise_id'=>$franchise2->id]);
+        }
+
+
+
+        //Haystack
+        factory(Lead::class,5)->create();
+
+        Sanctum::actingAs(
+            $user,
+            ['*']
+        );
+
+//        $response = $this->get('api/leads?sort=leadNumber&direction=asc');
+        $response = $this->get('api/leads?size=10&sort=leadNumber&direction=asc&page=1');
+
+
+        $result = json_decode($response->content());
+
+        //dd($result);
+
+        $response->assertStatus(Response::HTTP_OK)
+            ->assertJsonCount(10, 'data');
     }
 
 //    public function testCanNotListAllLeadsNyNonHeadOfficeUsers()

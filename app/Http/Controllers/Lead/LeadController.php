@@ -58,8 +58,9 @@ class LeadController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Lead $lead)
+    public function show($id)
     {
+        $lead = Lead::with(['franchise', 'salesContact', 'leadSource', 'jobType', 'appointment', 'documents'])->findOrFail($id);
 
         $this->authorize('view', $lead);
 
