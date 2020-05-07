@@ -21,17 +21,19 @@ class LeadResourceTest extends TestCase
 
         $responseStructure = [
             'data' => [
-                'id',
-                'leadNumber',
-                'leadDate',
-                'postcodeStatus',
-                'franchiseNumber',
-                'leadSource',
-                'firstName',
-                'lastName',
-                'email',
-                'contactNumber',
-                'postcode',
+                'details' => [
+                    'id',
+                    'leadNumber',
+                    'leadDate',
+                    'postcodeStatus',
+                    'franchiseNumber',
+                    'leadSource',
+                    'firstName',
+                    'lastName',
+                    'email',
+                    'contactNumber',
+                    'postcode',
+                ],
                 'jobType' => [
                     'takenBy',
                     'dateAllocated',

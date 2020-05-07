@@ -106,7 +106,7 @@ class FranchiseLeadFeatureTest extends TestCase
         $result = json_decode($response->content());
 
         $response->assertStatus(Response::HTTP_OK);
-        $this->assertEquals($lead->lead_number, $result->data->leadNumber);
+        $this->assertEquals($lead->lead_number, $result->data->details->leadNumber);
 
         Sanctum::actingAs(
             $franchiseAdmin,
@@ -117,7 +117,7 @@ class FranchiseLeadFeatureTest extends TestCase
         $result = json_decode($response->content());
 
         $response->assertStatus(Response::HTTP_OK);
-        $this->assertEquals($lead->lead_number, $result->data->leadNumber);
+        $this->assertEquals($lead->lead_number, $result->data->details->leadNumber);
 
     }
 
@@ -163,7 +163,7 @@ class FranchiseLeadFeatureTest extends TestCase
         $result = json_decode($response->content());
 
         $response->assertStatus(Response::HTTP_OK);
-        $this->assertEquals($lead->lead_number, $result->data->leadNumber);
+        $this->assertEquals($lead->lead_number, $result->data->details->leadNumber);
 
 
     }

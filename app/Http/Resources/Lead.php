@@ -15,18 +15,20 @@ class Lead extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'leadNumber' => $this->lead_number,
-            'leadDate' => $this->lead_date,
-            'postcodeStatus' => $this->postcode_status,
-            'franchiseNumber' => $this->franchise->franchise_number,
-            'leadSource' => $this->leadSource->name,
-            'firstName' => $this->salesContact->first_name,
-            'lastName' => $this->salesContact->last_name,
-            'email' => $this->salesContact->email,
-            'contactNumber' => $this->salesContact->contact_number,
-            'postcode' => $this->salesContact->postcode,
-            'customerType' => $this->salesContact->customer_type,
+           'details' => [
+               'id' => $this->id,
+               'leadNumber' => $this->lead_number,
+               'leadDate' => $this->lead_date,
+               'postcodeStatus' => $this->postcode_status,
+               'franchiseNumber' => $this->franchise->franchise_number,
+               'leadSource' => $this->leadSource->name,
+               'firstName' => $this->salesContact->first_name,
+               'lastName' => $this->salesContact->last_name,
+               'email' => $this->salesContact->email,
+               'contactNumber' => $this->salesContact->contact_number,
+               'postcode' => $this->salesContact->postcode,
+               'customerType' => $this->salesContact->customer_type,
+           ],
             'jobType' => $this->jobType ? [
                 'takenBy' => $this->jobType->taken_by,
                 'dateAllocated' => $this->jobType->date_allocated,

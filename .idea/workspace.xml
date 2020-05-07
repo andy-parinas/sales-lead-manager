@@ -21,11 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Resources/Lead.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Lead.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Policies/LeadPolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Policies/LeadPolicy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/LeadRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/LeadRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/FranchiseLeadFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/FranchiseLeadFeatureTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/LeadFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/LeadFeatureTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -175,21 +172,21 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
   </component>
-  <component name="RunManager" selected="PHPUnit.UserFeatureTest.testCanListUserByHeadOffice">
-    <configuration name="SalesContactFeatureTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\SalesContactFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" scope="Class" />
+  <component name="RunManager" selected="PHPUnit.LeadFeatureTest">
+    <configuration name="FranchiseLeadFeatureTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\FranchiseLeadFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchiseLeadFeatureTest.php" scope="Class" />
       <method v="2" />
     </configuration>
-    <configuration name="SalesContactFeatureTest.testCanListPaginatedSalesContactByAuthenticatedUSers" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\SalesContactFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" method="testCanListPaginatedSalesContactByAuthenticatedUSers" scope="Method" />
+    <configuration name="FranchiseLeadFeatureTest.testCanShowAnyLeadByHeadOfficeUsers" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\FranchiseLeadFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchiseLeadFeatureTest.php" method="testCanShowAnyLeadByHeadOfficeUsers" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="SalesContactFeatureTest.testCanSearchSalesContactByField" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\SalesContactFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" method="testCanSearchSalesContactByField" scope="Method" />
+    <configuration name="FranchiseLeadFeatureTest.testCanShowLeadUnderUsersFranchise" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\FranchiseLeadFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchiseLeadFeatureTest.php" method="testCanShowLeadUnderUsersFranchise" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="UserFeatureTest.testCanCreateUserByHeadOffice" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\UserFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/UserFeatureTest.php" method="testCanCreateUserByHeadOffice" scope="Method" />
+    <configuration name="LeadFeatureTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\LeadFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadFeatureTest.php" scope="Class" />
       <method v="2" />
     </configuration>
     <configuration name="UserFeatureTest.testCanListUserByHeadOffice" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -202,11 +199,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.LeadFeatureTest" />
+        <item itemvalue="PHPUnit.FranchiseLeadFeatureTest.testCanShowAnyLeadByHeadOfficeUsers" />
+        <item itemvalue="PHPUnit.FranchiseLeadFeatureTest" />
+        <item itemvalue="PHPUnit.FranchiseLeadFeatureTest.testCanShowLeadUnderUsersFranchise" />
         <item itemvalue="PHPUnit.UserFeatureTest.testCanListUserByHeadOffice" />
-        <item itemvalue="PHPUnit.UserFeatureTest.testCanCreateUserByHeadOffice" />
-        <item itemvalue="PHPUnit.SalesContactFeatureTest" />
-        <item itemvalue="PHPUnit.SalesContactFeatureTest.testCanListPaginatedSalesContactByAuthenticatedUSers" />
-        <item itemvalue="PHPUnit.SalesContactFeatureTest.testCanSearchSalesContactByField" />
       </list>
     </recent_temporary>
   </component>
@@ -234,7 +231,7 @@
       <workItem from="1588031786593" duration="26264000" />
       <workItem from="1588636018712" duration="13814000" />
       <workItem from="1588727218964" duration="16567000" />
-      <workItem from="1588807068952" duration="2812000" />
+      <workItem from="1588807068952" duration="3999000" />
     </task>
     <task id="LOCAL-00001" summary="Created SalesContact Model.&#10;Established relationships to Lead Model. &#10;Created unit test for SalesContact">
       <created>1583810285742</created>
@@ -418,7 +415,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588738937989</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Refactor Queries for Leads">
+      <created>1588816087076</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1588816087076</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -440,7 +444,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Created LeadSource Model&#10;Created the relationship to Lead Model&#10;created unit test" />
     <MESSAGE value="Refactor migration name to correct the sequence&#10;To fix the error when referencing a foreign key" />
     <MESSAGE value="Created Product and DesignAccessor Model, Migrations, and Factory" />
     <MESSAGE value="Created JobType model, factory and migration&#10;created relationship to Lead, Product, DesignAssessor&#10;created unit test" />
@@ -465,7 +468,8 @@
     <MESSAGE value="Refactor Selected fields and names in Querying Leads" />
     <MESSAGE value="Refactor Query Building in LeadRepository&#10;To minimize code repetition." />
     <MESSAGE value="Refactor Lead number field to lead_number. Refactor Franchise number to franchise_number" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor Lead number field to lead_number. Refactor Franchise number to franchise_number" />
+    <MESSAGE value="Refactor Queries for Leads" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor Queries for Leads" />
   </component>
   <component name="WindowStateProjectService">
     <state x="258" y="-888" key="#CLI_Interpreters" timestamp="1587704920240">
@@ -495,35 +499,35 @@
     </state>
     <state x="827" y="126" key="CommitChangelistDialog2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583823148385" />
     <state x="544" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1583985987975" />
-    <state width="1637" height="319" key="GridCell.Tab.0.bottom" timestamp="1588760598089">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1637" height="319" key="GridCell.Tab.0.bottom" timestamp="1588818274915">
+      <screen x="-162" y="-1050" width="1680" height="1010" />
     </state>
-    <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588738804400" />
+    <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818274915" />
     <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588760598089" />
-    <state width="1637" height="319" key="GridCell.Tab.0.center" timestamp="1588760598089">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1637" height="319" key="GridCell.Tab.0.center" timestamp="1588818274915">
+      <screen x="-162" y="-1050" width="1680" height="1010" />
     </state>
-    <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588738804400" />
+    <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818274915" />
     <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1588760598089" />
-    <state width="1637" height="319" key="GridCell.Tab.0.left" timestamp="1588760598089">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1637" height="319" key="GridCell.Tab.0.left" timestamp="1588818274915">
+      <screen x="-162" y="-1050" width="1680" height="1010" />
     </state>
-    <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588738804400" />
+    <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818274915" />
     <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1588760598089" />
-    <state width="1637" height="319" key="GridCell.Tab.0.right" timestamp="1588760598089">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1637" height="319" key="GridCell.Tab.0.right" timestamp="1588818274915">
+      <screen x="-162" y="-1050" width="1680" height="1010" />
     </state>
-    <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588738804400" />
+    <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818274915" />
     <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1588760598089" />
     <state x="179" y="-901" key="SettingsEditor" timestamp="1587705147994">
       <screen x="-162" y="-1050" width="1680" height="1010" />
     </state>
     <state x="179" y="-901" key="SettingsEditor/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587705147994" />
-    <state x="321" y="-806" key="Vcs.Push.Dialog.v2" timestamp="1588738940073">
+    <state x="321" y="-806" key="Vcs.Push.Dialog.v2" timestamp="1588816089172">
       <screen x="-162" y="-1050" width="1680" height="1010" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583823151397" />
-    <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588738940073" />
+    <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588816089172" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@0.0.1366.728" timestamp="1588205242303" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1583985991863" />
     <state x="667" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1584317085912">
