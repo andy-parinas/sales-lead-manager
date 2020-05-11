@@ -25,7 +25,12 @@ class Lead extends JsonResource
                'firstName' => $this->salesContact->first_name,
                'lastName' => $this->salesContact->last_name,
                'email' => $this->salesContact->email,
+               'email2' => $this->salesContact->email2,
                'contactNumber' => $this->salesContact->contact_number,
+               'street1' => $this->salesContact->street1,
+               'street2' => $this->salesContact->street2,
+               'suburb' => $this->salesContact->suburb,
+               'state' => $this->salesContact->state,
                'postcode' => $this->salesContact->postcode,
                'customerType' => $this->salesContact->customer_type,
            ],
@@ -36,7 +41,9 @@ class Lead extends JsonResource
                 'productId' => $this->jobType->product->id,
                 'product' => $this->jobType->product->name,
                 'designAdvisorId' => $this->jobType->designAssessor->id,
-                'designAdvisor' => $this->jobType->designAssessor->full_name
+                'designAdvisor' => $this->jobType->designAssessor->full_name,
+                'designAdvisorEmail' => $this->jobType->designAssessor->email,
+                'designAdvisorContactNumber' => $this->jobType->designAssessor->contact_number
             ] : null,
             'appointment' => $this->appointment ? [
                 'date' => $this->appointment->appointment_date,

@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\Franchise as FranchiseResource;
 
 class LoginController extends ApiController
 {
@@ -47,9 +48,10 @@ class LoginController extends ApiController
         if(Auth::attempt($loginData)){
 
             $user = Auth::user();
-            $franchises = $user->franchises->pluck('number', 'id');
+//            $franchises = $user->franchises->pluck('franchise_number', 'id')->toArray();
+            $franchises = $user->franchises;
 
-            return response()->json(['data' => Auth::user(), 'franchises' => $franchises], Response::HTTP_OK);
+            return response()->json(['data' => Auth::user(), 'franchises' => FranchiseResource::collection($franchises) ], Response::HTTP_OK);
         }
 
         return $this->errorResponse("Invalid Username or Password", Response::HTTP_UNAUTHORIZED);

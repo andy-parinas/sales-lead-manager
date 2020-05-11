@@ -15,6 +15,7 @@ class Franchise extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'franchiseNumber' => $this->franchise_number,
             'name' => $this->name,
             'description' => $this->description
