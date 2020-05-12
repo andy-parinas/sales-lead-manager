@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductCollection;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -27,7 +28,7 @@ class ProductController extends ApiController
     {
         $products = Product::all();
 
-        return $this->showAll($products);
+        return $this->showApiCollection(new ProductCollection($products));
     }
 
 

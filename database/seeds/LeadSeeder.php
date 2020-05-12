@@ -16,9 +16,10 @@ class LeadSeeder extends Seeder
     public function run()
     {
         $leadSourceIds = LeadSource::all()->pluck('id')->toArray();
+        $productIds = \App\Product::all()->pluck('id')->toArray();
 
         //Loop Through the postcodes for the SalesContact
-        Postcode::all()->each(function ($postcode) use ($leadSourceIds) {
+        Postcode::all()->each(function ($postcode) use ($leadSourceIds, $productIds) {
 
             $franchises = $postcode->franchises;
 
@@ -26,10 +27,11 @@ class LeadSeeder extends Seeder
                 if(!$franchise->isParent()){
                     dump('Creating Sales Contact');
                     factory(SalesContact::class, 60)->create(['postcode' => $postcode->pcode])
-                        ->each(function ($contact) use ($franchise, $leadSourceIds) {
+                        ->each(function ($contact) use ($franchise, $leadSourceIds, $productIds) {
 
                             dump('Creating Lead');
                             $leadSourceKey = array_rand($leadSourceIds);
+                            $productKey = array_rand($productIds);
 
                             $lead = factory(Lead::class)->create([
                                 'sales_contact_id' => $contact->id,
@@ -37,7 +39,10 @@ class LeadSeeder extends Seeder
                                 'lead_source_id' => $leadSourceIds[$leadSourceKey]
                             ]);
                             factory(\App\Appointment::class)->create(['lead_id' => $lead->id]);
-                            factory(\App\JobType::class)->create(['lead_id' => $lead->id]);
+                            factory(\App\JobType::class)->create([
+                                'lead_id' => $lead->id,
+                                'product_id' => $productIds[$productKey]
+                            ]);
                             factory(\App\Document::class)->create(['lead_id' => $lead->id]);
                         });
                 }
