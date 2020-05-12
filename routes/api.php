@@ -77,8 +77,10 @@ Route::resource('trade-types', 'TradeType\TradeTypeController', ['except' => ['e
 Route::resource('postcodes', 'Postcode\PostcodeController', ['only' => ['index']]);
 
 
-
-
+/**
+ * DesignAssessor Routes
+ */
+Route::resource('design-assessors', 'DesignAssessor\DesignAssessorController', ['except' => ['create', 'edit', 'show']]);
 
 
 
