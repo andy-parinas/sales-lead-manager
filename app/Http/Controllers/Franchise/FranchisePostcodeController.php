@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Franchise;
 use App\Franchise;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PostcodeCollection;
 use App\Postcode;
 use App\Services\Interfaces\PostcodeServiceInterface;
 use Illuminate\Http\Request;
@@ -28,16 +29,16 @@ class FranchisePostcodeController extends ApiController
      */
     public function index(Franchise $franchise)
     {
-        
+
         $this->authorize('view', $franchise);
 
         $postcodes = $franchise->postcodes;
 
-        return $this->showAll($postcodes);
+        return $this->showApiCollection(new PostcodeCollection($postcodes));
 
     }
 
-  
+
     /**
      * Store a newly created resource in storage.
      *
@@ -60,10 +61,10 @@ class FranchisePostcodeController extends ApiController
         $franchise->postcodes()->attach($postcodes);
 
         return $this->showAll($franchise->postcodes, Response::HTTP_CREATED);
-        
+
     }
 
-  
+
     /**
      * Remove the specified resource from storage.
      *
@@ -76,13 +77,13 @@ class FranchisePostcodeController extends ApiController
 
         //Check if the postcode is assigned to the child franchise
         $children = $franchise->children;
-        
+
         foreach ($children as $child) {
             if($child->postcodes->contains('id', $postcode->id)){
                 return $this->errorResponse("Postcode is associated to a sub-franchise. Cannot be deleted", Response::HTTP_BAD_REQUEST);
             }
         }
-        
+
         $franchise->postcodes()->detach($postcode->id);
 
         return response()->json($postcode);

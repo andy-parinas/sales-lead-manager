@@ -26,6 +26,11 @@ trait ApiResponser
         return $this->successResponse(['data' => $collection], $code);
     }
 
+    protected function showApiCollection($collection, $code=Response::HTTP_OK)
+    {
+        return $this->successResponse($collection, $code);
+    }
+
     protected function showPaginated(LengthAwarePaginator $data, $code=Response::HTTP_OK)
     {
         return $this->successResponse($data, $code);
