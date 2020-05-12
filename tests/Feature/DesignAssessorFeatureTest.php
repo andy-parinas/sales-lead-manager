@@ -64,7 +64,9 @@ class DesignAssessorFeatureTest extends TestCase
 
 
         //Search for FirstName
-        $this->get('api/design-assessors?search=andy')
+//        $search = urlencode("andy parinas");
+//        dd($search);
+        $this->get('api/design-assessors?search=andy+parinas')
             ->assertStatus(Response::HTTP_OK)
             ->assertJsonCount(1, 'data');
 

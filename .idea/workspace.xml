@@ -20,11 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/DesignAssessor/DesignAssessorController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/DesignAssessorCollection.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Feature/DesignAssessorFeatureTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DesignAssessor/DesignAssessorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DesignAssessor/DesignAssessorController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/DesignAssessorFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/DesignAssessorFeatureTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,7 +232,7 @@
       <workItem from="1588727218964" duration="16567000" />
       <workItem from="1588807068952" duration="10088000" />
       <workItem from="1588895699117" duration="1412000" />
-      <workItem from="1589151867423" duration="23219000" />
+      <workItem from="1589151867423" duration="25420000" />
     </task>
     <task id="LOCAL-00001" summary="Created SalesContact Model.&#10;Established relationships to Lead Model. &#10;Created unit test for SalesContact">
       <created>1583810285742</created>
@@ -460,7 +458,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589252471906</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Added List, Search and Create functionality for DesignAssessor">
+      <created>1589256084523</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1589256084523</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -482,7 +487,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Created SalesStaff model, migration, and factory.&#10;created relationship for StaleStaff and Branch&#10;created inverse relations on Branch to SalesStaff and TradeStaff&#10;created unit test." />
     <MESSAGE value="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder" />
     <MESSAGE value="Added CORS configuration on cors.php under config folder" />
     <MESSAGE value="Can Delete LeadSource by Head Office&#10;Functionality and Test" />
@@ -507,7 +511,8 @@
     <MESSAGE value="Improved on the Seeder to include proper Lead Sources" />
     <MESSAGE value="Added Postcode Collection API Resource" />
     <MESSAGE value="Added Product Seeder and Product Collection resource API" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Product Seeder and Product Collection resource API" />
+    <MESSAGE value="Added List, Search and Create functionality for DesignAssessor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added List, Search and Create functionality for DesignAssessor" />
   </component>
   <component name="WindowStateProjectService">
     <state x="258" y="-888" key="#CLI_Interpreters" timestamp="1587704920240">
@@ -537,30 +542,30 @@
     </state>
     <state x="827" y="126" key="CommitChangelistDialog2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583823148385" />
     <state x="544" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1583985987975" />
-    <state width="1877" height="234" key="GridCell.Tab.0.bottom" timestamp="1589255983720">
+    <state width="1877" height="361" key="GridCell.Tab.0.bottom" timestamp="1589261295392">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588851614032" />
-    <state width="1877" height="234" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589255983720" />
-    <state width="1877" height="234" key="GridCell.Tab.0.center" timestamp="1589255983720">
+    <state width="1877" height="361" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589261295392" />
+    <state width="1877" height="361" key="GridCell.Tab.0.center" timestamp="1589261295391">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1588851614031" />
-    <state width="1877" height="234" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589255983720" />
-    <state width="1877" height="234" key="GridCell.Tab.0.left" timestamp="1589255983720">
+    <state width="1877" height="361" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589261295391" />
+    <state width="1877" height="361" key="GridCell.Tab.0.left" timestamp="1589261295391">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1588851614030" />
-    <state width="1877" height="234" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589255983720" />
-    <state width="1877" height="234" key="GridCell.Tab.0.right" timestamp="1589255983720">
+    <state width="1877" height="361" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589261295391" />
+    <state width="1877" height="361" key="GridCell.Tab.0.right" timestamp="1589261295391">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1588851614031" />
-    <state width="1877" height="234" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589255983720" />
+    <state width="1877" height="361" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589261295391" />
     <state x="179" y="-901" key="SettingsEditor" timestamp="1587705147994">
       <screen x="-162" y="-1050" width="1680" height="1010" />
     </state>

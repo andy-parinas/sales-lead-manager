@@ -42,8 +42,10 @@ class DesignAssessorController extends ApiController
 
         if ($request->has('search')){
 
-            $assessors = DesignAssessor::where('first_name', 'like', '%' . $request['search'] . '%')
-                                    ->orWhere('last_name', 'like', '%' . $request['search'] . '%')
+
+
+            $assessors = DesignAssessor::where('first_name', 'like',  $request['search'] . '%')
+                                    ->orWhere('last_name', 'like',  $request['search'] . '%')
                                     ->orWhere('email', 'like', '%' . $request['search'] . '%')
                                     ->get();
 
