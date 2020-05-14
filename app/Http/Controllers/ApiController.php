@@ -28,6 +28,14 @@ class ApiController extends Controller
                 'search' => request()->search,
                 'on' => request()->on
             ];
+        }elseif (request()->has('search')){
+
+            return [
+                'column' => $column,
+                'direction' => $direction,
+                'size' => $size,
+                'search' => request()->search,
+            ];
         }
 
         return [

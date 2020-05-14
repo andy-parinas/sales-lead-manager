@@ -290,4 +290,32 @@ class SalesContactFeatureTest extends TestCase
 
 //        dd($results);
     }
+
+    public function testCanDoCombineSearch()
+    {
+        //Haystack
+        factory(SalesContact::class, 5)->create();
+
+        //needle
+        factory(SalesContact::class)->create([
+            'first_name' => 'Andy',
+            'last_name' => 'Parinas',
+            'email' => 'superman@email.com'
+        ]);
+
+        $this->authenticateStaffUser();
+
+        $this->get('api/contacts/search?search=andy')
+            ->assertStatus(Response::HTTP_OK)
+            ->assertJsonCount(1, 'data');
+
+        $this->get('api/contacts/search?search=parinas')
+            ->assertStatus(Response::HTTP_OK)
+            ->assertJsonCount(1, 'data');
+
+        $this->get('api/contacts/search?search=super')
+            ->assertStatus(Response::HTTP_OK)
+            ->assertJsonCount(1, 'data');
+
+    }
 }

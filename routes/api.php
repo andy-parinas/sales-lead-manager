@@ -54,7 +54,9 @@ Route::resource('users.franchises', 'User\UserFranchiseController', ['only' => [
 /**
  *  SalesContact Routes
  */
+Route::get('contacts/search', 'SalesContact\SalesContactController@search');
 Route::resource('contacts', 'SalesContact\SalesContactController', ['except' => ['edit', 'create']]);
+
 
 /**
  *  LeadSource Routes

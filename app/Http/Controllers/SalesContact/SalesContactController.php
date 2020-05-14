@@ -142,4 +142,13 @@ class SalesContactController extends ApiController
 
         return $this->showOne($contact);
     }
+
+
+    public function search(Request $request)
+    {
+        $salesContacts = $this->salesContactRepository->simpleSearch($this->getRequestParams());
+
+
+        return $this->showPaginated($salesContacts);
+    }
 }
