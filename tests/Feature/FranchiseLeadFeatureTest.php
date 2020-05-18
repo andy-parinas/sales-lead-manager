@@ -192,13 +192,37 @@ class FranchiseLeadFeatureTest extends TestCase
             'lead_date' => '2020-03-30'
         ];
 
+
+        $jobTypeData = factory(JobType::class)->raw([
+            'lead_id' => '', //So it wont create a lead automatically,
+            'date_allocated' => '2020-05-14'
+        ]);
+
+        $appointmentData = factory(Appointment::class)->raw([
+            'lead_id' => '', // So it wont create lead automatically
+            'appointment_date' => '2020-05-24 13:30'
+        ]);
+
+
+        $data = [
+            'lead' => $leadData,
+            'job_type' => $jobTypeData,
+            'appointment' => $appointmentData
+        ];
+
+
         Sanctum::actingAs(
             $user,
             ['*']
         );
 
-        $this->post('api/franchises/' . $franchise->id . '/leads', $leadData)
-            ->assertStatus(Response::HTTP_CREATED);
+        $response = $this->post('api/franchises/' . $franchise->id . '/leads', $data);
+
+        $result = $response->content();
+
+        //dd(json_decode($result));
+
+        $response->assertStatus(Response::HTTP_CREATED);
 
         $this->assertCount(1, Lead::all());
 

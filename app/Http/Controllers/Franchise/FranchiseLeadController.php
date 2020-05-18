@@ -6,10 +6,12 @@ use App\Franchise;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Lead as LeadResource;
+use App\JobType;
 use App\Lead;
 use App\Repositories\Interfaces\LeadRepositoryInterface;
 use App\SalesContact;
 use App\Services\Interfaces\PostcodeServiceInterface;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -31,7 +33,9 @@ class FranchiseLeadController extends ApiController
     /**
      * Display a listing of the resource.
      *
+     * @param Franchise $franchise
      * @return \Illuminate\Http\Response
+     * @throws AuthorizationException
      */
     public function index(Franchise $franchise)
     {
@@ -47,8 +51,11 @@ class FranchiseLeadController extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
+     * @param $franchise_id
      * @return \Illuminate\Http\Response
+     * @throws AuthorizationException
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request, $franchise_id)
     {
@@ -57,32 +64,64 @@ class FranchiseLeadController extends ApiController
 
         $this->authorize('createLead', $franchise);
 
+        //dump($request);
+
         $data = $this->validate($request, [
-            'lead_number' => 'required',
-            'sales_contact_id' => 'required|integer',
-            'lead_source_id' => 'required|integer',
-            'lead_date' => 'required'
+            'lead.lead_number' => 'required',
+            'lead.sales_contact_id' => 'required|integer',
+            'lead.lead_source_id' => 'required|integer',
+            'lead.lead_date' => 'required',
+            'job_type.taken_by' => 'required',
+            'job_type.date_allocated' => 'required',
+            'job_type.description' => '',
+            'job_type.product_id' => 'required',
+            'job_type.design_assessor_id' => 'required',
+            'appointment.appointment_date' => 'required',
+            'appointment.appointment_notes' => '',
+            'appointment.quoted_price' => 'required',
+            'appointment.outcome' => 'required',
+            'appointment.comments' => '',
         ]);
+
+        //dump($data['lead'], $data['job_type'], $data['appointment']);
+
+        //dd($data['lead']['sales_contact_id']);
 
         /**
          * Check if the SalesContact postcode is within the franchise postcode assignment.
          * If not, Need to tag the Lead as Outside-of-franchise
          */
-        $salesContact = SalesContact::findOrFail($request->sales_contact_id);
-        $data['postcode_status'] = $this->postcodeService->checkSalesContactPostcode($salesContact, $franchise);
+        $salesContact = SalesContact::findOrFail($data['lead']['sales_contact_id']);
+        $data['lead']['postcode_status'] = $this->postcodeService->checkSalesContactPostcode($salesContact, $franchise);
 
-        $lead = $franchise->leads()
-            ->create($data);
+        //dd($data);
 
-        return $this->showOne($lead, Response::HTTP_CREATED);
+        DB::beginTransaction();
+
+        try {
+            $lead = $franchise->leads()->create($data['lead']);
+            $job_type = $lead->jobType()->create($data['job_type']);
+            $appointment = $lead->appointment()->create($data['appointment']);
+
+            DB::commit();
+
+            return $this->showOne(new LeadResource($lead), Response::HTTP_CREATED);
+
+        }catch (\Exception $exception){
+            DB::rollBack();
+
+            throw new \Exception($exception);
+        }
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Franchise $franchise
+     * @param $lead_id
      * @return \Illuminate\Http\Response
+     * @throws AuthorizationException
      */
     public function show(Franchise $franchise, $lead_id)
     {
@@ -104,9 +143,11 @@ class FranchiseLeadController extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param Request $request
+     * @param Franchise $franchise
+     * @param Lead $lead
      * @return \Illuminate\Http\Response
+     * @throws AuthorizationException
      */
     public function update(Request $request, Franchise $franchise, Lead $lead)
     {
@@ -121,8 +162,10 @@ class FranchiseLeadController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Franchise $franchise
+     * @param Lead $lead
      * @return \Illuminate\Http\Response
+     * @throws AuthorizationException
      */
     public function destroy(Franchise $franchise, Lead $lead)
     {

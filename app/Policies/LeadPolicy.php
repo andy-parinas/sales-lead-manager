@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Franchise;
 use App\Lead;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -49,13 +50,16 @@ class LeadPolicy
     /**
      * Determine whether the user can update the lead.
      *
-     * @param  \App\User  $user
-     * @param  \App\Lead  $lead
+     * @param \App\User $user
+     * @param \App\Lead $lead
+     * @param Franchise $franchise new Franchise.
      * @return mixed
      */
-    public function update(User $user, Lead $lead)
+    public function update(User $user, Lead $lead, Franchise $franchise)
     {
-        //
+        //Check if User have control on the new Franchise
+
+        return $user->franchises->contains('id', $franchise->id) || $user->isHeadOffice();
     }
 
     /**

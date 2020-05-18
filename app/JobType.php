@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class JobType extends Model
 {
     protected $fillable = [
-        'taken_by', 'date_allocated', 'lead_id', 'product_id', 'design_assessor_id'
+        'taken_by', 'date_allocated', 'lead_id', 'product_id', 'design_assessor_id', 'description'
     ];
 
 

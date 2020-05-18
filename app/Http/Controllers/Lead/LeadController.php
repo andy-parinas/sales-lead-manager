@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Lead;
 
+use App\Franchise;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Lead;
 use App\Repositories\Interfaces\LeadRepositoryInterface;
+use App\Services\Interfaces\PostcodeServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\Lead as LeadResource;
@@ -14,10 +16,12 @@ class LeadController extends ApiController
 {
 
     private $leadRepository;
+    private $postcodeService;
 
-    public function __construct(LeadRepositoryInterface $leadRepository) {
+    public function __construct(LeadRepositoryInterface $leadRepository, PostcodeServiceInterface $postcodeService) {
         $this->middleware('auth:sanctum');
         $this->leadRepository = $leadRepository;
+        $this->postcodeService = $postcodeService;
     }
 
 
@@ -79,7 +83,49 @@ class LeadController extends ApiController
      */
     public function update(Request $request, $id)
     {
-        //
+        $lead = Lead::with(['franchise', 'salesContact'])->findOrFail($id);
+
+        $user = Auth::user();
+
+        // Data for StaffUser
+        $data = $this->validate($request, [
+            'lead_source_id' => '',
+            'lead_date' => '',
+        ]);
+
+        if($user->isFranchiseAdmin()){
+
+            $data = $this->validate($request, [
+                'franchise_id' => '',
+                'lead_source_id' => '',
+                'lead_date' => '',
+            ]);
+
+            if ($request->has('franchise_id')){
+
+                $franchise = Franchise::with('postcodes')->find($data['franchise_id']);
+                $this->authorize('update',  [$lead, $franchise] );
+
+                $data['postcode_status'] = $this->postcodeService->checkSalesContactPostcode($lead->salesContact, $franchise);
+            }
+
+        }
+
+        if($user->isHeadOffice()){
+
+            $data = $this->validate($request, [
+                'lead_number' => '',
+                'franchise_id' => '',
+                'lead_source_id' => '',
+                'lead_date' => '',
+            ]);
+        }
+
+        $lead->update($data);
+        $lead->refresh();
+
+        return $this->showOne(new LeadResource($lead));
+
     }
 
     /**

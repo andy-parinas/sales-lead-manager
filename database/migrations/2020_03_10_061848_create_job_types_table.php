@@ -17,7 +17,7 @@ class CreateJobTypesTable extends Migration
             $table->id();
             $table->string('taken_by');
             $table->dateTime('date_allocated');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->unsignedBigInteger('lead_id');
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('design_assessor_id');
