@@ -37,17 +37,19 @@ class Lead extends JsonResource
                'customerType' => $this->salesContact->customer_type,
            ],
             'jobType' => $this->jobType ? [
+                'id' => $this->jobType->id,
                 'takenBy' => $this->jobType->taken_by,
                 'dateAllocated' => $this->jobType->date_allocated,
                 'description' => $this->jobType->description,
                 'productId' => $this->jobType->product->id,
                 'product' => $this->jobType->product->name,
-                'designAdvisorId' => $this->jobType->designAssessor->id,
-                'designAdvisor' => $this->jobType->designAssessor->full_name,
-                'designAdvisorEmail' => $this->jobType->designAssessor->email,
-                'designAdvisorContactNumber' => $this->jobType->designAssessor->contact_number
+                'designAssessorId' => $this->jobType->designAssessor->id,
+                'designAssessor' => $this->jobType->designAssessor->full_name,
+                'designAssessorEmail' => $this->jobType->designAssessor->email,
+                'designAssessorContactNumber' => $this->jobType->designAssessor->contact_number
             ] : null,
             'appointment' => $this->appointment ? [
+                'id' => $this->appointment->id,
                 'date' => $this->appointment->appointment_date,
                 'notes' => $this->appointment->appointment_notes,
                 'quotedPrice' => $this->appointment->quoted_price,
