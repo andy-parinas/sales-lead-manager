@@ -45,6 +45,7 @@ Route::put('franchises/{franchise}/leads/{lead}/franchise', 'Franchise\Franchise
  */
 Route::resource('leads', 'Lead\LeadController', ['only' => ['index', 'show', 'destroy', 'update']]);
 Route::resource('leads.job-types', 'Lead\LeadJobTypeController', ['only' => ['update']]);
+Route::resource('leads.appointments', 'Lead\LeadAppointmentController', ['only' => ['update']]);
 
 /**
  *  User Routes

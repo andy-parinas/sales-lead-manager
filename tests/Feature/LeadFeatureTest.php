@@ -147,7 +147,7 @@ class LeadFeatureTest extends TestCase
         $response = $this->get('api/leads/'. $lead->id);
         $result = json_decode($response->content())->data;
 
-        dd($result);
+        //dd($result);
 
         $response->assertStatus(Response::HTTP_OK);
 
