@@ -136,6 +136,8 @@ class LeadFeatureTest extends TestCase
         $this->withoutExceptionHandling();
 
         $lead = factory(Lead::class)->create();
+        factory(Appointment::class)->create(['lead_id' => $lead->id]);
+        factory(JobType::class)->create(['lead_id' => $lead->id]);
 
         Sanctum::actingAs(
             $this->createHeadOfficeUser(),
@@ -144,6 +146,8 @@ class LeadFeatureTest extends TestCase
 
         $response = $this->get('api/leads/'. $lead->id);
         $result = json_decode($response->content())->data;
+
+        dd($result);
 
         $response->assertStatus(Response::HTTP_OK);
 
