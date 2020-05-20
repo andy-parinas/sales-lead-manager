@@ -35,6 +35,7 @@ class Lead extends JsonResource
                'state' => $this->salesContact->state,
                'postcode' => $this->salesContact->postcode,
                'customerType' => $this->salesContact->customer_type,
+               'created_at' => $this->created_at
            ],
             'jobType' => $this->jobType ? [
                 'id' => $this->jobType->id,

@@ -25,7 +25,8 @@ class LeadAppointmentFeatureTest extends TestCase
             'appointment_date' => '2020-05-20 12:00',
             'appointment_notes' => 'updated notes',
             'quoted_price' => 123,
-            'outcome' => 'success'
+            'outcome' => 'success',
+            'comments' => 'Updated Comments'
         ];
 
         $this->authenticateStaffUser();
@@ -43,5 +44,6 @@ class LeadAppointmentFeatureTest extends TestCase
         $this->assertEquals($updates['appointment_notes'], $appointment->appointment_notes);
         $this->assertEquals($updates['quoted_price'], $appointment->quoted_price);
         $this->assertEquals($updates['outcome'], $appointment->outcome);
+        $this->assertEquals($updates['comments'], $appointment->comments);
     }
 }

@@ -20,11 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
-      <change afterPath="$PROJECT_DIR$/tests/Feature/LeadAppointmentFeatureTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadAppointmentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadAppointmentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/LeadFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/LeadFeatureTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Lead.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Lead.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/LeadAppointmentFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/LeadAppointmentFeatureTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,7 +237,7 @@
       <workItem from="1589151867423" duration="32901000" />
       <workItem from="1589410237642" duration="8532000" />
       <workItem from="1589496882365" duration="3247000" />
-      <workItem from="1589758040307" duration="24615000" />
+      <workItem from="1589758040307" duration="28161000" />
     </task>
     <task id="LOCAL-00001" summary="Created SalesContact Model.&#10;Established relationships to Lead Model. &#10;Created unit test for SalesContact">
       <created>1583810285742</created>
@@ -506,7 +505,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589941827086</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Updating Lead Appointment Functionality and Test">
+      <created>1589949088298</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1589949088298</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -528,7 +534,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Can delete Product by HeadOffice&#10;Functionality and Test" />
     <MESSAGE value="TradeType CRUD&#10;Functionality and Test" />
     <MESSAGE value="Implemented more complete seeder" />
     <MESSAGE value="troublehsooting CSRF issues." />
@@ -553,7 +558,8 @@
     <MESSAGE value="Updated the some table fields to hold Nullable Values.&#10;Created functionality for Creating Lead witout referencing Franchise in the Url" />
     <MESSAGE value="Updating JobType of Lead" />
     <MESSAGE value="Added additional field for appointment in Lead Resource." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added additional field for appointment in Lead Resource." />
+    <MESSAGE value="Updating Lead Appointment Functionality and Test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updating Lead Appointment Functionality and Test" />
   </component>
   <component name="WindowStateProjectService">
     <state x="258" y="-888" key="#CLI_Interpreters" timestamp="1587704920240">
@@ -596,30 +602,30 @@
     </state>
     <state x="827" y="126" key="CommitChangelistDialog2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583823148385" />
     <state x="544" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1583985987975" />
-    <state width="1877" height="289" key="GridCell.Tab.0.bottom" timestamp="1589948957634">
+    <state width="1877" height="289" key="GridCell.Tab.0.bottom" timestamp="1589950331119">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588851614032" />
-    <state width="1877" height="289" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589948957634" />
-    <state width="1877" height="289" key="GridCell.Tab.0.center" timestamp="1589948957634">
+    <state width="1877" height="289" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589950331119" />
+    <state width="1877" height="289" key="GridCell.Tab.0.center" timestamp="1589950331119">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1588851614031" />
-    <state width="1877" height="289" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589948957634" />
-    <state width="1877" height="289" key="GridCell.Tab.0.left" timestamp="1589948957634">
+    <state width="1877" height="289" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589950331119" />
+    <state width="1877" height="289" key="GridCell.Tab.0.left" timestamp="1589950331118">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1588851614030" />
-    <state width="1877" height="289" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589948957634" />
-    <state width="1877" height="289" key="GridCell.Tab.0.right" timestamp="1589948957634">
+    <state width="1877" height="289" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589950331118" />
+    <state width="1877" height="289" key="GridCell.Tab.0.right" timestamp="1589950331119">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1588851614031" />
-    <state width="1877" height="289" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589948957634" />
+    <state width="1877" height="289" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589950331119" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1589948179563">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -640,14 +646,14 @@
       <screen x="-162" y="-1050" width="1680" height="1010" />
     </state>
     <state x="179" y="-901" key="SettingsEditor/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587705147994" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1589941829524">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1589949090379">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583823151397" />
     <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818402975" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@0.0.1366.728" timestamp="1588205242303" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1583985991863" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589941829524" />
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589949090379" />
     <state x="667" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1584317085912">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
