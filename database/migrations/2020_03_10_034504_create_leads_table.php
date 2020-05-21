@@ -19,7 +19,7 @@ class CreateLeadsTable extends Migration
             $table->unsignedBigInteger('franchise_id');
             $table->unsignedBigInteger('sales_contact_id');
             $table->unsignedBigInteger('lead_source_id');
-            $table->date('lead_date');
+            $table->dateTime('lead_date');
             $table->string('postcode_status');
             $table->timestamps();
 

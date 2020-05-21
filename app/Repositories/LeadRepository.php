@@ -93,11 +93,6 @@ class LeadRepository implements LeadRepositoryInterface
             ->join('franchises', 'franchises.id', '=', 'leads.franchise_id')
             ->join('sales_contacts', 'sales_contacts.id', '=', 'leads.sales_contact_id')
             ->join('lead_sources', 'lead_sources.id', '=', 'leads.lead_source_id')
-//            ->leftJoin('job_types', function($join) {
-//                $join->on( 'job_types.lead_id', '=', 'leads.id')
-//                    ->join('products', 'products.id', '=', 'job_types.product_id')
-//                    ->join('design_assessors', 'design_assessors.id', '=', 'job_types.design_assessor_id');
-//            })
             ->leftJoin('appointments', 'appointments.lead_id', '=', 'leads.id')
             ->select(
                 'leads.id as leadId',
@@ -120,9 +115,9 @@ class LeadRepository implements LeadRepositoryInterface
         if(key_exists('search', $params) && key_exists('on', $params))
         {
 
-            return  $query->where($params['on'], 'LIKE', '%' . $params['search'] . '%')
-                        ->orderBy($params['column'], $params['direction'])
-                        ->paginate($params['size']);
+            $query =  $query->where($params['on'], 'LIKE', '%' . $params['search'] . '%');
+//                        ->orderBy($params['column'], $params['direction'])
+//                        ->paginate($params['size']);
 
         }
 
