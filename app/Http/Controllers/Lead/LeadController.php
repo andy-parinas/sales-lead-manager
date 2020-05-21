@@ -11,6 +11,7 @@ use App\Services\Interfaces\PostcodeServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\Lead as LeadResource;
+use Symfony\Component\HttpFoundation\Response;
 
 class LeadController extends ApiController
 {
@@ -136,6 +137,12 @@ class LeadController extends ApiController
      */
     public function destroy($id)
     {
-        //
+        $lead = Lead::findOrFail($id);
+
+        $this->authorize('delete', $lead);
+
+        $lead->delete();
+
+        return $this->showOne([], Response::HTTP_NO_CONTENT);
     }
 }

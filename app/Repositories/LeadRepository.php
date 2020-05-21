@@ -105,6 +105,7 @@ class LeadRepository implements LeadRepositoryInterface
                 'franchises.franchise_number as franchiseNumber',
                 'leads.lead_date as leadDate',
                 'leads.created_at as created_at',
+                'leads.postcode_status as postcodeStatus',
                 'lead_sources.name as source',
                 'sales_contacts.first_name as firstName',
                 'sales_contacts.last_name as lastName',
