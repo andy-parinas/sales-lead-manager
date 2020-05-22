@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\User as UserResource;
+use App\Http\Resources\UserCollection;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\User;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -34,10 +35,10 @@ class UserController extends ApiController
 
         $users = $this->userRepository->findUsersSortedAndPaginated($this->getRequestParams());
 
-        return $this->showPaginated($users);
+        return $this->showApiCollection(new UserCollection($users));
     }
 
-  
+
 
     /**
      * Store a newly created resource in storage.
@@ -47,7 +48,7 @@ class UserController extends ApiController
      */
     public function store(Request $request)
     {
-        
+
         Gate::authorize('head-office-only');
 
         $this->validate($request, [
@@ -89,7 +90,7 @@ class UserController extends ApiController
         return $this->showOne(new UserResource($user));;
     }
 
-  
+
     /**
      * Update the specified resource in storage.
      *
@@ -110,7 +111,7 @@ class UserController extends ApiController
             'email' => ['string', 'email', 'max:255'],
             'password' => ['string', 'min:8', 'confirmed'],
         ]);
-        
+
         $user->update($data);
 
         $user->refresh();
@@ -134,7 +135,7 @@ class UserController extends ApiController
 
         //Check for the franchises attached to the user.
         $franchises = $user->franchises()->pluck('id');
-        
+
         $user->franchises()->detach($franchises);
 
         $user->delete();
