@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\User;
 use Illuminate\Support\Facades\DB;
 
 class UserRepository implements UserRepositoryInterface
@@ -23,6 +24,24 @@ class UserRepository implements UserRepositoryInterface
             ->orderBy($params['column'], $params['direction'])
             ->paginate($params['size']);
 
+
+    }
+
+    public function findUsersFranchise(Array $params, $userId){
+
+        $user = User::findOrFail($userId);
+
+        if(key_exists('search', $params) && key_exists('on', $params)){
+
+            return $user->franchises()->where('franchise_number', 'LIKE', '%' . $params['search'] . '%')
+                                    ->orWhere('name','LIKE', '%' . $params['search'] . '%' )
+                                    ->orderBy($params['column'], $params['direction'])
+                                    ->paginate($params['size']);
+
+        }
+
+        return $user->franchises()->orderBy($params['column'], $params['direction'])
+            ->paginate($params['size']);
 
     }
 }

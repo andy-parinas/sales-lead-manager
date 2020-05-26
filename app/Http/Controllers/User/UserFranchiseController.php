@@ -6,23 +6,29 @@ use App\Franchise;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\FranchiseRepositoryInterface;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Services\Interfaces\FranchiseServiceInterface;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\FranchiseCollection;
 
 class UserFranchiseController extends ApiController
 {
 
     private $franchiseService;
     private $franchiseRepository;
+    private $userRepository;
 
-    public function __construct(FranchiseServiceInterface $franchiseService, FranchiseRepositoryInterface $franchiseRepository) 
+    public function __construct(FranchiseServiceInterface $franchiseService,
+                                FranchiseRepositoryInterface $franchiseRepository,
+                                UserRepositoryInterface $userRepository)
     {
         $this->middleware('auth:sanctum');
         $this->franchiseService = $franchiseService;
         $this->franchiseRepository = $franchiseRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -30,9 +36,13 @@ class UserFranchiseController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, $id)
     {
-        //
+        Gate::authorize('head-office-only');
+
+        $franchises = $this->userRepository->findUsersFranchise($this->getRequestParams(), $id);
+
+        return $this->showApiCollection(new FranchiseCollection($franchises));
     }
 
 
@@ -61,7 +71,7 @@ class UserFranchiseController extends ApiController
             $franchises = Franchise::find($data['franchises']);
 
 
-            //Condition1. Fresh user and don't have Franchises attached yet. 
+            //Condition1. Fresh user and don't have Franchises attached yet.
             if($user->franchises()->count() === 0)
             {
 
@@ -126,7 +136,7 @@ class UserFranchiseController extends ApiController
      */
     public function destroy(User $user, Franchise $franchise)
     {
-        
+
         Gate::authorize('head-office-only');
 
         if($user->franchises->contains('id', $franchise->id)){

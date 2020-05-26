@@ -12,7 +12,7 @@ use Tests\TestHelper;
 
 class UserFranchiseFeatureTest extends TestCase
 {
-    
+
     use RefreshDatabase, TestHelper;
 
     public function testCanAttachFranchiseToUserByHeadOffice()
@@ -90,13 +90,13 @@ class UserFranchiseFeatureTest extends TestCase
         $user = $this->createFranchiseAdminUser();
 
         $parent1 = factory(Franchise::class)->create();
-      
+
         // $user->franchises()->attach($parent1->id);
 
         $c1 = factory(Franchise::class)->create(['parent_id' => $parent1->id]);
         $c2 = factory(Franchise::class)->create(['parent_id' => $parent1->id]);
         $c3 = factory(Franchise::class)->create(['parent_id' => $parent1->id]);
- 
+
 
         $data = [
             'franchises' => [
@@ -160,7 +160,7 @@ class UserFranchiseFeatureTest extends TestCase
         $user = $this->createStaffUser();
 
         $parent1 = factory(Franchise::class)->create();
-      
+
         // $user->franchises()->attach($parent1->id);
 
         $c1 = factory(Franchise::class)->create(['parent_id' => $parent1->id]);
@@ -184,7 +184,7 @@ class UserFranchiseFeatureTest extends TestCase
         $user = $this->createStaffUser();
 
         $parent1 = factory(Franchise::class)->create();
-      
+
         // $user->franchises()->attach($parent1->id);
 
         // $c1 = factory(Franchise::class)->create(['parent_id' => $parent1->id]);
@@ -207,7 +207,7 @@ class UserFranchiseFeatureTest extends TestCase
         $user = $this->createStaffUser();
 
         $parent1 = factory(Franchise::class)->create();
-      
+
         // $user->franchises()->attach($parent1->id);
 
         $c1 = factory(Franchise::class)->create(['parent_id' => $parent1->id]);
@@ -244,7 +244,7 @@ class UserFranchiseFeatureTest extends TestCase
             ->assertStatus(Response::HTTP_OK);
 
         $user->refresh();
-        
+
         $this->assertCount(0, $user->franchises);
 
     }
@@ -260,14 +260,14 @@ class UserFranchiseFeatureTest extends TestCase
 
         $this->delete('api/users/' . $user->id . '/franchises/' . $franchise->id)
         ->assertStatus(Response::HTTP_FORBIDDEN);
-        $user->refresh();   
+        $user->refresh();
         $this->assertCount(1, $user->franchises);
 
         $this->authenticateStaffUser();
 
         $this->delete('api/users/' . $user->id . '/franchises/' . $franchise->id)
         ->assertStatus(Response::HTTP_FORBIDDEN);
-        $user->refresh();   
+        $user->refresh();
         $this->assertCount(1, $user->franchises);
 
     }
@@ -290,7 +290,7 @@ class UserFranchiseFeatureTest extends TestCase
             ->assertStatus(Response::HTTP_BAD_REQUEST);
 
         $user->refresh();
-        
+
         $this->assertCount(3, $user->franchises);
 
     }
@@ -312,8 +312,29 @@ class UserFranchiseFeatureTest extends TestCase
             ->assertStatus(Response::HTTP_OK);
 
         $user->refresh();
-        
+
         $this->assertCount(2, $user->franchises);
+    }
+
+    public function testCanListUsersFranchiseByHeadOffice()
+    {
+        $user = $this->createFranchiseAdminUser();
+
+        factory(Franchise::class, 15)->create()->each(function ($franchise) use ($user) {
+            $franchise->users()->attach($user->id);
+        });
+
+
+        $this->authenticateHeadOfficeUser();
+
+        $response = $this->get('api/users/' . $user->id . '/franchises');
+
+        //dd(json_decode($response->content()));
+
+        $response->assertStatus(Response::HTTP_OK)
+            ->assertJsonCount(10, 'data');
+
+
     }
 
 }
