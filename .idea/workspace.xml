@@ -20,9 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/UserCollection.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/User/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/User/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/UserCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/UserCollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_09_035600_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_09_035600_create_users_table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +240,8 @@
       <workItem from="1589410237642" duration="8532000" />
       <workItem from="1589496882365" duration="3247000" />
       <workItem from="1589758040307" duration="40898000" />
-      <workItem from="1590122015014" duration="4448000" />
+      <workItem from="1590122015014" duration="4761000" />
+      <workItem from="1590361357553" duration="9266000" />
     </task>
     <task id="LOCAL-00001" summary="Created SalesContact Model.&#10;Established relationships to Lead Model. &#10;Created unit test for SalesContact">
       <created>1583810285742</created>
@@ -533,7 +537,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590042759983</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Added user collection resource">
+      <created>1590132690890</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1590132690890</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -555,7 +566,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactor the SalesContact output from the DB Builder.&#10;Use standard JSON namin for the frontend" />
     <MESSAGE value="Changed default page size to 10&#10;Increase Number of Items to seed" />
     <MESSAGE value="Added api resource response to update and create" />
     <MESSAGE value="Corrected issue on not updating the SalesContact status.&#10;need to add status in fillable" />
@@ -580,7 +590,8 @@
     <MESSAGE value="Added new fields for updating appointment and lead resource" />
     <MESSAGE value="Added FRanchise Type return on Franchise Resource.&#10;added postcodeStatus in the Lead list." />
     <MESSAGE value="Change leadDate field from date to datetime for accuracy in sorting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change leadDate field from date to datetime for accuracy in sorting" />
+    <MESSAGE value="Added user collection resource" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added user collection resource" />
   </component>
   <component name="WindowStateProjectService">
     <state x="258" y="-888" key="#CLI_Interpreters" timestamp="1587704920240">
@@ -668,14 +679,14 @@
     </state>
     <state x="179" y="-901" key="SettingsEditor/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587705147994" />
     <state x="390" y="153" key="SettingsEditor/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1590122052747" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1590042764783">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1590132695145">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583823151397" />
     <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818402975" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@0.0.1366.728" timestamp="1588205242303" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1583985991863" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1590042764783" />
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1590132695145" />
     <state x="667" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1584317085912">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

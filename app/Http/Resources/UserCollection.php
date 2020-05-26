@@ -20,7 +20,8 @@ class UserCollection extends ResourceCollection
                     'id' => $user->id,
                     'name' => $user->name,
                     'username' => $user->username,
-                    'email' => $user->email
+                    'email' => $user->email,
+                    'userType' => $user->user_type
                 ];
             }),
             'pagination' => [

@@ -21,7 +21,7 @@ class User extends JsonResource
             'id' => $this->id,
             'username' => $this->username,
             'name' => $this->name,
-            'userType' => ucfirst($type[0]) . " " . ucfirst($type[1]),
+            'userType' => $this->user_type,
             'email' => $this->email
         ];
     }
