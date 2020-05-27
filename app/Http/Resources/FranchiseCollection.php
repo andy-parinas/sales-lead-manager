@@ -21,7 +21,8 @@ class FranchiseCollection extends ResourceCollection
                     'franchiseNumber' => $franchise->franchise_number,
                     'name' => $franchise->name,
                     'description' => $franchise->description,
-                    'type' => $franchise->isParent() ? 'Main Franchise' : 'Sub-Franchise'
+                    'type' => $franchise->isParent() ? 'Main Franchise' : 'Sub-Franchise',
+                    'parent'=> $franchise->parent? $franchise->parent->franchise_number : null
                 ];
             }),
             'pagination' => [

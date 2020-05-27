@@ -33,7 +33,7 @@ class UserRepository implements UserRepositoryInterface
 
         if(key_exists('search', $params) && key_exists('on', $params)){
 
-            return $user->franchises()->where('franchise_number', 'LIKE', '%' . $params['search'] . '%')
+            return $user->franchises()->with('parent')->where('franchise_number', 'LIKE', '%' . $params['search'] . '%')
                                     ->orWhere('name','LIKE', '%' . $params['search'] . '%' )
                                     ->orderBy($params['column'], $params['direction'])
                                     ->paginate($params['size']);

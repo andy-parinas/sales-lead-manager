@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Franchise;
 use App\Franchise;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\FranchiseCollection;
 use App\Repositories\Interfaces\FranchiseRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,7 @@ class FranchiseController extends ApiController
         {
             $franchises = $this->franchiseRepository->sortAndPaginate($this->getRequestParams());
 
-            return $this->showPaginated($franchises);
+            return $this->showApiCollection(new FranchiseCollection($franchises));
 
         }
         else
