@@ -52,6 +52,7 @@ Route::resource('leads.appointments', 'Lead\LeadAppointmentController', ['only' 
  */
 Route::resource('users', 'User\UserController', ['except' => ['create', 'edit']]);
 Route::resource('users.franchises', 'User\UserFranchiseController', ['only' => ['index', 'store', 'destroy']]);
+Route::post('users/{user}/franchises/{franchise}', 'User\UserFranchiseController@attach');
 
 /**
  *  SalesContact Routes

@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Throwable;
 use App\Traits\ApiResponser;
 use Illuminate\Validation\ValidationException;
@@ -93,6 +94,11 @@ class Handler extends ExceptionHandler
 
         if ($exception instanceof HttpException){
             return $this->errorResponse($exception->getMessage(), $exception->getStatusCode());
+        }
+
+        if ($exception instanceof BadRequestHttpException){
+            dump('Exception Here');
+            return $this->errorResponse(['error' => $exception->getMessage()], 400);
         }
 
         if ($exception instanceof QueryException){

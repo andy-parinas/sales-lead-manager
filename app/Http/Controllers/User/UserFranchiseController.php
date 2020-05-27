@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Resources\FranchiseCollection;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use App\Http\Resources\Franchise as FranchiseResource;
 
 class UserFranchiseController extends ApiController
 {
@@ -48,9 +50,11 @@ class UserFranchiseController extends ApiController
 
     /**
      * Store a newly created resource in storage.
+     * This method is for attaching a group of Franchises to the User
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request, User $user)
     {
@@ -159,4 +163,90 @@ class UserFranchiseController extends ApiController
 
 
     }
+
+
+    /**
+     * Store a newly created resource in storage.
+     * This method is for attaching a single Franchises to the User
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param User $user
+     * @param Franchise $franchise
+     * @return void
+     * @throws \HttpException
+     */
+    public function attach(Request $request, User $user, Franchise $franchise)
+    {
+
+        //Get that user's franchises.
+        $usersFranchises = $user->franchises;
+
+        //If the User is a staffUser, it should only have one franchise.
+        if ($user->isStaffUser() && $usersFranchises->count() >= 1){
+
+            abort(Response::HTTP_BAD_REQUEST,"Staff User should only have one franchise" );
+            //throw new BadRequestHttpException("Staff User should only have one franchise");
+        }
+
+        // Check if the Franchise that is being attached is a parent or child
+        // Staff User can only be attached by a Child or SubFranchise
+        if($user->isStaffUser() && $franchise->isParent()){
+
+            abort(Response::HTTP_BAD_REQUEST,"Staff User Cannot be attached with a Main Franchise" );
+            //throw new BadRequestHttpException("Staff User Cannot be attached with a Main Franchise");
+        }
+
+        // Check if FranchiseAdmin
+        // Franchise Admin can only have one parent Franchise
+        if($user->isFranchiseAdmin() && $usersFranchises->count() >= 1 && $franchise->isParent()){
+  ;
+            $usersFranchises->each(function ($fran){
+                if($fran->isParent()){
+                    abort(Response::HTTP_BAD_REQUEST,"Franchise Admin can only have one Main Franchise" );
+                    //throw new BadRequestHttpException("Franchise Admin can only have one Main Franchise");
+                }
+            });
+        }
+
+        // Check if FranchiseAdmin
+        // Should attached the Main or Parent franchise First before any Child Franchise
+        if($user->isFranchiseAdmin() && $usersFranchises->count() == 0 && !$franchise->isParent() ){
+
+            abort(Response::HTTP_BAD_REQUEST,"Franchise Admin must have a Main Franchise before attaching Sub Franchise" );
+            //throw new BadRequestHttpException("Franchise Admin must have a Main Franchise before attaching Sub Franchise");
+        }
+
+        // Check if FranchiseAdmin
+        // Should only attached the Child Franchise that is under the Parent Franchise
+        if($user->isFranchiseAdmin() && $usersFranchises->count() >= 1 && !$franchise->isParent()){
+
+            $parentId = -1;
+
+            foreach ($usersFranchises as $fran){
+
+                if($fran->isParent()){
+                    $parentId = $fran->id;
+                }
+            }
+
+            if($parentId == -1){
+                abort(Response::HTTP_BAD_REQUEST,"The Franchise Admin does not have a main franchise. Please correct this" );
+                //throw new BadRequestHttpException("The Franchise Admin does not have a main franchise. Please correct this");
+            }
+
+            if($franchise->parent_id != $parentId){
+                abort(Response::HTTP_BAD_REQUEST,"The Franchise being attached does not belong to the User's Main Franchise" );
+                //throw new BadRequestHttpException("The Franchise being attached does not belong to the User's Main Franchise");
+            }
+
+        }
+
+        $user->franchises()->attach($franchise->id);
+
+
+        return $this->showOne(new  FranchiseResource($franchise));
+
+    }
+
+
 }

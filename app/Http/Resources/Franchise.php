@@ -19,7 +19,8 @@ class Franchise extends JsonResource
             'franchiseNumber' => $this->franchise_number,
             'name' => $this->name,
             'description' => $this->description,
-            'type' => $this->isParent() ? 'Main Franchise' : 'Sub-Franchise'
+            'type' => $this->isParent() ? 'Main Franchise' : 'Sub-Franchise',
+            'parent'=> $this->parent ? $this->parent->franchise_number : null
         ];
     }
 }

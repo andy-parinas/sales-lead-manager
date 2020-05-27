@@ -179,28 +179,28 @@ class UserFranchiseFeatureTest extends TestCase
             ->assertJsonCount(1, 'data');
     }
 
-    public function testCanNotAttachParentFranchiseToStaffUser()
-    {
-        $user = $this->createStaffUser();
-
-        $parent1 = factory(Franchise::class)->create();
-
-        // $user->franchises()->attach($parent1->id);
-
-        // $c1 = factory(Franchise::class)->create(['parent_id' => $parent1->id]);
-
-        $data = [
-            'franchises' => [
-                $parent1->id
-            ]
-        ];
-
-        $this->authenticateHeadOfficeUser();
-
-        $response = $this->post('api/users/' . $user->id . '/franchises', $data);
-
-        $response->assertStatus(Response::HTTP_BAD_REQUEST);
-    }
+//    public function testCanNotAttachParentFranchiseToStaffUser()
+//    {
+//        $user = $this->createStaffUser();
+//
+//        $parent1 = factory(Franchise::class)->create();
+//
+//        // $user->franchises()->attach($parent1->id);
+//
+//        // $c1 = factory(Franchise::class)->create(['parent_id' => $parent1->id]);
+//
+//        $data = [
+//            'franchises' => [
+//                $parent1->id
+//            ]
+//        ];
+//
+//        $this->authenticateHeadOfficeUser();
+//
+//        $response = $this->post('api/users/' . $user->id . '/franchises', $data);
+//
+//        $response->assertStatus(Response::HTTP_BAD_REQUEST);
+//    }
 
     public function testCanNotAttachFranchiseByNonHeadOffice()
     {
@@ -336,5 +336,144 @@ class UserFranchiseFeatureTest extends TestCase
 
 
     }
+
+
+    public function testCanAttachChildFranchiseToStaffUser()
+    {
+
+        $parent = factory(Franchise::class)->create();
+        $child = factory(Franchise::class)->create(['parent_id' => $parent->id]);
+        $user = $this->createStaffUser();
+
+
+        $this->authenticateHeadOfficeUser();
+
+        $this->post('api/users/'. $user->id . '/franchises/' . $child->id)
+            ->assertStatus(Response::HTTP_OK);
+
+        $this->assertCount(1, $user->franchises);
+
+
+    }
+
+    public function testCanNotAttachMoreThanOneChildFranchiseToStaffUser()
+    {
+
+
+        $parent = factory(Franchise::class)->create();
+        $child = factory(Franchise::class)->create(['parent_id' => $parent->id]);
+        $child2 = factory(Franchise::class)->create(['parent_id' => $parent->id]);
+        $user = $this->createStaffUser();
+        $user->franchises()->attach($child->id);
+
+
+        $this->authenticateHeadOfficeUser();
+
+        $this->post('api/users/'. $user->id . '/franchises/' . $child2->id)
+            ->assertStatus(Response::HTTP_BAD_REQUEST);
+
+        $this->assertCount(1, $user->franchises);
+    }
+
+    public function testCanNotAttachParentFranchiseToStaffUser()
+    {
+
+
+        $parent = factory(Franchise::class)->create();
+
+        $user = $this->createStaffUser();
+
+
+
+        $this->authenticateHeadOfficeUser();
+
+        $this->post('api/users/'. $user->id . '/franchises/' . $parent->id)
+            ->assertStatus(Response::HTTP_BAD_REQUEST);
+
+        $this->assertCount(0, $user->franchises);
+    }
+
+
+    public function testCanAttachParentFranchiseToFranchiseAdmin()
+    {
+        $parent = factory(Franchise::class)->create();
+        $user = $this->createFranchiseAdminUser();
+
+        $this->authenticateHeadOfficeUser();
+
+        $this->post('api/users/'. $user->id . '/franchises/' . $parent->id)
+            ->assertStatus(Response::HTTP_OK);
+
+        $this->assertCount(1, $user->franchises);
+    }
+
+    public function testCanNotAttachMoreThanOneParentFranchise()
+    {
+        $parent = factory(Franchise::class)->create();
+        $user = $this->createFranchiseAdminUser();
+        $user->franchises()->attach($parent->id);
+        $parent2 = factory(Franchise::class)->create();
+
+
+        $this->authenticateHeadOfficeUser();
+
+        $this->post('api/users/'. $user->id . '/franchises/' . $parent2->id)
+            ->assertStatus(Response::HTTP_BAD_REQUEST);
+
+        $this->assertCount(1, $user->franchises);
+    }
+
+    public function testCanAttachChildFranchiseBelongingToParent()
+    {
+        $this->withoutExceptionHandling();
+
+        $parent = factory(Franchise::class)->create();
+        $user = $this->createFranchiseAdminUser();
+        $user->franchises()->attach($parent->id);
+        $child = factory(Franchise::class)->create(['parent_id' => $parent->id]);
+
+
+        $this->authenticateHeadOfficeUser();
+
+        $this->post('api/users/'. $user->id . '/franchises/' . $child->id)
+            ->assertStatus(Response::HTTP_OK);
+
+        $this->assertCount(2, $user->franchises);
+    }
+
+    public function testCanNotAttachChildFranchiseDoesNotBelongToParent()
+    {
+
+        $parent = factory(Franchise::class)->create();
+        $parent2 = factory(Franchise::class)->create();
+        $user = $this->createFranchiseAdminUser();
+        $user->franchises()->attach($parent->id);
+        $child = factory(Franchise::class)->create(['parent_id' => $parent2->id]);
+
+
+        $this->authenticateHeadOfficeUser();
+
+        $this->post('api/users/'. $user->id . '/franchises/' . $child->id)
+            ->assertStatus(Response::HTTP_BAD_REQUEST);
+
+        $this->assertCount(1, $user->franchises);
+    }
+
+    public function testCanNotAttachChildFranchiseWithoutParenFranchise()
+    {
+        $parent = factory(Franchise::class)->create();
+        $child = factory(Franchise::class)->create(['parent_id' => $parent->id]);
+        $user = $this->createFranchiseAdminUser();
+
+
+        $this->authenticateHeadOfficeUser();
+
+        $this->post('api/users/'. $user->id . '/franchises/' . $child->id)
+            ->assertStatus(Response::HTTP_BAD_REQUEST);
+
+        $this->assertCount(0, $user->franchises);
+    }
+
+
 
 }
