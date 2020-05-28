@@ -31,7 +31,7 @@ class UserRepository implements UserRepositoryInterface
 
         $user = User::findOrFail($userId);
 
-        if(key_exists('search', $params) && key_exists('on', $params)){
+        if(key_exists('search', $params)){
 
             return $user->franchises()->with('parent')->where('franchise_number', 'LIKE', '%' . $params['search'] . '%')
                                     ->orWhere('name','LIKE', '%' . $params['search'] . '%' )

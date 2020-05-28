@@ -143,22 +143,32 @@ class UserFranchiseController extends ApiController
 
         Gate::authorize('head-office-only');
 
-        if($user->franchises->contains('id', $franchise->id)){
+        $usersFranchises = $user->franchises;
 
-            if($user->franchises->count() > 1 && $franchise->isParent()){
+        if($usersFranchises->contains('id', $franchise->id)){
 
-                return $this->errorResponse("Cannot detach parent franchise with children", Response::HTTP_BAD_REQUEST);
+            if($usersFranchises->count() > 1 && $franchise->isParent()){
+
+                $children = $franchise->children;
+
+                foreach ($children as $child){
+                    if($usersFranchises->contains('id', $child->id)){
+                        //return $this->errorResponse("Cannot detach parent franchise with children", Response::HTTP_BAD_REQUEST);
+                        abort(Response::HTTP_BAD_REQUEST, "Cannot detach Main franchise with it's Sub-Franchise attached to the user");
+                    }
+                }
             }
 
             $user->franchises()->detach($franchise->id);
 
             $user->refresh();
 
-            return $this->showAll($user->franchises);
+            return $this->showOne(new FranchiseResource($franchise));
 
         }else {
 
-            return $this->errorResponse("Franchise does not belong to the user", Response::HTTP_BAD_REQUEST);
+            //return $this->errorResponse("Franchise does not belong to the user", Response::HTTP_BAD_REQUEST);
+            abort(Response::HTTP_BAD_REQUEST,"Franchise does not belong to the user" );
         }
 
 
@@ -180,6 +190,12 @@ class UserFranchiseController extends ApiController
 
         //Get that user's franchises.
         $usersFranchises = $user->franchises;
+
+        // Check if you are attaching the same Franchise that has been attached already
+
+        if($usersFranchises->contains('id', $franchise->id)){
+            abort(Response::HTTP_BAD_REQUEST,"Franchise is already attached to the user" );
+        }
 
         //If the User is a staffUser, it should only have one franchise.
         if ($user->isStaffUser() && $usersFranchises->count() >= 1){

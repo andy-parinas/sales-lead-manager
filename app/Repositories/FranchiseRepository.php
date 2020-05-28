@@ -40,23 +40,8 @@ class FranchiseRepository implements FranchiseRepositoryInterface
 
     public function sortAndPaginate(Array $params)
     {
-//        $query = DB::table('franchises')
-//            ->select(
-//                'franchise_number as franchiseNumber',
-//                'name',
-//                'description'
-//            );
-//
-//        if(key_exists('search', $params) && key_exists('on', $params))
-//        {
-//            return $query->where($params['on'], 'LIKE', '%' . $params['search'] . '%')
-//                ->orderBy($params['column'], $params['direction'])
-//                ->paginate($params['size']);
-//        }
-//
-//        return $query->orderBy($params['column'], $params['direction'])->paginate($params['size']);
 
-        if(key_exists('search', $params) && key_exists('on', $params))
+        if(key_exists('search', $params))
         {
             return Franchise::with('parent')->where('franchise_number', 'LIKE', '%' . $params['search'] . '%')
                 ->orWhere('name','LIKE', '%' . $params['search'] . '%' )
