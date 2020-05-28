@@ -51,7 +51,7 @@ class UserController extends ApiController
 
         Gate::authorize('head-office-only');
 
-        $this->validate($request, [
+        $data = $this->validate($request, [
             'username' => ['required', 'string', 'max:50','unique:users'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users' ],
@@ -60,15 +60,9 @@ class UserController extends ApiController
         ]);
 
 
-        $user = User::create([
-            'username' => $request['username'],
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-            'user_type' => $request['user_type']
-        ]);
 
-        // dd($user->user_type);
+        $user = User::create($data);
+
 
         return $this->showOne(new UserResource($user), Response::HTTP_CREATED);
 
