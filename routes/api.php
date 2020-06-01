@@ -38,6 +38,7 @@ Route::resource('franchises.postcodes', 'Franchise\FranchisePostcodeController',
 Route::resource('franchises.children', 'Franchise\FranchiseChildrenController', ['only' => ['index', 'store']]);
 Route::resource('franchises.leads', 'Franchise\FranchiseLeadController', ['except' => ['create', 'edit']]);
 Route::put('franchises/{franchise}/leads/{lead}/franchise', 'Franchise\FranchiseLeadFranchiseController@update');
+Route::get('franchises/{franchise}/related', 'Franchise\FranchiseController@related');
 
 
 /**

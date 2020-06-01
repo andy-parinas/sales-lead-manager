@@ -8,6 +8,7 @@ use App\Repositories\Interfaces\FranchiseRepositoryInterface;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use PhpParser\Node\Expr\Array_;
 
 class FranchiseRepository implements FranchiseRepositoryInterface
 {
@@ -64,6 +65,46 @@ class FranchiseRepository implements FranchiseRepositoryInterface
                 return null;
             }
         }
+    }
+
+    public function findRelatedFranchise(Array $params, $id)
+    {
+        $franchise = Franchise::findOrFail($id);
+
+        //Check if it is a Parent Franchise
+        if($franchise->isParent()){
+
+            return DB::table('franchises')
+                ->select('id', 'name',
+                    'franchise_number', 'description')
+                ->selectRaw('(CASE WHEN parent_id IS NULL THEN "Main Franchise" ELSE "Sub Franchise" END) as type')
+                ->selectRaw('(CASE WHEN parent_id IS NULL THEN NULL ELSE ? END) as parent', [$franchise->franchise_number])
+                ->where('id', $id)
+                ->orWhere('parent_id', $id)
+                ->orderBy($params['column'], $params['direction'])->paginate($params['size']);
+
+//            return Franchise::with('children')->where('id', $id)
+//                ->orderBy($params['column'], $params['direction'])->paginate($params['size']);
+
+
+        }else {
+
+            $parent = $franchise->parent;
+
+            return DB::table('franchises')
+                ->select('id', 'name',
+                    'franchise_number', 'description')
+                ->selectRaw('(CASE WHEN parent_id IS NULL THEN "Main Franchise" ELSE "Sub Franchise" END) as type')
+                ->selectRaw('(CASE WHEN parent_id IS NULL THEN NULL ELSE ? END) as parent', [$franchise->franchise_number])
+                ->where('id', $parent->id)
+                ->orWhere('parent_id', $parent->id)
+                ->orderBy($params['column'], $params['direction'])->paginate($params['size']);
+
+//            return Franchise::with('children')->where('id', $parent->id)
+//                ->orderBy($params['column'], $params['direction'])->paginate($params['size']);
+
+        }
+
     }
 
 

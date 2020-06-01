@@ -266,5 +266,51 @@ class FranchiseFeatureTest extends TestCase
 
     }
 
+    public function testCanShowRelatedFranchiseParentFranchise()
+    {
+        $this->withoutExceptionHandling();
+
+        $parent = factory(Franchise::class)->create();
+        factory(Franchise::class, 5)->create(['parent_id' => $parent->id]);
+
+        //Haystack
+        factory(Franchise::class, 3)->create();
+
+
+        $this->authenticateHeadOfficeUser();
+
+        $response = $this->get('api/franchises/'. $parent->id . '/related');
+
+        //dd(json_decode($response->content()));
+
+        $response->assertStatus(Response::HTTP_OK)
+                ->assertJsonCount(6, 'data');
+
+    }
+
+
+    public function testCanShowRelatedFranchiseChildFranchise()
+    {
+        $this->withoutExceptionHandling();
+
+        $parent = factory(Franchise::class)->create();
+        $child = factory(Franchise::class)->create(['parent_id' => $parent->id]);
+        factory(Franchise::class, 4)->create(['parent_id' => $parent->id]);
+
+        //Haystack
+        factory(Franchise::class, 3)->create();
+
+
+        $this->authenticateHeadOfficeUser();
+
+        $response = $this->get('api/franchises/'. $parent->id . '/related');
+
+        dd(json_decode($response->content()));
+
+        $response->assertStatus(Response::HTTP_OK)
+            ->assertJsonCount(6, 'data');
+
+    }
+
 
 }

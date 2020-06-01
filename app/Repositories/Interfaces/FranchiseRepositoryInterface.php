@@ -18,4 +18,6 @@ interface FranchiseRepositoryInterface
 
     public function findUsersParentFranchise(User $user);
 
+    public function findRelatedFranchise(Array $params, $id);
+
 }

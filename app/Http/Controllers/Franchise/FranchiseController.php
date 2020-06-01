@@ -6,7 +6,9 @@ use App\Franchise;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\FranchiseCollection;
+use App\Http\Resources\RelatedFranchiseCollection;
 use App\Repositories\Interfaces\FranchiseRepositoryInterface;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -85,6 +87,14 @@ class FranchiseController extends ApiController
         $this->authorize('view', $franchise);
 
         return $this->showOne($franchise);
+
+    }
+
+    public function related(Request $request, $id)
+    {
+        $franchises = $this->franchiseRepository->findRelatedFranchise($this->getRequestParams(), $id);
+
+        return $this->showApiCollection(new RelatedFranchiseCollection($franchises));
 
     }
 
