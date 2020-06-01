@@ -95,7 +95,7 @@ class FranchiseRepository implements FranchiseRepositoryInterface
                 ->select('id', 'name',
                     'franchise_number', 'description')
                 ->selectRaw('(CASE WHEN parent_id IS NULL THEN "Main Franchise" ELSE "Sub Franchise" END) as type')
-                ->selectRaw('(CASE WHEN parent_id IS NULL THEN NULL ELSE ? END) as parent', [$franchise->franchise_number])
+                ->selectRaw('(CASE WHEN parent_id IS NULL THEN NULL ELSE ? END) as parent', [$parent->franchise_number])
                 ->where('id', $parent->id)
                 ->orWhere('parent_id', $parent->id)
                 ->orderBy($params['column'], $params['direction'])->paginate($params['size']);
