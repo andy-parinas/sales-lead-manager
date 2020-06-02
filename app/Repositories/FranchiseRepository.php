@@ -29,9 +29,15 @@ class FranchiseRepository implements FranchiseRepositoryInterface
 
         if(key_exists('search', $params) && key_exists('on', $params))
         {
-            return $user->franchises()->where($params['on'], 'LIKE', '%' . $params['search'] . '%')
+//            return $user->franchises()->where($params['on'], 'LIKE', '%' . $params['search'] . '%')
+//                ->orderBy($params['column'], $params['direction'])
+//                ->paginate($params['size']);
+
+            return $user->franchises()->with('parent')->where('franchise_number', 'LIKE', '%' . $params['search'] . '%')
+                ->orWhere('name','LIKE', '%' . $params['search'] . '%' )
                 ->orderBy($params['column'], $params['direction'])
                 ->paginate($params['size']);
+
         }
 
         return $user->franchises()
