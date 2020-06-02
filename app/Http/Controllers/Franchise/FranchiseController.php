@@ -64,17 +64,18 @@ class FranchiseController extends ApiController
     {
         $this->authorize('create', Franchise::class);
 
-        $rules = [
+        $data = $this->validate($request, [
             'franchise_number' => 'required',
             'name' => 'required',
-        ];
-
-        $this->validate($request, $rules);
-
-        $franchise = Franchise::create($request->all());
+            'description' => '',
+            'parent_id' => ''
+        ]);
 
 
-        return $this->showOne($franchise, Response::HTTP_CREATED);
+        $franchise = Franchise::create($data);
+
+
+        return $this->showOne(new FranchiseResource($franchise), Response::HTTP_CREATED);
 
     }
 
@@ -128,7 +129,8 @@ class FranchiseController extends ApiController
         ]);
 
         //Check if the Franchise is a parent franchise with children;
-        if($franchise->isParent() && $franchise->children->count() > 0 ){
+        if(array_key_exists('parent_id', $data) && $data['parent_id'] !=null &&
+            $franchise->isParent() && $franchise->children->count() > 0 ){
 
             abort(Response::HTTP_BAD_REQUEST, "Cannot assigned Main Franchise to Franchise with Sub-Franchises");
         }
