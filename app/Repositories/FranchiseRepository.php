@@ -76,7 +76,7 @@ class FranchiseRepository implements FranchiseRepositoryInterface
 
             return DB::table('franchises')
                 ->select('id', 'name',
-                    'franchise_number', 'description')
+                    'franchise_number', 'description', 'parent_id')
                 ->selectRaw('(CASE WHEN parent_id IS NULL THEN "Main Franchise" ELSE "Sub Franchise" END) as type')
                 ->selectRaw('(CASE WHEN parent_id IS NULL THEN NULL ELSE ? END) as parent', [$franchise->franchise_number])
                 ->where('id', $id)
@@ -93,7 +93,7 @@ class FranchiseRepository implements FranchiseRepositoryInterface
 
             return DB::table('franchises')
                 ->select('id', 'name',
-                    'franchise_number', 'description')
+                    'franchise_number', 'description', 'parent_id')
                 ->selectRaw('(CASE WHEN parent_id IS NULL THEN "Main Franchise" ELSE "Sub Franchise" END) as type')
                 ->selectRaw('(CASE WHEN parent_id IS NULL THEN NULL ELSE ? END) as parent', [$parent->franchise_number])
                 ->where('id', $parent->id)
@@ -104,6 +104,20 @@ class FranchiseRepository implements FranchiseRepositoryInterface
 //                ->orderBy($params['column'], $params['direction'])->paginate($params['size']);
 
         }
+
+    }
+
+
+    public function findParents(Array $params)
+    {
+
+        return DB::table('franchises')
+                ->select('id', 'name',
+                        'franchise_number', 'description')
+                ->where('parent_id', null)
+                ->orderBy('franchise_number', 'asc')
+                ->get();
+
 
     }
 

@@ -303,14 +303,31 @@ class FranchiseFeatureTest extends TestCase
 
         $this->authenticateHeadOfficeUser();
 
-        $response = $this->get('api/franchises/'. $parent->id . '/related');
+        $response = $this->get('api/franchises/'. $child->id . '/related');
 
-        dd(json_decode($response->content()));
+        //dd(json_decode($response->content()));
 
         $response->assertStatus(Response::HTTP_OK)
             ->assertJsonCount(6, 'data');
 
     }
+
+    public function testCanListAllParentFranchise()
+    {
+        factory(Franchise::class, 5)->create()->each(function ($franchise){
+            factory(Franchise::class)->create(['parent_id' => $franchise->id]);
+        });
+
+        $this->authenticateHeadOfficeUser();
+
+        $this->get('api/franchises/parents')
+            ->assertStatus(Response::HTTP_OK)
+            ->assertJsonCount(5, 'data');
+
+
+
+    }
+
 
 
 }

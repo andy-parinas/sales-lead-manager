@@ -6,6 +6,7 @@ use App\Franchise;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\FranchiseCollection;
+use App\Http\Resources\ParentFranchiseCollection;
 use App\Http\Resources\RelatedFranchiseCollection;
 use App\Repositories\Interfaces\FranchiseRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
@@ -96,6 +97,13 @@ class FranchiseController extends ApiController
 
         return $this->showApiCollection(new RelatedFranchiseCollection($franchises));
 
+    }
+
+    public function parents(Request $request)
+    {
+        $franchises = $this->franchiseRepository->findParents($this->getRequestParams());
+
+        return $this->showApiCollection(new ParentFranchiseCollection($franchises));
     }
 
     /**
