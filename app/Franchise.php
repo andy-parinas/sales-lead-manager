@@ -11,7 +11,8 @@ class Franchise extends Model
     protected $fillable = [
         'franchise_number',
         'name',
-        'description'
+        'description',
+        'parent_id'
     ];
 
 

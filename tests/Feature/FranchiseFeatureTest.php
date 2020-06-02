@@ -166,6 +166,7 @@ class FranchiseFeatureTest extends TestCase
 
     public function testCanUpdateFranchiseByHeadOffice()
     {
+        $parent = factory(Franchise::class)->create();
         $franchise = factory(Franchise::class)->create();
 
         Sanctum::actingAs(
@@ -173,10 +174,19 @@ class FranchiseFeatureTest extends TestCase
             ['*']
         );
 
-        $this->put('api/franchises/' . $franchise->id, ['franchise_number' => 'updated'])
+        $updates = [
+            'franchise_number' => '1234',
+            'name' => 'updated',
+            'description' => 'description',
+            'parent_id' => ''
+        ];
+
+        $this->put('api/franchises/' . $franchise->id, $updates)
             ->assertStatus(Response::HTTP_OK);
 
-        $this->assertEquals('updated', Franchise::first()->franchise_number);
+        $franchise->refresh();
+
+        $this->assertEquals($updates['franchise_number'], $franchise->franchise_number);
 
 
     }

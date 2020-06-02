@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\Franchise as FranchiseResource;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 
 class FranchiseController extends ApiController
@@ -118,9 +120,28 @@ class FranchiseController extends ApiController
 
         $this->authorize('update', $franchise);
 
-        $franchise->update($request->all());
+        $data = $this->validate($request, [
+            'franchise_number' => '',
+            'name' => '',
+            'description' => '',
+            'parent_id' => ''
+        ]);
 
-        return $this->showOne($franchise);
+        //Check if the Franchise is a parent franchise with children;
+        if($franchise->isParent() && $franchise->children->count() > 0 ){
+
+            abort(Response::HTTP_BAD_REQUEST, "Cannot assigned Main Franchise to Franchise with Sub-Franchises");
+        }
+
+        if(array_key_exists('parent_id', $data) && $data['parent_id'] == $franchise->franchise_number){
+            abort(Response::HTTP_BAD_REQUEST, "Cannot assigned Main Franchise to self");
+        }
+
+        $franchise->update($data);
+
+        $franchise->refresh();
+
+        return $this->showOne(new FranchiseResource($franchise));
 
     }
 
