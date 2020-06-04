@@ -27,11 +27,11 @@ class FranchiseCollection extends ResourceCollection
                 ];
             }),
             'pagination' => [
-                'total' => $this->total(),
-                'count' => $this->count(),
-                'per_page' => $this->perPage(),
-                'current_page' => $this->currentPage(),
-                'total_pages' => $this->lastPage()
+                'total' => method_exists($this, 'total') ? $this->total() : 0,
+                'count' => method_exists($this, 'count') ? $this->count() : 0,
+                'per_page' => method_exists($this, 'perPage') ? $this->perPage() : 0,
+                'current_page' => method_exists($this, 'currentPage') ? $this->currentPage() : 0,
+                'total_pages' => method_exists($this, 'lastPage') ? $this->lastPage() : 0
             ]
         ];
     }

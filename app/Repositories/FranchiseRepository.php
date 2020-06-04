@@ -29,34 +29,74 @@ class FranchiseRepository implements FranchiseRepositoryInterface
 
         if(key_exists('search', $params) && key_exists('on', $params))
         {
-//            return $user->franchises()->where($params['on'], 'LIKE', '%' . $params['search'] . '%')
-//                ->orderBy($params['column'], $params['direction'])
-//                ->paginate($params['size']);
+            // Check if the Pagination exist else, it will return all records
+            if (key_exists('size', $params) && $params['size'] > 0){
 
-            return $user->franchises()->with('parent')->where('franchise_number', 'LIKE', '%' . $params['search'] . '%')
-                ->orWhere('name','LIKE', '%' . $params['search'] . '%' )
-                ->orderBy($params['column'], $params['direction'])
-                ->paginate($params['size']);
+                return $user->franchises()->with('parent')->where('franchise_number', 'LIKE', '%' . $params['search'] . '%')
+                    ->orWhere('name','LIKE', '%' . $params['search'] . '%' )
+                    ->orderBy($params['column'], $params['direction'])
+                    ->paginate($params['size']);
+
+            }else {
+                return $user->franchises()->with('parent')->where('franchise_number', 'LIKE', '%' . $params['search'] . '%')
+                    ->orWhere('name','LIKE', '%' . $params['search'] . '%' )
+                    ->orderBy($params['column'], $params['direction'])
+                    ->get();
+            }
 
         }
 
-        return $user->franchises()
-            ->orderBy($params['column'], $params['direction'])
-            ->paginate($params['size']);
+
+        if (key_exists('size', $params) && $params['size'] > 0){
+
+            return $user->franchises()
+                ->orderBy($params['column'], $params['direction'])
+                ->paginate($params['size']);
+
+        }else {
+
+            return $user->franchises()
+                ->orderBy($params['column'], $params['direction'])
+                ->get();
+        }
+
+
     }
 
     public function sortAndPaginate(Array $params)
     {
 
+
+
         if(key_exists('search', $params))
         {
-            return Franchise::with('parent')->where('franchise_number', 'LIKE', '%' . $params['search'] . '%')
-                ->orWhere('name','LIKE', '%' . $params['search'] . '%' )
-                ->orderBy($params['column'], $params['direction'])
-                ->paginate($params['size']);
+            if (key_exists('size', $params) && $params['size'] > 0){
+
+                return Franchise::with('parent')->where('franchise_number', 'LIKE', '%' . $params['search'] . '%')
+                    ->orWhere('name','LIKE', '%' . $params['search'] . '%' )
+                    ->orderBy($params['column'], $params['direction'])
+                    ->paginate($params['size']);
+
+            }else {
+
+                return Franchise::with('parent')->where('franchise_number', 'LIKE', '%' . $params['search'] . '%')
+                    ->orWhere('name','LIKE', '%' . $params['search'] . '%' )
+                    ->orderBy($params['column'], $params['direction'])
+                    ->get();
+
+            }
+
+        }else {
+
+            if (key_exists('size', $params) && $params['size'] > 0){
+                return Franchise::orderBy($params['column'], $params['direction'])->paginate($params['size']);
+            }else {
+                return Franchise::orderBy($params['column'], $params['direction'])->get();
+            }
+
         }
 
-        return Franchise::orderBy($params['column'], $params['direction'])->paginate($params['size']);
+
 
 
     }

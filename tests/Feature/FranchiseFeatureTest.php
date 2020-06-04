@@ -338,6 +338,22 @@ class FranchiseFeatureTest extends TestCase
 
     }
 
+    public function testCanListFranchisesWithoutSizeParams()
+    {
+        $this->withoutExceptionHandling();
+
+        factory(Franchise::class, 15)->create();
+
+        $this->authenticateHeadOfficeUser();
+
+        $response = $this->get("api/franchises?sort=franchise_number&direction=asc&");
+
+        //dd(json_decode($response->content()));
+
+        $response->assertStatus(Response::HTTP_OK)
+            ->assertJsonCount(15, 'data');
+    }
+
 
 
 }
