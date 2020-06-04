@@ -12,10 +12,10 @@ class SalesContactRepository  implements SalesContactRepositoryInterface
     {
         $query =  DB::table('sales_contacts')
                     ->select("id",
-                        'first_name as firstName',
-                        'last_name as lastName',
-                        'contact_number as contactNumber',
-                        'customer_type as customerType',
+                        'first_name',
+                        'last_name',
+                        'contact_number',
+                        'customer_type',
                         'street1', 'street2', 'suburb', 'state', 'postcode', 'status','email', 'email2');
 
 
@@ -36,10 +36,10 @@ class SalesContactRepository  implements SalesContactRepositoryInterface
     {
         $query =  DB::table('sales_contacts')
             ->select("id",
-                'first_name as firstName',
-                'last_name as lastName',
-                'contact_number as contactNumber',
-                'customer_type as customerType',
+                'first_name',
+                'last_name',
+                'contact_number',
+                'customer_type',
                 'street1', 'street2', 'suburb', 'state', 'postcode', 'status','email', 'email2');
 
         if(key_exists('search', $params))

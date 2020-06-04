@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SalesContact;
 
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\SalesContactCollection;
 use App\Postcode;
 use App\Repositories\Interfaces\SalesContactRepositoryInterface;
 use App\SalesContact;
@@ -32,7 +33,7 @@ class SalesContactController extends ApiController
         $salesContacts = $this->salesContactRepository->sortAndPaginate($this->getRequestParams());
 
 
-        return $this->showPaginated($salesContacts);
+        return $this->showApiCollection(new SalesContactCollection($salesContacts));
     }
 
 
@@ -149,6 +150,6 @@ class SalesContactController extends ApiController
         $salesContacts = $this->salesContactRepository->simpleSearch($this->getRequestParams());
 
 
-        return $this->showPaginated($salesContacts);
+        return $this->showApiCollection(new SalesContactCollection($salesContacts));
     }
 }

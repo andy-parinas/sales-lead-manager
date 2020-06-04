@@ -61,6 +61,8 @@ class SalesContactFeatureTest extends TestCase
 
     public function testCanListPaginatedSalesContactByAuthenticatedUSers()
     {
+        $this->withoutExceptionHandling();
+
         factory(SalesContact::class, 30)->create();
 
         $this->authenticateStaffUser();

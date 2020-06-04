@@ -20,8 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/SalesContactCollection.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SalesContact/SalesContactController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SalesContact/SalesContactController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/SalesContactRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/SalesContactRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +174,7 @@
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
-  <component name="RunManager" selected="PHPUnit.FranchiseFeatureTest.testCanUpdateFranchiseByHeadOffice">
+  <component name="RunManager" selected="PHPUnit.SalesContactFeatureTest.testCanNotCreateSalesContactWithInvalidPostcode">
     <configuration name="FranchiseFeatureTest.testCanListAllParentFranchise" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\FranchiseFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchiseFeatureTest.php" method="testCanListAllParentFranchise" scope="Method" />
       <method v="2" />
@@ -180,16 +183,16 @@
       <TestRunner class="Tests\Feature\FranchiseFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchiseFeatureTest.php" method="testCanNotUpdateFranchiseByNonHeadOffice" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="FranchiseFeatureTest.testCanShowRelatedFranchiseChildFranchise" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\FranchiseFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchiseFeatureTest.php" method="testCanShowRelatedFranchiseChildFranchise" scope="Method" />
-      <method v="2" />
-    </configuration>
-    <configuration name="FranchiseFeatureTest.testCanShowRelatedFranchiseParentFranchise" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\FranchiseFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchiseFeatureTest.php" method="testCanShowRelatedFranchiseParentFranchise" scope="Method" />
-      <method v="2" />
-    </configuration>
     <configuration name="FranchiseFeatureTest.testCanUpdateFranchiseByHeadOffice" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\FranchiseFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchiseFeatureTest.php" method="testCanUpdateFranchiseByHeadOffice" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="SalesContactFeatureTest.testCanListPaginatedSalesContactByAuthenticatedUSers" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\SalesContactFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" method="testCanListPaginatedSalesContactByAuthenticatedUSers" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="SalesContactFeatureTest.testCanNotCreateSalesContactWithInvalidPostcode" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\SalesContactFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" method="testCanNotCreateSalesContactWithInvalidPostcode" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -198,11 +201,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.SalesContactFeatureTest.testCanNotCreateSalesContactWithInvalidPostcode" />
+        <item itemvalue="PHPUnit.SalesContactFeatureTest.testCanListPaginatedSalesContactByAuthenticatedUSers" />
         <item itemvalue="PHPUnit.FranchiseFeatureTest.testCanUpdateFranchiseByHeadOffice" />
         <item itemvalue="PHPUnit.FranchiseFeatureTest.testCanNotUpdateFranchiseByNonHeadOffice" />
         <item itemvalue="PHPUnit.FranchiseFeatureTest.testCanListAllParentFranchise" />
-        <item itemvalue="PHPUnit.FranchiseFeatureTest.testCanShowRelatedFranchiseChildFranchise" />
-        <item itemvalue="PHPUnit.FranchiseFeatureTest.testCanShowRelatedFranchiseParentFranchise" />
       </list>
     </recent_temporary>
   </component>
@@ -238,14 +241,7 @@
       <workItem from="1589758040307" duration="40898000" />
       <workItem from="1590122015014" duration="4761000" />
       <workItem from="1590361357553" duration="37047000" />
-      <workItem from="1590966480960" duration="24791000" />
-    </task>
-    <task id="LOCAL-00008" summary="Created SalesStaff model, migration, and factory.&#10;created relationship for StaleStaff and Branch&#10;created inverse relations on Branch to SalesStaff and TradeStaff&#10;created unit test.">
-      <created>1583985988974</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1583985988974</updated>
+      <workItem from="1590966480960" duration="31573000" />
     </task>
     <task id="LOCAL-00009" summary="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
       <created>1587442470416</created>
@@ -583,7 +579,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591153570919</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Changed Password factory. &#10;Since using mutators just need plain password in the seeder">
+      <created>1591158396686</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1591158396686</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -605,7 +608,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added Postcode Collection API Resource" />
     <MESSAGE value="Added Product Seeder and Product Collection resource API" />
     <MESSAGE value="Added List, Search and Create functionality for DesignAssessor" />
     <MESSAGE value="Implemented Searching on Sales Contacts" />
@@ -630,7 +632,8 @@
     <MESSAGE value="corrected issue with updating franchise." />
     <MESSAGE value="Corrected the findByUser in FranchiseRepository.php" />
     <MESSAGE value="Changed Welcome Page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed Welcome Page" />
+    <MESSAGE value="Changed Password factory. &#10;Since using mutators just need plain password in the seeder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed Password factory. &#10;Since using mutators just need plain password in the seeder" />
   </component>
   <component name="WindowStateProjectService">
     <state x="480" y="167" key="#CLI_Interpreters" timestamp="1590473666182">
@@ -682,30 +685,30 @@
     </state>
     <state x="827" y="126" key="CommitChangelistDialog2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583823148385" />
     <state x="544" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1583985987975" />
-    <state width="1877" height="363" key="GridCell.Tab.0.bottom" timestamp="1591076490776">
+    <state width="1877" height="362" key="GridCell.Tab.0.bottom" timestamp="1591180111010">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588851614032" />
-    <state width="1877" height="363" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591076490776" />
-    <state width="1877" height="363" key="GridCell.Tab.0.center" timestamp="1591076490775">
+    <state width="1877" height="362" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591180111010" />
+    <state width="1877" height="362" key="GridCell.Tab.0.center" timestamp="1591180111009">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1588851614031" />
-    <state width="1877" height="363" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591076490775" />
-    <state width="1877" height="363" key="GridCell.Tab.0.left" timestamp="1591076490774">
+    <state width="1877" height="362" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591180111009" />
+    <state width="1877" height="362" key="GridCell.Tab.0.left" timestamp="1591180111009">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1588851614030" />
-    <state width="1877" height="363" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591076490774" />
-    <state width="1877" height="363" key="GridCell.Tab.0.right" timestamp="1591076490776">
+    <state width="1877" height="362" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591180111009" />
+    <state width="1877" height="362" key="GridCell.Tab.0.right" timestamp="1591180111009">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1588851614031" />
-    <state width="1877" height="363" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591076490776" />
+    <state width="1877" height="362" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591180111009" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1589948179563">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -727,14 +730,14 @@
     </state>
     <state x="179" y="-901" key="SettingsEditor/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587705147994" />
     <state x="390" y="153" key="SettingsEditor/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1590122052747" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1591153572539">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1591158398483">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583823151397" />
     <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818402975" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@0.0.1366.728" timestamp="1588205242303" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1583985991863" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591153572539" />
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591158398483" />
     <state x="667" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1584317085912">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
