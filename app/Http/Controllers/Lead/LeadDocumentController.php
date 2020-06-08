@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Lead;
 
+use App\Document;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DocumentCollection;
 use App\Lead;
 use App\Repositories\Interfaces\DocumentRepositoryInterface;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class LeadDocumentController extends ApiController
 {
@@ -34,15 +36,6 @@ class LeadDocumentController extends ApiController
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -50,44 +43,39 @@ class LeadDocumentController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Lead $lead)
     {
-        //
+        $data = $this->validate($request, [
+            'file' => 'required|file',
+            'title' => 'required',
+            'type' => 'required'
+        ]);
+
+        $path = $request->file->store('files');
+
+        $data['path'] = $path;
+
+        $document = $lead->documents()->create($data);
+
+        return $this->showOne($document, Response::HTTP_CREATED);
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Lead $lead
+     * @param Document $document
+     * @return void
      */
-    public function show($id)
+    public function show(Lead $lead, Document $document)
     {
-        //
+
+        return response()->download(storage_path("app/" . $document->path), $document->title, ['Content-type' => $document->type]);
+
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

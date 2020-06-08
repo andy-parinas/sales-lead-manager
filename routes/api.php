@@ -48,7 +48,7 @@ Route::get('franchises/{franchise}/related', 'Franchise\FranchiseController@rela
 Route::resource('leads', 'Lead\LeadController', ['only' => ['index', 'show', 'destroy', 'update']]);
 Route::resource('leads.job-types', 'Lead\LeadJobTypeController', ['only' => ['update']]);
 Route::resource('leads.appointments', 'Lead\LeadAppointmentController', ['only' => ['update']]);
-Route::resource('leads.documents', 'Lead\LeadDocumentController', ['only' => ['index', 'store', 'destroy', 'update']]);
+Route::resource('leads.documents', 'Lead\LeadDocumentController', ['only' => ['index', 'show', 'store', 'destroy']]);
 
 /**
  *  User Routes

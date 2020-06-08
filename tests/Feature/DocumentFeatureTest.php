@@ -22,6 +22,9 @@ class DocumentFeatureTest extends TestCase
 
         factory(Document::class, 5)->create(['lead_id' => $lead->id]);
 
+        //Haystack
+        factory(Document::class, 5)->create();
+
         $this->authenticateStaffUser();
 
         $response = $this->get('api/leads/'. $lead->id . '/documents');

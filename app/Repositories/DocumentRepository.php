@@ -16,13 +16,13 @@ class DocumentRepository implements Interfaces\DocumentRepositoryInterface
         {
             if (key_exists('size', $params) && $params['size'] > 0){
 
-                return Document::where(['lead_id', '=', $leadId], ['name','LIKE', '%' . $params['search'] . '%'])
+                return Document::where(['lead_id', '=', $leadId], ['title','LIKE', '%' . $params['search'] . '%'])
                     ->orderBy($params['column'], $params['direction'])
                     ->paginate($params['size']);
 
             }else {
 
-                return Document::where(['lead_id', '=', $leadId], ['name','LIKE', '%' . $params['search'] . '%'])
+                return Document::where(['lead_id', '=', $leadId], ['title','LIKE', '%' . $params['search'] . '%'])
                     ->orderBy($params['column'], $params['direction'])
                     ->get();
 
@@ -31,9 +31,11 @@ class DocumentRepository implements Interfaces\DocumentRepositoryInterface
         }else {
 
             if (key_exists('size', $params) && $params['size'] > 0){
-                return Document::orderBy($params['column'], $params['direction'])->paginate($params['size']);
+                return Document::where('lead_id', '=', $leadId)
+                ->orderBy($params['column'], $params['direction'])->paginate($params['size']);
             }else {
-                return Document::orderBy($params['column'], $params['direction'])->get();
+                return Document::where('lead_id', '=', $leadId)
+                    ->orderBy($params['column'], $params['direction'])->get();
             }
 
         }
