@@ -22,9 +22,7 @@
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadDocumentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadDocumentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/DocumentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/DocumentRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/DocumentFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/DocumentFeatureTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,14 +240,7 @@
       <workItem from="1590122015014" duration="4761000" />
       <workItem from="1590361357553" duration="37047000" />
       <workItem from="1590966480960" duration="36876000" />
-      <workItem from="1591571605861" duration="12380000" />
-    </task>
-    <task id="LOCAL-00012" summary="Can Create Product by HeadOffice&#10;Functionality and Test">
-      <created>1587622493405</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1587622493405</updated>
+      <workItem from="1591571605861" duration="15108000" />
     </task>
     <task id="LOCAL-00013" summary="Can delete Product by HeadOffice&#10;Functionality and Test">
       <created>1587700634341</created>
@@ -587,7 +578,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591576719239</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Uploading and Download File from Lead">
+      <created>1591602151355</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1591602151355</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -609,7 +607,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Updated the some table fields to hold Nullable Values.&#10;Created functionality for Creating Lead witout referencing Franchise in the Url" />
     <MESSAGE value="Updating JobType of Lead" />
     <MESSAGE value="Added additional field for appointment in Lead Resource." />
     <MESSAGE value="Updating Lead Appointment Functionality and Test" />
@@ -634,7 +631,8 @@
     <MESSAGE value="Refactor SalesContact index to use Collection resource" />
     <MESSAGE value="Refactor FranchiseRepository to allow getting all franchise if no size in query params" />
     <MESSAGE value="Listing Document by Lead" />
-    <option name="LAST_COMMIT_MESSAGE" value="Listing Document by Lead" />
+    <MESSAGE value="Uploading and Download File from Lead" />
+    <option name="LAST_COMMIT_MESSAGE" value="Uploading and Download File from Lead" />
   </component>
   <component name="WindowStateProjectService">
     <state x="480" y="167" key="#CLI_Interpreters" timestamp="1590473666182">
@@ -678,13 +676,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="657" y="309" key="#com.intellij.ide.util.TreeClassChooserDialog/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591572167428" />
-    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1591573345110">
+    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1591605764415">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583814455109" />
     <state x="442" y="-784" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587954956514" />
     <state x="491" y="192" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1583985431396" />
-    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591573345110" />
+    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591605764415" />
     <state x="544" y="0" key="CommitChangelistDialog2" timestamp="1583985987975">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -739,22 +737,23 @@
     </state>
     <state x="179" y="-901" key="SettingsEditor/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587705147994" />
     <state x="390" y="153" key="SettingsEditor/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1590122052747" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1591576731744">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1591602153022">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583823151397" />
     <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818402975" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@0.0.1366.728" timestamp="1588205242303" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1583985991863" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591576731744" />
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591602153022" />
     <state x="667" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1584317085912">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="667" y="347" key="com.intellij.ide.util.TipDialog/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1584317085912" />
-    <state x="387" y="-916" width="581" height="741" key="find.popup" timestamp="1588748240542">
-      <screen x="-162" y="-1050" width="1680" height="1010" />
+    <state x="650" y="152" width="664" height="764" key="find.popup" timestamp="1591605742498">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="387" y="-916" width="581" height="741" key="find.popup/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588748240542" />
+    <state x="650" y="152" width="664" height="764" key="find.popup/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591605742498" />
     <state x="339" y="162" key="run.anything.popup" timestamp="1583989375799">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

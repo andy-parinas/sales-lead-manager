@@ -36,5 +36,9 @@ class AuthServiceProvider extends ServiceProvider
             return $user->isHeadOffice();
         });
 
+        Gate::define('non-staff-users', function ($user){
+            return !$user->isStaffUser();
+        });
+
     }
 }

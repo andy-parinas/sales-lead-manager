@@ -9,6 +9,8 @@ use App\Http\Resources\DocumentCollection;
 use App\Lead;
 use App\Repositories\Interfaces\DocumentRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
 class LeadDocumentController extends ApiController
@@ -45,6 +47,8 @@ class LeadDocumentController extends ApiController
      */
     public function store(Request $request, Lead $lead)
     {
+        Gate::authorize('non-staff-users');
+
         $data = $this->validate($request, [
             'file' => 'required|file',
             'title' => 'required',
@@ -83,8 +87,15 @@ class LeadDocumentController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Lead $lead, Document $document)
     {
-        //
+        Gate::authorize('non-staff-users');
+
+        Storage::delete(storage_path("app/" . $document->path));
+
+        $document->delete();
+
+        return $this->showOne($document);
+
     }
 }
