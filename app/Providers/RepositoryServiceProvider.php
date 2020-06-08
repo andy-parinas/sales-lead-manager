@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Repositories\DocumentRepository;
 use App\Repositories\FranchiseRepository;
+use App\Repositories\Interfaces\DocumentRepositoryInterface;
 use App\Repositories\Interfaces\FranchiseRepositoryInterface;
 use App\Repositories\Interfaces\LeadRepositoryInterface;
 use App\Repositories\Interfaces\SalesContactRepositoryInterface;
@@ -36,5 +38,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(LeadRepositoryInterface::class, LeadRepository::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(SalesContactRepositoryInterface::class, SalesContactRepository::class);
+        $this->app->bind(DocumentRepositoryInterface::class, DocumentRepository::class);
     }
 }

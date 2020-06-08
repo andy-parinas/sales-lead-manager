@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\DocumentRepository;
+use App\Repositories\Interfaces\DocumentRepositoryInterface;
 use App\Services\FranchiseService;
 use App\Services\Interfaces\FranchiseServiceInterface;
 use App\Services\Interfaces\PostcodeServiceInterface;
