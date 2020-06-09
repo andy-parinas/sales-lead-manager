@@ -11,6 +11,7 @@ $factory->define(SalesStaff::class, function (Faker $faker) {
         'last_name' => $faker->lastName,
         'email' => $faker->email,
         'contact_number' => $faker->phoneNumber,
+        'status' => $faker->randomElement([SalesStaff::ACTIVE, SalesStaff::BLOCKED]),
         'franchise_id' => factory(\App\Franchise::class)
     ];
 });

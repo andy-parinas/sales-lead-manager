@@ -1,5 +1,6 @@
 <?php
 
+use App\SalesStaff;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +20,7 @@ class CreateSalesStaffTable extends Migration
             $table->string('last_name');
             $table->string('email');
             $table->string('contact_number');
+            $table->string('status')->default(SalesStaff::ACTIVE);
             $table->unsignedBigInteger('franchise_id');
             $table->timestamps();
 

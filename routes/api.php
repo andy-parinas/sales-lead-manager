@@ -90,6 +90,11 @@ Route::resource('postcodes', 'Postcode\PostcodeController', ['only' => ['index']
  */
 Route::resource('design-assessors', 'DesignAssessor\DesignAssessorController', ['except' => ['create', 'edit', 'show']]);
 
+/**
+ * SalesStaff Routes
+ */
+Route::resource('sales-staffs', 'SalesStaff\SalesStaffController', ['except' => ['create', 'edit', 'show']]);
+
 
 
 
