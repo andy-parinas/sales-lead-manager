@@ -2,11 +2,23 @@
 
 namespace App\Http\Controllers\SalesStaff;
 
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\SalesStaffCollection;
+use App\Repositories\Interfaces\SalesStafRepositoryInterface;
 use Illuminate\Http\Request;
 
-class SalesStaffController extends Controller
+class SalesStaffController extends ApiController
 {
+    private $salesStaffRepository;
+
+    public function __construct(SalesStafRepositoryInterface $salesStaffRepository)
+    {
+        $this->middleware('auth:sanctum');
+        $this->salesStaffRepository = $salesStaffRepository;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +26,10 @@ class SalesStaffController extends Controller
      */
     public function index()
     {
-        //
+        $salesStaffs = $this->salesStaffRepository->getAll($this->getRequestParams());
+
+
+        return $this->showApiCollection(new SalesStaffCollection($salesStaffs));
     }
 
     /**

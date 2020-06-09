@@ -8,9 +8,11 @@ use App\Repositories\Interfaces\DocumentRepositoryInterface;
 use App\Repositories\Interfaces\FranchiseRepositoryInterface;
 use App\Repositories\Interfaces\LeadRepositoryInterface;
 use App\Repositories\Interfaces\SalesContactRepositoryInterface;
+use App\Repositories\Interfaces\SalesStafRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\LeadRepository;
 use App\Repositories\SalesContactRepository;
+use App\Repositories\SalesStaffRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -39,5 +41,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(SalesContactRepositoryInterface::class, SalesContactRepository::class);
         $this->app->bind(DocumentRepositoryInterface::class, DocumentRepository::class);
+        $this->app->bind(SalesStafRepositoryInterface::class, SalesStaffRepository::class);
     }
 }
