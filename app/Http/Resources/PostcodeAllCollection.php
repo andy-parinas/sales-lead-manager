@@ -3,9 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Illuminate\Support\Collection;
 
-class PostcodeCollection extends ResourceCollection
+class PostcodeAllCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -15,7 +14,6 @@ class PostcodeCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-
         return [
             'data' => $this->collection->transform(function($postcode){
                 return [
@@ -25,14 +23,6 @@ class PostcodeCollection extends ResourceCollection
                     'state' => $postcode->state
                 ];
             }),
-            'pagination' => [
-                'total' => $this->total(),
-                'count' => $this->count(),
-                'per_page' => $this->perPage(),
-                'current_page' => $this->currentPage(),
-                'total_pages' => $this->lastPage()
-            ]
-
         ];
     }
 }

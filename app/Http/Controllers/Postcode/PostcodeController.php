@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Postcode;
 
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PostcodeAllCollection;
 use App\Http\Resources\PostcodeCollection;
 use App\Postcode;
 use App\Repositories\Interfaces\PostcodeRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class PostcodeController extends ApiController
 {
@@ -29,7 +31,11 @@ class PostcodeController extends ApiController
     {
         $postcodes = $this->postcodeRepository->getAll($this->getRequestParams());
 
-        return $this->showApiCollection(new PostcodeCollection($postcodes));
+        if ($postcodes instanceof LengthAwarePaginator){
+            return $this->showApiCollection(new PostcodeCollection($postcodes));
+        }
+
+        return $this->showApiCollection(new PostcodeAllCollection($postcodes));
 
     }
 
