@@ -26,4 +26,20 @@ class PostcodeFeatureTest extends TestCase
 
     }
 
+    public function testCanListPostcodes(){
+
+        $this->authenticateStaffUser();
+
+        factory(Postcode::class, 15)->create();
+
+        $response  = $this->get('/api/postcodes?size=10');
+
+        dd(json_decode($response->content()));
+
+        $response->assertStatus(Response::HTTP_OK)
+            ->assertJsonCount(10, 'data');
+
+    }
+
+
 }

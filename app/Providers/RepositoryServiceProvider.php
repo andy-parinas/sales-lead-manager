@@ -7,10 +7,12 @@ use App\Repositories\FranchiseRepository;
 use App\Repositories\Interfaces\DocumentRepositoryInterface;
 use App\Repositories\Interfaces\FranchiseRepositoryInterface;
 use App\Repositories\Interfaces\LeadRepositoryInterface;
+use App\Repositories\Interfaces\PostcodeRepositoryInterface;
 use App\Repositories\Interfaces\SalesContactRepositoryInterface;
 use App\Repositories\Interfaces\SalesStafRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\LeadRepository;
+use App\Repositories\PostcodeRepository;
 use App\Repositories\SalesContactRepository;
 use App\Repositories\SalesStaffRepository;
 use App\Repositories\UserRepository;
@@ -42,5 +44,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(SalesContactRepositoryInterface::class, SalesContactRepository::class);
         $this->app->bind(DocumentRepositoryInterface::class, DocumentRepository::class);
         $this->app->bind(SalesStafRepositoryInterface::class, SalesStaffRepository::class);
+        $this->app->bind(PostcodeRepositoryInterface::class, PostcodeRepository::class);
     }
 }

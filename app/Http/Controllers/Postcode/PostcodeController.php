@@ -4,15 +4,20 @@ namespace App\Http\Controllers\Postcode;
 
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PostcodeCollection;
 use App\Postcode;
+use App\Repositories\Interfaces\PostcodeRepositoryInterface;
 use Illuminate\Http\Request;
 
 class PostcodeController extends ApiController
 {
 
-    public function __construct()
+    private $postcodeRepository;
+
+    public function __construct(PostcodeRepositoryInterface $postcodeRepository)
     {
         $this->middleware('auth:sanctum');
+        $this->postcodeRepository = $postcodeRepository;
     }
 
     /**
@@ -21,6 +26,14 @@ class PostcodeController extends ApiController
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
+    {
+        $postcodes = $this->postcodeRepository->getAll($this->getRequestParams());
+
+        return $this->showApiCollection(new PostcodeCollection($postcodes));
+
+    }
+
+    public function search(Request $request)
     {
         $postcodes = [];
 
@@ -33,7 +46,6 @@ class PostcodeController extends ApiController
         }
 
         return $this->showAll($postcodes);
-
     }
 
 
