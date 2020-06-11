@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Franchise;
 use App\Franchise;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PostcodeAllCollection;
 use App\Http\Resources\PostcodeCollection;
 use App\Postcode;
+use App\Repositories\Interfaces\PostcodeRepositoryInterface;
 use App\Services\Interfaces\PostcodeServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
@@ -16,25 +19,34 @@ class FranchisePostcodeController extends ApiController
 {
 
     private $postcodeService;
+    private $postcodeRepository;
 
-    public function __construct(PostcodeServiceInterface $postcodeService) {
+    public function __construct(PostcodeServiceInterface $postcodeService, PostcodeRepositoryInterface $postcodeRepository) {
         $this->middleware('auth:sanctum');
         $this->postcodeService = $postcodeService;
+        $this->postcodeRepository = $postcodeRepository;
     }
 
     /**
      * Display a listing of the resource.
      *
+     * @param Franchise $franchise
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Franchise $franchise)
     {
 
         $this->authorize('view', $franchise);
 
-        $postcodes = $franchise->postcodes;
 
-        return $this->showApiCollection(new PostcodeCollection($postcodes));
+        $postcodes = $this->postcodeRepository->getFranchisePostcodes($this->getRequestParams(), $franchise );
+
+        if ($postcodes instanceof LengthAwarePaginator){
+            return $this->showApiCollection(new PostcodeCollection($postcodes));
+        }
+
+        return $this->showApiCollection(new PostcodeAllCollection($postcodes));
 
     }
 

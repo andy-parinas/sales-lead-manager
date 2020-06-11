@@ -4,6 +4,7 @@
 namespace App\Repositories;
 
 
+use App\Franchise;
 use App\Postcode;
 
 class PostcodeRepository implements Interfaces\PostcodeRepositoryInterface
@@ -37,6 +38,41 @@ class PostcodeRepository implements Interfaces\PostcodeRepositoryInterface
                 return Postcode::orderBy($params['column'], $params['direction'])->paginate($params['size']);
             }else {
                 return Postcode::orderBy($params['column'], $params['direction'])->get();
+            }
+
+        }
+    }
+
+
+    public function getFranchisePostcodes(array $params, Franchise $franchise)
+    {
+
+        if(key_exists('search', $params))
+        {
+            if (key_exists('size', $params) && $params['size'] > 0){
+
+                return $franchise->postcodes()->where('pcode', 'LIKE', '%' . $params['search'] . '%')
+                    ->orWhere('locality','LIKE', '%' . $params['search'] . '%' )
+                    ->orWhere('state','LIKE', '%' . $params['search'] . '%' )
+                    ->orderBy($params['column'], $params['direction'])
+                    ->paginate($params['size']);
+
+            }else {
+
+                return $franchise->postcodes()->where('pcode', 'LIKE', '%' . $params['search'] . '%')
+                    ->orWhere('locality','LIKE', '%' . $params['search'] . '%' )
+                    ->orWhere('state','LIKE', '%' . $params['search'] . '%' )
+                    ->orderBy($params['column'], $params['direction'])
+                    ->get();
+
+            }
+
+        }else {
+
+            if (key_exists('size', $params) && $params['size'] > 0){
+                return $franchise->postcodes()->orderBy($params['column'], $params['direction'])->paginate($params['size']);
+            }else {
+                return $franchise->postcodes()->orderBy($params['column'], $params['direction'])->get();
             }
 
         }

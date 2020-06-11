@@ -34,7 +34,6 @@ class PostcodeFeatureTest extends TestCase
 
         $response  = $this->get('/api/postcodes?size=10');
 
-        dd(json_decode($response->content()));
 
         $response->assertStatus(Response::HTTP_OK)
             ->assertJsonCount(10, 'data');
