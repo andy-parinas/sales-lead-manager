@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use App\Http\Resources\Postcode as PostcodeResource;
 
 class FranchisePostcodeController extends ApiController
 {
@@ -73,6 +74,57 @@ class FranchisePostcodeController extends ApiController
         $franchise->postcodes()->attach($postcodes);
 
         return $this->showAll($franchise->postcodes, Response::HTTP_CREATED);
+
+    }
+
+    public function attach(Franchise $franchise, Postcode $postcode)
+    {
+        //Check if postcode is already attached
+        if($franchise->postcodes->contains('id', $postcode->id)){
+            abort(Response::HTTP_BAD_REQUEST, "Postcode already attached to the franchise");
+        }
+
+        //Check if Children and Postcode is in the parent
+        if(!$franchise->isParent()){
+
+            $parent = $franchise->parent;
+
+            //Check if the Postcode is in the parent postcode
+            if(!$parent->postcodes->contains('id', $postcode->id)){
+                abort(Response::HTTP_BAD_REQUEST, "Postcode is not assigned to the Main Franchise");
+            }
+
+        }
+
+        $franchise->postcodes()->attach($postcode->id);
+
+        return $this->showOne(new PostcodeResource($postcode));
+
+    }
+
+    public function detach(Franchise $franchise, Postcode $postcode)
+    {
+        //Check if postcode is actually attached
+        if(!$franchise->postcodes->contains('id', $postcode->id)){
+            abort(Response::HTTP_BAD_REQUEST, "Postcode is not attached to the franchise");
+        }
+
+        //Check if Franchise is parent and the postcode is also attached to the Children
+        if($franchise->isParent()){
+
+            $children = $franchise->children;
+
+            foreach ($children as $child){
+                if($child->postcodes->contains('id', $postcode->id)){
+                    abort(Response::HTTP_BAD_REQUEST, "Can't detach Postcode that is attached to a Sub-Franchise: " . $child->franchise_number);
+                }
+            }
+
+        }
+
+        $franchise->postcodes()->detach($postcode->id);
+
+        return $this->showOne(new PostcodeResource($postcode));
 
     }
 

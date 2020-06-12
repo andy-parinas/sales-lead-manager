@@ -40,7 +40,8 @@ Route::resource('franchises.children', 'Franchise\FranchiseChildrenController', 
 Route::resource('franchises.leads', 'Franchise\FranchiseLeadController', ['except' => ['create', 'edit']]);
 Route::put('franchises/{franchise}/leads/{lead}/franchise', 'Franchise\FranchiseLeadFranchiseController@update');
 Route::get('franchises/{franchise}/related', 'Franchise\FranchiseController@related');
-
+Route::post('franchises/{franchise}/postcodes/{postcode}/attach', 'Franchise\FranchisePostcodeController@attach');
+Route::post('franchises/{franchise}/postcodes/{postcode}/detach', 'Franchise\FranchisePostcodeController@detach');
 
 /**
  * Lead Route
@@ -56,6 +57,7 @@ Route::resource('leads.documents', 'Lead\LeadDocumentController', ['only' => ['i
 Route::resource('users', 'User\UserController', ['except' => ['create', 'edit']]);
 Route::resource('users.franchises', 'User\UserFranchiseController', ['only' => ['index', 'store', 'destroy']]);
 Route::post('users/{user}/franchises/{franchise}', 'User\UserFranchiseController@attach');
+
 
 /**
  *  SalesContact Routes
