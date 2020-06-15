@@ -10,7 +10,7 @@ class SalesStaff extends Model
     const BLOCKED = 'blocked';
 
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'contact_number', 'franchise_id'
+        'first_name', 'last_name', 'email', 'contact_number', 'franchise_id', 'status'
     ];
 
 

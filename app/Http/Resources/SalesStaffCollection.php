@@ -21,6 +21,7 @@ class SalesStaffCollection extends ResourceCollection
                     'firstName' => $staff->first_name,
                     'lastName' => $staff->last_name,
                     'email' => $staff->email,
+                    'contactNumber' => $staff->contact_number,
                     'status' => $staff->status,
                     'franchiseId' => $staff->franchise_id,
                     'franchise' => $staff->franchise->franchise_number

@@ -6,7 +6,9 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SalesStaffCollection;
 use App\Repositories\Interfaces\SalesStafRepositoryInterface;
+use App\SalesStaff;
 use Illuminate\Http\Request;
+use App\Http\Resources\SalesStaff as SalesStaffResource;
 
 class SalesStaffController extends ApiController
 {
@@ -32,15 +34,6 @@ class SalesStaffController extends ApiController
         return $this->showApiCollection(new SalesStaffCollection($salesStaffs));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -64,16 +57,6 @@ class SalesStaffController extends ApiController
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -84,7 +67,15 @@ class SalesStaffController extends ApiController
      */
     public function update(Request $request, $id)
     {
-        //
+        $salesStaff = SalesStaff::findOrFail($id);
+
+        $salesStaff->update($request->all());
+
+        $salesStaff->refresh();
+
+
+        return $this->showOne(new SalesStaffResource($salesStaff));
+
     }
 
     /**

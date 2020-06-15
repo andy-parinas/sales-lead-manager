@@ -20,11 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/Postcode.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/SalesStaff.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Franchise/FranchisePostcodeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Franchise/FranchisePostcodeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/FranchisePostcodeFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/FranchisePostcodeFeatureTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SalesStaff/SalesStaffController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SalesStaff/SalesStaffController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/SalesStaffCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/SalesStaffCollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/SalesStaff.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/SalesStaff.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/SalesStaffFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/SalesStaffFeatureTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +165,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TODO_SCOPE" value="Project Files" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Sandbox/design-house" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -174,17 +176,13 @@
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
-  <component name="RunManager" selected="PHPUnit.FranchisePostcodeFeatureTest.testCanDetachPostcodeOfChildren">
+  <component name="RunManager" selected="PHPUnit.SalesStaffFeatureTest.testCanListSalesStaff">
     <configuration name="FranchisePostcodeFeatureTest.testCanDetachPostcode" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\FranchisePostcodeFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchisePostcodeFeatureTest.php" method="testCanDetachPostcode" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="FranchisePostcodeFeatureTest.testCanDetachPostcodeOfChildren" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\FranchisePostcodeFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchisePostcodeFeatureTest.php" method="testCanDetachPostcodeOfChildren" scope="Method" />
-      <method v="2" />
-    </configuration>
-    <configuration name="FranchisePostcodeFeatureTest.testCanNotAttachPostcodeToChildIfNotInParent" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\FranchisePostcodeFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchisePostcodeFeatureTest.php" method="testCanNotAttachPostcodeToChildIfNotInParent" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="FranchisePostcodeFeatureTest.testCanNotDetachPostcodeThatIsAttachToChildren" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -195,17 +193,21 @@
       <TestRunner class="Tests\Feature\FranchisePostcodeFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchisePostcodeFeatureTest.php" method="testCanNotDetachPostcodeThatIsNotAttach" scope="Method" />
       <method v="2" />
     </configuration>
+    <configuration name="SalesStaffFeatureTest.testCanListSalesStaff" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\SalesStaffFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/SalesStaffFeatureTest.php" method="testCanListSalesStaff" scope="Method" />
+      <method v="2" />
+    </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.SalesStaffFeatureTest.testCanListSalesStaff" />
         <item itemvalue="PHPUnit.FranchisePostcodeFeatureTest.testCanDetachPostcodeOfChildren" />
         <item itemvalue="PHPUnit.FranchisePostcodeFeatureTest.testCanNotDetachPostcodeThatIsAttachToChildren" />
         <item itemvalue="PHPUnit.FranchisePostcodeFeatureTest.testCanNotDetachPostcodeThatIsNotAttach" />
         <item itemvalue="PHPUnit.FranchisePostcodeFeatureTest.testCanDetachPostcode" />
-        <item itemvalue="PHPUnit.FranchisePostcodeFeatureTest.testCanNotAttachPostcodeToChildIfNotInParent" />
       </list>
     </recent_temporary>
   </component>
@@ -242,14 +244,8 @@
       <workItem from="1590122015014" duration="4761000" />
       <workItem from="1590361357553" duration="37047000" />
       <workItem from="1590966480960" duration="36876000" />
-      <workItem from="1591571605861" duration="48231000" />
-    </task>
-    <task id="LOCAL-00019" summary="Added api resource response to update and create">
-      <created>1588159300593</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1588159300593</updated>
+      <workItem from="1591571605861" duration="50290000" />
+      <workItem from="1592176514034" duration="4914000" />
     </task>
     <task id="LOCAL-00020" summary="Corrected issue on not updating the SalesContact status.&#10;need to add status in fillable">
       <created>1588205232733</created>
@@ -587,7 +583,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591865217890</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="Attaching and Detaching Postcodes to Franchise">
+      <created>1591930787095</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1591930787095</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -609,7 +612,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added user collection resource" />
     <MESSAGE value="Updating and Creating users" />
     <MESSAGE value="List Users Franchises" />
     <MESSAGE value="Refactor the FranchiseRepository.php sortAndPaginate method to use eloquent in the query" />
@@ -634,7 +636,8 @@
     <MESSAGE value="Listing of Postcodes" />
     <MESSAGE value="Fixed issue with no pagination when listing postcode" />
     <MESSAGE value="Refactor FranchisePostcodeController.php index" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor FranchisePostcodeController.php index" />
+    <MESSAGE value="Attaching and Detaching Postcodes to Franchise" />
+    <option name="LAST_COMMIT_MESSAGE" value="Attaching and Detaching Postcodes to Franchise" />
   </component>
   <component name="WindowStateProjectService">
     <state x="480" y="167" key="#CLI_Interpreters" timestamp="1590473666182">
@@ -694,30 +697,34 @@
     </state>
     <state x="827" y="126" key="CommitChangelistDialog2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583823148385" />
     <state x="544" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1583985987975" />
-    <state width="1877" height="502" key="GridCell.Tab.0.bottom" timestamp="1591927300869">
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1592009268328">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="274" key="FileChooserDialogImpl/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592009268328" />
+    <state width="1877" height="502" key="GridCell.Tab.0.bottom" timestamp="1592201872533">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588851614032" />
-    <state width="1877" height="502" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591927300869" />
-    <state width="1877" height="502" key="GridCell.Tab.0.center" timestamp="1591927300869">
+    <state width="1877" height="502" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592201872533" />
+    <state width="1877" height="502" key="GridCell.Tab.0.center" timestamp="1592201872533">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1588851614031" />
-    <state width="1877" height="502" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591927300869" />
-    <state width="1877" height="502" key="GridCell.Tab.0.left" timestamp="1591927300869">
+    <state width="1877" height="502" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592201872533" />
+    <state width="1877" height="502" key="GridCell.Tab.0.left" timestamp="1592201872533">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1588851614030" />
-    <state width="1877" height="502" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591927300869" />
-    <state width="1877" height="502" key="GridCell.Tab.0.right" timestamp="1591927300869">
+    <state width="1877" height="502" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592201872533" />
+    <state width="1877" height="502" key="GridCell.Tab.0.right" timestamp="1592201872533">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1588851614031" />
-    <state width="1877" height="502" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591927300869" />
+    <state width="1877" height="502" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592201872533" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1589948179563">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -743,14 +750,14 @@
     </state>
     <state x="179" y="-901" key="SettingsEditor/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587705147994" />
     <state x="390" y="153" key="SettingsEditor/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1590122052747" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1591865219460">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1591930789960">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583823151397" />
     <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818402975" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@0.0.1366.728" timestamp="1588205242303" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1583985991863" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591865219460" />
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591930789960" />
     <state x="667" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1584317085912">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
