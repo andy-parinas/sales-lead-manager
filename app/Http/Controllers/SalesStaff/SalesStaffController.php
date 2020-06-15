@@ -9,6 +9,7 @@ use App\Repositories\Interfaces\SalesStafRepositoryInterface;
 use App\SalesStaff;
 use Illuminate\Http\Request;
 use App\Http\Resources\SalesStaff as SalesStaffResource;
+use Illuminate\Support\Facades\Gate;
 
 class SalesStaffController extends ApiController
 {
@@ -43,7 +44,20 @@ class SalesStaffController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        Gate::authorize('head-office-only');
+
+        $data = $this->validate($request, [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'contact_number' => 'required',
+            'franchise_id' => 'required',
+            'status'  => 'required'
+        ]);
+
+        $staff = SalesStaff::create($data);
+
+        return $this->showOne(new SalesStaffResource($staff));
     }
 
     /**
@@ -67,6 +81,8 @@ class SalesStaffController extends ApiController
      */
     public function update(Request $request, $id)
     {
+        Gate::authorize('head-office-only');
+
         $salesStaff = SalesStaff::findOrFail($id);
 
         $salesStaff->update($request->all());
@@ -86,6 +102,12 @@ class SalesStaffController extends ApiController
      */
     public function destroy($id)
     {
-        //
+        Gate::authorize('head-office-only');
+
+        $staff = SalesStaff::findOrFail($id);
+
+        $staff->delete();
+
+        return $this->showOne($staff);
     }
 }
