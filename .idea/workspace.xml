@@ -20,15 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/TradeStaffCollection.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/TradeStaffRepositoryInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/TradeStaffRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Feature/TradeStaffFeatureTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TradeStaff/TradeStaffController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TradeStaff/TradeStaffController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/RepositoryServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RepositoryServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/TradeStaff.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/TradeStaff.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/TradeStaffCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/TradeStaffCollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/TradeStaffRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/TradeStaffRepository.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -247,14 +242,7 @@
       <workItem from="1590361357553" duration="37047000" />
       <workItem from="1590966480960" duration="36876000" />
       <workItem from="1591571605861" duration="50290000" />
-      <workItem from="1592176514034" duration="17266000" />
-    </task>
-    <task id="LOCAL-00024" summary="Refactor Selected fields and names in Querying Leads">
-      <created>1588653288178</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1588653288178</updated>
+      <workItem from="1592176514034" duration="21918000" />
     </task>
     <task id="LOCAL-00025" summary="Refactor Query Building in LeadRepository&#10;To minimize code repetition.">
       <created>1588657001765</created>
@@ -592,7 +580,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592281624555</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="List TradeStaff">
+      <created>1592284646133</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1592284646134</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -614,7 +609,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Detaching Single Franchise to User" />
     <MESSAGE value="Added a attribute mutator in User model for password instead of hashing in the controller" />
     <MESSAGE value="Showing related franchises" />
     <MESSAGE value="Corrected related franchise query" />
@@ -639,7 +633,8 @@
     <MESSAGE value="Deleting SalesStaff" />
     <MESSAGE value="Refactor Updating SalesContact" />
     <MESSAGE value="Started Working on TradeStaff&#10;created TradeStaffSeeder.php" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started Working on TradeStaff&#10;created TradeStaffSeeder.php" />
+    <MESSAGE value="List TradeStaff" />
+    <option name="LAST_COMMIT_MESSAGE" value="List TradeStaff" />
   </component>
   <component name="WindowStateProjectService">
     <state x="480" y="167" key="#CLI_Interpreters" timestamp="1590473666182">
@@ -703,30 +698,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="274" key="FileChooserDialogImpl/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592009268328" />
-    <state width="1877" height="440" key="GridCell.Tab.0.bottom" timestamp="1592284585489">
+    <state width="1877" height="440" key="GridCell.Tab.0.bottom" timestamp="1592288474240">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588851614032" />
-    <state width="1877" height="440" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592284585489" />
-    <state width="1877" height="440" key="GridCell.Tab.0.center" timestamp="1592284585489">
+    <state width="1877" height="440" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592288474240" />
+    <state width="1877" height="440" key="GridCell.Tab.0.center" timestamp="1592288474240">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1588851614031" />
-    <state width="1877" height="440" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592284585489" />
-    <state width="1877" height="440" key="GridCell.Tab.0.left" timestamp="1592284585489">
+    <state width="1877" height="440" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592288474240" />
+    <state width="1877" height="440" key="GridCell.Tab.0.left" timestamp="1592288474240">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1588851614030" />
-    <state width="1877" height="440" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592284585489" />
-    <state width="1877" height="440" key="GridCell.Tab.0.right" timestamp="1592284585489">
+    <state width="1877" height="440" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592288474240" />
+    <state width="1877" height="440" key="GridCell.Tab.0.right" timestamp="1592288474240">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1588851614031" />
-    <state width="1877" height="440" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592284585489" />
+    <state width="1877" height="440" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592288474240" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1589948179563">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -752,14 +747,14 @@
     </state>
     <state x="179" y="-901" key="SettingsEditor/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587705147994" />
     <state x="390" y="153" key="SettingsEditor/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1590122052747" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1592281627555">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1592284662403">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583823151397" />
     <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818402975" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@0.0.1366.728" timestamp="1588205242303" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1583985991863" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592281627555" />
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592284662403" />
     <state x="667" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1584317085912">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

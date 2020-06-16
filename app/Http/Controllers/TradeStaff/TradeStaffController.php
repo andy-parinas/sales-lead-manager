@@ -28,6 +28,7 @@ class TradeStaffController extends ApiController
     {
         $staffs = $this->tradeStaffRepository->getAll($this->getRequestParams());
 
+
         return $this->showApiCollection(new TradeStaffCollection($staffs));
     }
 

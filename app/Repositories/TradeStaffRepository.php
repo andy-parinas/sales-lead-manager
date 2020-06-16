@@ -15,7 +15,7 @@ class TradeStaffRepository implements Interfaces\TradeStaffRepositoryInterface
             ->join('franchises', 'franchises.id', '=', 'trade_staff.franchise_id')
             ->join('trade_types', 'trade_types.id', '=', 'trade_staff.trade_type_id')
             ->select('trade_staff.id',
-                'trade_staff.franchise_Id',
+                'trade_staff.franchise_id',
                 'trade_staff.trade_type_id',
                 'trade_staff.first_name',
                 'trade_staff.last_name',
@@ -34,9 +34,15 @@ class TradeStaffRepository implements Interfaces\TradeStaffRepositoryInterface
 
         if(key_exists('search', $params) && key_exists('on', $params))
         {
-            return  $query->where($params['on'], 'LIKE', '%' . $params['search'] . '%')
-                ->orderBy($params['column'], $params['direction'])
-                ->paginate($params['size']);
+
+            if($params['on'] == 'trade_type'){
+                $query->where('trade_types.name', 'LIKE', '%' . $params['search'] . '%');
+            }else if ($params['on'] == 'franchise_number') {
+                $query->where('franchises.franchise_number', 'LIKE', '%' . $params['search'] . '%');
+            }else {
+                $query->where($params['on'], 'LIKE', '%' . $params['search'] . '%');
+            }
+
         }
 
         return $query->orderBy($params['column'], $params['direction'])

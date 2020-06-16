@@ -29,6 +29,7 @@ class TradeStaffCollection extends ResourceCollection
                     'buildersLicense' => $staff->builders_license,
                     'status' => $staff->status,
                     'tradeType' => $staff->trade_type,
+                    'tradeTypeId' => $staff->trade_type_id,
                 ];
             }),
             'pagination' => [
