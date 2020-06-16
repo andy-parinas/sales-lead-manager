@@ -1,11 +1,5 @@
 <?php
 
-use App\Branch;
-use App\Franchise;
-use App\Lead;
-use App\Postcode;
-use App\SalesContact;
-use App\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,6 +17,7 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class,
             LeadSourceSeeder::class,
             LeadSeeder::class,
+            TradeStaffSeeder::class,
             SalesStaffSeeder::class
         ]);
 

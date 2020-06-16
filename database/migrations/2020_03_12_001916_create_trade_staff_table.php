@@ -1,5 +1,6 @@
 <?php
 
+use App\TradeStaff;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,6 +21,10 @@ class CreateTradeStaffTable extends Migration
             $table->string('email');
             $table->string('contact_number');
             $table->unsignedBigInteger('trade_type_id');
+            $table->string('company')->nullable();
+            $table->string('abn')->nullable();
+            $table->string('builders_license')->nullable();
+            $table->string('status')->default(TradeStaff::ACTIVE);
             $table->unsignedBigInteger('franchise_id');
             $table->timestamps();
 

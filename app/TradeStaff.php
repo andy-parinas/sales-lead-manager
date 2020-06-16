@@ -6,8 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class TradeStaff extends Model
 {
+    const ACTIVE = 'active';
+    const BLOCKED = 'blocked';
+
     protected $fillable = [
-      'first_name', 'last_name', 'email', 'contact_number', 'trade_type_id', 'branch_id'
+      'first_name', 'last_name', 'email', 'contact_number', 'trade_type_id', 'branch_id',
+        'company', 'abn', 'builders_license', 'status'
     ];
 
 
