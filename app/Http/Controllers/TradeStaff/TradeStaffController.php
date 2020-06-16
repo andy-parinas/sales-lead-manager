@@ -2,11 +2,23 @@
 
 namespace App\Http\Controllers\TradeStaff;
 
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\TradeStaffCollection;
+use App\Repositories\Interfaces\TradeStaffRepositoryInterface;
 use Illuminate\Http\Request;
 
-class TradeStaffController extends Controller
+class TradeStaffController extends ApiController
 {
+
+    private $tradeStaffRepository;
+
+    public function __construct(TradeStaffRepositoryInterface $tradeStaffRepository)
+    {
+        $this->middleware('auth:sanctum');
+        $this->tradeStaffRepository = $tradeStaffRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +26,9 @@ class TradeStaffController extends Controller
      */
     public function index()
     {
-        //
+        $staffs = $this->tradeStaffRepository->getAll($this->getRequestParams());
+
+        return $this->showApiCollection(new TradeStaffCollection($staffs));
     }
 
     /**

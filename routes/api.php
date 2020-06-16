@@ -99,7 +99,10 @@ Route::resource('design-assessors', 'DesignAssessor\DesignAssessorController', [
 Route::resource('sales-staffs', 'SalesStaff\SalesStaffController', ['except' => ['create', 'edit', 'show']]);
 
 
-
+/**
+ * TradeStaff Routes
+ */
+Route::resource('trade-staffs', 'TradeStaff\TradeStaffController',['except' => ['create', 'edit', 'show']] );
 
 
 
