@@ -116,10 +116,15 @@ class SalesContactController extends ApiController
 
 //        dd($data);
 
-        if(($request['postcode'] || $request['state'] || $request['suburb']) && $contact->leads()->count() > 0)
-        {
-            return $this->errorResponse("Cannot update postode, state, or suburb when Contact is already a lead", Response::HTTP_BAD_REQUEST);
-        }
+//        if(($request['postcode'] || $request['state'] || $request['suburb']) && $contact->leads()->count() > 0)
+//        {
+//            return $this->errorResponse("Cannot update postode, state, or suburb when Contact is already a lead", Response::HTTP_BAD_REQUEST);
+//        }
+
+//        if($request['postcode'] && $contact->leads()->count() > 0)
+//        {
+//            return $this->errorResponse("Cannot update postode, state, or suburb when Contact is already a lead", Response::HTTP_BAD_REQUEST);
+//        }
 
         $contact->update($data);
         $contact->refresh();
