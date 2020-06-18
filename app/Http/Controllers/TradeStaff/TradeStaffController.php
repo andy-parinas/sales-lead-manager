@@ -107,6 +107,10 @@ class TradeStaffController extends ApiController
      */
     public function destroy($id)
     {
-        //
+        $staff = TradeStaff::findOrFail($id);
+
+        $staff->delete();
+
+        return $this->showOne($staff);
     }
 }

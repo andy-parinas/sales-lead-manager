@@ -239,14 +239,7 @@
       <workItem from="1590361357553" duration="37047000" />
       <workItem from="1590966480960" duration="36876000" />
       <workItem from="1591571605861" duration="50290000" />
-      <workItem from="1592176514034" duration="31414000" />
-    </task>
-    <task id="LOCAL-00027" summary="Refactor Queries for Leads">
-      <created>1588816087076</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1588816087076</updated>
+      <workItem from="1592176514034" duration="33295000" />
     </task>
     <task id="LOCAL-00028" summary="Refactor Lead Resource to encapsulate information into details object">
       <created>1588818401690</created>
@@ -584,7 +577,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592452155465</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="Creating TradeStaff">
+      <created>1592456855581</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1592456855581</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -606,7 +606,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Corrected related franchise query" />
     <MESSAGE value="Listing parent only franchise" />
     <MESSAGE value="Updating Franchise" />
     <MESSAGE value="corrected issue with updating franchise." />
@@ -631,7 +630,8 @@
     <MESSAGE value="List TradeStaff" />
     <MESSAGE value="Refactor GetAll function in TradeStaffRepository.php" />
     <MESSAGE value="Updating TradeStaff" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updating TradeStaff" />
+    <MESSAGE value="Creating TradeStaff" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creating TradeStaff" />
   </component>
   <component name="WindowStateProjectService">
     <state x="480" y="167" key="#CLI_Interpreters" timestamp="1590473666182">
@@ -744,14 +744,14 @@
     </state>
     <state x="179" y="-901" key="SettingsEditor/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587705147994" />
     <state x="390" y="153" key="SettingsEditor/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1590122052747" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1592452178459">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1592456857378">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1583823151397" />
     <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818402975" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@0.0.1366.728" timestamp="1588205242303" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1583985991863" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592452178459" />
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592456857378" />
     <state x="667" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1584317085912">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
