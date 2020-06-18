@@ -44,7 +44,24 @@ class TradeStaffController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validate($request, [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'contact_number' => 'required',
+            'trade_type_id' => 'required',
+            'company' => '',
+            'abn' => '',
+            'builders_license' => '',
+            'status' => '',
+            'franchise_id' => 'required',
+        ]);
+
+        $staff = TradeStaff::create($data);
+
+        return $this->showOne(new TradeStaffResource($staff));
+
+
     }
 
 
