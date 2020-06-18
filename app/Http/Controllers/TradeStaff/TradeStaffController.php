@@ -6,7 +6,9 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TradeStaffCollection;
 use App\Repositories\Interfaces\TradeStaffRepositoryInterface;
+use App\TradeStaff;
 use Illuminate\Http\Request;
+use App\Http\Resources\TradeStaff as TradeStaffResource;
 
 class TradeStaffController extends ApiController
 {
@@ -32,15 +34,7 @@ class TradeStaffController extends ApiController
         return $this->showApiCollection(new TradeStaffCollection($staffs));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -53,27 +47,8 @@ class TradeStaffController extends ApiController
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -84,7 +59,27 @@ class TradeStaffController extends ApiController
      */
     public function update(Request $request, $id)
     {
-        //
+        $staff = TradeStaff::with(['franchise', 'tradeType'])->findOrFail($id);
+
+        $data = $this->validate($request, [
+            'first_name' => '',
+            'last_name' => '',
+            'email' => '',
+            'contact_number' => '',
+            'trade_type_id' => '',
+            'company' => '',
+            'abn' => '',
+            'builders_license' => '',
+            'status' => '',
+            'franchise_id' => '',
+        ]);
+
+        $staff->update($data);
+
+        $staff->refresh();
+
+        return $this->showOne(new TradeStaffResource($staff));
+
     }
 
     /**
