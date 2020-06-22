@@ -24,7 +24,7 @@ class CreatePostcodesTable extends Migration
             $table->string('bsp_number');
             $table->string('bsp_name');
             $table->string('category');
-            $table->string('comments');
+            $table->string('comments')->nullable();
             $table->timestamps();
         });
     }

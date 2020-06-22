@@ -45,9 +45,8 @@ class PostcodeController extends ApiController
 
         if($request->has('search')){
 
-            $postcodes = Postcode::where('pcode', 'LIKE', '%'.  $request['search'] .'%' )
-                ->get()
-                ->pluck('pcode');
+            $postcodes = Postcode::where('pcode', 'LIKE',  $request['search'] .'%' )
+                ->get();
 
         }
 
