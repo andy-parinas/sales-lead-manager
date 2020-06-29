@@ -52,4 +52,9 @@ class Lead extends Model
         return $this->hasMany(Document::class);
     }
 
+    public function contract()
+    {
+        return $this->hasOne(Contract::class);
+    }
+
 }

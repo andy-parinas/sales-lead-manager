@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateContractsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('contracts', function (Blueprint $table) {
+            $table->id();
+            $table->date('contract_date');
+            $table->string('contract_number');
+            $table->float('contract_price');
+            $table->float('deposit_amount');
+            $table->date('date_deposit_received');
+            $table->float('total_contract');
+            $table->string('warranty_required');
+            $table->date('date_warranty_sent');
+            $table->unsignedBigInteger('lead_id');
+            $table->timestamps();
+
+            $table->foreign('lead_id')->references('id')->on('leads')->cascadeOnDelete();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('contracts');
+    }
+}
