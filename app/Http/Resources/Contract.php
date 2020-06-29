@@ -15,14 +15,14 @@ class Contract extends JsonResource
     public function toArray($request)
     {
         return [
-             'contractDate' => 'contract_date',
-             'contractNumber' => 'contract_number',
-             'contractPrice' => 'contract_price',
-             'depositAmount' => 'deposit_amount',
-             'dateDepositReceived' => 'date_deposit_received',
-             'totalContract' => 'total_contract',
-             'warrantyReceived' => 'warranty_required',
-             'dateWarrantySent' => 'date_warranty_sent',
+             'contractDate' => $this->contract_date,
+             'contractNumber' => $this->contract_number,
+             'contractPrice' => $this->contract_price,
+             'depositAmount' => $this->deposit_amount,
+             'dateDepositReceived' => $this->date_deposit_received,
+             'totalContract' => $this->total_contract,
+             'warrantyReceived' => $this->warranty_required,
+             'dateWarrantySent' => $this->date_warranty_sent,
         ];
     }
 }

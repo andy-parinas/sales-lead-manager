@@ -96,6 +96,17 @@ class LeadContractFeatureTest extends TestCase
 
     public function testCanShowContractOfLead()
     {
+        $lead = factory(Lead::class)->create();
+        factory(Contract::class)->create([
+            'lead_id' => $lead->id
+        ]);
 
+        $this->authenticateStaffUser();
+
+        $response = $this->get('api/leads/' . $lead->id . '/contracts');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        //dd(json_decode($response->content()));
     }
 }
