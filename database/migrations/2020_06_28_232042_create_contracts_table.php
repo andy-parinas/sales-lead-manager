@@ -18,11 +18,11 @@ class CreateContractsTable extends Migration
             $table->date('contract_date');
             $table->string('contract_number');
             $table->float('contract_price');
-            $table->float('deposit_amount');
-            $table->date('date_deposit_received');
+            $table->float('deposit_amount')->default(0);
+            $table->date('date_deposit_received')->nullable();
             $table->float('total_contract');
             $table->string('warranty_required');
-            $table->date('date_warranty_sent');
+            $table->date('date_warranty_sent')->nullable();
             $table->unsignedBigInteger('lead_id');
             $table->timestamps();
 

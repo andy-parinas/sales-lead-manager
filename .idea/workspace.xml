@@ -20,13 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
-      <change afterPath="$PROJECT_DIR$/app/Contract.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadContractController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/factories/ContractFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_06_28_232042_create_contracts_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/Contract.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Lead.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lead.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadContractController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/ContractFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ContractFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_06_28_232042_create_contracts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_06_28_232042_create_contracts_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,21 +181,21 @@
       <recent name="G:\Projects\sales-lead-manager\storage\app\database" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.TradeStaffFeatureTest.testCanListTradeStaffs">
-    <configuration name="FranchisePostcodeFeatureTest.testCanDetachPostcodeOfChildren" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\FranchisePostcodeFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchisePostcodeFeatureTest.php" method="testCanDetachPostcodeOfChildren" scope="Method" />
+  <component name="RunManager" selected="PHPUnit.LeadContractFeatureTest.testCanCreateLeadContract">
+    <configuration name="LeadContractFeatureTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\LeadContractFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" scope="Class" />
       <method v="2" />
     </configuration>
-    <configuration name="FranchisePostcodeFeatureTest.testCanNotDetachPostcodeThatIsAttachToChildren" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\FranchisePostcodeFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchisePostcodeFeatureTest.php" method="testCanNotDetachPostcodeThatIsAttachToChildren" scope="Method" />
+    <configuration name="LeadContractFeatureTest.testCanCreateLeadContract" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\LeadContractFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" method="testCanCreateLeadContract" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="FranchisePostcodeFeatureTest.testCanNotDetachPostcodeThatIsNotAttach" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\FranchisePostcodeFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchisePostcodeFeatureTest.php" method="testCanNotDetachPostcodeThatIsNotAttach" scope="Method" />
+    <configuration name="LeadContractFeatureTest.testCanNotCreateContractIfDepositIsMoreThanContract" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\LeadContractFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" method="testCanNotCreateContractIfDepositIsMoreThanContract" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="SalesStaffFeatureTest.testCanListSalesStaff" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\SalesStaffFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/SalesStaffFeatureTest.php" method="testCanListSalesStaff" scope="Method" />
+    <configuration name="LeadContractFeatureTest.testCanNotCreateContractWithDepositButNoDepositDate" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\LeadContractFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" method="testCanNotCreateContractWithDepositButNoDepositDate" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="TradeStaffFeatureTest.testCanListTradeStaffs" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -208,11 +208,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.LeadContractFeatureTest.testCanCreateLeadContract" />
+        <item itemvalue="PHPUnit.LeadContractFeatureTest.testCanNotCreateContractWithDepositButNoDepositDate" />
+        <item itemvalue="PHPUnit.LeadContractFeatureTest.testCanNotCreateContractIfDepositIsMoreThanContract" />
+        <item itemvalue="PHPUnit.LeadContractFeatureTest" />
         <item itemvalue="PHPUnit.TradeStaffFeatureTest.testCanListTradeStaffs" />
-        <item itemvalue="PHPUnit.SalesStaffFeatureTest.testCanListSalesStaff" />
-        <item itemvalue="PHPUnit.FranchisePostcodeFeatureTest.testCanDetachPostcodeOfChildren" />
-        <item itemvalue="PHPUnit.FranchisePostcodeFeatureTest.testCanNotDetachPostcodeThatIsAttachToChildren" />
-        <item itemvalue="PHPUnit.FranchisePostcodeFeatureTest.testCanNotDetachPostcodeThatIsNotAttach" />
       </list>
     </recent_temporary>
   </component>
@@ -254,14 +254,7 @@
       <workItem from="1592788683965" duration="4646000" />
       <workItem from="1592974168550" duration="1224000" />
       <workItem from="1593252021866" duration="5013000" />
-      <workItem from="1593386146626" duration="3751000" />
-    </task>
-    <task id="LOCAL-00030" summary="Improved on the Seeder to include proper Lead Sources">
-      <created>1589179424153</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1589179424153</updated>
+      <workItem from="1593386146626" duration="8148000" />
     </task>
     <task id="LOCAL-00031" summary="Added Postcode Collection API Resource">
       <created>1589242121189</created>
@@ -599,7 +592,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592800358709</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="created contract model, migration and factory">
+      <created>1593389934097</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1593389934098</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -621,7 +621,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="corrected issue with updating franchise." />
     <MESSAGE value="Corrected the findByUser in FranchiseRepository.php" />
     <MESSAGE value="Changed Welcome Page" />
     <MESSAGE value="Changed Password factory. &#10;Since using mutators just need plain password in the seeder" />
@@ -646,7 +645,8 @@
     <MESSAGE value="Creating TradeStaff" />
     <MESSAGE value="Deleting TradeStaff" />
     <MESSAGE value="Seeder for all postodes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Seeder for all postodes" />
+    <MESSAGE value="created contract model, migration and factory" />
+    <option name="LAST_COMMIT_MESSAGE" value="created contract model, migration and factory" />
   </component>
   <component name="WindowStateProjectService">
     <state x="480" y="167" key="#CLI_Interpreters" timestamp="1590473666182">
@@ -703,30 +703,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="274" key="FileChooserDialogImpl/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592009268328" />
-    <state width="1877" height="440" key="GridCell.Tab.0.bottom" timestamp="1592787936635">
+    <state width="1877" height="404" key="GridCell.Tab.0.bottom" timestamp="1593394002983">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588851614032" />
-    <state width="1877" height="440" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592787936635" />
-    <state width="1877" height="440" key="GridCell.Tab.0.center" timestamp="1592787936635">
+    <state width="1877" height="404" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593394002983" />
+    <state width="1877" height="404" key="GridCell.Tab.0.center" timestamp="1593394002983">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1588851614031" />
-    <state width="1877" height="440" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592787936635" />
-    <state width="1877" height="440" key="GridCell.Tab.0.left" timestamp="1592787936635">
+    <state width="1877" height="404" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593394002983" />
+    <state width="1877" height="404" key="GridCell.Tab.0.left" timestamp="1593394002983">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1588851614030" />
-    <state width="1877" height="440" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592787936635" />
-    <state width="1877" height="440" key="GridCell.Tab.0.right" timestamp="1592787936635">
+    <state width="1877" height="404" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593394002983" />
+    <state width="1877" height="404" key="GridCell.Tab.0.right" timestamp="1593394002983">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1588851614031" />
-    <state width="1877" height="440" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592787936635" />
+    <state width="1877" height="404" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593394002983" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1589948179563">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -752,25 +752,21 @@
     </state>
     <state x="179" y="-901" key="SettingsEditor/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587705147994" />
     <state x="390" y="153" key="SettingsEditor/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1590122052747" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1592800378849">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1593389937901">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818402975" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@0.0.1366.728" timestamp="1588205242303" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592800378849" />
-    <state x="667" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1584317085912">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="667" y="347" key="com.intellij.ide.util.TipDialog/-1366.63.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1584317085912" />
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593389937901" />
     <state x="650" y="152" width="664" height="764" key="find.popup" timestamp="1591605742498">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="387" y="-916" width="581" height="741" key="find.popup/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588748240542" />
     <state x="650" y="152" width="664" height="764" key="find.popup/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1591605742498" />
-    <state x="623" y="226" width="768" height="679" key="search.everywhere.popup" timestamp="1592283806237">
+    <state x="623" y="226" width="768" height="679" key="search.everywhere.popup" timestamp="1593392295167">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="383" y="-831" width="672" height="659" key="search.everywhere.popup/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588210067045" />
-    <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592283806237" />
+    <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593392295167" />
   </component>
 </project>

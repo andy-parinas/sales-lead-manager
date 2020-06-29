@@ -50,6 +50,7 @@ Route::resource('leads', 'Lead\LeadController', ['only' => ['index', 'show', 'de
 Route::resource('leads.job-types', 'Lead\LeadJobTypeController', ['only' => ['update']]);
 Route::resource('leads.appointments', 'Lead\LeadAppointmentController', ['only' => ['update']]);
 Route::resource('leads.documents', 'Lead\LeadDocumentController', ['only' => ['index', 'show', 'store', 'destroy']]);
+Route::resource('leads.contracts', 'Lead\LeadContractController', ['except' => ['create', 'edit']]);
 
 /**
  *  User Routes
