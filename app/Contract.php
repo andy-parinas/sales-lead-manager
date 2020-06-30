@@ -23,4 +23,9 @@ class Contract extends Model
     {
         return $this->belongsTo(Lead::class);
     }
+
+    public function contractVariations()
+    {
+        return $this->hasMany(ContractVariation::class);
+    }
 }

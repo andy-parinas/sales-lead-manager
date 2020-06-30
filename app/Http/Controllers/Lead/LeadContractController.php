@@ -29,6 +29,10 @@ class LeadContractController extends ApiController
 
         $contract = $lead->contract;
 
+        if($contract == null){
+
+            return response()->json([], Response::HTTP_NO_CONTENT);
+        }
 
         return $this->showOne(new ContractResource($contract));
 

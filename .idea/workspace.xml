@@ -20,9 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
+      <change afterPath="$PROJECT_DIR$/app/ContractVariation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/factories/ContractVariationFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_06_30_054215_create_contract_variations_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Contract.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadContractController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Resources/Contract.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Contract.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_06_28_232042_create_contracts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_06_28_232042_create_contracts_table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -252,14 +258,7 @@
       <workItem from="1593252021866" duration="5013000" />
       <workItem from="1593386146626" duration="8745000" />
       <workItem from="1593432832352" duration="1714000" />
-      <workItem from="1593471155992" duration="389000" />
-    </task>
-    <task id="LOCAL-00032" summary="Added Product Seeder and Product Collection resource API">
-      <created>1589252471906</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1589252471906</updated>
+      <workItem from="1593471155992" duration="9936000" />
     </task>
     <task id="LOCAL-00033" summary="Added List, Search and Create functionality for DesignAssessor">
       <created>1589256084523</created>
@@ -597,7 +596,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593394482604</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="Showing Lead Contract">
+      <created>1593471597465</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1593471597467</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -619,7 +625,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Changed Welcome Page" />
     <MESSAGE value="Changed Password factory. &#10;Since using mutators just need plain password in the seeder" />
     <MESSAGE value="Refactor SalesContact index to use Collection resource" />
     <MESSAGE value="Refactor FranchiseRepository to allow getting all franchise if no size in query params" />
@@ -644,7 +649,8 @@
     <MESSAGE value="Seeder for all postodes" />
     <MESSAGE value="created contract model, migration and factory" />
     <MESSAGE value="Can Create Lead Contract" />
-    <option name="LAST_COMMIT_MESSAGE" value="Can Create Lead Contract" />
+    <MESSAGE value="Showing Lead Contract" />
+    <option name="LAST_COMMIT_MESSAGE" value="Showing Lead Contract" />
   </component>
   <component name="WindowStateProjectService">
     <state x="480" y="167" key="#CLI_Interpreters" timestamp="1590473666182">
@@ -750,12 +756,12 @@
     </state>
     <state x="179" y="-901" key="SettingsEditor/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587705147994" />
     <state x="390" y="153" key="SettingsEditor/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1590122052747" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1593394484389">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1593471599419">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818402975" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@0.0.1366.728" timestamp="1588205242303" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593394484389" />
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593471599419" />
     <state x="650" y="152" width="664" height="764" key="find.popup" timestamp="1591605742498">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

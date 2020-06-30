@@ -21,7 +21,7 @@ class Contract extends JsonResource
              'depositAmount' => $this->deposit_amount,
              'dateDepositReceived' => $this->date_deposit_received,
              'totalContract' => $this->total_contract,
-             'warrantyReceived' => $this->warranty_required,
+             'warrantyRequired' => $this->warranty_required,
              'dateWarrantySent' => $this->date_warranty_sent,
         ];
     }
