@@ -11,7 +11,7 @@ class ContractVariation extends Model
         'variation_date',
         'description',
         'amount',
-        'contract_id'
+        'contract_id',
     ];
 
     public function contract()

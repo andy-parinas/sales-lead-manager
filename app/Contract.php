@@ -13,6 +13,7 @@ class Contract extends Model
         'deposit_amount',
         'date_deposit_received',
         'total_contract',
+        'total_variation',
         'warranty_required',
         'date_warranty_sent',
         'lead_id',

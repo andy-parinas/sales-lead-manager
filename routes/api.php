@@ -52,6 +52,12 @@ Route::resource('leads.appointments', 'Lead\LeadAppointmentController', ['only' 
 Route::resource('leads.documents', 'Lead\LeadDocumentController', ['only' => ['index', 'show', 'store', 'destroy']]);
 Route::resource('leads.contracts', 'Lead\LeadContractController', ['except' => ['create', 'edit']]);
 
+
+/**
+ * Lead Contract Route
+ */
+Route::resource('contracts.contract-variations', 'Contract\ContractVariationController', ['except' => ['edit', 'create']]);
+
 /**
  *  User Routes
  */
