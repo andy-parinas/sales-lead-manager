@@ -15,6 +15,7 @@ class Contract extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
              'contractDate' => $this->contract_date,
              'contractNumber' => $this->contract_number,
              'contractPrice' => $this->contract_price,

@@ -21,11 +21,20 @@ class ContractVariationController extends ApiController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $contractId
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request, $contractId)
     {
-        //
+        $contract = Contract::findOrFail($contractId);
+
+        $variations = $contract->variations;
+
+
+        return $this->showAll($variations);
+
+
     }
 
     /**
