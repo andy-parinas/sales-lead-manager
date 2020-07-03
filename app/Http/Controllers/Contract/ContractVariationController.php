@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\ContractVariation as ContractVariationResource;
 
 class ContractVariationController extends ApiController
 {
@@ -29,10 +30,10 @@ class ContractVariationController extends ApiController
     {
         $contract = Contract::findOrFail($contractId);
 
-        $variations = $contract->variations;
+        $variations = $contract->contractVariations;
 
 
-        return $this->showAll($variations);
+        return $this->showAll(ContractVariationResource::collection($variations));
 
 
     }
@@ -77,7 +78,7 @@ class ContractVariationController extends ApiController
 
             $contract->refresh();
 
-            return $this->showOne($variation, Response::HTTP_CREATED);
+            return $this->showOne( new ContractVariationResource($variation), Response::HTTP_CREATED);
 
         }
         catch (\Exception $exception)
