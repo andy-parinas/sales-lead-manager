@@ -62,7 +62,7 @@ class ContractVariationController extends ApiController
             $variation = $contract->contractVariations()->create($data);
 
             $total_variation = $contract->total_variation + $variation->amount;
-            $total_contract = $contract->total_contract + $total_variation;
+            $total_contract = $contract->total_contract + $variation->amount;
 
             if($total_contract < 0 ){
                 throw new \Exception("Variation will make the Total Contract Price Negative");
