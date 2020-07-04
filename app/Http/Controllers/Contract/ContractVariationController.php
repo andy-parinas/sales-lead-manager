@@ -171,10 +171,47 @@ class ContractVariationController extends ApiController
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy($contractId, $variationId)
     {
-        //
+        $contract = Contract::findOrFail($contractId);
+        $variation = ContractVariation::findOrFail($variationId);
+
+
+        DB::beginTransaction();
+
+        try {
+
+            // Adjust the Contract total before the old variation is applied
+            $total_contract = $contract->total_contract - $variation->amount;
+
+            //Adjust the total variation before the old variation is applied
+            $total_variation = $contract->total_variation - $variation->amount;
+
+            //Apply the updates on Contract
+            $contract->update([
+                'total_contract' => $total_contract,
+                'total_variation' => $total_variation
+            ]);
+
+            /**
+             * Todo Adjust the Finance Side here
+             */
+
+            $variation->delete();
+
+            DB::commit();
+
+            return $this->showOne($variation);
+
+        }catch (\Exception $exception){
+
+            DB::rollBack();
+
+            throw new \Exception($exception);
+
+        }
+
     }
 }
