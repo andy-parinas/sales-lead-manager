@@ -66,10 +66,10 @@ class LeadContractController extends ApiController
         if($request->deposit_amount)
         {
 
-            if($request->deposit_amount > $data['contract_price'])
-            {
-                abort(Response::HTTP_BAD_REQUEST, "Deposit Amount should be less than Contract Price");
-            }
+//            if($request->deposit_amount > $data['contract_price'])
+//            {
+//                abort(Response::HTTP_BAD_REQUEST, "Deposit Amount should be less than Contract Price");
+//            }
 
             $data['deposit_amount'] = $request->deposit_amount;
 
@@ -83,7 +83,7 @@ class LeadContractController extends ApiController
             $data['deposit_amount'] = 0;
         }
 
-        $data['total_contract'] = $data['contract_price'] - $data['deposit_amount'];
+        $data['total_contract'] = $data['contract_price'];
 
         $contract = $lead->contract()->create($data);
 
@@ -137,18 +137,8 @@ class LeadContractController extends ApiController
 
             if($data['contract_price'] != $contract->contract_price){
 
-                if($data['deposit_amount'] != $contract->deposit_amount){
-                    $total_contract = $data['contract_price'] - $data['deposit_amount'] + $contract->total_variation;
-                }else {
-                    $total_contract = $data['contract_price'] - $contract->deposit_amount  + $contract->total_variation;
-                }
-
-            }else {
-
-                if($data['deposit_amount'] != $contract->deposit_amount){
-                    $total_contract = $data['contract_price'] - $data['deposit_amount'] + $contract->total_variation;
-                }
-
+                $total_contract = $data['contract_price']  + $contract->total_variation;
+                $data['total_contract'] = $total_contract;
             }
 
             if($total_contract < 0 ){
@@ -156,7 +146,6 @@ class LeadContractController extends ApiController
             }
 
 
-            $data['total_contract'] = $total_contract;
 
             $contract->update($data);
 

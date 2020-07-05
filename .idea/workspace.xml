@@ -20,7 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Contract/ContractVariationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Contract/ContractVariationController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Finance.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/factories/FinanceFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_07_05_231956_create_finances_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadContractController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,21 +181,21 @@
       <recent name="G:\Projects\sales-lead-manager\storage\app\database" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.LeadContractFeatureTest">
-    <configuration name="LeadContractFeatureTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\LeadContractFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" scope="Class" />
+  <component name="RunManager" selected="PHPUnit.LeadContractFeatureTest.testCanUpdateContractChangePrice">
+    <configuration name="LeadContractFeatureTest.testCanCreateContractIfDepositIsMoreThanContract" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\LeadContractFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" method="testCanCreateContractIfDepositIsMoreThanContract" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="LeadContractFeatureTest.testCanNotUpdateContractNegativeTotal" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\LeadContractFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" method="testCanNotUpdateContractNegativeTotal" scope="Method" />
+    <configuration name="LeadContractFeatureTest.testCanCreateLeadContract" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\LeadContractFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" method="testCanCreateLeadContract" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="LeadContractFeatureTest.testCanUpdateContractChangeDeposit" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\LeadContractFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" method="testCanUpdateContractChangeDeposit" scope="Method" />
+    <configuration name="LeadContractFeatureTest.testCanNotCreateContractIfDepositIsMoreThanContract" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\LeadContractFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" method="testCanNotCreateContractIfDepositIsMoreThanContract" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="LeadContractFeatureTest.testCanUpdateContractChangeDepositAndPrice" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\LeadContractFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" method="testCanUpdateContractChangeDepositAndPrice" scope="Method" />
+    <configuration name="LeadContractFeatureTest.testCanNotCreateContractWithDepositButNoDepositDate" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\LeadContractFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" method="testCanNotCreateContractWithDepositButNoDepositDate" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="LeadContractFeatureTest.testCanUpdateContractChangePrice" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -202,11 +208,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="PHPUnit.LeadContractFeatureTest" />
-        <item itemvalue="PHPUnit.LeadContractFeatureTest.testCanNotUpdateContractNegativeTotal" />
-        <item itemvalue="PHPUnit.LeadContractFeatureTest.testCanUpdateContractChangeDepositAndPrice" />
-        <item itemvalue="PHPUnit.LeadContractFeatureTest.testCanUpdateContractChangeDeposit" />
         <item itemvalue="PHPUnit.LeadContractFeatureTest.testCanUpdateContractChangePrice" />
+        <item itemvalue="PHPUnit.LeadContractFeatureTest.testCanNotCreateContractWithDepositButNoDepositDate" />
+        <item itemvalue="PHPUnit.LeadContractFeatureTest.testCanCreateContractIfDepositIsMoreThanContract" />
+        <item itemvalue="PHPUnit.LeadContractFeatureTest.testCanNotCreateContractIfDepositIsMoreThanContract" />
+        <item itemvalue="PHPUnit.LeadContractFeatureTest.testCanCreateLeadContract" />
       </list>
     </recent_temporary>
   </component>
@@ -251,14 +257,8 @@
       <workItem from="1593386146626" duration="8745000" />
       <workItem from="1593432832352" duration="1714000" />
       <workItem from="1593471155992" duration="12358000" />
-      <workItem from="1593667700714" duration="26273000" />
-    </task>
-    <task id="LOCAL-00041" summary="Added FRanchise Type return on Franchise Resource.&#10;added postcodeStatus in the Lead list.">
-      <created>1590037798192</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1590037798193</updated>
+      <workItem from="1593667700714" duration="28718000" />
+      <workItem from="1593990298680" duration="2353000" />
     </task>
     <task id="LOCAL-00042" summary="Change leadDate field from date to datetime for accuracy in sorting">
       <created>1590042759983</created>
@@ -596,7 +596,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593782279214</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="Deleting Contract Variations">
+      <created>1593828180689</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1593828180689</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -618,7 +625,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Listing of Postcodes" />
     <MESSAGE value="Fixed issue with no pagination when listing postcode" />
     <MESSAGE value="Refactor FranchisePostcodeController.php index" />
     <MESSAGE value="Attaching and Detaching Postcodes to Franchise" />
@@ -643,7 +649,8 @@
     <MESSAGE value="Corrected computation on Total Contract when creating variation" />
     <MESSAGE value="Corrected Migrations and validations" />
     <MESSAGE value="Updating Contract Variations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updating Contract Variations" />
+    <MESSAGE value="Deleting Contract Variations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleting Contract Variations" />
   </component>
   <component name="WindowStateProjectService">
     <state x="480" y="167" key="#CLI_Interpreters" timestamp="1590473666182">
@@ -700,30 +707,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="274" key="FileChooserDialogImpl/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592009268328" />
-    <state width="1877" height="404" key="GridCell.Tab.0.bottom" timestamp="1593677504353">
+    <state width="1877" height="404" key="GridCell.Tab.0.bottom" timestamp="1593992776372">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588851614032" />
-    <state width="1877" height="404" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593677504353" />
-    <state width="1877" height="404" key="GridCell.Tab.0.center" timestamp="1593677504352">
+    <state width="1877" height="404" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593992776372" />
+    <state width="1877" height="404" key="GridCell.Tab.0.center" timestamp="1593992776372">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1588851614031" />
-    <state width="1877" height="404" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593677504352" />
-    <state width="1877" height="404" key="GridCell.Tab.0.left" timestamp="1593677504352">
+    <state width="1877" height="404" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593992776372" />
+    <state width="1877" height="404" key="GridCell.Tab.0.left" timestamp="1593992776371">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1588851614030" />
-    <state width="1877" height="404" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593677504352" />
-    <state width="1877" height="404" key="GridCell.Tab.0.right" timestamp="1593677504352">
+    <state width="1877" height="404" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593992776371" />
+    <state width="1877" height="404" key="GridCell.Tab.0.right" timestamp="1593992776372">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1588851614031" />
-    <state width="1877" height="404" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593677504352" />
+    <state width="1877" height="404" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593992776372" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1589948179563">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -749,12 +756,12 @@
     </state>
     <state x="179" y="-901" key="SettingsEditor/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587705147994" />
     <state x="390" y="153" key="SettingsEditor/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1590122052747" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1593782281703">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1593828184147">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818402975" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@0.0.1366.728" timestamp="1588205242303" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593782281703" />
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593828184147" />
     <state x="650" y="152" width="664" height="764" key="find.popup" timestamp="1593669054808">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

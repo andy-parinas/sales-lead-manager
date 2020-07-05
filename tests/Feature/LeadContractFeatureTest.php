@@ -42,11 +42,11 @@ class LeadContractFeatureTest extends TestCase
         $lead->refresh();
         $contract = $lead->contract;
 
-        $this->assertEquals(75,$contract->total_contract);
+        $this->assertEquals(100,$contract->total_contract);
 
     }
 
-    public function testCanNotCreateContractIfDepositIsMoreThanContract()
+    public function testCanCreateContractIfDepositIsMoreThanContract()
     {
 
         $lead = factory(Lead::class)->create();
@@ -65,9 +65,9 @@ class LeadContractFeatureTest extends TestCase
 
         $response = $this->post('api/leads/' . $lead->id . '/contracts', $data);
 
-        $response->assertStatus(Response::HTTP_BAD_REQUEST);
+        $response->assertStatus(Response::HTTP_CREATED);
 
-        $this->assertCount(0, Contract::all());
+        $this->assertCount(1, Contract::all());
     }
 
     public function testCanNotCreateContractWithDepositButNoDepositDate()
@@ -143,7 +143,7 @@ class LeadContractFeatureTest extends TestCase
 
         $contract->refresh();
 
-        $this->assertEquals(125, $contract->total_contract);
+        $this->assertEquals(150, $contract->total_contract);
 
 
 
@@ -219,7 +219,7 @@ class LeadContractFeatureTest extends TestCase
 
         $contract->refresh();
 
-        $this->assertEquals(125, $contract->total_contract);
+        $this->assertEquals(200, $contract->total_contract);
 
     }
 
