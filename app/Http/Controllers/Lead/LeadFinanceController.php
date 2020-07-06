@@ -2,19 +2,41 @@
 
 namespace App\Http\Controllers\Lead;
 
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Lead;
 use Illuminate\Http\Request;
+use App\Http\Resources\Finance as FinanceResource;
+use Symfony\Component\HttpFoundation\Response;
 
-class LeadFinanceController extends Controller
+class LeadFinanceController extends ApiController
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $leadId
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request, $lead_id)
     {
-        //
+        $lead = Lead::findOrFail($lead_id);
+
+        $finance = $lead->finance;
+
+        if($finance == null){
+
+            return response()->json([], Response::HTTP_NO_CONTENT);
+        }
+
+        return $this->showOne(new FinanceResource($finance));
     }
 
     /**

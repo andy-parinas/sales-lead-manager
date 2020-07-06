@@ -18,8 +18,8 @@ class CreateContractsTable extends Migration
             $table->date('contract_date');
             $table->string('contract_number');
             $table->float('contract_price', 13,2);
-            $table->float('deposit_amount', 13,2)->default(0);
-            $table->float('total_variation', 13,2)->default(0);
+            $table->float('deposit_amount', 13,2)->default(0.0);
+            $table->float('total_variation', 13,2)->default(0.0);
             $table->date('date_deposit_received')->nullable();
             $table->float('total_contract',13,2);
             $table->string('warranty_required');

@@ -160,8 +160,9 @@ class LeadContractController extends ApiController
             $data['deposit_amount'] = $request->deposit_amount;
             $this->validate($request, ['date_deposit_received' => 'required']);
             $data['date_deposit_received'] = $request->date_deposit_received;
-
         }
+
+        $data['deposit_amount'] = 0;
 
         return $data;
     }

@@ -67,7 +67,7 @@ class ContractFinanceService implements Interfaces\ContractFinanceServiceInterfa
         $gst = $project_price * 0.10;
         $total_contract = $contract->total_contract;
         $deposit = $contract->deposit_amount;
-        $balance = $total_contract - $deposit;
+        $balance = $total_contract - $deposit - $finance->total_payment_made;
 
         $finance->project_price = $project_price;
         $finance->gst = $gst;

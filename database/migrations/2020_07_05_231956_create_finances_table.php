@@ -21,6 +21,7 @@ class CreateFinancesTable extends Migration
             $table->float('total_contract', 13,2);
             $table->float('deposit', 13, 2);
             $table->float('balance', 13, 2);
+            $table->float('total_payment_made', 13, 2)->default(0.0);
             $table->unsignedBigInteger('lead_id');
             $table->timestamps();
 
