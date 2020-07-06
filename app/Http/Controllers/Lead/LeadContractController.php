@@ -6,6 +6,7 @@ use App\Contract;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Lead;
+use App\Services\Interfaces\ContractFinanceServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,9 +15,12 @@ use App\Http\Resources\Contract as ContractResource;
 class LeadContractController extends ApiController
 {
 
-    public function __construct()
+    protected $contractService;
+
+    public function __construct(ContractFinanceServiceInterface $contractService)
     {
         $this->middleware('auth:sanctum');
+        $this->contractService = $contractService;
     }
 
 
@@ -51,43 +55,28 @@ class LeadContractController extends ApiController
     {
 
         $lead = Lead::findOrFail($lead_id);
-        //dd($lead);
 
-        $data = $this->validate($request, [
-            'contract_date' => 'required|date',
-            'contract_number' => 'required',
-            'contract_price' => 'required|numeric',
-            'warranty_required' => 'required',
-            'date_warranty_sent' => ''
-        ]);
+        $data = $this->validateContractData($request);
 
+        DB::beginTransaction();
 
+        try {
 
-        if($request->deposit_amount)
-        {
+            $contract = $this->contractService->createContract($data);
+            $finance = $this->contractService->createFinance($contract);
 
-//            if($request->deposit_amount > $data['contract_price'])
-//            {
-//                abort(Response::HTTP_BAD_REQUEST, "Deposit Amount should be less than Contract Price");
-//            }
+            $lead->contract()->save($contract);
+            $lead->finance()->save($finance);
 
-            $data['deposit_amount'] = $request->deposit_amount;
+            DB::commit();
 
-            $this->validate($request, ['date_deposit_received' => 'required']);
+            return $this->showOne(new ContractResource($contract), Response::HTTP_CREATED);
 
-            $data['date_deposit_received'] = $request->date_deposit_received;
+        }catch (\Exception $exception){
 
-
-        }else {
-
-            $data['deposit_amount'] = 0;
+            DB::rollBack();
+            throw new \Exception($exception);
         }
-
-        $data['total_contract'] = $data['contract_price'];
-
-        $contract = $lead->contract()->create($data);
-
-        return $this->showOne(new ContractResource($contract), Response::HTTP_CREATED);
 
     }
 
@@ -178,5 +167,30 @@ class LeadContractController extends ApiController
     public function destroy($id)
     {
         //
+    }
+
+
+
+    private function validateContractData(Request $request){
+
+
+        $data = $this->validate($request, [
+            'contract_date' => 'required|date',
+            'contract_number' => 'required',
+            'contract_price' => 'required|numeric',
+            'warranty_required' => 'required',
+            'date_warranty_sent' => ''
+        ]);
+
+        if($request->deposit_amount)
+        {
+
+            $data['deposit_amount'] = $request->deposit_amount;
+            $this->validate($request, ['date_deposit_received' => 'required']);
+            $data['date_deposit_received'] = $request->date_deposit_received;
+
+        }
+
+        return $data;
     }
 }
