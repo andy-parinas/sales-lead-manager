@@ -10,7 +10,8 @@ interface ContractFinanceServiceInterface
 
     public function createFinance($contract);
 
-    public function updateContract($contract, $finance, $contractData);
+    public function updateContract($contract,  $data);
 
+    public function updateFinance($finance, $contract);
 
 }

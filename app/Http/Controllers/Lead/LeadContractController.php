@@ -102,51 +102,23 @@ class LeadContractController extends ApiController
     {
         $lead = Lead::findOrFail($leadId);
 
+        $finance = $lead->finance;
         $contract = Contract::findOrFail($contractId);
 
-        $data = $this->validate($request, [
-            'contract_date' => 'date',
-            'contract_number' => '',
-            'contract_price' => 'numeric',
-            'deposit_amount' => 'numeric',
-            'warranty_required' => '',
-            'date_warranty_sent' => ''
-        ]);
-
-        if($data['deposit_amount'] > 0 && $data['deposit_amount'] != $contract->deposit_amount ){
-            $this->validate($request, ['date_deposit_received' => 'required|date']);
-            $data['date_deposit_received'] = $request->date_deposit_received;
-        }
+        $data = $this->validateContracUpdates($request);
 
         DB::beginTransaction();
 
         try
         {
-            $total_contract = $contract->total_contract;
 
-            if($data['contract_price'] != $contract->contract_price){
+            $updatedContract = $this->contractService->updateContract($contract, $data);
 
-                $total_contract = $data['contract_price']  + $contract->total_variation;
-                $data['total_contract'] = $total_contract;
-            }
-
-            if($total_contract < 0 ){
-                throw new \Exception("Update will cause negative value on  Total Contract");
-            }
-
-
-
-            $contract->update($data);
-
-            /**
-             * TODO Add the Adjustments for Finance Here
-             */
+            $this->contractService->updateFinance($finance, $updatedContract);
 
             DB::commit();
 
-            $contract->refresh();
-
-            return $this->showOne(new ContractResource($contract));
+            return $this->showOne(new ContractResource($updatedContract));
 
 
         }
@@ -189,6 +161,25 @@ class LeadContractController extends ApiController
             $this->validate($request, ['date_deposit_received' => 'required']);
             $data['date_deposit_received'] = $request->date_deposit_received;
 
+        }
+
+        return $data;
+    }
+
+
+    private function validateContracUpdates(Request $request){
+        $data = $this->validate($request, [
+            'contract_date' => 'sometimes|date',
+            'contract_number' => 'sometimes|string',
+            'contract_price' => 'sometimes|numeric',
+            'deposit_amount' => 'sometimes|numeric',
+            'warranty_required' => 'sometimes|string',
+            'date_warranty_sent' => 'sometimes|'
+        ]);
+
+        if($request->deposit_amount > 0 ){
+            $this->validate($request, ['date_deposit_received' => 'required|date']);
+            $data['date_deposit_received'] = $request->date_deposit_received;
         }
 
         return $data;

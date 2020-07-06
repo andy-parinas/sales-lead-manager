@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Contract;
+use App\Finance;
 use App\Lead;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -113,6 +114,7 @@ class LeadContractFeatureTest extends TestCase
 
     public function testCanUpdateContractChangePrice()
     {
+        $this->withoutExceptionHandling();
 
         $lead = factory(Lead::class)->create();
 
@@ -128,6 +130,8 @@ class LeadContractFeatureTest extends TestCase
             'date_warranty_sent' => '06/29/2020',
             'lead_id' => $lead->id
         ]);
+
+        factory(Finance::class)->create(['lead_id' => $lead->id]);
 
         $updates = [
             'contract_price' => 150.00,
@@ -168,6 +172,8 @@ class LeadContractFeatureTest extends TestCase
             'lead_id' => $lead->id
         ]);
 
+        factory(Finance::class)->create(['lead_id' => $lead->id]);
+
         $updates = [
             'contract_price' => 100.00,
             'deposit_amount' => 70,
@@ -204,6 +210,8 @@ class LeadContractFeatureTest extends TestCase
             'date_warranty_sent' => '06/29/2020',
             'lead_id' => $lead->id
         ]);
+
+        factory(Finance::class)->create(['lead_id' => $lead->id]);
 
         $updates = [
             'contract_price' => 200.00,
