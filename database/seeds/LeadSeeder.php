@@ -15,11 +15,13 @@ class LeadSeeder extends Seeder
      */
     public function run()
     {
+        $designAdvisors = factory(\App\DesignAssessor::class, 20)->create();
         $leadSourceIds = LeadSource::all()->pluck('id')->toArray();
         $productIds = \App\Product::all()->pluck('id')->toArray();
+        $designAdvisorIds = $designAdvisors->pluck('id')->toArray();
 
         //Loop Through the postcodes for the SalesContact
-        Postcode::all()->each(function ($postcode) use ($leadSourceIds, $productIds) {
+        Postcode::all()->each(function ($postcode) use ($leadSourceIds, $productIds, $designAdvisorIds) {
 
             $franchises = $postcode->franchises;
 
@@ -27,11 +29,12 @@ class LeadSeeder extends Seeder
                 if(!$franchise->isParent()){
                     dump('Creating Sales Contact');
                     factory(SalesContact::class, 60)->create(['postcode' => $postcode->pcode])
-                        ->each(function ($contact) use ($franchise, $leadSourceIds, $productIds) {
+                        ->each(function ($contact) use ($franchise, $leadSourceIds, $productIds, $designAdvisorIds) {
 
                             dump('Creating Lead');
                             $leadSourceKey = array_rand($leadSourceIds);
                             $productKey = array_rand($productIds);
+                            $designAdvisorKey = array_rand($designAdvisorIds);
 
                             $lead = factory(Lead::class)->create([
                                 'sales_contact_id' => $contact->id,
@@ -41,7 +44,8 @@ class LeadSeeder extends Seeder
                             factory(\App\Appointment::class)->create(['lead_id' => $lead->id]);
                             factory(\App\JobType::class)->create([
                                 'lead_id' => $lead->id,
-                                'product_id' => $productIds[$productKey]
+                                'product_id' => $productIds[$productKey],
+                                'design_assessor_id' => $designAdvisorIds[$designAdvisorKey]
                             ]);
                             factory(\App\Document::class)->create(['lead_id' => $lead->id]);
                         });
