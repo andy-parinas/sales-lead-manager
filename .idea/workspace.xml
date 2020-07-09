@@ -20,9 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
+      <change afterPath="$PROJECT_DIR$/app/PaymentMade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/PaymentSchedule.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/factories/PaymentMadeFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/factories/PaymentScheduleFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_07_09_010137_create_payment_mades_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_07_09_010335_create_payment_schedules_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Contract/ContractVariationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Contract/ContractVariationController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,14 +263,7 @@
       <workItem from="1593667700714" duration="28718000" />
       <workItem from="1593990298680" duration="26597000" />
       <workItem from="1594106484089" duration="2092000" />
-      <workItem from="1594250220076" duration="1231000" />
-    </task>
-    <task id="LOCAL-00047" summary="Attaching single Franchise to User">
-      <created>1590556725764</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1590556725764</updated>
+      <workItem from="1594250220076" duration="6103000" />
     </task>
     <task id="LOCAL-00048" summary="Detaching Single Franchise to User">
       <created>1590638153592</created>
@@ -604,7 +601,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594113854215</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="Added updating the Finance on adding variation">
+      <created>1594254548240</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1594254548243</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -626,7 +630,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactor Updating SalesContact" />
     <MESSAGE value="Started Working on TradeStaff&#10;created TradeStaffSeeder.php" />
     <MESSAGE value="List TradeStaff" />
     <MESSAGE value="Refactor GetAll function in TradeStaffRepository.php" />
@@ -651,7 +654,8 @@
     <MESSAGE value="Updating Finance when Contract is updated" />
     <MESSAGE value="Show Lead Finance" />
     <MESSAGE value="Updated Seeder to use random DesignAsessors. Added Sales_summary_report.sql" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated Seeder to use random DesignAsessors. Added Sales_summary_report.sql" />
+    <MESSAGE value="Added updating the Finance on adding variation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added updating the Finance on adding variation" />
   </component>
   <component name="WindowStateProjectService">
     <state x="480" y="167" key="#CLI_Interpreters" timestamp="1590473666182">
@@ -757,12 +761,12 @@
     </state>
     <state x="179" y="-901" key="SettingsEditor/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587705147994" />
     <state x="390" y="153" key="SettingsEditor/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1590122052747" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1594113856286">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1594254549960">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818402975" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@0.0.1366.728" timestamp="1588205242303" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594113856286" />
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594254549960" />
     <state x="650" y="152" width="664" height="764" key="find.popup" timestamp="1593669054808">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
