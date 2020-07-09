@@ -11,4 +11,9 @@ class PaymentMade extends Model
         'description',
         'amount'
     ];
+
+    public function finance()
+    {
+        return $this->belongsTo(Finance::class);
+    }
 }

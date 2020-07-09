@@ -20,13 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
-      <change afterPath="$PROJECT_DIR$/app/PaymentMade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/PaymentSchedule.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/factories/PaymentMadeFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/factories/PaymentScheduleFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_07_09_010137_create_payment_mades_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_07_09_010335_create_payment_schedules_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Finance/FinancePaymentMadeController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Finance/FinancePaymentScheduleController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/PaymentMade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Feature/FinancePaymentMadeFeatureTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Finance.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Finance.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/PaymentMade.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/PaymentMade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -263,14 +264,7 @@
       <workItem from="1593667700714" duration="28718000" />
       <workItem from="1593990298680" duration="26597000" />
       <workItem from="1594106484089" duration="2092000" />
-      <workItem from="1594250220076" duration="6103000" />
-    </task>
-    <task id="LOCAL-00048" summary="Detaching Single Franchise to User">
-      <created>1590638153592</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1590638153592</updated>
+      <workItem from="1594250220076" duration="9910000" />
     </task>
     <task id="LOCAL-00049" summary="Added a attribute mutator in User model for password instead of hashing in the controller">
       <created>1590645414614</created>
@@ -608,7 +602,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594254548243</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="Add Finance payment models and migrations">
+      <created>1594267279425</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1594267279425</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -630,7 +631,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Started Working on TradeStaff&#10;created TradeStaffSeeder.php" />
     <MESSAGE value="List TradeStaff" />
     <MESSAGE value="Refactor GetAll function in TradeStaffRepository.php" />
     <MESSAGE value="Updating TradeStaff" />
@@ -655,7 +655,8 @@
     <MESSAGE value="Show Lead Finance" />
     <MESSAGE value="Updated Seeder to use random DesignAsessors. Added Sales_summary_report.sql" />
     <MESSAGE value="Added updating the Finance on adding variation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added updating the Finance on adding variation" />
+    <MESSAGE value="Add Finance payment models and migrations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Finance payment models and migrations" />
   </component>
   <component name="WindowStateProjectService">
     <state x="480" y="167" key="#CLI_Interpreters" timestamp="1590473666182">
@@ -761,21 +762,21 @@
     </state>
     <state x="179" y="-901" key="SettingsEditor/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587705147994" />
     <state x="390" y="153" key="SettingsEditor/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1590122052747" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1594254549960">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1594267294239">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818402975" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@0.0.1366.728" timestamp="1588205242303" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594254549960" />
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594267294239" />
     <state x="650" y="152" width="664" height="764" key="find.popup" timestamp="1593669054808">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="387" y="-916" width="581" height="741" key="find.popup/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588748240542" />
     <state x="650" y="152" width="664" height="764" key="find.popup/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593669054808" />
-    <state x="623" y="226" width="768" height="679" key="search.everywhere.popup" timestamp="1594028015440">
+    <state x="623" y="226" width="768" height="679" key="search.everywhere.popup" timestamp="1594272656705">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="383" y="-831" width="672" height="659" key="search.everywhere.popup/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588210067045" />
-    <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594028015440" />
+    <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594272656705" />
   </component>
 </project>

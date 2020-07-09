@@ -20,4 +20,8 @@ class Finance extends Model
         return $this->belongsTo(Lead::class);
     }
 
+    public function paymentsMade(){
+        return $this->hasMany(PaymentMade::class, 'finance_id');
+    }
+
 }
