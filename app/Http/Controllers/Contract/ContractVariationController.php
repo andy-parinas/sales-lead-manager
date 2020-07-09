@@ -6,6 +6,7 @@ use App\Contract;
 use App\ContractVariation;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Services\Interfaces\ContractFinanceServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,9 +15,12 @@ use App\Http\Resources\ContractVariation as ContractVariationResource;
 class ContractVariationController extends ApiController
 {
 
-    public function __construct()
+    protected $contractService;
+
+    public function __construct(ContractFinanceServiceInterface $contractService)
     {
         $this->middleware('auth:sanctum');
+        $this->contractService = $contractService;
     }
 
 
@@ -48,6 +52,7 @@ class ContractVariationController extends ApiController
     public function store(Request $request, $contractId)
     {
         $contract = Contract::findOrFail($contractId);
+        $finance = $contract->lead->finance;
 
         $data = $this->validate($request, [
             'variation_date' => 'required|date',
@@ -74,6 +79,8 @@ class ContractVariationController extends ApiController
                 'total_variation' => $total_variation,
                 'total_contract' => $total_contract
             ]);
+
+            $this->contractService->updateFinance($finance, $contract);
 
             DB::commit();
 
@@ -114,6 +121,7 @@ class ContractVariationController extends ApiController
     {
         $contract = Contract::findOrFail($contractId);
         $variation = ContractVariation::findOrFail($variationId);
+        $finance = $contract->lead->finance;
 
         $data = $this->validate($request, [
             'variation_date' => 'sometimes|date',
@@ -149,9 +157,7 @@ class ContractVariationController extends ApiController
             //Apply the updates on the Variation
             $variation->update($data);
 
-            /**
-             * Todo Adjust the Finance HEre
-             */
+            $this->contractService->updateFinance($finance, $contract);
 
             DB::commit();
 
@@ -177,7 +183,7 @@ class ContractVariationController extends ApiController
     {
         $contract = Contract::findOrFail($contractId);
         $variation = ContractVariation::findOrFail($variationId);
-
+        $finance = $contract->lead->finance;
 
         DB::beginTransaction();
 
@@ -195,9 +201,7 @@ class ContractVariationController extends ApiController
                 'total_variation' => $total_variation
             ]);
 
-            /**
-             * Todo Adjust the Finance Side here
-             */
+            $this->contractService->updateFinance($finance, $contract);
 
             $variation->delete();
 
