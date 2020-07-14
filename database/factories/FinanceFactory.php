@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Finance;
+use App\Lead;
 use Faker\Generator as Faker;
 
 $factory->define(Finance::class, function (Faker $faker) {
@@ -21,5 +22,7 @@ $factory->define(Finance::class, function (Faker $faker) {
         'total_contract' => $contract_price,
         'deposit' => $deposit,
         'balance' => $balance,
+        'total_payment_made' => 0,
+        'lead_id' => factory(Lead::class)
     ];
 });

@@ -57,7 +57,7 @@ Route::resource('leads.finances', 'Lead\LeadFinanceController', ['except' => ['c
 /**
  * Finance Route
  */
-Route::resource('finances.payment-made', 'Finance\FinancePaymentMadeController',['except' => ['create', 'edit']] );
+Route::resource('finances.payments-made', 'Finance\FinancePaymentMadeController',['except' => ['create', 'edit']] );
 Route::resource('finances.payment-schedules', 'Finance\FinancePaymentMadeController',['except' => ['create', 'edit']] );
 
 /**

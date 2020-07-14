@@ -11,6 +11,7 @@ class Finance extends Model
         'gst',
         'contract_price',
         'total_contract',
+        'total_payment_made',
         'deposit',
         'balance',
     ];

@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\PaymentMade;
 use Illuminate\Http\Request;
 use App\Http\Resources\PaymentMade as PaymentMadeResource;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Response;
 
 class FinancePaymentMadeController extends ApiController
 {
@@ -41,10 +43,28 @@ class FinancePaymentMadeController extends ApiController
             'amount' => 'required'
         ]);
 
-        $payment = $finance->paymentsMade()->create($data);
+        DB::beginTransaction();
 
+        try {
+            $payment = $finance->paymentsMade()->create($data);
 
-        return $this->showOne(new PaymentMadeResource($payment));
+            $total_payment = $finance->total_payment_made + $payment->amount;
+            $balance = $finance->total_contract - $finance->deposit - $total_payment;
+
+            $finance->update([
+                'total_payment_made' => $total_payment,
+                'balance' => $balance
+            ]);
+
+            DB::commit();
+
+            return $this->showOne(new PaymentMadeResource($payment), Response::HTTP_CREATED);
+
+        }catch (\Exception $exception){
+            DB::rollBack();
+            throw new \Exception($exception);
+        }
+
 
     }
 

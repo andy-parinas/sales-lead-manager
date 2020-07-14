@@ -20,14 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Finance/FinancePaymentMadeController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Finance/FinancePaymentScheduleController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/PaymentMade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Feature/FinancePaymentMadeFeatureTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Finance.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Finance.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/PaymentMade.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/PaymentMade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Finance/FinancePaymentMadeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Finance/FinancePaymentMadeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/FinanceFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/FinanceFactory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/FinancePaymentMadeFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/FinancePaymentMadeFeatureTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,7 +165,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TODO_SCOPE" value="Project Files" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Sandbox/inventory-app" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -185,7 +184,11 @@
       <recent name="G:\Projects\sales-lead-manager\storage\app\database" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.LeadFinanceFeatureTest.testCanUpdateFinanceOnContractUpdate">
+  <component name="RunManager" selected="PHPUnit.FinancePaymentMadeFeatureTest.testCanAddPaymentMade">
+    <configuration name="FinancePaymentMadeFeatureTest.testCanAddPaymentMade" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\FinancePaymentMadeFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FinancePaymentMadeFeatureTest.php" method="testCanAddPaymentMade" scope="Method" />
+      <method v="2" />
+    </configuration>
     <configuration name="LeadContractFeatureTest.testCanCreateLeadContract" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\LeadContractFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" method="testCanCreateLeadContract" scope="Method" />
       <method v="2" />
@@ -198,10 +201,6 @@
       <TestRunner class="Tests\Feature\LeadContractFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" method="testCanUpdateContractChangePrice" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="LeadFinanceFeatureTest.testCanCreateFinanceFromContract" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\LeadFinanceFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadFinanceFeatureTest.php" method="testCanCreateFinanceFromContract" scope="Method" />
-      <method v="2" />
-    </configuration>
     <configuration name="LeadFinanceFeatureTest.testCanUpdateFinanceOnContractUpdate" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\LeadFinanceFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadFinanceFeatureTest.php" method="testCanUpdateFinanceOnContractUpdate" scope="Method" />
       <method v="2" />
@@ -212,11 +211,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.FinancePaymentMadeFeatureTest.testCanAddPaymentMade" />
         <item itemvalue="PHPUnit.LeadFinanceFeatureTest.testCanUpdateFinanceOnContractUpdate" />
         <item itemvalue="PHPUnit.LeadContractFeatureTest.testCanUpdateContractChangeDepositAndPrice" />
         <item itemvalue="PHPUnit.LeadContractFeatureTest.testCanUpdateContractChangePrice" />
         <item itemvalue="PHPUnit.LeadContractFeatureTest.testCanCreateLeadContract" />
-        <item itemvalue="PHPUnit.LeadFinanceFeatureTest.testCanCreateFinanceFromContract" />
       </list>
     </recent_temporary>
   </component>
@@ -264,14 +263,8 @@
       <workItem from="1593667700714" duration="28718000" />
       <workItem from="1593990298680" duration="26597000" />
       <workItem from="1594106484089" duration="2092000" />
-      <workItem from="1594250220076" duration="9910000" />
-    </task>
-    <task id="LOCAL-00049" summary="Added a attribute mutator in User model for password instead of hashing in the controller">
-      <created>1590645414614</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1590645414614</updated>
+      <workItem from="1594250220076" duration="13836000" />
+      <workItem from="1594596819190" duration="5517000" />
     </task>
     <task id="LOCAL-00050" summary="Showing related franchises">
       <created>1590997734861</created>
@@ -609,7 +602,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594267279425</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="Started working on payment made feature">
+      <created>1594274761510</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1594274761511</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -631,7 +631,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="List TradeStaff" />
     <MESSAGE value="Refactor GetAll function in TradeStaffRepository.php" />
     <MESSAGE value="Updating TradeStaff" />
     <MESSAGE value="Creating TradeStaff" />
@@ -656,7 +655,8 @@
     <MESSAGE value="Updated Seeder to use random DesignAsessors. Added Sales_summary_report.sql" />
     <MESSAGE value="Added updating the Finance on adding variation" />
     <MESSAGE value="Add Finance payment models and migrations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Finance payment models and migrations" />
+    <MESSAGE value="Started working on payment made feature" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started working on payment made feature" />
   </component>
   <component name="WindowStateProjectService">
     <state x="480" y="167" key="#CLI_Interpreters" timestamp="1590473666182">
@@ -709,34 +709,34 @@
     </state>
     <state x="442" y="-784" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587954956514" />
     <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594028642985" />
-    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1592009268328">
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1594281964790">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="274" key="FileChooserDialogImpl/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1592009268328" />
-    <state width="1877" height="404" key="GridCell.Tab.0.bottom" timestamp="1594016814651">
+    <state x="740" y="274" key="FileChooserDialogImpl/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281964790" />
+    <state width="1877" height="404" key="GridCell.Tab.0.bottom" timestamp="1594281966226">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588851614032" />
-    <state width="1877" height="404" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594016814651" />
-    <state width="1877" height="404" key="GridCell.Tab.0.center" timestamp="1594016814651">
+    <state width="1877" height="404" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
+    <state width="1877" height="404" key="GridCell.Tab.0.center" timestamp="1594281966226">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1588851614031" />
-    <state width="1877" height="404" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594016814651" />
-    <state width="1877" height="404" key="GridCell.Tab.0.left" timestamp="1594016814651">
+    <state width="1877" height="404" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
+    <state width="1877" height="404" key="GridCell.Tab.0.left" timestamp="1594281966226">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1588851614030" />
-    <state width="1877" height="404" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594016814651" />
-    <state width="1877" height="404" key="GridCell.Tab.0.right" timestamp="1594016814651">
+    <state width="1877" height="404" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
+    <state width="1877" height="404" key="GridCell.Tab.0.right" timestamp="1594281966226">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1588851614031" />
-    <state width="1877" height="404" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594016814651" />
+    <state width="1877" height="404" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1589948179563">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -762,21 +762,21 @@
     </state>
     <state x="179" y="-901" key="SettingsEditor/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587705147994" />
     <state x="390" y="153" key="SettingsEditor/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1590122052747" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1594267294239">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1594274763207">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818402975" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@0.0.1366.728" timestamp="1588205242303" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594267294239" />
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594274763207" />
     <state x="650" y="152" width="664" height="764" key="find.popup" timestamp="1593669054808">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="387" y="-916" width="581" height="741" key="find.popup/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588748240542" />
     <state x="650" y="152" width="664" height="764" key="find.popup/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593669054808" />
-    <state x="623" y="226" width="768" height="679" key="search.everywhere.popup" timestamp="1594272656705">
+    <state x="623" y="226" width="768" height="679" key="search.everywhere.popup" timestamp="1594277025054">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="383" y="-831" width="672" height="659" key="search.everywhere.popup/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588210067045" />
-    <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594272656705" />
+    <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594277025054" />
   </component>
 </project>
