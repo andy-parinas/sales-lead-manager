@@ -20,34 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
+      <change afterPath="$PROJECT_DIR$/database/seeds/FranchiseActualSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Franchise/FranchiseLeadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Franchise/FranchiseLeadController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadJobTypeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadJobTypeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Lead.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Lead.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/JobType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/JobType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/FranchiseRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/FranchiseRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/LeadRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/LeadRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/SalesStaff.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/SalesStaff.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/DesignAssessorFactory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/JobTypeFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/JobTypeFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_10_060549_create_design_assessors_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_10_061848_create_job_types_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_10_061848_create_job_types_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_12_034902_create_sales_staff_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_10_061847_create_sales_staff_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/DesignAssessorFeatureTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/FinancePaymentMadeFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/FinancePaymentMadeFeatureTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/FranchiseFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/FranchiseFeatureTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/FranchiseLeadFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/FranchiseLeadFeatureTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/FranchiseLeadSFPFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/FranchiseLeadSFPFeatureTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/FranchisePostcodeFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/FranchisePostcodeFeatureTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/LeadFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/LeadFeatureTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/LeadJobTypeFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/LeadJobTypeFeatureTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/LeadResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/LeadResourceTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/SalesStaffFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/SalesStaffFeatureTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/UserFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/UserFeatureTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/UserFranchiseFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/UserFranchiseFeatureTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/DesignAssessorTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/JobTypeTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/JobTypeTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -294,6 +268,7 @@
       <workItem from="1594721012944" duration="1817000" />
       <workItem from="1594855234623" duration="4572000" />
       <workItem from="1594872638236" duration="8071000" />
+      <workItem from="1594893828489" duration="6418000" />
     </task>
     <task id="LOCAL-00050" summary="Showing related franchises">
       <created>1590997734861</created>
@@ -800,6 +775,10 @@
     </state>
     <state x="698" y="241" width="797" height="565" key="NewPhpClassDialog/0.0.1920.1035@0.0.1920.1035" timestamp="1594870555637" />
     <state x="698" y="242" key="NewPhpClassDialog/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593994051677" />
+    <state x="791" y="222" key="RollbackChangesDialog" timestamp="1594903534282">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="791" y="222" key="RollbackChangesDialog/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594903534282" />
     <state x="390" y="153" key="SettingsEditor" timestamp="1590122052747">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
