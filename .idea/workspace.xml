@@ -20,13 +20,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Reports/SalesSummaryReportController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/ReportRepositoryInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/ReportRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_provision" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_provision" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Finance.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Finance.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Finance/FinancePaymentMadeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Finance/FinancePaymentMadeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/FinanceFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/FinanceFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/FinancePaymentMadeFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/FinancePaymentMadeFeatureTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/box_meta" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/box_meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/id" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/id" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/index_uuid" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/index_uuid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/private_key" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/private_key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/synced_folders" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/synced_folders" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/vagrant_cwd" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/vagrant_cwd" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,12 +45,16 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
     <exe-path />
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.3">
     <include_path>
@@ -165,7 +175,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TODO_SCOPE" value="Project Files" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Sandbox/inventory-app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -265,6 +275,9 @@
       <workItem from="1594106484089" duration="2092000" />
       <workItem from="1594250220076" duration="13836000" />
       <workItem from="1594596819190" duration="5517000" />
+      <workItem from="1594719102784" duration="697000" />
+      <workItem from="1594721012944" duration="1817000" />
+      <workItem from="1594855234623" duration="4572000" />
     </task>
     <task id="LOCAL-00050" summary="Showing related franchises">
       <created>1590997734861</created>
@@ -631,7 +644,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactor GetAll function in TradeStaffRepository.php" />
     <MESSAGE value="Updating TradeStaff" />
     <MESSAGE value="Creating TradeStaff" />
     <MESSAGE value="Deleting TradeStaff" />
@@ -656,7 +668,8 @@
     <MESSAGE value="Added updating the Finance on adding variation" />
     <MESSAGE value="Add Finance payment models and migrations" />
     <MESSAGE value="Started working on payment made feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started working on payment made feature" />
+    <MESSAGE value="Add Components for Generating Reports" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Components for Generating Reports" />
   </component>
   <component name="WindowStateProjectService">
     <state x="480" y="167" key="#CLI_Interpreters" timestamp="1590473666182">
@@ -700,10 +713,15 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="206" key="#com.intellij.ide.util.MemberChooser/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589329618090" />
-    <state x="657" y="309" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1593994050580">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="657" y="308" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1594869134115">
+      <screen x="0" y="0" width="1920" height="1035" />
     </state>
+    <state x="657" y="308" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1035@0.0.1920.1035" timestamp="1594869134115" />
     <state x="657" y="309" key="#com.intellij.ide.util.TreeClassChooserDialog/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593994050580" />
+    <state x="668" y="289" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1594869096016">
+      <screen x="0" y="0" width="1920" height="1035" />
+    </state>
+    <state x="668" y="289" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1035@0.0.1920.1035" timestamp="1594869096016" />
     <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1594028642985">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -753,9 +771,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.1.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589948179563" />
-    <state x="698" y="242" key="NewPhpClassDialog" timestamp="1593994051677">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="698" y="241" width="797" height="565" key="NewPhpClassDialog" timestamp="1594870555637">
+      <screen x="0" y="0" width="1920" height="1035" />
     </state>
+    <state x="698" y="241" width="797" height="565" key="NewPhpClassDialog/0.0.1920.1035@0.0.1920.1035" timestamp="1594870555637" />
     <state x="698" y="242" key="NewPhpClassDialog/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593994051677" />
     <state x="390" y="153" key="SettingsEditor" timestamp="1590122052747">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -778,5 +797,9 @@
     </state>
     <state x="383" y="-831" width="672" height="659" key="search.everywhere.popup/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588210067045" />
     <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594277025054" />
+    <state x="689" y="426" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1594870566405">
+      <screen x="0" y="0" width="1920" height="1035" />
+    </state>
+    <state x="689" y="426" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1920.1035@0.0.1920.1035" timestamp="1594870566405" />
   </component>
 </project>
