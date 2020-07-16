@@ -64,7 +64,6 @@ class FranchiseLeadController extends ApiController
 
         $this->authorize('createLead', $franchise);
 
-        //dump($request);
 
         $data = $this->validate($request, [
             'lead.lead_number' => 'required',
@@ -75,7 +74,7 @@ class FranchiseLeadController extends ApiController
             'job_type.date_allocated' => 'required',
             'job_type.description' => '',
             'job_type.product_id' => 'required',
-            'job_type.design_assessor_id' => 'required',
+            'job_type.sales_staff_id' => 'required',
             'appointment.appointment_date' => 'required',
             'appointment.appointment_notes' => '',
             'appointment.quoted_price' => 'required',
@@ -83,18 +82,12 @@ class FranchiseLeadController extends ApiController
             'appointment.comments' => '',
         ]);
 
-        //dump($data['lead'], $data['job_type'], $data['appointment']);
-
-        //dd($data['lead']['sales_contact_id']);
-
         /**
          * Check if the SalesContact postcode is within the franchise postcode assignment.
          * If not, Need to tag the Lead as Outside-of-franchise
          */
         $salesContact = SalesContact::findOrFail($data['lead']['sales_contact_id']);
         $data['lead']['postcode_status'] = $this->postcodeService->checkSalesContactPostcode($salesContact, $franchise);
-
-        //dd($data);
 
         DB::beginTransaction();
 
@@ -130,7 +123,7 @@ class FranchiseLeadController extends ApiController
         // DB::enableQueryLog();
 
         $lead = Lead::with(['franchise', 'salesContact', 'leadSource', 'jobType',
-                            'appointment' ,'jobType.product', 'jobType.designAssessor'])->findOrFail($lead_id);
+                            'appointment' ,'jobType.product', 'jobType.salesStaff'])->findOrFail($lead_id);
 
         // $lead = $this->leadRepository->findLeadById($lead_id);
 

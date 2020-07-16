@@ -53,7 +53,7 @@ class LeadRepository implements LeadRepositoryInterface
             ->leftJoin('job_types', function($join) use ($lead_id) {
                 $join->on( 'job_types.lead_id', '=', $lead_id)
                 ->join('products', 'products.id', '=', 'job_types.product_id')
-                ->join('design_assessors', 'design_assessors.id', '=', 'job_types.design_assessor_id');
+                ->join('sales_staffs', 'sales_staffs.id', '=', 'job_types.sales_staff_id');
             })
             ->leftJoin('appointments', 'appointments.lead_id', '=', $lead_id)
             ->select(
@@ -79,9 +79,9 @@ class LeadRepository implements LeadRepositoryInterface
                     'appointments.comments',
                     'products.id as product_id',
                     'products.name as product_name as productName',
-                    'design_assessors.id as design_assessor_id',
-                    'design_assessors.first_name as design_assessors_first_name as designAssessorFirstName',
-                    'design_assessors.last_name as design_assessors_last_name as designAssessorLastName')
+                    'sales_staffs.id as design_assessor_id',
+                    'sales_staffs.first_name as designAssessorFirstName',
+                    'sales_staffs.last_name  as designAssessorLastName')
             ->first();
     }
 

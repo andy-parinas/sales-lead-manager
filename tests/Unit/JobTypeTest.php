@@ -6,6 +6,7 @@ use App\DesignAssessor;
 use App\JobType;
 use App\Lead;
 use App\Product;
+use App\SalesStaff;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -35,14 +36,14 @@ class JobTypeTest extends TestCase
 
     }
 
-    public function testJobTypeBelongsToDesignAssessor()
+    public function testJobTypeBelongsToSalesStaff()
     {
-        $assessor = factory(DesignAssessor::class)->create();
-        $jobType = factory(JobType::class)->create(['design_assessor_id' => $assessor->id]);
+        $salesStaff = factory(SalesStaff::class)->create();
+        $jobType = factory(JobType::class)->create(['sales_staff_id' => $salesStaff->id]);
 
 
-        $this->assertInstanceOf(DesignAssessor::class, $jobType->designAssessor);
-        $this->assertEquals($assessor->first_name, $jobType->designAssessor->first_name);
+        $this->assertInstanceOf(SalesStaff::class, $jobType->salesStaff);
+        $this->assertEquals($salesStaff->first_name, $jobType->salesStaff->first_name);
 
     }
 

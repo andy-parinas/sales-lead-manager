@@ -289,7 +289,7 @@ class FranchiseFeatureTest extends TestCase
 
         $this->authenticateHeadOfficeUser();
 
-        $response = $this->get('api/franchises/'. $parent->id . '/related');
+        $response = $this->get('api/franchises/'. $parent->id . '/related?size=10');
 
         //dd(json_decode($response->content()));
 
@@ -313,7 +313,7 @@ class FranchiseFeatureTest extends TestCase
 
         $this->authenticateHeadOfficeUser();
 
-        $response = $this->get('api/franchises/'. $child->id . '/related');
+        $response = $this->get('api/franchises/'. $child->id . '/related?size=10');
 
         //dd(json_decode($response->content()));
 

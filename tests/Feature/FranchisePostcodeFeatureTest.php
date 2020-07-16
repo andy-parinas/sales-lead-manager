@@ -68,7 +68,7 @@ class FranchisePostcodeFeatureTest extends TestCase
     public function testCanNotListPostCodeOutsideFranchiseByNonHeadOffice()
     {
 
-        $user = factory(User::class)->create(['user_type' => User::STAFF_USER ]);
+        $user = factory(User::class)->create(['username' => 'testuesr123',  'user_type' => User::STAFF_USER ]);
         $franchise = factory(Franchise::class)->create();
         $user->franchises()->attach($franchise->id);
 

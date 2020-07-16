@@ -13,10 +13,19 @@ class SalesStaff extends Model
         'first_name', 'last_name', 'email', 'contact_number', 'franchise_id', 'status'
     ];
 
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
 
     public function franchise()
     {
         return $this->belongsTo(Franchise::class);
+    }
+
+    public function jobTypes()
+    {
+        return $this->hasMany(JobType::class);
     }
 
 }

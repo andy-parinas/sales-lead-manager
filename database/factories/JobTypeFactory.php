@@ -12,6 +12,6 @@ $factory->define(JobType::class, function (Faker $faker) {
         'description' => $faker->sentence,
         'lead_id' => factory(\App\Lead::class),
         'product_id' => factory(\App\Product::class),
-        'design_assessor_id' => factory(\App\DesignAssessor::class)
+        'sales_staff_id' => factory(\App\SalesStaff::class)
     ];
 });

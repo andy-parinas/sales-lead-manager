@@ -20,12 +20,12 @@ class CreateJobTypesTable extends Migration
             $table->text('description')->nullable();
             $table->unsignedBigInteger('lead_id');
             $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('design_assessor_id');
+            $table->unsignedBigInteger('sales_staff_id');
             $table->timestamps();
 
             $table->foreign('lead_id')->references('id')->on('leads')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('design_assessor_id')->references('id')->on('design_assessors');
+            $table->foreign('sales_staff_id')->references('id')->on('sales_staff');
         });
     }
 

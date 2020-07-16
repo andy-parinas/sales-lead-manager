@@ -22,7 +22,7 @@ class SalesStaffFeatureTest extends TestCase
 
         $response = $this->get('api/sales-staffs?size=10');
 
-        dd(json_decode($response->content()));
+        //dd(json_decode($response->content()));
 
         $response->assertStatus(Response::HTTP_OK)
             ->assertJsonCount(10, 'data');

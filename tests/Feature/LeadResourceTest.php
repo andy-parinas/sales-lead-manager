@@ -40,8 +40,8 @@ class LeadResourceTest extends TestCase
                     'description',
                     'productId',
                     'product',
-                    'designAdvisorId',
-                    'designAdvisor'
+                    'designAssessorId',
+                    'designAssessor'
                 ],
                 'appointment' => [
                     'date',

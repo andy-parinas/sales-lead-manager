@@ -35,9 +35,11 @@ class LeadJobTypeController extends ApiController
             'taken_by' => '',
             'date_allocated' => 'date',
             'product_id' => '',
-            'design_assessor_id' => '',
+            'sales_staff_id' => '',
             'description' => ''
         ]);
+
+
 
         $jobType->update($data);
 

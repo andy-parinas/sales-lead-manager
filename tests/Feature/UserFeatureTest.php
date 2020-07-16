@@ -103,7 +103,7 @@ class UserFeatureTest extends TestCase
 
         $this->authenticateHeadOfficeUser();
 
-        $this->get('api/users')
+        $this->get('api/users?size=10')
             ->assertStatus(Response::HTTP_OK)
             ->assertJsonCount(10, 'data');
     }
@@ -118,7 +118,7 @@ class UserFeatureTest extends TestCase
 
         $this->authenticateFranchiseAdmin();
 
-        $this->get('api/users')
+        $this->get('api/users?size=10')
             ->assertStatus(Response::HTTP_FORBIDDEN);
 
 

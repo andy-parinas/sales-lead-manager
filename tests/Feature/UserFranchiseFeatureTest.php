@@ -275,7 +275,7 @@ class UserFranchiseFeatureTest extends TestCase
     public function testCanNotDetachParentFranchiseWithChildren()
     {
 
-        $this->withoutExceptionHandling();
+        //$this->withoutExceptionHandling();
 
         $user = factory(User::class)->create();
         $franchise = factory(Franchise::class)->create();
@@ -327,7 +327,7 @@ class UserFranchiseFeatureTest extends TestCase
 
         $this->authenticateHeadOfficeUser();
 
-        $response = $this->get('api/users/' . $user->id . '/franchises');
+        $response = $this->get('api/users/' . $user->id . '/franchises?size=10');
 
         //dd(json_decode($response->content()));
 

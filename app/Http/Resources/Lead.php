@@ -44,10 +44,10 @@ class Lead extends JsonResource
                 'description' => $this->jobType->description,
                 'productId' => $this->jobType->product->id,
                 'product' => $this->jobType->product->name,
-                'designAssessorId' => $this->jobType->designAssessor->id,
-                'designAssessor' => $this->jobType->designAssessor->full_name,
-                'designAssessorEmail' => $this->jobType->designAssessor->email,
-                'designAssessorContactNumber' => $this->jobType->designAssessor->contact_number
+                'designAssessorId' => $this->jobType->salesStaff->id,
+                'designAssessor' => $this->jobType->salesStaff->full_name,
+                'designAssessorEmail' => $this->jobType->salesStaff->email,
+                'designAssessorContactNumber' => $this->jobType->salesStaff->contact_number
             ] : null,
             'appointment' => $this->appointment ? [
                 'id' => $this->appointment->id,

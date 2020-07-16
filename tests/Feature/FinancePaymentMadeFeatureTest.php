@@ -39,6 +39,5 @@ class FinancePaymentMadeFeatureTest extends TestCase
         $finance->refresh();
 
         $this->assertEquals(1000, $finance->balance);
-        $this->assertEquals();
     }
 }

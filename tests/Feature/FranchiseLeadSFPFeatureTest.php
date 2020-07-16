@@ -34,7 +34,7 @@ class FranchiseLeadSFPFeatureTest extends TestCase
             ['*']
         );
 
-        $response = $this->get('api/franchises/' . $franchise->id . '/leads?sort=leadNumber&direction=desc');
+        $response = $this->get('api/franchises/' . $franchise->id . '/leads?sort=leadNumber&direction=desc&size=10');
         $results = json_decode($response->content());
 
 //         dd($results);
@@ -61,7 +61,7 @@ class FranchiseLeadSFPFeatureTest extends TestCase
             ['*']
         );
 
-        $response = $this->get('api/franchises/' . $franchise->id . '/leads?sort=leadNumber&direction=asc');
+        $response = $this->get('api/franchises/' . $franchise->id . '/leads?sort=leadNumber&direction=asc&size=10');
         $results = json_decode($response->content());
 
         $this->assertEquals('101', $results->data[0]->leadNumber);
@@ -110,7 +110,7 @@ class FranchiseLeadSFPFeatureTest extends TestCase
 
         foreach ($searchFields as $on => $search) {
 
-            $response = $this->get('api/franchises/' . $franchise->id . '/leads?search='. $search . '&on=' . $on);
+            $response = $this->get('api/franchises/' . $franchise->id . '/leads?size=10&search='. $search . '&on=' . $on);
             $results = json_decode($response->content());
 
             $response->assertJsonCount(1, 'data');

@@ -20,19 +20,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Reports/SalesSummaryReportController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/ReportRepositoryInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/ReportRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_provision" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_provision" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/action_set_name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/box_meta" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/box_meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/id" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/id" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/index_uuid" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/index_uuid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/private_key" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/private_key" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/synced_folders" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/synced_folders" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/vagrant_cwd" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/sales-lead-manager/virtualbox/vagrant_cwd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Franchise/FranchiseLeadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Franchise/FranchiseLeadController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadJobTypeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadJobTypeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Lead.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Lead.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/JobType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/JobType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/FranchiseRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/FranchiseRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/LeadRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/LeadRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/SalesStaff.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/SalesStaff.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/DesignAssessorFactory.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/JobTypeFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/JobTypeFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_10_060549_create_design_assessors_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_10_061848_create_job_types_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_10_061848_create_job_types_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_12_034902_create_sales_staff_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_10_061847_create_sales_staff_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/DesignAssessorFeatureTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/FinancePaymentMadeFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/FinancePaymentMadeFeatureTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/FranchiseFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/FranchiseFeatureTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/FranchiseLeadFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/FranchiseLeadFeatureTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/FranchiseLeadSFPFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/FranchiseLeadSFPFeatureTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/FranchisePostcodeFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/FranchisePostcodeFeatureTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/LeadFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/LeadFeatureTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/LeadJobTypeFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/LeadJobTypeFeatureTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/LeadResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/LeadResourceTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/SalesStaffFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/SalesStaffFeatureTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/UserFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/UserFeatureTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/UserFranchiseFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/UserFranchiseFeatureTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/DesignAssessorTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/JobTypeTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/JobTypeTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,25 +209,25 @@
       <recent name="G:\Projects\sales-lead-manager\storage\app\database" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.FinancePaymentMadeFeatureTest.testCanAddPaymentMade">
-    <configuration name="FinancePaymentMadeFeatureTest.testCanAddPaymentMade" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\FinancePaymentMadeFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FinancePaymentMadeFeatureTest.php" method="testCanAddPaymentMade" scope="Method" />
+  <component name="RunManager" selected="PHPUnit.FranchiseLeadFeatureTest.testCanChangeFranchiseByAdminUnderTheirAssignedFranchise">
+    <configuration name="FranchiseLeadFeatureTest.testCanChangeFranchiseByAdminUnderTheirAssignedFranchise" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\FranchiseLeadFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchiseLeadFeatureTest.php" method="testCanChangeFranchiseByAdminUnderTheirAssignedFranchise" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="LeadContractFeatureTest.testCanCreateLeadContract" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\LeadContractFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" method="testCanCreateLeadContract" scope="Method" />
+    <configuration name="FranchiseLeadFeatureTest.testCanNotUpdateLeadDataByUserOutsideFranchise" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\FranchiseLeadFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchiseLeadFeatureTest.php" method="testCanNotUpdateLeadDataByUserOutsideFranchise" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="LeadContractFeatureTest.testCanUpdateContractChangeDepositAndPrice" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\LeadContractFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" method="testCanUpdateContractChangeDepositAndPrice" scope="Method" />
+    <configuration name="FranchisePostcodeFeatureTest.testCanNotListPostCodeOutsideFranchiseByNonHeadOffice" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\FranchisePostcodeFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchisePostcodeFeatureTest.php" method="testCanNotListPostCodeOutsideFranchiseByNonHeadOffice" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="LeadContractFeatureTest.testCanUpdateContractChangePrice" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\LeadContractFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" method="testCanUpdateContractChangePrice" scope="Method" />
+    <configuration name="JobTypeTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\JobTypeTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/JobTypeTest.php" scope="Class" />
       <method v="2" />
     </configuration>
-    <configuration name="LeadFinanceFeatureTest.testCanUpdateFinanceOnContractUpdate" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\LeadFinanceFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadFinanceFeatureTest.php" method="testCanUpdateFinanceOnContractUpdate" scope="Method" />
+    <configuration name="JobTypeTest.testJobTypeBelongsToSalesStaff" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\JobTypeTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/JobTypeTest.php" method="testJobTypeBelongsToSalesStaff" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -221,11 +236,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="PHPUnit.FinancePaymentMadeFeatureTest.testCanAddPaymentMade" />
-        <item itemvalue="PHPUnit.LeadFinanceFeatureTest.testCanUpdateFinanceOnContractUpdate" />
-        <item itemvalue="PHPUnit.LeadContractFeatureTest.testCanUpdateContractChangeDepositAndPrice" />
-        <item itemvalue="PHPUnit.LeadContractFeatureTest.testCanUpdateContractChangePrice" />
-        <item itemvalue="PHPUnit.LeadContractFeatureTest.testCanCreateLeadContract" />
+        <item itemvalue="PHPUnit.FranchiseLeadFeatureTest.testCanChangeFranchiseByAdminUnderTheirAssignedFranchise" />
+        <item itemvalue="PHPUnit.FranchiseLeadFeatureTest.testCanNotUpdateLeadDataByUserOutsideFranchise" />
+        <item itemvalue="PHPUnit.JobTypeTest.testJobTypeBelongsToSalesStaff" />
+        <item itemvalue="PHPUnit.JobTypeTest" />
+        <item itemvalue="PHPUnit.FranchisePostcodeFeatureTest.testCanNotListPostCodeOutsideFranchiseByNonHeadOffice" />
       </list>
     </recent_temporary>
   </component>
@@ -278,6 +293,7 @@
       <workItem from="1594719102784" duration="697000" />
       <workItem from="1594721012944" duration="1817000" />
       <workItem from="1594855234623" duration="4572000" />
+      <workItem from="1594872638236" duration="8071000" />
     </task>
     <task id="LOCAL-00050" summary="Showing related franchises">
       <created>1590997734861</created>
@@ -731,45 +747,53 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="274" key="FileChooserDialogImpl/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281964790" />
-    <state width="1877" height="404" key="GridCell.Tab.0.bottom" timestamp="1594281966226">
+    <state width="1877" height="404" key="GridCell.Tab.0.bottom" timestamp="1594880732524">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588851614032" />
+    <state width="1877" height="404" key="GridCell.Tab.0.bottom/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594880732524" />
     <state width="1877" height="404" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
-    <state width="1877" height="404" key="GridCell.Tab.0.center" timestamp="1594281966226">
+    <state width="1877" height="404" key="GridCell.Tab.0.center" timestamp="1594880732524">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1588851614031" />
+    <state width="1877" height="404" key="GridCell.Tab.0.center/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594880732524" />
     <state width="1877" height="404" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
-    <state width="1877" height="404" key="GridCell.Tab.0.left" timestamp="1594281966226">
+    <state width="1877" height="404" key="GridCell.Tab.0.left" timestamp="1594880732524">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1588851614030" />
+    <state width="1877" height="404" key="GridCell.Tab.0.left/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594880732524" />
     <state width="1877" height="404" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
-    <state width="1877" height="404" key="GridCell.Tab.0.right" timestamp="1594281966226">
+    <state width="1877" height="404" key="GridCell.Tab.0.right" timestamp="1594880732524">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1588851614031" />
+    <state width="1877" height="404" key="GridCell.Tab.0.right/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594880732524" />
     <state width="1877" height="404" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1589948179563">
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1594875562399">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594875562399" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589948179563" />
-    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1589948179563">
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1594875562399">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.center/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594875562399" />
     <state width="1877" height="348" key="GridCell.Tab.1.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589948179563" />
-    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1589948179563">
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1594875562398">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.left/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594875562398" />
     <state width="1877" height="348" key="GridCell.Tab.1.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589948179563" />
-    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1589948179563">
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1594875562399">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.right/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594875562399" />
     <state width="1877" height="348" key="GridCell.Tab.1.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589948179563" />
     <state x="698" y="241" width="797" height="565" key="NewPhpClassDialog" timestamp="1594870555637">
       <screen x="0" y="0" width="1920" height="1035" />
@@ -787,10 +811,11 @@
     <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818402975" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@0.0.1366.728" timestamp="1588205242303" />
     <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594274763207" />
-    <state x="650" y="152" width="664" height="764" key="find.popup" timestamp="1593669054808">
+    <state x="650" y="152" width="664" height="764" key="find.popup" timestamp="1594875111263">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="387" y="-916" width="581" height="741" key="find.popup/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588748240542" />
+    <state x="650" y="152" width="664" height="764" key="find.popup/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594875111263" />
     <state x="650" y="152" width="664" height="764" key="find.popup/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593669054808" />
     <state x="623" y="226" width="768" height="679" key="search.everywhere.popup" timestamp="1594277025054">
       <screen x="0" y="0" width="1920" height="1040" />

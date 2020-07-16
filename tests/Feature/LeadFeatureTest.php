@@ -33,7 +33,7 @@ class LeadFeatureTest extends TestCase
             ['*']
         );
 
-        $this->get('api/leads/')
+        $this->get('api/leads?size=10')
             ->assertStatus(Response::HTTP_OK)
             ->assertJsonCount(10, 'data');
     }
@@ -63,7 +63,7 @@ class LeadFeatureTest extends TestCase
             ['*']
         );
 
-        $response = $this->get('api/leads/');
+        $response = $this->get('api/leads?size=10');
 
         $response->assertStatus(Response::HTTP_OK)
             ->assertJsonCount(10, 'data');

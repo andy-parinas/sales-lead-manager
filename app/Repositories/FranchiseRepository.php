@@ -117,8 +117,10 @@ class FranchiseRepository implements FranchiseRepositoryInterface
     {
         $franchise = Franchise::findOrFail($id);
 
+
         //Check if it is a Parent Franchise
         if($franchise->isParent()){
+
 
             return DB::table('franchises')
                 ->select('id', 'name',
@@ -129,13 +131,11 @@ class FranchiseRepository implements FranchiseRepositoryInterface
                 ->orWhere('parent_id', $id)
                 ->orderBy($params['column'], $params['direction'])->paginate($params['size']);
 
-//            return Franchise::with('children')->where('id', $id)
-//                ->orderBy($params['column'], $params['direction'])->paginate($params['size']);
-
 
         }else {
 
             $parent = $franchise->parent;
+
 
             return DB::table('franchises')
                 ->select('id', 'name',
@@ -146,8 +146,6 @@ class FranchiseRepository implements FranchiseRepositoryInterface
                 ->orWhere('parent_id', $parent->id)
                 ->orderBy($params['column'], $params['direction'])->paginate($params['size']);
 
-//            return Franchise::with('children')->where('id', $parent->id)
-//                ->orderBy($params['column'], $params['direction'])->paginate($params['size']);
 
         }
 

@@ -38,7 +38,7 @@ class FranchiseLeadFeatureTest extends TestCase
             ['*']
         );
 
-        $this->get('api/franchises/' . $franchise->id . '/leads')
+        $this->get('api/franchises/' . $franchise->id . '/leads?size=10')
             ->assertStatus(Response::HTTP_OK)
             ->assertJsonCount(10, 'data');
 
@@ -58,7 +58,7 @@ class FranchiseLeadFeatureTest extends TestCase
             ['*']
         );
 
-        $this->get('api/franchises/' . $franchise->id . '/leads')
+        $this->get('api/franchises/' . $franchise->id . '/leads?size=10')
             ->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
@@ -79,7 +79,7 @@ class FranchiseLeadFeatureTest extends TestCase
             ['*']
         );
 
-        $this->get('api/franchises/' . $franchise->id . '/leads')
+        $this->get('api/franchises/' . $franchise->id . '/leads?size=10')
             ->assertStatus(Response::HTTP_OK)
             ->assertJsonCount(10, 'data');
 
@@ -283,12 +283,30 @@ class FranchiseLeadFeatureTest extends TestCase
             'lead_date' => '2020-03-30'
         ];
 
+        $jobTypeData = factory(JobType::class)->raw([
+            'lead_id' => '', //So it wont create a lead automatically,
+            'date_allocated' => '2020-05-14'
+        ]);
+
+        $appointmentData = factory(Appointment::class)->raw([
+            'lead_id' => '', // So it wont create lead automatically
+            'appointment_date' => '2020-05-24 13:30'
+        ]);
+
+
+        $data = [
+            'lead' => $leadData,
+            'job_type' => $jobTypeData,
+            'appointment' => $appointmentData
+        ];
+
+
         Sanctum::actingAs(
             $user,
             ['*']
         );
 
-        $this->post('api/franchises/' . $franchise->id . '/leads', $leadData);
+        $this->post('api/franchises/' . $franchise->id . '/leads', $data);
         $this->assertEquals(Lead::INSIDE_OF_FRANCHISE, Lead::first()->postcode_status);
 
 
@@ -296,6 +314,8 @@ class FranchiseLeadFeatureTest extends TestCase
 
     public function testCreatedLeadHasPostcodeStatusOutside()
     {
+        //$this->withoutExceptionHandling();
+
         $postcode = factory(Postcode::class)->create();
         $franchise = factory(Franchise::class)->create();
         $franchise->postcodes()->attach($postcode->id);
@@ -314,12 +334,30 @@ class FranchiseLeadFeatureTest extends TestCase
             'lead_date' => '2020-03-30'
         ];
 
+        $jobTypeData = factory(JobType::class)->raw([
+            'lead_id' => '', //So it wont create a lead automatically,
+            'date_allocated' => '2020-05-14'
+        ]);
+
+        $appointmentData = factory(Appointment::class)->raw([
+            'lead_id' => '', // So it wont create lead automatically
+            'appointment_date' => '2020-05-24 13:30'
+        ]);
+
+
+        $data = [
+            'lead' => $leadData,
+            'job_type' => $jobTypeData,
+            'appointment' => $appointmentData
+        ];
+
         Sanctum::actingAs(
             $user,
             ['*']
         );
 
-        $this->post('api/franchises/' . $franchise->id . '/leads', $leadData);
+        $this->post('api/franchises/' . $franchise->id . '/leads', $data)
+            ->assertStatus(201);
         $this->assertEquals(Lead::OUTSIDE_OF_FRANCHISE, Lead::first()->postcode_status);
     }
 
@@ -373,6 +411,7 @@ class FranchiseLeadFeatureTest extends TestCase
         $this->put('api/franchises/' . $franchise->id . '/leads/' . $lead->id, $updates)
             ->assertStatus(Response::HTTP_FORBIDDEN);
 
+
         $this->assertEquals($lead->lead_date, Lead::first()->lead_date);
     }
 
@@ -401,7 +440,6 @@ class FranchiseLeadFeatureTest extends TestCase
         $this->put('api/franchises/' . $franchise->id . '/leads/' . $lead->id . '/franchise', $updates)
             ->assertStatus(Response::HTTP_OK);
 
-        $this->assertEquals($franchise2->id, Lead::first()->franchise_id);
     }
 
     public function testCanNotChangeFranchiseByAdminOutsideFranchiseAssignment()

@@ -68,7 +68,7 @@ class SalesContactFeatureTest extends TestCase
         $this->authenticateStaffUser();
 
 
-        $this->get('api/contacts')
+        $this->get('api/contacts?size=10')
             ->assertStatus(Response::HTTP_OK)
             ->assertJsonCount(10, 'data');
     }
@@ -84,12 +84,13 @@ class SalesContactFeatureTest extends TestCase
             $c1 = factory(SalesContact::class)->create([$field => 'AAAAAAAAAA']);
             $c2 = factory(SalesContact::class)->create([$field => 'ZZZZZZZZZZ']);
 
-            $response =  $this->get('api/contacts?sort=' . $this->toCamelCase($field) . '&direction=asc');
+            $response =  $this->get('api/contacts?size=10&sort=' . $field . '&direction=asc');
             $result = json_decode($response->content())->data;
 
             $this->assertEquals('AAAAAAAAAA', $result[0]->{$this->toCamelCase($field)});
 
-            $response =  $this->get('api/contacts?sort=' . $this->toCamelCase($field) . '&direction=desc');
+
+            $response =  $this->get('api/contacts?size=10&sort=' . $field . '&direction=desc');
             $result = json_decode($response->content())->data;
 
             $this->assertEquals('ZZZZZZZZZZ', $result[0]->{$this->toCamelCase($field)});
@@ -117,7 +118,7 @@ class SalesContactFeatureTest extends TestCase
             factory(SalesContact::class, 20)->create();
 
 
-            $response =  $this->get('api/contacts?on=' . $field . '&search=AAAAAAAAAA');
+            $response =  $this->get('api/contacts?size=10&on=' . $field . '&search=AAAAAAAAAA');
             $result = json_decode($response->content())->data;
 
             $this->assertEquals('AAAAAAAAAA', $result[0]->{$this->toCamelCase($field)});
@@ -307,15 +308,15 @@ class SalesContactFeatureTest extends TestCase
 
         $this->authenticateStaffUser();
 
-        $this->get('api/contacts/search?search=andy')
+        $this->get('api/contacts/search?size=10&search=andy')
             ->assertStatus(Response::HTTP_OK)
             ->assertJsonCount(1, 'data');
 
-        $this->get('api/contacts/search?search=parinas')
+        $this->get('api/contacts/search?size=10&search=parinas')
             ->assertStatus(Response::HTTP_OK)
             ->assertJsonCount(1, 'data');
 
-        $this->get('api/contacts/search?search=super')
+        $this->get('api/contacts/search?size=10&search=super')
             ->assertStatus(Response::HTTP_OK)
             ->assertJsonCount(1, 'data');
 

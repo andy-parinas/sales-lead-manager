@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class JobType extends Model
 {
     protected $fillable = [
-        'taken_by', 'date_allocated', 'lead_id', 'product_id', 'design_assessor_id', 'description'
+        'taken_by', 'date_allocated', 'lead_id', 'product_id', 'sales_staff_id', 'description'
     ];
 
 
@@ -21,9 +21,14 @@ class JobType extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function designAssessor()
+//    public function designAssessor()
+//    {
+//        return $this->belongsTo(DesignAssessor::class);
+//    }
+
+    public function salesStaff()
     {
-        return $this->belongsTo(DesignAssessor::class);
+        return $this->belongsTo(SalesStaff::class);
     }
 
 }
