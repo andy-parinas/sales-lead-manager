@@ -47,7 +47,7 @@ class FranchiseSortFilterPaginateFeatureTest extends TestCase
         );
 
 
-        $response = $this->get('api/franchises?sort=franchiseNumber&direction=desc&size=10');
+        $response = $this->get('api/franchises?sort=franchise_number&direction=desc&size=10');
         $results = json_decode($response->content());
         $this->assertEquals('115', $results->data[0]->franchiseNumber);
         $this->assertEquals('106', end($results->data)->franchiseNumber);

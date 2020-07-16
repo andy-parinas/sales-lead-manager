@@ -157,26 +157,26 @@ class SalesContactFeatureTest extends TestCase
 
     }
 
-    public function testCanNotUpdateSalesContactPostcodeSateSuburbWhenAlreadyReferenceToLead()
-    {
-        $this->authenticateStaffUser();
-
-        $contact = factory(SalesContact::class)->create();
-        factory(Lead::class)->create(['sales_contact_id' => $contact->id]);
-
-
-        $updates = [
-            'postcode' => 'update',
-            'state' => 'update',
-            'suburb' => 'update',
-        ];
-
-
-        $this->put('api/contacts/' . $contact->id, $updates)
-            ->assertStatus(Response::HTTP_BAD_REQUEST);
-
-        $this->assertEquals($contact->postcode, SalesContact::first()->postcode);
-    }
+//    public function testCanNotUpdateSalesContactPostcodeSateSuburbWhenAlreadyReferenceToLead()
+//    {
+//        $this->authenticateStaffUser();
+//
+//        $contact = factory(SalesContact::class)->create();
+//        factory(Lead::class)->create(['sales_contact_id' => $contact->id]);
+//
+//
+//        $updates = [
+//            'postcode' => 'update',
+//            'state' => 'update',
+//            'suburb' => 'update',
+//        ];
+//
+//
+//        $this->put('api/contacts/' . $contact->id, $updates)
+//            ->assertStatus(Response::HTTP_BAD_REQUEST);
+//
+//        $this->assertEquals($contact->postcode, SalesContact::first()->postcode);
+//    }
 
     public function testCanUpdateContactStatusByStaffUser(){
 

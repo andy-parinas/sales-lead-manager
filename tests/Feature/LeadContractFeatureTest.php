@@ -165,7 +165,7 @@ class LeadContractFeatureTest extends TestCase
             'contract_price' => 100.00,
             'deposit_amount' => 25,
             'total_variation' => 0,
-            'total_contract' => 75.00,
+            'total_contract' => 100.00,
             'warranty_required' => 'yes',
             'date_deposit_received' => '06/29/2020',
             'date_warranty_sent' => '06/29/2020',
@@ -188,7 +188,7 @@ class LeadContractFeatureTest extends TestCase
 
         $contract->refresh();
 
-        $this->assertEquals(30, $contract->total_contract);
+        $this->assertEquals(100, $contract->total_contract);
 
     }
 
@@ -204,7 +204,7 @@ class LeadContractFeatureTest extends TestCase
             'contract_price' => 100.00,
             'deposit_amount' => 25,
             'total_variation' => 0,
-            'total_contract' => 75.00,
+            'total_contract' => 100.00,
             'warranty_required' => 'yes',
             'date_deposit_received' => '06/29/2020',
             'date_warranty_sent' => '06/29/2020',

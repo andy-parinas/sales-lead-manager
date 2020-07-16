@@ -60,12 +60,15 @@ class ContractVariationController extends ApiController
             'amount' => 'required|numeric',
         ]);
 
+
         DB::beginTransaction();
 
         try
         {
 
             $variation = $contract->contractVariations()->create($data);
+
+
 
             $total_variation = $contract->total_variation + $variation->amount;
             $total_contract = $contract->total_contract + $variation->amount;
@@ -79,6 +82,7 @@ class ContractVariationController extends ApiController
                 'total_variation' => $total_variation,
                 'total_contract' => $total_contract
             ]);
+
 
             $this->contractService->updateFinance($finance, $contract);
 

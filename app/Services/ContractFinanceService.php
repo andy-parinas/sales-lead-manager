@@ -12,6 +12,8 @@ class ContractFinanceService implements Interfaces\ContractFinanceServiceInterfa
 
     public function createContract($contractData)
     {
+
+
         $contract = new Contract($contractData);
         $contract->total_contract = $contract->contract_price;
 
@@ -29,6 +31,7 @@ class ContractFinanceService implements Interfaces\ContractFinanceServiceInterfa
         $total_contract = $contract->total_contract;
         $deposit = $contract->deposit_amount;
         $balance = $total_contract - $deposit;
+
 
         $finance->project_price = $project_price;
         $finance->gst = $gst;
