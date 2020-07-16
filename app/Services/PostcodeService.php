@@ -13,7 +13,7 @@ class PostcodeService implements PostcodeServiceInterface
 
     public function checkSalesContactPostcode(SalesContact $salesContact, Franchise $franchise)
     {
-        if($franchise->postcodes->contains('pcode', $salesContact->postcode))
+        if($franchise->postcodes->contains('id', $salesContact->postcode_id))
         {
             return Lead::INSIDE_OF_FRANCHISE;
         }
@@ -39,7 +39,7 @@ class PostcodeService implements PostcodeServiceInterface
         if($franchise->parent !== null){
 
             $parentPostcodes = $franchise->parent->postcodes->pluck('id')->toArray();
-            
+
             foreach ($postcodes as $postcode) {
 
                 if(in_array($postcode, $parentPostcodes)){
@@ -47,7 +47,7 @@ class PostcodeService implements PostcodeServiceInterface
                    array_push($postcodesData, $postcode);
                 }
             }
-         
+
         }else {
             $postcodesData = array_merge($postcodesData, $postcodes);
         }

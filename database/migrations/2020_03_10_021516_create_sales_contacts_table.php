@@ -24,12 +24,12 @@ class CreateSalesContactsTable extends Migration
             $table->string('contact_number');
             $table->string('street1');
             $table->string('street2')->nullable();
-            $table->string('suburb');
-            $table->string('state');
-            $table->string('postcode');
+            $table->unsignedBigInteger('postcode_id');
             $table->string('customer_type');
             $table->string('status')->default(SalesContact::ACTIVE);
             $table->timestamps();
+
+            $table->foreign('postcode_id')->references('id')->on('postcodes');
         });
     }
 

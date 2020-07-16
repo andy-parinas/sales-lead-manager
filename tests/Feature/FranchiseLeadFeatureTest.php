@@ -38,8 +38,9 @@ class FranchiseLeadFeatureTest extends TestCase
             ['*']
         );
 
-        $this->get('api/franchises/' . $franchise->id . '/leads?size=10')
-            ->assertStatus(Response::HTTP_OK)
+        $response = $this->get('api/franchises/' . $franchise->id . '/leads?size=10');
+
+        $response ->assertStatus(Response::HTTP_OK)
             ->assertJsonCount(10, 'data');
 
     }
@@ -182,7 +183,7 @@ class FranchiseLeadFeatureTest extends TestCase
         $user = $this->createStaffUser();
         $user->franchises()->attach($franchise->id);
 
-        $salesContact = factory(SalesContact::class)->create(['postcode' => $postcode->pcode]);
+        $salesContact = factory(SalesContact::class)->create(['postcode_id' => $postcode->id]);
         $leadSource = factory(LeadSource::class)->create();
 
         $leadData = [
@@ -220,11 +221,10 @@ class FranchiseLeadFeatureTest extends TestCase
 
         $result = $response->content();
 
-        //dd(json_decode($result));
-
         $response->assertStatus(Response::HTTP_CREATED);
 
         $this->assertCount(1, Lead::all());
+        $this->assertEquals('inside_of_franchise', Lead::first()->postcode_status);
 
     }
 
@@ -273,7 +273,7 @@ class FranchiseLeadFeatureTest extends TestCase
         $user = $this->createStaffUser();
         $user->franchises()->attach($franchise->id);
 
-        $salesContact = factory(SalesContact::class)->create(['postcode' => $postcode->pcode]);
+        $salesContact = factory(SalesContact::class)->create(['postcode_id' => $postcode->id]);
         $leadSource = factory(LeadSource::class)->create();
 
         $leadData = [
@@ -504,7 +504,7 @@ class FranchiseLeadFeatureTest extends TestCase
 
         //SEtup the required Data
         $postcode = factory(Postcode::class)->create();
-        $salesContact = factory(SalesContact::class)->create(['postcode' => $postcode->pcode]);
+        $salesContact = factory(SalesContact::class)->create(['postcode_id' => $postcode->id]);
 
 
         $franchise = factory(Franchise::class)->create();
@@ -518,7 +518,7 @@ class FranchiseLeadFeatureTest extends TestCase
 
         //THis Franchise will have different postcode assignment
         $postcode2 = factory(Postcode::class)->create();
-        $salesContact2 = factory(SalesContact::class)->create(['postcode' => $postcode2->pcode]);
+        $salesContact2 = factory(SalesContact::class)->create(['postcode_id' => $postcode2->id]);
 
         $franchise2 = factory(Franchise::class)->create();
         $franchise2->postcodes()->attach($postcode2->id);
@@ -548,7 +548,7 @@ class FranchiseLeadFeatureTest extends TestCase
         //SEtup the required Data
         $postcode = factory(Postcode::class)->create();
         $postcode2 = factory(Postcode::class)->create();
-        $salesContact = factory(SalesContact::class)->create(['postcode' => $postcode->pcode]);
+        $salesContact = factory(SalesContact::class)->create(['postcode_id' => $postcode->id]);
 
 
         $franchise = factory(Franchise::class)->create();

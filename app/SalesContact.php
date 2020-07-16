@@ -15,7 +15,7 @@ class SalesContact extends Model
 
     protected $fillable = [
         'title', 'first_name', 'last_name', 'email', 'email2',
-        'contact_number', 'street1', 'street2', 'suburb', 'state', 'postcode', 'customer_type', 'status'
+        'contact_number', 'street1', 'street2', 'postcode_id', 'customer_type', 'status'
     ];
 
 
@@ -32,6 +32,11 @@ class SalesContact extends Model
     public function leads()
     {
         return $this->hasMany(Lead::class);
+    }
+
+    public function postcode()
+    {
+        return $this->belongsTo(Postcode::class);
     }
 
 }
