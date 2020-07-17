@@ -15,7 +15,7 @@ class CreatePostcodesTable extends Migration
     {
         Schema::create('postcodes', function (Blueprint $table) {
             $table->id();
-            $table->string('pcode');
+            $table->integer('pcode');
             $table->string('locality');
             $table->string('state');
             $table->string('delivery_office');

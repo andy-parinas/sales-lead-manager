@@ -17,8 +17,8 @@ class CreateFranchiseUserTable extends Migration
             $table->unsignedBigInteger('franchise_id');
             $table->unsignedBigInteger('user_id');
 
-            $table->foreign('franchise_id')->references('id')->on('franchises');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('franchise_id')->references('id')->on('franchises')->cascadeOnDelete();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
 

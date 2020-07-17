@@ -19,24 +19,58 @@ class UserSeeder extends Seeder
             'user_type' => User::HEAD_OFFICE
         ]);
 
-        $franchiseAdmin = factory(User::class)->create([
-            'username' => 'franchiseadmin1',
-            'user_type' => User::FRANCHISE_ADMIN
-        ]);
 
-        Franchise::all()->each(function ($franchise) use ($franchiseAdmin)  {
-            $franchiseAdmin->franchises()->attach($franchise->id);
+        $mainFranchises = Franchise::where('parent_id', null)->get();
 
-            if(!$franchise->isParent()){
-                dump('Creating Staff User');
+        $mainFranchises->each(function ($main){
+
+            $franchiseAdmin = factory(User::class)->create([
+                    'username' => 'franchiseadmin-' . $main->franchise_number,
+                    'user_type' => User::FRANCHISE_ADMIN
+            ]);
+
+            $franchiseAdmin->franchises()->attach($main->id);
+
+            $main->children->each(function ($sub) use ($franchiseAdmin) {
+
                 $user = factory(User::class)->create([
-                    'username' => 'staffuser' . $franchise->id,
+                    'username' => 'staffuser-' . $sub->franchise_number,
                     'user_type' => User::STAFF_USER
                 ]);
-                $user->franchises()->attach($franchise->id);
-            }
+                $user->franchises()->attach($sub->id);
+                $franchiseAdmin->franchises()->attach($sub->id);
+
+            });
 
         });
+
+
+//
+//        $franchiseAdmin = factory(User::class)->create([
+//            'username' => 'franchiseadmin1',
+//            'user_type' => User::FRANCHISE_ADMIN
+//        ]);
+
+//        Franchise::all()->each(function ($franchise) {
+//            //$franchiseAdmin->franchises()->attach($franchise->id);
+//
+//            if(!$franchise->isParent()){
+//                dump('Creating Staff User');
+//                $user = factory(User::class)->create([
+//                    'username' => 'staffuser-' . $franchise->franchise_number,
+//                    'user_type' => User::STAFF_USER
+//                ]);
+//                $user->franchises()->attach($franchise->id);
+//            }else {
+//
+//                $franchiseAdmin = factory(User::class)->create([
+//                    'username' => 'franchiseadmin-' . $franchise->franchise_number,
+//                    'user_type' => User::FRANCHISE_ADMIN
+//                ]);
+//                $franchiseAdmin->franchises()->attach($franchise->id);
+//            }
+//
+//        });
 
     }
 }
