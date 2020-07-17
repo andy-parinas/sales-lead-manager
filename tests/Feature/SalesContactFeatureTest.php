@@ -23,7 +23,7 @@ class SalesContactFeatureTest extends TestCase
         $this->withoutExceptionHandling();
 
         $postcode = factory(Postcode::class)->create();
-        $data = factory(SalesContact::class)->raw(['postcode' => $postcode->pcode]);
+        $data = factory(SalesContact::class)->raw(['postcode_id' => $postcode->id]);
 
         $this->authenticateStaffUser();
 
@@ -48,7 +48,9 @@ class SalesContactFeatureTest extends TestCase
     public function testCanNotCreateSalesContactWithInvalidPostcode()
     {
 
-        $data = factory(SalesContact::class)->raw();
+        $data = factory(SalesContact::class)->raw([
+            'postcode_id' => 10
+        ]);
 
         $this->authenticateStaffUser();
 
@@ -78,27 +80,53 @@ class SalesContactFeatureTest extends TestCase
 
         $this->authenticateStaffUser();
 
+        collect(['first_name', 'last_name', 'pcode', 'locality', 'state'])->each(function($field){
 
-        collect(['first_name', 'last_name', 'postcode', 'suburb', 'state'])->each(function($field){
+            if($field == 'pcode' || $field == 'locality' | $field =='state'){
+                $postcode1 = factory(Postcode::class)->create([$field => 'AAAAAAAAAA']);
+                $postcode2 = factory(Postcode::class)->create([$field => 'ZZZZZZZZZZ']);
 
-            $c1 = factory(SalesContact::class)->create([$field => 'AAAAAAAAAA']);
-            $c2 = factory(SalesContact::class)->create([$field => 'ZZZZZZZZZZ']);
+                $c1 = factory(SalesContact::class)->create(['postcode_id' => $postcode1->id]);
+                $c2 = factory(SalesContact::class)->create(['postcode_id' => $postcode2->id]);
 
-            $response =  $this->get('api/contacts?size=10&sort=' . $field . '&direction=asc');
-            $result = json_decode($response->content())->data;
+                $response1 =  $this->get('api/contacts?size=10&sort=' . $field . '&direction=asc');
+                $result1 = json_decode($response1->content())->data;
 
-            $this->assertEquals('AAAAAAAAAA', $result[0]->{$this->toCamelCase($field)});
+                $response2 =  $this->get('api/contacts?size=10&sort=' . $field . '&direction=desc');
+                $result2 = json_decode($response2->content())->data;
+
+                if($field == 'pcode'){
+                    $this->assertEquals('AAAAAAAAAA', $result1[0]->postcode);
+                    $this->assertEquals('ZZZZZZZZZZ', $result2[0]->postcode);
+
+                }else if ($field == 'locality') {
+                    $this->assertEquals('AAAAAAAAAA', $result1[0]->suburb);
+                    $this->assertEquals('ZZZZZZZZZZ', $result2[0]->suburb);
+                }
+
+                $c1->delete();
+                $c2->delete();
+
+            }else {
+
+                $c1 = factory(SalesContact::class)->create([$field => 'AAAAAAAAAA']);
+                $c2 = factory(SalesContact::class)->create([$field => 'ZZZZZZZZZZ']);
+
+                $response =  $this->get('api/contacts?size=10&sort=' . $field . '&direction=asc');
+                $result = json_decode($response->content())->data;
+
+                $this->assertEquals('AAAAAAAAAA', $result[0]->{$this->toCamelCase($field)});
 
 
-            $response =  $this->get('api/contacts?size=10&sort=' . $field . '&direction=desc');
-            $result = json_decode($response->content())->data;
+                $response =  $this->get('api/contacts?size=10&sort=' . $field . '&direction=desc');
+                $result = json_decode($response->content())->data;
 
-            $this->assertEquals('ZZZZZZZZZZ', $result[0]->{$this->toCamelCase($field)});
+                $this->assertEquals('ZZZZZZZZZZ', $result[0]->{$this->toCamelCase($field)});
 
-            //Delete all the record to start fresh
-            $c1->delete();
-            $c2->delete();
+                $c1->delete();
+                $c2->delete();
 
+            }
 
         });
 
@@ -109,21 +137,58 @@ class SalesContactFeatureTest extends TestCase
         $this->authenticateStaffUser();
 
 
-        collect(['first_name', 'last_name', 'postcode', 'suburb', 'state'])->each(function($field){
+//        collect(['first_name', 'last_name', 'pcode', 'locality', 'state'])->each(function($field){
+//
+//            //Needle
+//            factory(SalesContact::class)->create([$field => 'AAAAAAAAAA']);
+//
+//            //HayStacks
+//            factory(SalesContact::class, 20)->create();
+//
+//
+//            $response =  $this->get('api/contacts?size=10&on=' . $field . '&search=AAAAAAAAAA');
+//            $result = json_decode($response->content())->data;
+//
+//            $this->assertEquals('AAAAAAAAAA', $result[0]->{$this->toCamelCase($field)});
+//
+//        });
 
-            //Needle
-            factory(SalesContact::class)->create([$field => 'AAAAAAAAAA']);
+        collect(['first_name', 'last_name', 'pcode', 'locality', 'state'])->each(function($field){
 
-            //HayStacks
-            factory(SalesContact::class, 20)->create();
+            if($field == 'pcode' || $field == 'locality' | $field =='state'){
+                $postcode = factory(Postcode::class)->create([$field => 'AAAAAAAAAA']);
+
+                $c1 = factory(SalesContact::class)->create(['postcode_id' => $postcode->id]);
+
+                $response =  $this->get('api/contacts?size=10&on=' . $field . '&search=AAAAAAAAAA');
+                $result = json_decode($response->content())->data;
 
 
-            $response =  $this->get('api/contacts?size=10&on=' . $field . '&search=AAAAAAAAAA');
-            $result = json_decode($response->content())->data;
+                if($field == 'pcode'){
+                    $this->assertEquals('AAAAAAAAAA', $result[0]->postcode);
 
-            $this->assertEquals('AAAAAAAAAA', $result[0]->{$this->toCamelCase($field)});
+                }else if ($field == 'locality') {
+                    $this->assertEquals('AAAAAAAAAA', $result[0]->suburb);
+                }
+
+                $c1->delete();
+
+            }else {
+
+                $c1 = factory(SalesContact::class)->create([$field => 'AAAAAAAAAA']);
+
+                $response =  $this->get('api/contacts?size=10&sort=' . $field . '&direction=asc');
+                $result = json_decode($response->content())->data;
+
+                $this->assertEquals('AAAAAAAAAA', $result[0]->{$this->toCamelCase($field)});
+
+                $c1->delete();
+
+            }
 
         });
+
+
     }
 
 
@@ -198,10 +263,13 @@ class SalesContactFeatureTest extends TestCase
     {
         $this->authenticateStaffUser();
 
-        $contact = factory(SalesContact::class)->create();
+        $postcode = factory(Postcode::class)->create();
+        $contact = factory(SalesContact::class)->create(['postcode_id' => $postcode->id]);
 
         $response = $this->get('api/contacts/' . $contact->id);
         $result = json_decode($response->content())->data;
+
+
 
         $response->assertStatus(Response::HTTP_OK);
 
@@ -209,8 +277,20 @@ class SalesContactFeatureTest extends TestCase
 
         collect(['first_name', 'last_name', 'postcode', 'suburb', 'state',
                     'contact_number', 'email', 'email2', 'customer_type', 'status'])
-            ->each(function($field) use ($contact, $result) {
-                $this->assertEquals($contact->{$field}, $result->{$this->toCamelCase($field)});
+            ->each(function($field) use ($contact, $result, $postcode) {
+
+                if($field == 'postcode' || $field == 'suburb' || $field == 'state'){
+                    if($field == 'postcode'){
+                        $this->assertEquals($postcode->pcode, $result->{$this->toCamelCase($field)});
+                    }elseif ($field == 'suburb'){
+                        $this->assertEquals($postcode->locality, $result->{$this->toCamelCase($field)});
+                    }else {
+                        $this->assertEquals($postcode->{$field}, $result->{$this->toCamelCase($field)});
+                    }
+
+                }else {
+                    $this->assertEquals($contact->{$field}, $result->{$this->toCamelCase($field)});
+                }
         });
 
     }
@@ -296,6 +376,8 @@ class SalesContactFeatureTest extends TestCase
 
     public function testCanDoCombineSearch()
     {
+        $this->withoutExceptionHandling();
+
         //Haystack
         factory(SalesContact::class, 5)->create();
 

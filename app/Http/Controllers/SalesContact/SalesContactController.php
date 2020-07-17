@@ -26,7 +26,7 @@ class SalesContactController extends ApiController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -42,7 +42,7 @@ class SalesContactController extends ApiController
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -55,14 +55,12 @@ class SalesContactController extends ApiController
             'contact_number' => 'required|string',
             'street1' => 'required|string',
             'street2' => 'string|nullable',
-            'suburb' => 'required|string',
-            'state' => 'required|string',
-            'postcode' => 'required|string|max:10',
+            'postcode_id' => 'required',
             'customer_type' => 'required|in:' . SalesContact::COMMERCIAL . ',' . SalesContact::RESIDENTIAL,
             'status' => 'in:'. SalesContact::ACTIVE . ',' . SalesContact::ARCHIVED,
         ]);
 
-        $postcode = Postcode::where('pcode', $data['postcode'])->first();
+        $postcode = Postcode::find($data['postcode_id']);
 
         if($postcode === null){
             return $this->errorResponse("Invalid postcode", Response::HTTP_BAD_REQUEST );

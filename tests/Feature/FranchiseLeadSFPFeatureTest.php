@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Franchise;
 use App\Lead;
+use App\Postcode;
 use App\SalesContact;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -72,7 +73,10 @@ class FranchiseLeadSFPFeatureTest extends TestCase
     public function testCanSearchLead()
     {
 
+        $postcode = factory(Postcode::class)->create();
         $franchise = factory(Franchise::class)->create();
+        $franchise->postcodes()->attach($postcode->id);
+
         //Haystack
         for ($i=101; $i <= 115; $i++) {
             factory(Lead::class)->create(['lead_number' => strval($i), 'franchise_id' => $franchise->id]);
@@ -83,7 +87,7 @@ class FranchiseLeadSFPFeatureTest extends TestCase
             'first_name' => 'Frodo',
             'last_name' => 'Baggins',
             'email' => 'frodo@shire.com',
-            'postcode' => '123456'
+            'postcode_id' => $postcode->id
         ]);
 
         $lead = factory(Lead::class)->create([
@@ -104,15 +108,15 @@ class FranchiseLeadSFPFeatureTest extends TestCase
             'first_name' => 'Frodo',
             'last_name' => 'Baggins',
             'email' => 'frodo@shire.com',
-            'postcode' => '123456',
+            'pcode' =>  $postcode->pcode,
             'lead_number' => '9999999',
         ];
+
+
 
         foreach ($searchFields as $on => $search) {
 
             $response = $this->get('api/franchises/' . $franchise->id . '/leads?size=10&search='. $search . '&on=' . $on);
-            $results = json_decode($response->content());
-
             $response->assertJsonCount(1, 'data');
         }
 
