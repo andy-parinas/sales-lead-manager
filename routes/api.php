@@ -34,6 +34,8 @@ Route::post('logout', 'Auth\LoginController@logout');
  * Franchise Route
  */
 Route::get('franchises/parents', 'Franchise\FranchiseController@parents');
+Route::get('franchises/sub-franchises', 'Franchise\FranchiseController@subFranchise');
+
 Route::resource('franchises', 'Franchise\FranchiseController', ['except' => ['create', 'edit']]);
 Route::resource('franchises.postcodes', 'Franchise\FranchisePostcodeController', ['only' => ['index', 'store', 'destroy']]);
 Route::resource('franchises.children', 'Franchise\FranchiseChildrenController', ['only' => ['index', 'store']]);

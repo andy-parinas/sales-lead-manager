@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class FranchiseCollection extends ResourceCollection
+class SubFranchiseCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -20,10 +20,8 @@ class FranchiseCollection extends ResourceCollection
                     'id' => $franchise->id,
                     'franchiseNumber' => $franchise->franchise_number,
                     'name' => $franchise->name,
-                    'description' => $franchise->description,
                     'parentId' => $franchise->parent_id,
-                    'type' => $franchise->isParent() ? 'Main Franchise' : 'Sub-Franchise',
-                    'parent'=> $franchise->parent? $franchise->parent->franchise_number : null
+                    'parent'=> $franchise->parent_franchise
                 ];
             }),
             'pagination' => [

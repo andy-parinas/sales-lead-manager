@@ -338,22 +338,45 @@ class FranchiseFeatureTest extends TestCase
 
     }
 
-    public function testCanListFranchisesWithoutSizeParams()
+//    public function testCanListFranchisesWithoutSizeParams()
+//    {
+//        $this->withoutExceptionHandling();
+//
+//        factory(Franchise::class, 15)->create();
+//
+//        $this->authenticateHeadOfficeUser();
+//
+//        $response = $this->get("api/franchises?sort=franchise_number&direction=asc&");
+//
+//        //dd(json_decode($response->content()));
+//
+//        $response->assertStatus(Response::HTTP_OK)
+//            ->assertJsonCount(15, 'data');
+//    }
+
+    public function testCanListSubFranchisesOnly()
     {
+
         $this->withoutExceptionHandling();
 
-        factory(Franchise::class, 15)->create();
+        $parent = factory(Franchise::class)->create();
+
+        for ($i = 0; $i < 5; $i++){
+
+            factory(Franchise::class)->create(['parent_id' => $parent->id]);
+
+        }
 
         $this->authenticateHeadOfficeUser();
 
-        $response = $this->get("api/franchises?sort=franchise_number&direction=asc&");
+        $response = $this->get('api/franchises/sub-franchises');
 
         //dd(json_decode($response->content()));
 
         $response->assertStatus(Response::HTTP_OK)
-            ->assertJsonCount(15, 'data');
-    }
+            ->assertJsonCount(5, 'data');
 
+    }
 
 
 }

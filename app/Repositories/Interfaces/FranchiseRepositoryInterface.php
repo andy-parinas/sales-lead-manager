@@ -22,4 +22,6 @@ interface FranchiseRepositoryInterface
 
     public function findParents(Array $params);
 
+    public function getAllSubFranchise(array $params);
+
 }

@@ -166,4 +166,42 @@ class FranchiseRepository implements FranchiseRepositoryInterface
     }
 
 
+    public function getAllSubFranchise(array $params)
+    {
+        $query = DB::table('franchises as children')->where('children.parent_id', '<>', null)
+            ->join('franchises as parent', 'children.parent_id', '=', 'parent.id')
+            ->select('children.id',
+                'children.franchise_number',
+                'children.name',
+                'parent.franchise_number as parent_franchise',
+                'parent.id as parent_id'
+            );
+
+
+        if(key_exists('column', $params) && key_exists('direction', $params)){
+
+            if($params['column'] == 'parent'){
+                $query = $query->orderBy('parent.franchise_number', $params['direction']);
+            }else{
+                $query = $query->orderBy('children.' . $params['column'], $params['direction']);
+            }
+
+        }
+
+        if(key_exists('search', $params) && key_exists('on', $params) )
+        {
+
+            if($params['on'] == 'parent'){
+                $query = $query->where('parent.franchise_number', 'LIKE', '%' . $params['search'] . '%');
+            }else {
+                $query = $query->where('children.' . $params['on'], 'LIKE', '%' . $params['search'] . '%');
+            }
+
+        }
+
+        return $query->paginate($params['size']);
+
+    }
+
+
 }

@@ -17,7 +17,7 @@ class ApiController extends Controller
 
         $column = request()->has('sort') ? request()->sort : 'created_at';
         $direction = request()->has('direction') ? request()->direction : 'asc';
-        $size = request()->has('size') ? request()->size : 0;
+        $size = request()->has('size') ? request()->size : 10;
 
         if(request()->has('search') && request()->has('on')){
 
