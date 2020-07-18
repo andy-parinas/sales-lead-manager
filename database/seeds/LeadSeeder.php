@@ -55,24 +55,27 @@ class LeadSeeder extends Seeder
                 ]);
 
                 print "Creating Appointment \n";
-                factory(Appointment::class)->create(['lead_id' => $lead->id]);
+                $appointment = factory(Appointment::class)->create(['lead_id' => $lead->id]);
 
-                print "Creating Contract \n";
-                $contract = factory(\App\Contract::class)->create([
-                    'lead_id' => $lead->id,
-                ]);
+                if($appointment->outcome == 'success'){
 
-                print "Creating Finance \n";
-                factory(\App\Finance::class)->create([
-                    'project_price' => $contract->contract_price / 1.1,
-                    'gst' => 0.10,
-                    'contract_price' => $contract->contract_price,
-                    'total_contract' => $contract->total_contract,
-                    'deposit' => $contract->deposit_amount,
-                    'balance' => $contract->total_contract - $contract->deposit_amount,
-                    'total_payment_made' => 0,
-                    'lead_id' => $lead->id
-                ]);
+                    print "Creating Contract \n";
+                    $contract = factory(\App\Contract::class)->create([
+                        'lead_id' => $lead->id,
+                    ]);
+
+                    print "Creating Finance \n";
+                    factory(\App\Finance::class)->create([
+                        'project_price' => $contract->contract_price / 1.1,
+                        'gst' => 0.10,
+                        'contract_price' => $contract->contract_price,
+                        'total_contract' => $contract->total_contract,
+                        'deposit' => $contract->deposit_amount,
+                        'balance' => $contract->total_contract - $contract->deposit_amount,
+                        'total_payment_made' => 0,
+                        'lead_id' => $lead->id
+                    ]);
+                }
 
             }
 

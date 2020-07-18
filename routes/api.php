@@ -120,8 +120,10 @@ Route::resource('sales-staffs', 'SalesStaff\SalesStaffController', ['except' => 
  */
 Route::resource('trade-staffs', 'TradeStaff\TradeStaffController',['except' => ['create', 'edit', 'show']] );
 
-
-
+/**
+ * Report Routes
+ */
+Route::get('reports/sales-summary', 'Reports\SalesSummaryReportController@index');
 
 
 
