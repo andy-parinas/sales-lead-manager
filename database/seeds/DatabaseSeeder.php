@@ -22,7 +22,9 @@ class DatabaseSeeder extends Seeder
             FranchiseActualSeeder::class,
             PostcodeFullSeeder::class,
             PostcodeToFranchiseSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            ProductSeeder::class,
+            LeadSourceSeeder::class,
         ]);
 
     }
