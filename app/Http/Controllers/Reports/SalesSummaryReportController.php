@@ -22,8 +22,16 @@ class SalesSummaryReportController extends ApiController
         if($request->has('start_date') && $request->has('end_date')){
 
             $results = $this->reportRepostitory->generateSalesSummary($request->start_date, $request->end_date);
+            //$results = $this->reportRepostitory->generateSalesSummaryForTest($request->start_date, $request->end_date);
 
-            return $this->showAll($results);
+            $total = $this->computeTotal($results);
+
+
+
+            return $this->showOne([
+                'results' => $results,
+                'total' => $total
+            ]);
 
         }
     }
@@ -34,11 +42,29 @@ class SalesSummaryReportController extends ApiController
             $totalNumberOfLeads = 0;
             $totalConversionRate = 0;
             $grandTotalContracts = 0;
-            $grandAveragePrice = 0;
+            $grandTotalAveragePrice = 0;
+
 
             foreach ($results as $result){
-
+                $totalNumberOfSales = $totalNumberOfSales + $result->numberOfSales;
+                $totalNumberOfLeads = $totalNumberOfLeads + $result->numberOfLeads;
+                $totalConversionRate = $totalConversionRate + $result->conversionRate;
+                $grandTotalContracts = $grandTotalContracts + $result->totalContracts;
+                $grandTotalAveragePrice = $grandTotalAveragePrice + $result->averageSalesPrice;
             }
+
+            $resultLength = count($results);
+
+            return [
+                'totalNumberOfSales' => $totalNumberOfSales,
+                'totalNumberOfLeads' => $totalNumberOfLeads,
+                'averageConversionRate' => $totalConversionRate / $resultLength,
+                'grandTotalContracts' => $grandTotalContracts,
+                'grandAveragePrice' => $grandTotalAveragePrice / $resultLength,
+                'averageNumberOfLeads' => $totalNumberOfLeads / $resultLength,
+                'averageNumberOfSales' => $totalNumberOfSales / $resultLength,
+                'averageTotalContract' => $grandTotalContracts / $resultLength,
+            ];
     }
 
 }

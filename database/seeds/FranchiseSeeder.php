@@ -13,21 +13,23 @@ class FranchiseSeeder extends Seeder
      */
     public function run()
     {
-        // Create A Postcode for the Franchise
-        dump('Creating Postcodes');
-        $postcode1 = factory(Postcode::class)->create();
-        $postcode2 = factory(Postcode::class)->create();
 
-        //Create the Parent Franchise
-        dump('Creating Franchise');
-        $parent1 = factory(Franchise::class)->create();
-        $parent1->postcodes()->attach([$postcode1->id, $postcode2->id]);
+        $parent = factory(Franchise::class)->create();
 
-        $child1 = factory(Franchise::class)->create(['parent_id' => $parent1->id]);
-        $child1->postcodes()->attach($postcode1->id);
+        $franchises = factory(Franchise::class, 5)->create(['parent_id' => $parent->id]);
 
-        $child2 = factory(Franchise::class)->create(['parent_id' => $parent1->id]);
-        $child2->postcodes()->attach($postcode2->id);
+
+        foreach ($franchises as $franchise){
+
+            $postcodes = factory(Postcode::class, 2)->create();
+
+            foreach ($postcodes as $postcode){
+
+                $parent->postcodes()->attach($postcode->id);
+                $franchise->postcodes()->attach($postcode->id);
+
+            }
+        }
 
     }
 }
