@@ -20,7 +20,7 @@ class PostcodeFeatureTest extends TestCase
         factory(Postcode::class)->create(['pcode' => '123456']);
         factory(Postcode::class,10)->create();
 
-        $this->get('api/postcodes?search=' . '123456')
+        $this->get('api/postcodes/search?search=' . '123456')
             ->assertStatus(Response::HTTP_OK)
             ->assertJsonCount(1, 'data');
 

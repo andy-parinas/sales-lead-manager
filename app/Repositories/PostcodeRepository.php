@@ -6,6 +6,7 @@ namespace App\Repositories;
 
 use App\Franchise;
 use App\Postcode;
+use Illuminate\Support\Facades\DB;
 
 class PostcodeRepository implements Interfaces\PostcodeRepositoryInterface
 {
@@ -76,5 +77,19 @@ class PostcodeRepository implements Interfaces\PostcodeRepositoryInterface
             }
 
         }
+    }
+
+    public function searchAll($search)
+    {
+        return DB::table('postcodes')
+            ->select( 'id',
+                'pcode as postcode',
+                'locality as suburb',
+                'state',
+            )
+            ->where('pcode', 'LIKE', $search . '%' )
+            ->orWhere('locality', 'LIKE','%' . $search . '%' )
+            ->get();
+
     }
 }

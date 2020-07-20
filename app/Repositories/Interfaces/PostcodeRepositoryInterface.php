@@ -13,4 +13,6 @@ interface PostcodeRepositoryInterface
 
     public function getFranchisePostcodes(array $params, Franchise $franchise);
 
+    public function searchAll($search);
+
 }

@@ -18,9 +18,10 @@ class PostcodeAllCollection extends ResourceCollection
             'data' => $this->collection->transform(function($postcode){
                 return [
                     'id' => $postcode->id,
-                    'postcode' => $postcode->pcode,
-                    'locality' => $postcode->locality,
-                    'state' => $postcode->state
+                    'postcode' => $postcode->postcode,
+                    'suburb' => $postcode->suburb,
+                    'state' => $postcode->state,
+                    'title' => $postcode->suburb . ', ' . $postcode->state . ', ' . $postcode->postcode
                 ];
             }),
         ];
