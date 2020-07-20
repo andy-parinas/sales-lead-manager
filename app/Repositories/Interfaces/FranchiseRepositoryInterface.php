@@ -24,4 +24,6 @@ interface FranchiseRepositoryInterface
 
     public function getAllSubFranchise(array $params);
 
+    public function getAllSubFranchiseByUser(User $user, array $params);
+
 }

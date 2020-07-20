@@ -19,6 +19,7 @@ use App\Http\Resources\Franchise as FranchiseResource;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 
+
 class FranchiseController extends ApiController
 {
 
@@ -56,9 +57,22 @@ class FranchiseController extends ApiController
 
     public function subFranchise()
     {
-        $franchises = $this->franchiseRepository->getAllSubFranchise($this->getRequestParams());
 
-        return $this->showApiCollection(new SubFranchiseCollection($franchises));
+
+        if(Auth::user()->can('viewAny', Franchise::class))
+        {
+            $franchises = $this->franchiseRepository->getAllSubFranchise($this->getRequestParams());
+
+            return $this->showApiCollection(new SubFranchiseCollection($franchises));
+
+        }
+        else
+        {
+            $franchises = $this->franchiseRepository->getAllSubFranchiseByUser(Auth::user(), $this->getRequestParams());
+
+            return $this->showApiCollection(new SubFranchiseCollection($franchises));
+        }
+
     }
 
 
@@ -91,14 +105,15 @@ class FranchiseController extends ApiController
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Franchise $franchise)
+    public function show($franchiseId)
     {
+        $franchise = Franchise::findOrfail($franchiseId);
 
-        $this->authorize('view', $franchise);
+        //$this->authorize('view', $franchise);
 
-        return $this->showOne($franchise);
+        return $this->showOne(new FranchiseResource($franchise));
 
     }
 

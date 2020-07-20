@@ -378,5 +378,33 @@ class FranchiseFeatureTest extends TestCase
 
     }
 
+    public function testCanListSubFranchisesAssignToUser()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = $this->createStaffUser();
+        $parent = factory(Franchise::class)->create();
+
+        //HayStack
+        factory(Franchise::class, 3)->create(['parent_id' => $parent->id]);
+
+        for ($i = 0; $i < 5; $i++){
+
+            $franchise = factory(Franchise::class)->create(['parent_id' => $parent->id]);
+            $franchise->users()->attach($user->id);
+
+        }
+
+        Sanctum::actingAs($user, ['*']);
+
+        $response = $this->get('api/franchises/sub-franchises');
+
+        //dd(json_decode($response->content()));
+
+        $response->assertStatus(Response::HTTP_OK)
+            ->assertJsonCount(5, 'data');
+
+
+    }
 
 }

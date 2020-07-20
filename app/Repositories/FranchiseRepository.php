@@ -67,7 +67,6 @@ class FranchiseRepository implements FranchiseRepositoryInterface
     {
 
 
-
         if(key_exists('search', $params))
         {
             if (key_exists('size', $params) && $params['size'] > 0){
@@ -195,6 +194,54 @@ class FranchiseRepository implements FranchiseRepositoryInterface
                 $query = $query->where('parent.franchise_number', 'LIKE', '%' . $params['search'] . '%');
             }else {
                 $query = $query->where('children.' . $params['on'], 'LIKE', '%' . $params['search'] . '%');
+            }
+
+        }
+
+        return $query->paginate($params['size']);
+
+    }
+
+
+    public function getAllSubFranchiseByUser(User $user, array $params)
+    {
+        $query = DB::table('franchises as children')->where('children.parent_id', '<>', null)
+            ->join('franchises as parent', 'children.parent_id', '=', 'parent.id')
+            ->join('franchise_user', 'franchise_user.franchise_id', '=', 'children.id')
+            ->join('users', function($join) use ($user){
+                $join->on('users.id', '=', 'franchise_user.user_id')
+                    ->where('users.id', $user->id);
+            })
+            ->select('children.id',
+                'children.franchise_number',
+                'children.name',
+                'parent.franchise_number as parent_franchise',
+                'parent.id as parent_id'
+            );
+
+
+        if(key_exists('column', $params) && key_exists('direction', $params)){
+
+            if($params['column'] == 'parent'){
+                $query = $query->orderBy('parent.franchise_number', $params['direction']);
+            }else{
+                $query = $query->orderBy('children.' . $params['column'], $params['direction']);
+            }
+
+        }
+
+        if(key_exists('search', $params) && key_exists('on', $params) )
+        {
+
+            if($params['on'] == 'parent'){
+                $query = $query->where('parent.franchise_number', 'LIKE',  $params['search'] . '%');
+            }else {
+                if ( $params['on'] == 'franchise_number'){
+                    $query = $query->where('children.' . $params['on'], 'LIKE',  $params['search'] . '%');
+                }else {
+                    $query = $query->where('children.' . $params['on'], 'LIKE', '%' . $params['search'] . '%');
+                }
+
             }
 
         }

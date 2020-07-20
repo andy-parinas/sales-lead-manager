@@ -32,13 +32,35 @@ class SalesContactRepository  implements SalesContactRepositoryInterface
 
         if(key_exists('search', $params) && key_exists('on', $params))
         {
+
+            if($params['on'] == 'postcode'){
+                $params['on'] = 'pcode';
+            }
+
+            if($params['on'] == 'suburb'){
+                $params['on'] = 'locality';
+            }
+
+
             $query = $query
                     ->where($params['on'], 'LIKE', '%' . $params['search'] . '%');
 //                    ->orderBy('sales_contacts.' . $params['column'], $params['direction'])
 //                    ->paginate($params['size']);
         }
 
-        if(key_exists('column', $params) && ($params['column'] == 'pcode' || $params['column'] == 'state' || $params['column'] == 'locality' ) ){
+        if(key_exists('column', $params) && ($params['column'] == 'pcode'
+                || $params['column'] == 'postcode'
+                || $params['column'] == 'state'
+                || $params['column'] == 'locality'
+                || $params['column'] == 'suburb')){
+
+            if($params['column'] == 'postcode'){
+                $params['column'] = 'pcode';
+            }
+
+            if($params['column'] == 'suburb'){
+                $params['column'] = 'locality';
+            }
 
             $query = $query->orderBy('postcodes.' . $params['column'], $params['direction']);
 
