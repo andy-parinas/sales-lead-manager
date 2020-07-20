@@ -28,6 +28,7 @@ class SalesContactCollection extends ResourceCollection
                     'suburb' => $contact->suburb,
                     'state' => $contact->state,
                     'postcode' => $contact->postcode,
+                    'postcodeId' => $contact->postcodeId,
                     'customerType' => $contact->customer_type,
                     'status' => $contact->status
                 ];

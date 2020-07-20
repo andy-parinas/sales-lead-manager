@@ -26,6 +26,7 @@ class SalesContact extends JsonResource
             'suburb' => $this->postcode->locality,
             'state' => $this->postcode->state,
             'postcode' => $this->postcode->pcode,
+            'postcodeId' => $this->postcode->id,
             'customerType' => $this->customer_type,
             'status' => $this->status,
             'leads' => $this->whenLoaded('leads')

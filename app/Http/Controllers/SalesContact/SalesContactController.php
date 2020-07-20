@@ -81,7 +81,7 @@ class SalesContactController extends ApiController
      */
     public function show($id)
     {
-        $contact = SalesContact::with('leads')->findOrFail($id);
+        $contact = SalesContact::with(['leads', 'postcode'])->findOrFail($id);
 
         return $this->showOne(new SalesContactResource($contact));
     }

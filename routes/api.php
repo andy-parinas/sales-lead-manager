@@ -101,7 +101,7 @@ Route::resource('trade-types', 'TradeType\TradeTypeController', ['except' => ['e
  * Postcode Routes
  */
 Route::get('postcodes/search', 'Postcode\PostcodeController@search');
-Route::resource('postcodes', 'Postcode\PostcodeController', ['only' => ['index']]);
+Route::resource('postcodes', 'Postcode\PostcodeController', ['only' => ['index', 'show']]);
 
 
 /**

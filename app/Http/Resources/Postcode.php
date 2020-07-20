@@ -17,8 +17,9 @@ class Postcode extends JsonResource
         return [
             'id' => $this->id,
             'postcode' => $this->pcode,
-            'locality' => $this->locality,
-            'state' => $this->state
+            'suburb' => $this->locality,
+            'state' => $this->state,
+            'title' => $this->locality . ', ' . $this->state . ', ' . $this->pcode
         ];
     }
 }

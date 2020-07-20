@@ -10,6 +10,7 @@ use App\Postcode;
 use App\Repositories\Interfaces\PostcodeRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Http\Resources\Postcode as PostcodeResource;
 
 class PostcodeController extends ApiController
 {
@@ -71,11 +72,13 @@ class PostcodeController extends ApiController
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
-        //
+        $postcode = Postcode::findOrFail($id);
+
+        return $this->showOne(new PostcodeResource($postcode));
     }
 
 

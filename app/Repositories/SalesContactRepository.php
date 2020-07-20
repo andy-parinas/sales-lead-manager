@@ -23,6 +23,7 @@ class SalesContactRepository  implements SalesContactRepositoryInterface
                         'status',
                         'email',
                         'email2',
+                        'postcodes.id as postcodeId',
                         'postcodes.locality as suburb',
                         'postcodes.state',
                         'postcodes.pcode as postcode'
@@ -67,6 +68,7 @@ class SalesContactRepository  implements SalesContactRepositoryInterface
                 'status',
                 'email',
                 'email2',
+                'postcodes.id as postcodeId',
                 'postcodes.locality as suburb',
                 'postcodes.state',
                 'postcodes.pcode as postcode'
