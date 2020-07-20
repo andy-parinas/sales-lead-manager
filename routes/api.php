@@ -44,6 +44,7 @@ Route::put('franchises/{franchise}/leads/{lead}/franchise', 'Franchise\Franchise
 Route::get('franchises/{franchise}/related', 'Franchise\FranchiseController@related');
 Route::post('franchises/{franchise}/postcodes/{postcode}/attach', 'Franchise\FranchisePostcodeController@attach');
 Route::post('franchises/{franchise}/postcodes/{postcode}/detach', 'Franchise\FranchisePostcodeController@detach');
+Route::get('franchises/{franchise}/postcodes/{postcode}/check', 'Franchise\FranchisePostcodeController@check');
 
 /**
  * Lead Route

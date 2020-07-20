@@ -32,7 +32,7 @@ class FranchisePostcodeController extends ApiController
      * Display a listing of the resource.
      *
      * @param Franchise $franchise
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Franchise $franchise)
@@ -56,7 +56,7 @@ class FranchisePostcodeController extends ApiController
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request, $franchise_id)
     {
@@ -133,7 +133,7 @@ class FranchisePostcodeController extends ApiController
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Franchise $franchise, Postcode $postcode)
     {
@@ -151,6 +151,20 @@ class FranchisePostcodeController extends ApiController
         $franchise->postcodes()->detach($postcode->id);
 
         return response()->json($postcode);
+
+    }
+
+    public function check($franchiseId, $postcodeId)
+    {
+
+        $franchise = Franchise::findOrFail($franchiseId);
+        $postcode = Postcode::findOrFail($postcodeId);
+
+
+        $result = $franchise->postcodes->contains('id', $postcode->id);
+
+
+        return response()->json($result);
 
     }
 }
