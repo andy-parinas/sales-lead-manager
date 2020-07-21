@@ -14,20 +14,29 @@ class FranchiseSeeder extends Seeder
     public function run()
     {
 
-        $parent = factory(Franchise::class)->create();
+        $franchiseFile = storage_path() . '/app/database/franchise.json';
 
-        $franchises = factory(Franchise::class, 5)->create(['parent_id' => $parent->id]);
+        $strJsonFileContents = file_get_contents($franchiseFile);
+        $array = json_decode($strJsonFileContents, false);
+
+        $franchises = $array->franchises;
 
 
         foreach ($franchises as $franchise){
 
-            $postcodes = factory(Postcode::class, 2)->create();
+            print ("Creating Main Franchise \n");
+            $newFranchise = Franchise::create([
+                'franchise_number' => $franchise->franchise_number,
+                'name' => $franchise->name
+            ]);
 
-            foreach ($postcodes as $postcode){
-
-                $parent->postcodes()->attach($postcode->id);
-                $franchise->postcodes()->attach($postcode->id);
-
+            foreach ($franchise->children as $child){
+                print ("Creating Sub Franchise \n");
+                Franchise::create([
+                    'franchise_number' => $child->franchise_number,
+                    'name' => $child->name,
+                    'parent_id' => $newFranchise->id
+                ]);
             }
         }
 
