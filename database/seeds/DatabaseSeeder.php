@@ -121,8 +121,6 @@ class DatabaseSeeder extends Seeder
 
         ################################ USER ####################
 
-
-
         //Create a HeadOffice user
         factory(User::class)->create([
             'username' => 'headoffice1',
