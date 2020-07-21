@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 
 use App\SalesStaff;
+use Illuminate\Support\Facades\DB;
 
 class SalesStaffRepository implements Interfaces\SalesStafRepositoryInterface
 {
@@ -20,5 +21,29 @@ class SalesStaffRepository implements Interfaces\SalesStafRepositoryInterface
 
         return SalesStaff::with('franchise')->orderBy($params['column'], $params['direction'])
             ->paginate($params['size']);
+    }
+
+
+    public function searchAll($search)
+    {
+
+        return DB::table('sales_staff')
+            ->select('id',
+                'first_name',
+                'last_name',
+                'email',
+                'status',
+                'contact_number',
+                'franchise_id'
+            )
+            ->where('status', 'active')
+            ->where(function ($query) use ($search){
+                $query->where('first_name','LIKE', '%' . $search . '%' )
+                    ->orWhere('last_name','LIKE', '%' . $search . '%' )
+                    ->orWhere('email', 'LIKE', '%' . $search . '%');
+            })
+            ->get();
+
+
     }
 }

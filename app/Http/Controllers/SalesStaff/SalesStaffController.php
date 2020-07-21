@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SalesStaff;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SalesStaffCollection;
+use App\Http\Resources\SalesStaffSearchCollection;
 use App\Repositories\Interfaces\SalesStafRepositoryInterface;
 use App\SalesStaff;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class SalesStaffController extends ApiController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -40,7 +41,7 @@ class SalesStaffController extends ApiController
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -60,6 +61,14 @@ class SalesStaffController extends ApiController
         return $this->showOne(new SalesStaffResource($staff));
     }
 
+
+    public function search(Request $request)
+    {
+        $salesStaffs = $this->salesStaffRepository->searchAll($request->search);
+
+        return $this->showAll(new SalesStaffSearchCollection($salesStaffs));
+    }
+
     /**
      * Display the specified resource.
      *
@@ -77,7 +86,7 @@ class SalesStaffController extends ApiController
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
@@ -98,7 +107,7 @@ class SalesStaffController extends ApiController
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {

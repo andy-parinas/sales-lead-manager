@@ -29,4 +29,26 @@ class SalesStaffFeatureTest extends TestCase
 
     }
 
+    public function testCanSearchSalesStaff()
+    {
+        $this->withoutExceptionHandling();
+
+        //haystack
+        factory(SalesStaff::class, 15)->create();
+
+        factory(SalesStaff::class)->create([
+            'first_name' => 'Andy',
+            'last_name' => 'Parinas',
+            'email' => 'atparinas@gmail.com'
+        ]);
+
+        $this->authenticateHeadOfficeUser();
+
+        $response = $this->get('api/sales-staffs/search/?search=Andy');
+
+        //dd(json_decode($response->content()));
+
+        $response->assertStatus(Response::HTTP_OK);
+    }
+
 }
