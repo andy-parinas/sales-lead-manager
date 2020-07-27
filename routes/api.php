@@ -37,11 +37,16 @@ Route::get('franchises/parents', 'Franchise\FranchiseController@parents');
 Route::get('franchises/sub-franchises', 'Franchise\FranchiseController@subFranchise');
 
 Route::resource('franchises', 'Franchise\FranchiseController', ['except' => ['create', 'edit']]);
-Route::resource('franchises.postcodes', 'Franchise\FranchisePostcodeController', ['only' => ['index', 'store', 'destroy']]);
+
 Route::resource('franchises.children', 'Franchise\FranchiseChildrenController', ['only' => ['index', 'store']]);
 Route::resource('franchises.leads', 'Franchise\FranchiseLeadController', ['except' => ['create', 'edit']]);
 Route::put('franchises/{franchise}/leads/{lead}/franchise', 'Franchise\FranchiseLeadFranchiseController@update');
 Route::get('franchises/{franchise}/related', 'Franchise\FranchiseController@related');
+
+Route::get('franchises/{franchise}/postcodes/available', 'Franchise\FranchisePostcodeController@available');
+
+Route::resource('franchises.postcodes', 'Franchise\FranchisePostcodeController', ['only' => ['index', 'store', 'destroy']]);
+
 Route::post('franchises/{franchise}/postcodes/{postcode}/attach', 'Franchise\FranchisePostcodeController@attach');
 Route::post('franchises/{franchise}/postcodes/{postcode}/detach', 'Franchise\FranchisePostcodeController@detach');
 Route::get('franchises/{franchise}/postcodes/{postcode}/check', 'Franchise\FranchisePostcodeController@check');

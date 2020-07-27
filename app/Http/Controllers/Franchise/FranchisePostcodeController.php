@@ -51,6 +51,17 @@ class FranchisePostcodeController extends ApiController
 
     }
 
+    public function available(Request $request, Franchise $franchise)
+    {
+
+        $this->authorize('view', $franchise);
+
+        $postcodes = $this->postcodeRepository->getAvailableFranchisePostcode($this->getRequestParams(), $franchise);
+
+
+        return $this->showApiCollection(new PostcodeCollection($postcodes));
+
+    }
 
     /**
      * Store a newly created resource in storage.
