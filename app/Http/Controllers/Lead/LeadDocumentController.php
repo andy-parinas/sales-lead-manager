@@ -70,7 +70,7 @@ class LeadDocumentController extends ApiController
      *
      * @param Lead $lead
      * @param Document $document
-     * @return void
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
     public function show(Lead $lead, Document $document)
     {

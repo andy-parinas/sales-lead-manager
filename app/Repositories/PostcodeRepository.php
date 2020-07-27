@@ -48,35 +48,75 @@ class PostcodeRepository implements Interfaces\PostcodeRepositoryInterface
     public function getFranchisePostcodes(array $params, Franchise $franchise)
     {
 
-        if(key_exists('search', $params))
-        {
-            if (key_exists('size', $params) && $params['size'] > 0){
+//        $query = $franchise->postcodes();
+        $query = DB::table('postcodes')
+            ->join('franchise_postcode', 'franchise_postcode.postcode_id', '=', 'postcodes.id')
+            ->join('franchises', 'franchises.id', '=' , 'franchise_postcode.franchise_id')
+            ->select('postcodes.id',
+                'postcodes.pcode',
+                'postcodes.locality',
+                'postcodes.state'
+            )
+            ->where('franchise_postcode.franchise_id', '=', $franchise->id);
 
-                return $franchise->postcodes()->where('pcode', 'LIKE', '%' . $params['search'] . '%')
-                    ->orWhere('locality','LIKE', '%' . $params['search'] . '%' )
-                    ->orWhere('state','LIKE', '%' . $params['search'] . '%' )
-                    ->orderBy($params['column'], $params['direction'])
-                    ->paginate($params['size']);
+        if($params['column'] == 'postcode') {
+            $params['column'] = 'pcode';
+        }
 
-            }else {
+        if($params['column'] == 'suburb'){
+            $params['column'] = 'locality';
+        }
 
-                return $franchise->postcodes()->where('pcode', 'LIKE', '%' . $params['search'] . '%')
-                    ->orWhere('locality','LIKE', '%' . $params['search'] . '%' )
-                    ->orWhere('state','LIKE', '%' . $params['search'] . '%' )
-                    ->orderBy($params['column'], $params['direction'])
-                    ->get();
+        if(key_exists('search', $params)) {
 
-            }
+//            $query = $query->where('pcode', 'LIKE', '%' . $params['search'] . '%')
+//                ->orWhere('locality','LIKE', '%' . $params['search'] . '%' )
+//                ->orWhere('state','LIKE', '%' . $params['search'] . '%' )
+//                ->orderBy($params['column'], $params['direction']);
+
+            $query = $query->where(function ($query) use ($params){
+                $query->where('pcode', 'LIKE', '%' . $params['search'] . '%')
+                ->orWhere('locality','LIKE', '%' . $params['search'] . '%' )
+                ->orWhere('state','LIKE', '%' . $params['search'] . '%' )
+                ->orderBy($params['column'], $params['direction']);
+            });
+
 
         }else {
 
-            if (key_exists('size', $params) && $params['size'] > 0){
-                return $franchise->postcodes()->orderBy($params['column'], $params['direction'])->paginate($params['size']);
-            }else {
-                return $franchise->postcodes()->orderBy($params['column'], $params['direction'])->get();
-            }
+            $query = $query->orderBy($params['column'], $params['direction']);
 
         }
+
+        return $query->paginate($params['size']);
+
+//            if (key_exists('size', $params) && $params['size'] > 0){
+//
+//                return $franchise->postcodes()->where('pcode', 'LIKE', '%' . $params['search'] . '%')
+//                    ->orWhere('locality','LIKE', '%' . $params['search'] . '%' )
+//                    ->orWhere('state','LIKE', '%' . $params['search'] . '%' )
+//                    ->orderBy($params['column'], $params['direction'])
+//                    ->paginate($params['size']);
+//
+//            }else {
+//
+//                return $franchise->postcodes()->where('pcode', 'LIKE', '%' . $params['search'] . '%')
+//                    ->orWhere('locality','LIKE', '%' . $params['search'] . '%' )
+//                    ->orWhere('state','LIKE', '%' . $params['search'] . '%' )
+//                    ->orderBy($params['column'], $params['direction'])
+//                    ->get();
+
+//            }
+//
+//        }else {
+//
+//            if (key_exists('size', $params) && $params['size'] > 0){
+//                return $franchise->postcodes()->orderBy($params['column'], $params['direction'])->paginate($params['size']);
+//            }else {
+//                return $franchise->postcodes()->orderBy($params['column'], $params['direction'])->get();
+//            }
+//
+//        }
     }
 
     public function searchAll($search)
