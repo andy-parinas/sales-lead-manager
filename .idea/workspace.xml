@@ -22,8 +22,7 @@
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Franchise/FranchisePostcodeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Franchise/FranchisePostcodeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_30_012528_create_franchise_postcode_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_30_012528_create_franchise_postcode_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/FranchisePostcodeFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/FranchisePostcodeFeatureTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +184,7 @@
       <recent name="G:\Projects\sales-lead-manager\storage\app\database" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.FranchisePostcodeFeatureTest.testCanNotAttachPostcodeAlreadyAttached">
+  <component name="RunManager" selected="PHPUnit.FranchisePostcodeFeatureTest.testCanAttachPostcodeToFranchiseByHeadOffice">
     <configuration name="FranchiseFeatureTest.testCanListSubFranchisesAssignToUser" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\FranchiseFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchiseFeatureTest.php" method="testCanListSubFranchisesAssignToUser" scope="Method" />
       <method v="2" />
@@ -212,8 +211,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="PHPUnit.FranchisePostcodeFeatureTest.testCanNotAttachPostcodeAlreadyAttached" />
         <item itemvalue="PHPUnit.FranchisePostcodeFeatureTest.testCanAttachPostcodeToFranchiseByHeadOffice" />
+        <item itemvalue="PHPUnit.FranchisePostcodeFeatureTest.testCanNotAttachPostcodeAlreadyAttached" />
         <item itemvalue="PHPUnit.SalesStaffFeatureTest.testCanSearchSalesStaff" />
         <item itemvalue="PHPUnit.FranchiseFeatureTest.testCanListSubFranchisesAssignToUser" />
         <item itemvalue="PHPUnit.PostcodeFeatureTest.testCanCheckFranchisePostcode" />
@@ -277,14 +276,7 @@
       <workItem from="1595654254474" duration="628000" />
       <workItem from="1595661409047" duration="2908000" />
       <workItem from="1595818382942" duration="297000" />
-      <workItem from="1595819102514" duration="19795000" />
-    </task>
-    <task id="LOCAL-00071" summary="Refactor Updating SalesContact">
-      <created>1592273604712</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1592273604714</updated>
+      <workItem from="1595819102514" duration="22181000" />
     </task>
     <task id="LOCAL-00072" summary="Started Working on TradeStaff&#10;created TradeStaffSeeder.php">
       <created>1592281624555</created>
@@ -622,7 +614,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595851107712</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="Completed: Adding Postcodes to franchise.&#10;Refactor: Added primary key combination on franchise_postcodes">
+      <created>1595913630339</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1595913630340</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -644,7 +643,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Creating Finance when Contract is created.&#10;Refactor the controllers to use the services in creating Contract and Finance Object" />
     <MESSAGE value="Updating Finance when Contract is updated" />
     <MESSAGE value="Show Lead Finance" />
     <MESSAGE value="Updated Seeder to use random DesignAsessors. Added Sales_summary_report.sql" />
@@ -669,7 +667,8 @@
     <MESSAGE value="Adjusted the Seeder.&#10;Issue on the test server" />
     <MESSAGE value="Refactor searchPostcodeByFranchise to use QueryBuilder" />
     <MESSAGE value="Working Query on Available postcodes for Franchise" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working Query on Available postcodes for Franchise" />
+    <MESSAGE value="Completed: Adding Postcodes to franchise.&#10;Refactor: Added primary key combination on franchise_postcodes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed: Adding Postcodes to franchise.&#10;Refactor: Added primary key combination on franchise_postcodes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="480" y="167" key="#CLI_Interpreters" timestamp="1590473666182">
@@ -733,33 +732,33 @@
     </state>
     <state x="740" y="274" key="FileChooserDialogImpl/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595312427786" />
     <state x="740" y="274" key="FileChooserDialogImpl/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281964790" />
-    <state width="1877" height="771" key="GridCell.Tab.0.bottom" timestamp="1595912927215">
+    <state width="1877" height="771" key="GridCell.Tab.0.bottom" timestamp="1595912945367">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1877" height="442" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1595376263761" />
-    <state width="1877" height="771" key="GridCell.Tab.0.bottom/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595912927215" />
+    <state width="1877" height="771" key="GridCell.Tab.0.bottom/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595912945367" />
     <state width="1877" height="404" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
-    <state width="1877" height="771" key="GridCell.Tab.0.center" timestamp="1595912927215">
+    <state width="1877" height="771" key="GridCell.Tab.0.center" timestamp="1595912945367">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1877" height="442" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1595376263759" />
-    <state width="1877" height="771" key="GridCell.Tab.0.center/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595912927215" />
+    <state width="1877" height="771" key="GridCell.Tab.0.center/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595912945367" />
     <state width="1877" height="404" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
-    <state width="1877" height="771" key="GridCell.Tab.0.left" timestamp="1595912927215">
+    <state width="1877" height="771" key="GridCell.Tab.0.left" timestamp="1595912945366">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1877" height="442" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1595376263756" />
-    <state width="1877" height="771" key="GridCell.Tab.0.left/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595912927215" />
+    <state width="1877" height="771" key="GridCell.Tab.0.left/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595912945366" />
     <state width="1877" height="404" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
-    <state width="1877" height="771" key="GridCell.Tab.0.right" timestamp="1595912927215">
+    <state width="1877" height="771" key="GridCell.Tab.0.right" timestamp="1595912945367">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1877" height="442" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1595376263759" />
-    <state width="1877" height="771" key="GridCell.Tab.0.right/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595912927215" />
+    <state width="1877" height="771" key="GridCell.Tab.0.right/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595912945367" />
     <state width="1877" height="404" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1594875562399">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -795,12 +794,12 @@
     </state>
     <state x="179" y="-901" key="SettingsEditor/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587705147994" />
     <state x="390" y="153" key="SettingsEditor/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1590122052747" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1595851110166">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1595913638626">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818402975" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@0.0.1366.728" timestamp="1588205242303" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595851110166" />
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595913638626" />
     <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594274763207" />
     <state x="650" y="152" width="664" height="764" key="find.popup" timestamp="1595320527261">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -808,11 +807,11 @@
     <state x="387" y="-916" width="581" height="741" key="find.popup/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588748240542" />
     <state x="650" y="152" width="664" height="764" key="find.popup/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595320527261" />
     <state x="650" y="152" width="664" height="764" key="find.popup/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593669054808" />
-    <state x="623" y="226" width="768" height="679" key="search.everywhere.popup" timestamp="1595848256051">
+    <state x="623" y="226" width="768" height="679" key="search.everywhere.popup" timestamp="1595915619185">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="383" y="-831" width="672" height="659" key="search.everywhere.popup/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588210067045" />
-    <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595848256051" />
+    <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595915619185" />
     <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594277025054" />
     <state x="689" y="426" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1594870566405">
       <screen x="0" y="0" width="1920" height="1035" />

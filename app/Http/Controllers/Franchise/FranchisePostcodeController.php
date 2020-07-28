@@ -115,29 +115,21 @@ class FranchisePostcodeController extends ApiController
 
     }
 
-    public function detach(Franchise $franchise, Postcode $postcode)
+    public function detach(Request $request, $franchise_id)
     {
-        //Check if postcode is actually attached
-        if(!$franchise->postcodes->contains('id', $postcode->id)){
-            abort(Response::HTTP_BAD_REQUEST, "Postcode is not attached to the franchise");
-        }
+        $franchise = Franchise::findOrFail($franchise_id);
+        $parent = Franchise::find($franchise->parent_id);
 
-        //Check if Franchise is parent and the postcode is also attached to the Children
-        if($franchise->isParent()){
 
-            $children = $franchise->children;
+        $data = $this->validate($request, [
+            'postcodes' => 'required|array'
+        ]);
 
-            foreach ($children as $child){
-                if($child->postcodes->contains('id', $postcode->id)){
-                    abort(Response::HTTP_BAD_REQUEST, "Can't detach Postcode that is attached to a Sub-Franchise: " . $child->franchise_number);
-                }
-            }
 
-        }
+        $parent->postcodes()->detach($data['postcodes']);
+        $franchise->postcodes()->detach($data['postcodes']);
 
-        $franchise->postcodes()->detach($postcode->id);
-
-        return $this->showOne(new PostcodeResource($postcode));
+        return $this->showOne($data, Response::HTTP_OK);
 
     }
 
