@@ -95,8 +95,9 @@ class FranchisePostcodeFeatureTest extends TestCase
         $this->withoutExceptionHandling();
 
         $headOffice = factory(User::class)->create(['user_type' => User::HEAD_OFFICE]);
+        $parent = factory(Franchise::class)->create();
 
-        $franchise = factory(Franchise::class)->create();
+        $franchise = factory(Franchise::class)->create(['parent_id' => $parent->id]);
 
         $p1 = factory(Postcode::class)->create();
         $p2 = factory(Postcode::class)->create();
@@ -109,12 +110,48 @@ class FranchisePostcodeFeatureTest extends TestCase
 
         $data = ['postcodes' => [$p1->id, $p2->id, $p3->id]];
 
-        $this->post('api/franchises/' . $franchise->id . '/postcodes/', $data)
-            ->assertStatus(Response::HTTP_CREATED)
-            ->assertJsonCount(3, 'data');
 
+        $this->post('api/franchises/' . $franchise->id . '/postcodes/', $data)
+            ->assertStatus(Response::HTTP_CREATED);
+
+//        dd($franchise->postcodes);
+        $this->assertCount(3, $franchise->postcodes);
 
     }
+
+
+    public function testCanNotAttachPostcodeAlreadyAttached()
+    {
+
+//        $this->withoutExceptionHandling();
+
+        $headOffice = factory(User::class)->create(['user_type' => User::HEAD_OFFICE]);
+        $parent = factory(Franchise::class)->create();
+
+        $franchise = factory(Franchise::class)->create(['parent_id' => $parent->id]);
+
+        $p1 = factory(Postcode::class)->create();
+        $p2 = factory(Postcode::class)->create();
+        $p3 = factory(Postcode::class)->create();
+
+        $franchise->postcodes()->attach([$p1->id, $p2->id, $p3->id]);
+
+        Sanctum::actingAs(
+            $headOffice,
+            ['*']
+        );
+
+        $data = ['postcodes' => [$p1->id, $p2->id, $p3->id]];
+
+
+        $this->post('api/franchises/' . $franchise->id . '/postcodes/', $data)
+            ->assertStatus(409);
+
+        $this->assertCount(3, $franchise->postcodes);
+
+    }
+
+
 
 
     public function testCanNotAttachPostCodeToFranchiseNonHeadOffice()

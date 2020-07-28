@@ -22,9 +22,8 @@
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Franchise/FranchisePostcodeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Franchise/FranchisePostcodeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/Interfaces/PostcodeRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/PostcodeRepositoryInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/PostcodeRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/PostcodeRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_30_012528_create_franchise_postcode_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_30_012528_create_franchise_postcode_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/FranchisePostcodeFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/FranchisePostcodeFeatureTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,21 +185,21 @@
       <recent name="G:\Projects\sales-lead-manager\storage\app\database" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.SalesStaffFeatureTest.testCanSearchSalesStaff">
+  <component name="RunManager" selected="PHPUnit.FranchisePostcodeFeatureTest.testCanNotAttachPostcodeAlreadyAttached">
     <configuration name="FranchiseFeatureTest.testCanListSubFranchisesAssignToUser" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\FranchiseFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchiseFeatureTest.php" method="testCanListSubFranchisesAssignToUser" scope="Method" />
       <method v="2" />
     </configuration>
+    <configuration name="FranchisePostcodeFeatureTest.testCanAttachPostcodeToFranchiseByHeadOffice" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\FranchisePostcodeFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchisePostcodeFeatureTest.php" method="testCanAttachPostcodeToFranchiseByHeadOffice" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="FranchisePostcodeFeatureTest.testCanNotAttachPostcodeAlreadyAttached" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\FranchisePostcodeFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchisePostcodeFeatureTest.php" method="testCanNotAttachPostcodeAlreadyAttached" scope="Method" />
+      <method v="2" />
+    </configuration>
     <configuration name="PostcodeFeatureTest.testCanCheckFranchisePostcode" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\PostcodeFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/PostcodeFeatureTest.php" method="testCanCheckFranchisePostcode" scope="Method" />
-      <method v="2" />
-    </configuration>
-    <configuration name="PostcodeFeatureTest.testCanSearchPostcodesByAuthenticatedUsers" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\PostcodeFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/PostcodeFeatureTest.php" method="testCanSearchPostcodesByAuthenticatedUsers" scope="Method" />
-      <method v="2" />
-    </configuration>
-    <configuration name="ReportFeatureTest.testSalesSummaryReport" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\ReportFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ReportFeatureTest.php" method="testSalesSummaryReport" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="SalesStaffFeatureTest.testCanSearchSalesStaff" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -213,11 +212,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.FranchisePostcodeFeatureTest.testCanNotAttachPostcodeAlreadyAttached" />
+        <item itemvalue="PHPUnit.FranchisePostcodeFeatureTest.testCanAttachPostcodeToFranchiseByHeadOffice" />
         <item itemvalue="PHPUnit.SalesStaffFeatureTest.testCanSearchSalesStaff" />
         <item itemvalue="PHPUnit.FranchiseFeatureTest.testCanListSubFranchisesAssignToUser" />
         <item itemvalue="PHPUnit.PostcodeFeatureTest.testCanCheckFranchisePostcode" />
-        <item itemvalue="PHPUnit.PostcodeFeatureTest.testCanSearchPostcodesByAuthenticatedUsers" />
-        <item itemvalue="PHPUnit.ReportFeatureTest.testSalesSummaryReport" />
       </list>
     </recent_temporary>
   </component>
@@ -278,14 +277,7 @@
       <workItem from="1595654254474" duration="628000" />
       <workItem from="1595661409047" duration="2908000" />
       <workItem from="1595818382942" duration="297000" />
-      <workItem from="1595819102514" duration="14567000" />
-    </task>
-    <task id="LOCAL-00070" summary="Deleting SalesStaff">
-      <created>1592221364909</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1592221364910</updated>
+      <workItem from="1595819102514" duration="19795000" />
     </task>
     <task id="LOCAL-00071" summary="Refactor Updating SalesContact">
       <created>1592273604712</created>
@@ -623,7 +615,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595838888734</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="Working Query on Available postcodes for Franchise">
+      <created>1595851107711</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1595851107712</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -645,7 +644,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Created Fianance model. Adjusted Contract Total to not include deposit" />
     <MESSAGE value="Creating Finance when Contract is created.&#10;Refactor the controllers to use the services in creating Contract and Finance Object" />
     <MESSAGE value="Updating Finance when Contract is updated" />
     <MESSAGE value="Show Lead Finance" />
@@ -670,7 +668,8 @@
     <MESSAGE value="added .gitignore database folder" />
     <MESSAGE value="Adjusted the Seeder.&#10;Issue on the test server" />
     <MESSAGE value="Refactor searchPostcodeByFranchise to use QueryBuilder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor searchPostcodeByFranchise to use QueryBuilder" />
+    <MESSAGE value="Working Query on Available postcodes for Franchise" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working Query on Available postcodes for Franchise" />
   </component>
   <component name="WindowStateProjectService">
     <state x="480" y="167" key="#CLI_Interpreters" timestamp="1590473666182">
@@ -734,33 +733,33 @@
     </state>
     <state x="740" y="274" key="FileChooserDialogImpl/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595312427786" />
     <state x="740" y="274" key="FileChooserDialogImpl/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281964790" />
-    <state width="1877" height="442" key="GridCell.Tab.0.bottom" timestamp="1595376263761">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="771" key="GridCell.Tab.0.bottom" timestamp="1595912927215">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1877" height="442" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1595376263761" />
-    <state width="1877" height="442" key="GridCell.Tab.0.bottom/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595324374377" />
+    <state width="1877" height="771" key="GridCell.Tab.0.bottom/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595912927215" />
     <state width="1877" height="404" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
-    <state width="1877" height="442" key="GridCell.Tab.0.center" timestamp="1595376263759">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="771" key="GridCell.Tab.0.center" timestamp="1595912927215">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.center/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1877" height="442" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1595376263759" />
-    <state width="1877" height="442" key="GridCell.Tab.0.center/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595324374377" />
+    <state width="1877" height="771" key="GridCell.Tab.0.center/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595912927215" />
     <state width="1877" height="404" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
-    <state width="1877" height="442" key="GridCell.Tab.0.left" timestamp="1595376263756">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="771" key="GridCell.Tab.0.left" timestamp="1595912927215">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.left/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1877" height="442" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1595376263756" />
-    <state width="1877" height="442" key="GridCell.Tab.0.left/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595324374377" />
+    <state width="1877" height="771" key="GridCell.Tab.0.left/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595912927215" />
     <state width="1877" height="404" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
-    <state width="1877" height="442" key="GridCell.Tab.0.right" timestamp="1595376263759">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="771" key="GridCell.Tab.0.right" timestamp="1595912927215">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1637" height="319" key="GridCell.Tab.0.right/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818836213" />
     <state width="1877" height="442" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1595376263759" />
-    <state width="1877" height="442" key="GridCell.Tab.0.right/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595324374377" />
+    <state width="1877" height="771" key="GridCell.Tab.0.right/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595912927215" />
     <state width="1877" height="404" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1594875562399">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -796,12 +795,12 @@
     </state>
     <state x="179" y="-901" key="SettingsEditor/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1587705147994" />
     <state x="390" y="153" key="SettingsEditor/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1590122052747" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1595838892364">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1595851110166">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="321" y="-806" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@-162.-1050.1680.1010" timestamp="1588818402975" />
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728/-162.-1050.1680.1010@0.0.1366.728" timestamp="1588205242303" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595838892364" />
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595851110166" />
     <state x="552" y="251" key="Vcs.Push.Dialog.v2/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594274763207" />
     <state x="650" y="152" width="664" height="764" key="find.popup" timestamp="1595320527261">
       <screen x="0" y="0" width="1920" height="1040" />

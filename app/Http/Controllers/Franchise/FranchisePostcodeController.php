@@ -72,19 +72,21 @@ class FranchisePostcodeController extends ApiController
     public function store(Request $request, $franchise_id)
     {
 
-        $franchise = Franchise::with('parent')->findOrFail($franchise_id);
+        $franchise = Franchise::findOrFail($franchise_id);
+        $parent = Franchise::find($franchise->parent_id);
 
         $this->authorize('create', $franchise);
+
+
 
         $data = $this->validate($request, [
             'postcodes' => 'required|array'
         ]);
 
-        $postcodes = $this->postcodeService->checkParentPostcodes($franchise, $data['postcodes']);
+        $parent->postcodes()->attach($data['postcodes']);
+        $franchise->postcodes()->attach($data['postcodes']);
 
-        $franchise->postcodes()->attach($postcodes);
-
-        return $this->showAll($franchise->postcodes, Response::HTTP_CREATED);
+        return $this->showOne($data, Response::HTTP_CREATED);
 
     }
 
