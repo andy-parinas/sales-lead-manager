@@ -104,20 +104,6 @@ class PostcodeRepository implements Interfaces\PostcodeRepositoryInterface
     public function getAvailableFranchisePostcode(array $params, $franchise){
 
 
-        $query = DB::table('postcodes')
-            ->select('postcodes.id',
-                'postcodes.pcode',
-                'postcodes.locality',
-                'postcodes.state'
-            )
-            ->leftJoin('franchise_postcode', 'postcodes.id', '=', 'franchise_postcode.postcode_id')
-            ->leftJoin('franchises', 'franchises.id', '=' , 'franchise_postcode.franchise_id')
-            ->where('franchise_postcode.franchise_id', '<>', $franchise->id)
-            ->where('franchises.parent_id', '<>', null); //Query only the subfranchises
-
-
-
-
         if($params['column'] == 'postcode') {
             $params['column'] = 'pcode';
         }
@@ -125,6 +111,29 @@ class PostcodeRepository implements Interfaces\PostcodeRepositoryInterface
         if($params['column'] == 'suburb'){
             $params['column'] = 'locality';
         }
+
+
+        $subQuery = DB::table('franchises')
+            ->select(
+                'franchises.id as franchise_id', 'franchises.parent_id', 'franchise_postcode.postcode_id as postcode_id'
+            )->join('franchise_postcode', 'franchise_postcode.franchise_id', '=', 'franchises.id')
+            ->where('franchises.parent_id', '<>', null);
+
+        $query = DB::table('postcodes')
+            ->select('postcodes.id',
+                'postcodes.pcode',
+                'postcodes.locality',
+                'postcodes.state'
+            )
+            ->leftJoinSub($subQuery, 'sub_franchises', function ($join){
+                $join->on('postcodes.id', '=', 'sub_franchises.postcode_id');
+            })
+            ->where(function($query) use ($franchise){
+                $query->where('sub_franchises.franchise_id', '<>', $franchise->id)
+                    ->orWhere('sub_franchises.franchise_id', '=', null);
+            });
+
+
 
         if(key_exists('search', $params)) {
 
@@ -144,9 +153,7 @@ class PostcodeRepository implements Interfaces\PostcodeRepositoryInterface
 
         $query = $query->groupBy(['postcodes.id', 'pcode', 'locality', 'state']);
 
-
         return $query->paginate($params['size']);
-
 
 
     }
