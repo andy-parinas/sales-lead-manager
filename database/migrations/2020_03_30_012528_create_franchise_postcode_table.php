@@ -17,8 +17,8 @@ class CreateFranchisePostcodeTable extends Migration
             $table->unsignedBigInteger('franchise_id');
             $table->unsignedBigInteger('postcode_id');
             $table->primary(['franchise_id', 'postcode_id']);
-            $table->foreign('franchise_id')->references('id')->on('franchises');
-            $table->foreign('postcode_id')->references('id')->on('postcodes');
+            $table->foreign('franchise_id')->references('id')->on('franchises')->cascadeOnDelete();
+            $table->foreign('postcode_id')->references('id')->on('postcodes')->cascadeOnDelete();
         });
     }
 
