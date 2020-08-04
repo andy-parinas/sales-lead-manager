@@ -171,6 +171,7 @@ class FranchiseRepository implements FranchiseRepositoryInterface
             ->join('franchises as parent', 'children.parent_id', '=', 'parent.id')
             ->select('children.id',
                 'children.franchise_number',
+                'children.description',
                 'children.name',
                 'parent.franchise_number as parent_franchise',
                 'parent.id as parent_id'
@@ -196,6 +197,10 @@ class FranchiseRepository implements FranchiseRepositoryInterface
                 $query = $query->where('children.' . $params['on'], 'LIKE', '%' . $params['search'] . '%');
             }
 
+        }
+
+        if(key_exists('all', $params) && $params['all'] === 'true'){
+            return $query->get();
         }
 
         return $query->paginate($params['size']);

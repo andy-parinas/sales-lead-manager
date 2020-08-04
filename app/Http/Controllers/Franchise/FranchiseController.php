@@ -63,14 +63,22 @@ class FranchiseController extends ApiController
         {
             $franchises = $this->franchiseRepository->getAllSubFranchise($this->getRequestParams());
 
-            return $this->showApiCollection(new SubFranchiseCollection($franchises));
+
+            if(get_class($franchises) === "Illuminate\Pagination\LengthAwarePaginator")
+                return $this->showApiCollection(new SubFranchiseCollection($franchises));
+
+
+            return $this->showAll(FranchiseResource::collection($franchises));
 
         }
         else
         {
             $franchises = $this->franchiseRepository->getAllSubFranchiseByUser(Auth::user(), $this->getRequestParams());
 
-            return $this->showApiCollection(new SubFranchiseCollection($franchises));
+            if(get_class($franchises) === "Illuminate\Pagination\LengthAwarePaginator")
+                return $this->showApiCollection(new SubFranchiseCollection($franchises));
+
+            return $this->showAll(FranchiseResource::collection($franchises));
         }
 
     }

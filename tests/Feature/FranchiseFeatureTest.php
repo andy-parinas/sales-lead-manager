@@ -369,7 +369,7 @@ class FranchiseFeatureTest extends TestCase
 
         $this->authenticateHeadOfficeUser();
 
-        $response = $this->get('api/franchises/sub-franchises');
+        $response = $this->get('api/franchises/sub-franchises?all=true');
 
         //dd(json_decode($response->content()));
 

@@ -19,30 +19,51 @@ class ApiController extends Controller
         $direction = request()->has('direction') ? request()->direction : 'asc';
         $size = request()->has('size') ? request()->size : 10;
 
-        if(request()->has('search') && request()->has('on')){
-
-            return [
-                'column' => $column,
-                'direction' => $direction,
-                'size' => $size,
-                'search' => request()->search,
-                'on' => request()->on
-            ];
-        }elseif (request()->has('search')){
-
-            return [
-                'column' => $column,
-                'direction' => $direction,
-                'size' => $size,
-                'search' => request()->search,
-            ];
-        }
-
-        return [
+        $params = [
             'column' => $column,
             'direction' => $direction,
             'size' =>$size
         ];
+
+        if(request()->has('search') && request()->has('on')){
+
+            $params = array_merge($params, ['search' => request()->search]);
+        }
+
+        if(request()->has('on')){
+            $params = array_merge($params, ['on' => request()->on]);
+        }
+
+        if(request()->has('all')){
+            $params = array_merge($params, ['all' => request()->all]);
+        }
+
+        return $params;
+
+//        if(request()->has('search') && request()->has('on')){
+//
+//            return [
+//                'column' => $column,
+//                'direction' => $direction,
+//                'size' => $size,
+//                'search' => request()->search,
+//                'on' => request()->on
+//            ];
+//        }elseif (request()->has('search')){
+//
+//            return [
+//                'column' => $column,
+//                'direction' => $direction,
+//                'size' => $size,
+//                'search' => request()->search,
+//            ];
+//        }
+//
+//        return [
+//            'column' => $column,
+//            'direction' => $direction,
+//            'size' =>$size
+//        ];
     }
 
     public function isAllowed($ability)
