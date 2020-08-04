@@ -19,14 +19,15 @@ class SalesSummaryReportController extends ApiController
 
     public function index(Request $request)
     {
+
+
         if($request->has('start_date') && $request->has('end_date')){
 
-            $results = $this->reportRepostitory->generateSalesSummary($request->start_date, $request->end_date);
+
+            $results = $this->reportRepostitory->generateSalesSummary($request->all());
             //$results = $this->reportRepostitory->generateSalesSummaryForTest($request->start_date, $request->end_date);
 
             $total = $this->computeTotal($results);
-
-
 
             return $this->showOne([
                 'results' => $results,

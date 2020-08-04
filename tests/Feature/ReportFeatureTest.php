@@ -14,16 +14,16 @@ class ReportFeatureTest extends TestCase
 
     use RefreshDatabase, TestHelper;
 
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        Artisan::call('db:seed', ['--class' => 'FranchiseSeeder']);
-        Artisan::call('db:seed', ['--class' => 'ProductSeeder']);
-        Artisan::call('db:seed', ['--class' => 'LeadSourceSeeder']);
-        Artisan::call('db:seed', ['--class' => 'LeadTestSeeder']);
-
-    }
+//    public function setUp(): void
+//    {
+//        parent::setUp();
+//
+//        Artisan::call('db:seed', ['--class' => 'FranchiseSeeder']);
+//        Artisan::call('db:seed', ['--class' => 'ProductSeeder']);
+//        Artisan::call('db:seed', ['--class' => 'LeadSourceSeeder']);
+//        Artisan::call('db:seed', ['--class' => 'LeadTestSeeder']);
+//
+//    }
 
     public function testSalesSummaryReport()
     {
