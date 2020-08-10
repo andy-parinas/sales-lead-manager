@@ -8,5 +8,5 @@ interface ReportRepositoryInterface
 {
     public function generateSalesSummary($queryParams);
 
-    public function generateSalesSummaryForTest($start_date, $end_date);
+    public function generateProductSalesSummary($queryParams);
 }

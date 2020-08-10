@@ -131,6 +131,7 @@ Route::resource('trade-staffs', 'TradeStaff\TradeStaffController',['except' => [
  * Report Routes
  */
 Route::get('reports/sales-summary', 'Reports\SalesSummaryReportController@index');
+Route::get('reports/product-sales-summary', 'Reports\ProductSalesSummaryReportController@index');
 
 
 
