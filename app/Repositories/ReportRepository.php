@@ -78,7 +78,6 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
 
     public function generateProductSalesSummary($queryParams)
     {
-        DB::connection()->enableQueryLog();
 
         $leadSubQuery = DB::table('leads')
             ->select('leads.id',
@@ -113,12 +112,8 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
                 'products.name',
             ]);
 
-        $results = $mainQuery->get();
 
-        Log::info( DB::getQueryLog());
+        return $mainQuery->get();
 
-//        return $mainQuery->get();
-
-        return $results;
     }
 }
