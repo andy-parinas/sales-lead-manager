@@ -107,10 +107,16 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             ->selectRaw("sum(leads.total_contract) as totalContracts")
             ->leftJoinSub($leadSubQuery, 'leads', function ($join){
                 $join->on('products.id', '=', 'leads.product_id');
-            })
-            ->groupBy([
-                'products.name',
-            ]);
+            });
+
+        if(key_exists("product_id", $queryParams) && $queryParams['product_id'] !== ""){
+
+          $mainQuery = $mainQuery->where('products.id',$queryParams['product_id'] );
+        }
+
+        $mainQuery = $mainQuery->groupBy([
+            'products.name',
+        ]);
 
 
         return $mainQuery->get();
