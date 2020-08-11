@@ -15,6 +15,7 @@ class Finance extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'projectPrice' => $this->project_price,
             'gst' => $this->gst,
             'contractPrice' => $this->contract_price,

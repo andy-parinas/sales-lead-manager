@@ -84,11 +84,57 @@ class FinancePaymentMadeController extends ApiController
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $financeId, $paymentId)
     {
-        //
+
+        $finance = Finance::findOrFail($financeId);
+
+        $payment = PaymentMade::findOrFail($paymentId);
+
+        if($payment->finance_id != $finance->id)
+            abort(Response::HTTP_BAD_REQUEST, "Payment is not associated with Finance");
+
+        $data = $this->validate($request, [
+            'payment_date' => 'sometimes|date',
+            'description' => 'sometimes',
+            'amount' => 'sometimes'
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+
+            //Reverse Total Payment
+            $total_payment = $finance->total_payment_made - $payment->amount;
+
+            //Update the Payment
+            $payment->update($data);
+
+            //Apply the New Total Payment
+            $total_payment = $total_payment + $payment->amount;
+
+            //Re-Compute Balance
+            $balance = $finance->total_contract - $finance->deposit - $total_payment;
+
+            // Update Finance
+            $finance->update([
+                'total_payment_made' => $total_payment,
+                'balance' => $balance
+            ]);
+
+            DB::commit();
+
+            return $this->showOne(new PaymentMadeResource($payment), Response::HTTP_OK);
+
+        }catch (\Exception $exception){
+            DB::rollBack();
+            throw new \Exception($exception);
+        }
+
+
+
     }
 
     /**
