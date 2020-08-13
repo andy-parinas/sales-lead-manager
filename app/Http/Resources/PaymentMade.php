@@ -15,6 +15,7 @@ class PaymentMade extends JsonResource
     public function toArray($request)
     {
         return [
+             'id' => $this->id,
              'paymentDate' => $this->payment_date,
              'description' => $this->description,
              'amount' => $this->amount
