@@ -141,10 +141,47 @@ class FinancePaymentMadeController extends ApiController
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy($financeId, $paymentId)
     {
-        //
+        $finance = Finance::findOrFail($financeId);
+
+        $payment = PaymentMade::findOrFail($paymentId);
+
+        if($payment->finance_id != $finance->id)
+            abort(Response::HTTP_BAD_REQUEST, "Payment is not associated with Finance");
+
+
+        DB::beginTransaction();
+
+        try {
+
+            //Reverse Total Payment
+            $total_payment = $finance->total_payment_made - $payment->amount;
+
+            //Update the Payment
+            $payment->delete();
+
+            //Re-Compute Balance
+            $balance = $finance->total_contract - $finance->deposit - $total_payment;
+
+            // Update Finance
+            $finance->update([
+                'total_payment_made' => $total_payment,
+                'balance' => $balance
+            ]);
+
+            DB::commit();
+
+            return $this->showOne(new PaymentMadeResource($payment), Response::HTTP_OK);
+
+        }catch (\Exception $exception){
+            DB::rollBack();
+            throw new \Exception($exception);
+        }
+
+
+
     }
 }

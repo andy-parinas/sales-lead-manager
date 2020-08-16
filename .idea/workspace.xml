@@ -21,7 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/PaymentMade.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/PaymentMade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Finance/FinancePaymentMadeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Finance/FinancePaymentMadeController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -284,7 +284,7 @@
       <workItem from="1597019375824" duration="14290000" />
       <workItem from="1597121651883" duration="7083000" />
       <workItem from="1597227678197" duration="615000" />
-      <workItem from="1597307567690" duration="3674000" />
+      <workItem from="1597307567690" duration="6622000" />
     </task>
     <task id="LOCAL-00079" summary="created contract model, migration and factory">
       <created>1593389934097</created>
