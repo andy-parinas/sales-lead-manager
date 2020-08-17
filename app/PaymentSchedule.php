@@ -17,4 +17,9 @@ class PaymentSchedule extends Model
         'amount',
         'status'
     ];
+
+    public function finance()
+    {
+        return $this->belongsTo(Finance::class);
+    }
 }

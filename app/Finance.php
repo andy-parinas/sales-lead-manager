@@ -25,4 +25,8 @@ class Finance extends Model
         return $this->hasMany(PaymentMade::class, 'finance_id');
     }
 
+    public function paymentsSchedule(){
+        return $this->hasMany(PaymentSchedule::class, 'finance_id');
+    }
+
 }
