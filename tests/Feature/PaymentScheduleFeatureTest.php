@@ -49,7 +49,7 @@ class PaymentScheduleFeatureTest extends TestCase
         ]);
 
         $response = $this->get('api/finances/' . $finance ->id . '/payment-schedules');
-        
+
 
         $response->assertStatus(Response::HTTP_OK)
             ->assertJsonCount(5, 'data');

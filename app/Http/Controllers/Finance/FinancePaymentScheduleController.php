@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Finance;
 use App\Finance;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\PaymentMade;
 use App\PaymentSchedule;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -74,11 +75,29 @@ class FinancePaymentScheduleController extends ApiController
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $financeId, $paymentId)
     {
-        //
+        $finance = Finance::findOrFail($financeId);
+
+        $payment = PaymentSchedule::findOrFail($paymentId);
+
+        if($payment->finance_id != $finance->id)
+            abort(Response::HTTP_BAD_REQUEST, "Payment is not associated with Finance");
+
+
+        $data = $this->validate($request, [
+            'due_date' => 'sometimes|date',
+            'description' => 'sometimes',
+            'amount' => 'sometimes'
+        ]);
+
+        $payment->update($data);
+
+
+        return $this->showOne(new PaymentScheduleResource($payment));
+
     }
 
     /**
