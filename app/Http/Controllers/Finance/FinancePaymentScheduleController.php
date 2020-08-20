@@ -104,10 +104,19 @@ class FinancePaymentScheduleController extends ApiController
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy($financeId, $paymentId)
     {
-        //
+        $finance = Finance::findOrFail($financeId);
+
+        $payment = PaymentSchedule::findOrFail($paymentId);
+
+        if($payment->finance_id != $finance->id)
+            abort(Response::HTTP_BAD_REQUEST, "Payment is not associated with Finance");
+
+        $payment->delete();
+
+        return $this->showOne(new PaymentScheduleResource($payment));
     }
 }
