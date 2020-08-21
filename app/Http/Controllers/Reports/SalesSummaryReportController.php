@@ -27,13 +27,19 @@ class SalesSummaryReportController extends ApiController
             $results = $this->reportRepostitory->generateSalesSummary($request->all());
             //$results = $this->reportRepostitory->generateSalesSummaryForTest($request->start_date, $request->end_date);
 
-            $total = $this->computeTotal($results);
+            if($results->count() > 0){
+                $total = $this->computeTotal($results);
+
+                return $this->showOne([
+                    'results' => $results,
+                    'total' => $total
+                ]);
+
+            }
 
             return $this->showOne([
-                'results' => $results,
-                'total' => $total
+                'results' => $results
             ]);
-
         }
     }
 

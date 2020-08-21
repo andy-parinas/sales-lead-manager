@@ -17,8 +17,10 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             ->select('job_types.lead_id',
                 'job_types.sales_staff_id',
                 'job_types.product_id',
-                'products.name as productName'
+                'products.name as productName',
+                'products.id as productId'
             )->join('products','job_types.product_id', '=', 'products.id' );
+
 
         $salesStaffSubQuery = DB::table('sales_staff')
             ->select( 'sales_staff.id',
@@ -29,7 +31,7 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             )->join('franchises', 'franchises.id', '=', 'sales_staff.franchise_id');
 
         $mainQuery = DB::table('leads')
-            ->select('sales_staff.franchise_number as franchiseNumber')
+            ->select('sales_staff.franchise_number as franchiseNumber', 'job_types.productName', 'job_types.productId')
             ->selectRaw("concat(sales_staff.first_name, ' ', sales_staff.last_name) as salesStaff")
             ->selectRaw("count(case appointments.outcome when 'success' then 1 else null end) as SuccessCount")
             ->selectRaw("count( IF (contracts.contract_price > 0 and appointments.outcome = 'success' , 1, null) ) as numberOfSales")
@@ -39,7 +41,10 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             ->selectRaw("sum(contracts.total_contract) as totalContracts")
             ->leftJoin('appointments', 'appointments.lead_id', '=', 'leads.id')
             ->leftJoin('contracts', 'contracts.lead_id', '=', 'leads.id')
-            ->leftJoin('job_types','job_types.lead_id', '=', 'leads.id' )
+//            ->leftJoin('job_types','job_types.lead_id', '=', 'leads.id' )
+            ->leftJoinSub($jobTypesSubQuery, 'job_types', function ($join){
+                $join->on('job_types.lead_id', '=', 'leads.id');
+            })
             ->leftJoinSub($salesStaffSubQuery, 'sales_staff', function ($join){
                 $join->on('job_types.sales_staff_id', '=', 'sales_staff.id');
             });
@@ -61,10 +66,18 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
                 $mainQuery = $mainQuery->where('sales_staff.id',$queryParams['sales_staff_id'] );
             }
 
+
+            if(key_exists("product_id", $queryParams) && $queryParams['product_id'] !== ""){
+
+                $mainQuery = $mainQuery->where('job_types.productId',$queryParams['product_id'] );
+            }
+
             $mainQuery = $mainQuery->groupBy([
                 'sales_staff.last_name',
                 'sales_staff.first_name',
                 'sales_staff.franchise_number',
+                'job_types.productName',
+                'job_types.productId'
             ]);
 
 
