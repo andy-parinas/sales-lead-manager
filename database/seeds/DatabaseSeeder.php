@@ -169,7 +169,7 @@ class DatabaseSeeder extends Seeder
         }
 
 
-        ############# LEAD SOURCE
+        ############# LEAD SOURCE ###################
 
         $sources = [
             'Newspaper', 'Magazine', 'Radio',
@@ -188,14 +188,17 @@ class DatabaseSeeder extends Seeder
         }
 
 
-        ################# LEAD
+        ################# LEAD ############################
 
         $franchises = Franchise::where('parent_id', '<>', null)->get();
 
         $franchises->each(function ($franchise){
 
-            print "Creating Sales Staff \n";
-            $salesStaff = factory(\App\SalesStaff::class)->create(['franchise_id' => $franchise->id]);
+            print "Creating 5 Sales Staff \n";
+            $salesStaffs = factory(\App\SalesStaff::class, 5)->create(['franchise_id' => $franchise->id]);
+
+            print "Creating 5 Trade Staff \n";
+            $tradeStaffs = factory(\App\TradeStaff::class, 5)->create(['franchise_id' => $franchise->id]);
 
             print "Creating 5 Sales Contacts \n";
             $postcode = $franchise->postcodes->random();
@@ -215,6 +218,8 @@ class DatabaseSeeder extends Seeder
                 ]);
 
                 $product = Product::all()->random();
+
+                $salesStaff = $salesStaffs->random();
 
                 print "Creating Job Type \n";
                 factory(JobType::class)->create([
@@ -244,6 +249,15 @@ class DatabaseSeeder extends Seeder
                         'total_payment_made' => 0,
                         'lead_id' => $lead->id
                     ]);
+
+                    print "Creating Constructions \n";
+                    $tradeStaff = $tradeStaffs->random();
+
+                    factory(\App\Construction::class)->create([
+                        'trade_staff_id' => $tradeStaff->id,
+                        'postcode_id' =>  $postcode->id
+                    ]);
+
                 }
 
             }
