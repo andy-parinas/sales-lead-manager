@@ -19,4 +19,9 @@ class Postcode extends Model
         return $this->hasMany(SalesContact::class);
     }
 
+    public function constructions()
+    {
+        return $this->hasMany(Construction::class);
+    }
+
 }

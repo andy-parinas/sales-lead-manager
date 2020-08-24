@@ -62,4 +62,9 @@ class Lead extends Model
         return $this->hasOne(Finance::class);
     }
 
+    public function construction()
+    {
+        return $this->hasOne(Construction::class);
+    }
+
 }

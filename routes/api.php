@@ -60,6 +60,7 @@ Route::resource('leads.appointments', 'Lead\LeadAppointmentController', ['only' 
 Route::resource('leads.documents', 'Lead\LeadDocumentController', ['only' => ['index', 'show', 'store', 'destroy']]);
 Route::resource('leads.contracts', 'Lead\LeadContractController', ['except' => ['create', 'edit']]);
 Route::resource('leads.finances', 'Lead\LeadFinanceController', ['except' => ['create', 'edit']]);
+Route::resource('leads.constructions', 'Lead\LeadConstructionController', ['except' => ['create', 'edit']]);
 
 
 /**

@@ -255,7 +255,8 @@ class DatabaseSeeder extends Seeder
 
                     factory(\App\Construction::class)->create([
                         'trade_staff_id' => $tradeStaff->id,
-                        'postcode_id' =>  $postcode->id
+                        'postcode_id' =>  $postcode->id,
+                        'lead_id' => $lead->id
                     ]);
 
                 }

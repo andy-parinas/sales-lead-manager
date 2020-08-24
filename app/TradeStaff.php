@@ -28,4 +28,9 @@ class TradeStaff extends Model
     public function franchise(){
         return $this->belongsTo(Franchise::class);
     }
+
+    public function constructions()
+    {
+        return $this->hasMany(Construction::class);
+    }
 }

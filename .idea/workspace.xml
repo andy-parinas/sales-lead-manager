@@ -20,11 +20,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
-      <change afterPath="$PROJECT_DIR$/app/Construction.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/factories/ConstructionFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_08_24_002919_create_constructions_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadConstructionController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/Construction.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Feature/ConstructionFeatureTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Construction.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Construction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Lead.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lead.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Postcode.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Postcode.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/TradeStaff.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/TradeStaff.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/ConstructionFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ConstructionFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_24_002919_create_constructions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_24_002919_create_constructions_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,17 +193,22 @@
       <recent name="G:\Projects\sales-lead-manager\storage\app\database" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.PaymentScheduleFeatureTest.testCanListPaymentSchedules">
+  <component name="RunManager" selected="PHPUnit.ConstructionFeatureTest.testCanShowNoContentLeadWithoutConstruction">
+    <configuration name="ConstructionFeatureTest.testCanShowLeadConstruction" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP 7.3" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="Tests\Feature\ConstructionFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ConstructionFeatureTest.php" method="testCanShowLeadConstruction" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ConstructionFeatureTest.testCanShowNoContentLeadWithoutConstruction" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\ConstructionFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ConstructionFeatureTest.php" method="testCanShowNoContentLeadWithoutConstruction" scope="Method" />
+      <method v="2" />
+    </configuration>
     <configuration name="FinancePaymentMadeFeatureTest.testCanNotUpdatePaymentNotAssociatedToFinance" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\FinancePaymentMadeFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FinancePaymentMadeFeatureTest.php" method="testCanNotUpdatePaymentNotAssociatedToFinance" scope="Method" />
-      <method v="2" />
-    </configuration>
-    <configuration name="FinancePaymentMadeFeatureTest.testCanUpdatePaymentsMade" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\FinancePaymentMadeFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FinancePaymentMadeFeatureTest.php" method="testCanUpdatePaymentsMade" scope="Method" />
-      <method v="2" />
-    </configuration>
-    <configuration name="FranchiseFeatureTest.testCanListSubFranchisesOnly" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\FranchiseFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchiseFeatureTest.php" method="testCanListSubFranchisesOnly" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="PaymentScheduleFeatureTest.testCanCreatePaymentSchedule" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -213,11 +225,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.ConstructionFeatureTest.testCanShowNoContentLeadWithoutConstruction" />
+        <item itemvalue="PHPUnit.ConstructionFeatureTest.testCanShowLeadConstruction" />
         <item itemvalue="PHPUnit.PaymentScheduleFeatureTest.testCanListPaymentSchedules" />
         <item itemvalue="PHPUnit.PaymentScheduleFeatureTest.testCanCreatePaymentSchedule" />
         <item itemvalue="PHPUnit.FinancePaymentMadeFeatureTest.testCanNotUpdatePaymentNotAssociatedToFinance" />
-        <item itemvalue="PHPUnit.FinancePaymentMadeFeatureTest.testCanUpdatePaymentsMade" />
-        <item itemvalue="PHPUnit.FranchiseFeatureTest.testCanListSubFranchisesOnly" />
       </list>
     </recent_temporary>
   </component>
@@ -291,7 +303,7 @@
       <workItem from="1597307567690" duration="6622000" />
       <workItem from="1597563793794" duration="12112000" />
       <workItem from="1597896280830" duration="12328000" />
-      <workItem from="1598228745449" duration="3632000" />
+      <workItem from="1598228745449" duration="7984000" />
     </task>
     <task id="LOCAL-00079" summary="created contract model, migration and factory">
       <created>1593389934097</created>
@@ -686,9 +698,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Added Product Selection in Product Sales Summary" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="480" y="167" key="#CLI_Interpreters" timestamp="1590473666182">
+    <state x="480" y="167" key="#CLI_Interpreters" timestamp="1598238899275">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="480" y="167" key="#CLI_Interpreters/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1598238899275" />
     <state x="480" y="167" key="#CLI_Interpreters/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1590473666182" />
     <state x="644" y="89" key="#LeadFeatureTest.testCanUpdateLead" timestamp="1589790594899">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -714,7 +727,6 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="206" key="#com.intellij.ide.util.MemberChooser/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597035337850" />
-    <state x="765" y="206" key="#com.intellij.ide.util.MemberChooser/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1589329618090" />
     <state x="657" y="308" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1594869134115">
       <screen x="0" y="0" width="1920" height="1035" />
     </state>
@@ -725,10 +737,10 @@
     </state>
     <state x="668" y="289" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1035@0.0.1920.1035" timestamp="1594869096016" />
     <state x="668" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595327970420" />
-    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1597920876880">
+    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1598234236203">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1597920876880" />
+    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1598234236203" />
     <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594028642985" />
     <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1597104914896">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -736,35 +748,35 @@
     <state x="740" y="274" key="FileChooserDialogImpl/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597104914896" />
     <state x="740" y="274" key="FileChooserDialogImpl/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595312427786" />
     <state x="740" y="274" key="FileChooserDialogImpl/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281964790" />
-    <state width="1877" height="767" key="GridCell.Tab.0.bottom" timestamp="1597710199942">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="505" key="GridCell.Tab.0.bottom" timestamp="1598239223130">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="767" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1597710199942" />
-    <state width="1877" height="767" key="GridCell.Tab.0.bottom/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1597652556612" />
+    <state width="1877" height="505" key="GridCell.Tab.0.bottom/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1598239223130" />
     <state width="1877" height="767" key="GridCell.Tab.0.bottom/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597145738312" />
     <state width="1877" height="767" key="GridCell.Tab.0.bottom/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1597137555069" />
     <state width="1877" height="404" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
-    <state width="1877" height="767" key="GridCell.Tab.0.center" timestamp="1597710199942">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="505" key="GridCell.Tab.0.center" timestamp="1598239223130">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="767" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1597710199942" />
-    <state width="1877" height="767" key="GridCell.Tab.0.center/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1597652556611" />
+    <state width="1877" height="505" key="GridCell.Tab.0.center/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1598239223130" />
     <state width="1877" height="767" key="GridCell.Tab.0.center/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597145738312" />
     <state width="1877" height="767" key="GridCell.Tab.0.center/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1597137555069" />
     <state width="1877" height="404" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
-    <state width="1877" height="767" key="GridCell.Tab.0.left" timestamp="1597710199941">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="505" key="GridCell.Tab.0.left" timestamp="1598239223130">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="767" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1597710199941" />
-    <state width="1877" height="767" key="GridCell.Tab.0.left/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1597652556611" />
+    <state width="1877" height="505" key="GridCell.Tab.0.left/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1598239223130" />
     <state width="1877" height="767" key="GridCell.Tab.0.left/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597145738312" />
     <state width="1877" height="767" key="GridCell.Tab.0.left/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1597137555069" />
     <state width="1877" height="404" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
-    <state width="1877" height="767" key="GridCell.Tab.0.right" timestamp="1597710199942">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="505" key="GridCell.Tab.0.right" timestamp="1598239223130">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="767" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1597710199942" />
-    <state width="1877" height="767" key="GridCell.Tab.0.right/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1597652556611" />
+    <state width="1877" height="505" key="GridCell.Tab.0.right/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1598239223130" />
     <state width="1877" height="767" key="GridCell.Tab.0.right/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597145738312" />
     <state width="1877" height="767" key="GridCell.Tab.0.right/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1597137555069" />
     <state width="1877" height="404" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
@@ -812,11 +824,11 @@
     </state>
     <state x="650" y="152" width="664" height="764" key="find.popup/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1596594636773" />
     <state x="650" y="152" width="664" height="764" key="find.popup/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593669054808" />
-    <state x="623" y="226" width="945" height="680" key="search.everywhere.popup" timestamp="1597919133611">
+    <state x="623" y="226" width="945" height="680" key="search.everywhere.popup" timestamp="1598233881541">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="443" y="158" width="672" height="476" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1597621967475" />
-    <state x="623" y="226" width="945" height="680" key="search.everywhere.popup/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1597919133611" />
+    <state x="623" y="226" width="945" height="680" key="search.everywhere.popup/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1598233881541" />
     <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597315438589" />
     <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595915619185" />
     <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594277025054" />

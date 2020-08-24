@@ -30,7 +30,7 @@ class CreateConstructionsTable extends Migration
             $table->date('actual_construction_complete')->nullable();
             $table->text('comments')->nullable();
             $table->date('final_inspection_date')->nullable();
-
+            $table->unsignedBigInteger('lead_id');
             $table->timestamps();
         });
     }

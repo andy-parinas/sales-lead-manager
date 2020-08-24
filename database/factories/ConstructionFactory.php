@@ -9,6 +9,7 @@ $factory->define(Construction::class, function (Faker $faker) {
     return [
         'site_address' => $faker->streetAddress,
         'postcode_id' => factory(\App\Postcode::class),
-        'trade_staff_id' => factory(\App\TradeStaff::class)
+        'trade_staff_id' => factory(\App\TradeStaff::class),
+        'lead_id' => factory(\App\Lead::class)
     ];
 });
