@@ -127,6 +127,7 @@ Route::resource('sales-staffs', 'SalesStaff\SalesStaffController', ['except' => 
 /**
  * TradeStaff Routes
  */
+Route::get('trade-staffs/search', 'TradeStaff\TradeStaffController@search');
 Route::resource('trade-staffs', 'TradeStaff\TradeStaffController',['except' => ['create', 'edit', 'show']] );
 
 /**

@@ -28,4 +28,29 @@ class TradeStaffFeatureTest extends TestCase
 
 
     }
+
+    public function testCanSearchTradeStaff()
+    {
+        $this->withoutExceptionHandling();
+
+
+        //Haystack
+        factory(TradeStaff::class, 10)->create();
+
+        //Needle
+        factory(TradeStaff::class)->create([
+            'first_name' => 'Andy',
+            'last_name' => 'Parinas',
+            'email' => 'atparinas@gmail.com'
+        ]);
+
+        $this->authenticateHeadOfficeUser();
+
+        $response = $this->get('api/trade-staffs/search?search=andy');
+
+        $response->assertStatus(Response::HTTP_OK)
+            ->assertJsonCount(1, 'data');
+
+
+    }
 }

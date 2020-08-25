@@ -5,6 +5,7 @@ namespace App\Http\Controllers\TradeStaff;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TradeStaffCollection;
+use App\Http\Resources\TradeStaffSearchCollection;
 use App\Repositories\Interfaces\TradeStaffRepositoryInterface;
 use App\TradeStaff;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class TradeStaffController extends ApiController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -34,6 +35,15 @@ class TradeStaffController extends ApiController
         return $this->showApiCollection(new TradeStaffCollection($staffs));
     }
 
+    public function search(Request $request)
+    {
+
+        $tradeStaffs = $this->tradeStaffRepository->searchAll($request->search);
+
+
+        return $this->showAll(new TradeStaffSearchCollection($tradeStaffs));
+
+    }
 
 
     /**

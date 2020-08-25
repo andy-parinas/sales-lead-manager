@@ -48,4 +48,24 @@ class TradeStaffRepository implements Interfaces\TradeStaffRepositoryInterface
         return $query->orderBy($params['column'], $params['direction'])
             ->paginate($params['size']);
     }
+
+    public function searchAll($search)
+    {
+        return DB::table('trade_staff')
+            ->join('trade_types', 'trade_types.id', '=', 'trade_staff.trade_type_id')
+            ->select('trade_staff.id',
+                'first_name',
+                'last_name',
+                'email',
+                'status',
+                'contact_number'
+            )
+            ->where('status', 'active')
+            ->where(function ($query) use ($search){
+                $query->where('first_name','LIKE', '%' . $search . '%' )
+                    ->orWhere('last_name','LIKE', '%' . $search . '%' )
+                    ->orWhere('email', 'LIKE', '%' . $search . '%');
+            })
+            ->get();
+    }
 }

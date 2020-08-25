@@ -47,11 +47,37 @@ class LeadConstructionController extends ApiController
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(Request $request, $leadId)
     {
-        //
+
+        $lead = Lead::findOrFail($leadId);
+
+        $data = $this->validate($request, [
+            'site_address' => 'required',
+            'postcode_id' => 'required',
+            'material_list' => 'sometimes',
+            'date_materials_received' => 'sometimes',
+            'date_assembly_completed' => 'sometimes',
+            'date_anticipated_delivery' => 'sometimes',
+            'date_finished_product_delivery' => 'sometimes',
+            'coil_number' => 'sometimes',
+            'trade_staff_id' => 'required',
+            'anticipated_construction_start' => 'sometimes',
+            'anticipated_construction_complete' => 'sometimes',
+            'actual_construction_start' => 'sometimes',
+            'actual_construction_complete' => 'sometimes',
+            'comments' => 'sometimes',
+            'final_inspection_date' => 'sometimes',
+        ]);
+
+
+        $construction = $lead->construction()->create($data);
+
+        return $this->showOne($construction, Response::HTTP_CREATED);
+
+
     }
 
     /**
