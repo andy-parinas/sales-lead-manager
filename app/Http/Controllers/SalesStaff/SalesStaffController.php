@@ -73,11 +73,13 @@ class SalesStaffController extends ApiController
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
-        //
+        $salesStaff = SalesStaff::with('franchise') ->findOrFail($id);
+
+        return $this->showOne(new SalesStaffResource($salesStaff));
     }
 
 

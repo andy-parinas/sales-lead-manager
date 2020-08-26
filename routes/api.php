@@ -121,7 +121,7 @@ Route::resource('design-assessors', 'DesignAssessor\DesignAssessorController', [
  * SalesStaff Routes
  */
 Route::get('sales-staffs/search', 'SalesStaff\SalesStaffController@search');
-Route::resource('sales-staffs', 'SalesStaff\SalesStaffController', ['except' => ['create', 'edit', 'show']]);
+Route::resource('sales-staffs', 'SalesStaff\SalesStaffController', ['except' => ['create', 'edit']]);
 
 
 /**
