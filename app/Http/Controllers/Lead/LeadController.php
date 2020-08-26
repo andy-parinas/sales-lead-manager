@@ -80,7 +80,7 @@ class LeadController extends ApiController
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
@@ -120,6 +120,12 @@ class LeadController extends ApiController
                 'lead_source_id' => '',
                 'lead_date' => '',
             ]);
+
+            if ($request->has('franchise_id')){
+
+                $franchise = Franchise::with('postcodes')->find($request->franchise_id);
+                $data['postcode_status'] = $this->postcodeService->checkSalesContactPostcode($lead->salesContact, $franchise);
+            }
         }
 
         $lead->update($data);
