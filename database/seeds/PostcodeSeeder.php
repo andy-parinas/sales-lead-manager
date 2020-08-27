@@ -1,5 +1,7 @@
 <?php
 
+use App\Franchise;
+use App\Postcode;
 use Illuminate\Database\Seeder;
 
 class PostcodeSeeder extends Seeder

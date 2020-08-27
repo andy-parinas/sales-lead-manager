@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
 //            LeadSeeder::class
 //        ]);
 
+
+
         $franchiseFile = storage_path() . '/app/database/franchise.json';
 
         $strJsonFileContents = file_get_contents($franchiseFile);
