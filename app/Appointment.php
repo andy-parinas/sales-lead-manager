@@ -15,6 +15,28 @@ class Appointment extends Model
         return $this->belongsTo(Lead::class);
     }
 
+
+    public function getDateAttribute()
+    {
+        $dateArray = explode(" ", $this->appointment_date);
+
+        if(count($dateArray) >= 2){
+            return $dateArray[0];
+        }
+
+        return '';
+    }
+
+    public function getTimeAttribute()
+    {
+        $dateArray = explode(" ", $this->appointment_date);
+        if(count($dateArray) >= 2){
+            return $dateArray[1];
+        }
+
+        return '';
+    }
+
     public function getDateString()
     {
         $dateArray = explode(" ", $this->appointment_date);

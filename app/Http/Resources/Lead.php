@@ -51,8 +51,8 @@ class Lead extends JsonResource
             ] : null,
             'appointment' => $this->appointment ? [
                 'id' => $this->appointment->id,
-                'appointmentDate' => $this->appointment->getDateString(),
-                'appointmentTime' => $this->appointment->getTimeString(),
+                'appointmentDate' => $this->appointment->date,
+                'appointmentTime' => $this->appointment->time,
                 'date' => $this->appointment->appointment_date,
                 'notes' => $this->appointment->appointment_notes,
                 'quotedPrice' => $this->appointment->quoted_price,
