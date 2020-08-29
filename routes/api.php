@@ -134,6 +134,7 @@ Route::resource('trade-staffs.schedules', 'TradeStaff\TradeStaffScheduleControll
 /**
  * Report Routes
  */
+Route::get('reports/sales-Staff-summary', 'Reports\SalesStaffSummaryReportController@index');
 Route::get('reports/sales-summary', 'Reports\SalesSummaryReportController@index');
 Route::get('reports/product-sales-summary', 'Reports\ProductSalesSummaryReportController@index');
 
