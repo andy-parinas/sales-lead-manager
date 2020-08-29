@@ -12,6 +12,7 @@ class BuildLog extends Model
         'hourly_rate',
         'total_cost',
         'construction_id',
+        'comments',
         'trade_staff_id',
     ];
 

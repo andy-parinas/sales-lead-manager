@@ -39,13 +39,25 @@ class BuildLogFeatureTest extends TestCase
     public function testCanCreateBuildLog()
     {
 
+        $this->withoutExceptionHandling();
+
         $construction = factory(Construction::class)->create();
         $tradeStaff = factory(TradeStaff::class)->create();
 
         $data = [
-
+            'work_date' => '2020-08-29',
+            'time_spent' => 7.5,
+            'hourly_rate' => 25.50,
+            'comments' => 'No Comment',
+            'trade_staff_id' => $tradeStaff->id,
         ];
-        
+
+
+        $this->post('api/constructions/' .$construction->id . '/build-logs', $data)
+            ->assertStatus(Response::HTTP_CREATED);
+
+        $this->assertCount(1, BuildLog::all());
+
     }
 
 }

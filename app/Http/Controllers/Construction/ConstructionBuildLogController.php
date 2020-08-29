@@ -8,6 +8,7 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\BuildLog as BuildLogResource;
+use Symfony\Component\HttpFoundation\Response;
 
 class ConstructionBuildLogController extends ApiController
 {
@@ -34,11 +35,28 @@ class ConstructionBuildLogController extends ApiController
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(Request $request, $constructionId)
     {
-        //
+        $construction = Construction::findOrfail($constructionId);
+
+        $data = $this->validate($request, [
+            'work_date' => 'required|date',
+            'time_spent' => 'required|numeric',
+            'hourly_rate' => 'required|numeric',
+            'comments' => 'sometimes',
+            'trade_staff_id' => 'required',
+        ]);
+
+        $data['total_cost'] = $data['time_spent'] * $data['hourly_rate'];
+
+        $buildLog = $construction->buildLogs()->create($data);
+
+        $buildLog->load('tradeStaff');
+
+        return $this->showOne(new BuildLogResource($buildLog), Response::HTTP_CREATED);
+
     }
 
     /**
