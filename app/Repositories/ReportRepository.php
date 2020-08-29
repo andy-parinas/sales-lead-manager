@@ -83,8 +83,82 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
 
         return $mainQuery->get();
 
+    }
 
 
+    public function generateSalesSummaryV2($queryParams)
+    {
+
+        $jobTypesSubQuery = DB::table('job_types')
+            ->select('job_types.lead_id',
+                'job_types.sales_staff_id',
+                'job_types.product_id',
+                'products.name as productName',
+                'products.id as productId'
+            )->join('products','job_types.product_id', '=', 'products.id' );
+
+
+        $franchiseSubQuery = DB::table('franchises')
+            ->select( 'sales_staff.id',
+                'sales_staff.first_name',
+                'sales_staff.last_name',
+                'franchises.franchise_number',
+                'sales_staff.franchise_id'
+            )->join('franchises', 'franchises.id', '=', 'sales_staff.franchise_id');
+
+
+        $mainQuery = DB::table('sales_staff')
+            ->select('franchises.franchise_number as franchiseNumber',
+                'job_types.productName',
+                'job_types.productId',
+                'sales_staff.first_name',
+                'sales_staff.last_name')
+            ->selectRaw("concat(sales_staff.first_name, ' ', sales_staff.last_name) as salesStaff")
+            ->selectRaw("count(case appointments.outcome when 'success' then 1 else null end) as SuccessCount")
+            ->selectRaw("count( IF (contracts.contract_price > 0 and appointments.outcome = 'success' , 1, null) ) as numberOfSales")
+            ->selectRaw("count(leads.id) as numberOfLeads")
+            ->selectRaw("(count( IF (contracts.contract_price > 0 and appointments.outcome = 'success' , 1, null) ) / count(leads.id)) * 100 as conversionRate")
+            ->selectRaw("avg(contracts.contract_price) as averageSalesPrice")
+            ->selectRaw("sum(contracts.total_contract) as totalContracts")
+            ->leftJoin('appointments', 'appointments.sales_staff_id', '=', 'sales_staff.id')
+            ->leftJoin('contracts', 'contracts.lead_id', '=', 'appointments.leads_id')
+            ->leftJoinSub($jobTypesSubQuery, 'job_types', function ($join){
+                $join->on('job_types.lead_id', '=', 'appointments.leads_id');
+            })
+            ->leftJoin('franchises', 'franchises.id', '=', 'sales_staff.franchise_id');
+
+            if($queryParams['start_date'] !== null && $queryParams['end_date'] !== null){
+
+                $mainQuery = $mainQuery
+                    ->whereBetween('leads.lead_date', [$queryParams['start_date'], $queryParams['end_date']]);
+            }
+
+            if(key_exists("franchise_id", $queryParams) && $queryParams['franchise_id'] !== ""){
+
+                $mainQuery = $mainQuery->where('sales_staff.franchise_id',$queryParams['franchise_id'] );
+            }
+
+
+            if(key_exists("sales_staff_id", $queryParams) && $queryParams['sales_staff_id'] !== ""){
+
+                $mainQuery = $mainQuery->where('sales_staff.id',$queryParams['sales_staff_id'] );
+            }
+
+
+            if(key_exists("product_id", $queryParams) && $queryParams['product_id'] !== ""){
+
+                $mainQuery = $mainQuery->where('job_types.productId',$queryParams['product_id'] );
+            }
+
+            $mainQuery = $mainQuery->groupBy([
+                'sales_staff.last_name',
+                'sales_staff.first_name',
+                'sales_staff.franchise_number',
+                'job_types.productName',
+                'job_types.productId'
+            ]);
+
+            return $mainQuery->get();
 
     }
 
