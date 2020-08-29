@@ -1,5 +1,6 @@
 <?php
 
+use App\Franchise;
 use App\Lead;
 use Illuminate\Database\Seeder;
 use Monolog\Handler\FirePHPHandler;
@@ -35,7 +36,7 @@ class ContractActualSeeder extends Seeder
         $count = 1;
         while (($data = fgetcsv($file)) !== FALSE) {
 
-            $franchise = trim($data[0]);
+            $franchiseNumber = trim($data[0]);
             $leadNumber = trim($data[1]);
             $contractDate = trim($data[2]);
             $contractNumber = trim($data[3]);
@@ -56,20 +57,33 @@ class ContractActualSeeder extends Seeder
                 'date_warranty_sent' => $dateWarrantySent != "" ? $dateWarrantySent : null
             ];
 
-            $lead = Lead::where('lead_number', $leadNumber)->first();
+            $franchise = Franchise::where('franchise_number', $franchiseNumber)
+                            ->where('parent_id', '<>', null)
+                            ->first();
 
-            if($lead != null){
+            if($franchise != null){
 
-                $lead->contract()->create($data);
+                $lead = Lead::where('lead_number', $leadNumber)
+                            ->where('franchise_id', $franchise->id)
+                            ->first();
 
-                print "Contract Created For {$lead->lead_number} Count: {$count} ";
-                $this->contractLog->info("Contract Created For {$lead->lead_number} Count: {$count} ");
+                if($lead != null){
 
-            }else{
+                    $lead->contract()->create($data);
 
-                print "No Lead Found Lead: {$leadNumber}, Franchise: {$franchise} Count: {$count} \n";
-                $this->contractLog->alert("No Lead Found {$leadNumber} Count: {$count} ");
+                    print "Contract Created For {$lead->lead_number} Count: {$count} ";
+                    $this->contractLog->info("Contract Created For {$lead->lead_number} Count: {$count} ");
 
+                }else{
+
+                    print "No Lead Found Lead: {$leadNumber}, FranchiseId: {$franchise->id}, FranchiseNumber: {$franchise->franchise_number} Count: {$count} \n";
+                    $this->contractLog->alert("No Lead Found Lead: {$leadNumber}, FranchiseId: {$franchise->id}, FranchiseNumber: {$franchise->franchise_number} Count: {$count}");
+
+                }
+
+
+            }else {
+                $this->contractLog->alert("No Franchise Found {$franchiseNumber} Count: {$count} ");
             }
 
             print "\n########## Count Number {$count} ################### \n";
