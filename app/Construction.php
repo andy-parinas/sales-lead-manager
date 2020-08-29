@@ -24,4 +24,9 @@ class Construction extends Model
         return $this->belongsTo(TradeStaff::class);
     }
 
+    public function buildLogs()
+    {
+        return $this->hasMany(BuildLog::class);
+    }
+
 }

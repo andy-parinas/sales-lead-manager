@@ -33,4 +33,9 @@ class TradeStaff extends Model
     {
         return $this->hasMany(Construction::class);
     }
+
+    public function buildLogs()
+    {
+        return $this->hasMany(BuildLog::class);
+    }
 }

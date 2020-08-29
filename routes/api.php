@@ -137,7 +137,10 @@ Route::get('reports/sales-summary', 'Reports\SalesSummaryReportController@index'
 Route::get('reports/product-sales-summary', 'Reports\ProductSalesSummaryReportController@index');
 
 
-
+/**
+ * Build Log Routes
+ */
+Route::resource('constructions.build-logs', 'Construction\ConstructionBuildLogController', ['except' => ['create', 'edit']]);
 
 
 

@@ -11,6 +11,9 @@ use App\SalesContact;
 use App\SalesStaff;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Log;
+use Monolog\Handler\FirePHPHandler;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 
 class LeadActualSeeder extends Seeder
 {
@@ -19,8 +22,41 @@ class LeadActualSeeder extends Seeder
      *
      * @return void
      */
+
+
+    protected $infoLogger;
+    protected $postCodeLogger;
+    protected $franchiseLogger;
+
+    public function __construct()
+    {
+
+        // Create the logger
+        $this->infoLogger = new Logger('info_logger');
+        // Now add some handlers
+        $this->infoLogger->pushHandler(new StreamHandler(storage_path() .'/logs/info.log', Logger::DEBUG));
+        $this->infoLogger->pushHandler(new FirePHPHandler());
+
+        // Create the logger
+        $this->postCodeLogger = new Logger('postcode_logger');
+        // Now add some handlers
+        $this->postCodeLogger->pushHandler(new StreamHandler(storage_path() .'/logs/postcode.log', Logger::DEBUG));
+        $this->postCodeLogger->pushHandler(new FirePHPHandler());
+
+        // Create the logger
+        $this->franchiseLogger = new Logger('franchise_logger');
+        // Now add some handlers
+        $this->franchiseLogger->pushHandler(new StreamHandler(storage_path() .'/logs/franchise.log', Logger::DEBUG));
+        $this->franchiseLogger->pushHandler(new FirePHPHandler());
+
+    }
+
+
     public function run()
     {
+
+
+
 
         $leadFile = storage_path() . '/app/database/leads_01.csv';
 
@@ -38,10 +74,18 @@ class LeadActualSeeder extends Seeder
             if(trim($data[12]) != "" ) $contactNumber .= trim($data[11]) . " ";
             if(trim($data[13]) != "" ) $contactNumber .= trim($data[11]) . " ";
 
+            /**
+             * Need to Sanitize the Postcode Information
+             */
+            $pcode = trim($data[10]);
+            $locality = trim($data[8]);
+            $state = trim($data[9]);
 
-            $postcode = Postcode::where('pcode', trim($data[10]))->first();
+          $postcode = $this->getPostcode($pcode, $locality, $state, $count);
+
             if($postcode == null){
-                print "Postcode is Missing {$data[10]}";
+                print "Postcode is Missing Postcode: {$pcode} Locality: {$locality} State: {$state} ";
+                Log::error("Postcode is Missing Postcode: {$pcode} Locality: {$locality} State: {$state}");
             }
 
             $salesContact = SalesContact::where('first_name', $contactFirstName)
@@ -63,9 +107,10 @@ class LeadActualSeeder extends Seeder
                 try {
                     $salesContact = SalesContact::create($salesContactData);
                     print "SalesContact Created \n";
+                    $this->infoLogger->info("Created Sales Contact {$salesContact->first_name} {$salesContact->last_name} at Count: {$count} ");
                 }catch (Exception $exception){
                     print "Failed Creating Sales Contact";
-                    Log::error("Error Creating Sales Contact {$contactFirstName} {$contactLastName}");
+                    Log::error("Error Creating Sales Contact {$contactFirstName} {$contactLastName} at Count: {$count} ");
                 }
 
 
@@ -139,7 +184,7 @@ class LeadActualSeeder extends Seeder
                     print "Lead Job Type Create \n";
 
                 }else {
-                    Log::alert("Sales Staff Not found {$designAdvisorFirstName}");
+                    Log::alert("Sales Staff Not found {$designAdvisorFirstName} at Count: {$count}");
                     print "Sales Staff Not found\n";
                 }
 
@@ -174,7 +219,7 @@ class LeadActualSeeder extends Seeder
             }else {
 
                 print "\n#### Franchise Does Not Exist {$data[0]} ########### \n";
-                Log::alert("Franchise Does Not Exist {$data[0]}");
+                $this->franchiseLogger->alert("Franchise Does Not Exist {$data[0]} at Count: {$count} ");
             }
 
             print "############# Item number {$count} ############## \n";
@@ -184,4 +229,62 @@ class LeadActualSeeder extends Seeder
 
         fclose($file);
     }
+
+
+
+    private function getPostcode($pcode, $locality, $state, $lineCount){
+
+        // Split Locality into 2 for those having 2 words locality
+        // check for either existence of the two
+        // Sometimes one of each word will have difference in character from the db record
+        // Best to use Locality for Query
+
+        $localitySplit = explode(" ", $locality);
+
+        $postcode = null;
+
+        if($pcode != ""){
+
+            $postcode = Postcode::where('pcode',$pcode )
+                ->where('locality', 'LIKE', '%' . $locality . '%')->first();
+
+        }else {
+            $postcode = Postcode::where('state', 'LIKE', '%' . $state . '%')
+                ->where('locality', 'LIKE', '%' . $locality . '%')
+                ->first();
+        }
+
+        if($postcode == null){
+
+            // This time exclude the Postcode and Just Search for the Locality
+            // Possibility is Wrong spelling on 2 words Suburb
+            if(count($localitySplit) > 1){
+                $postcode = Postcode::where('state', 'LIKE', '%' . $state . '%')
+                    ->where(function ($query) use ($localitySplit){
+                        $query->where('locality', 'LIKE', '%' . trim($localitySplit[0]) . '%')
+                            ->orWhere('locality', 'LIKE', '%' . trim($localitySplit[1]) . '%');
+                    })->first();
+            }
+
+        }
+//
+        if($postcode == null){
+            // If the above query still did not return and record just get the first postcode of the State
+            $postcode = Postcode::where('state', 'LIKE', '%' . $state . '%')
+                ->first();
+            $this->postCodeLogger->alert("Defaulting to State Postcode at {$lineCount}");
+        }
+//
+//
+        if($postcode == null){
+            // If still no record default to first postcode in the database
+            $this->postCodeLogger->alert("Defaulting to First Postcode at {$lineCount}");
+            $postcode = Postcode::first();
+        }
+
+
+        return $postcode;
+
+    }
+
 }
