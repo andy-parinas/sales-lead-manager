@@ -38,4 +38,8 @@ class TradeStaff extends Model
     {
         return $this->hasMany(BuildLog::class);
     }
+
+    public function tradeStaffSchedules(){
+        return $this->hasMany(TradeStaffSchedule::class);
+    }
 }

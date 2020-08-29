@@ -76,4 +76,30 @@ class ConstructionFeatureTest extends TestCase
 
     }
 
+    public function testTradeStaffScheduleIsCreatedWhenConstructionIsCreated()
+    {
+
+        $tradeStaff = factory(TradeStaff::class)->create();
+        $lead = factory(Lead::class)->create();
+        $postcode = factory(Postcode::class)->create();
+
+        $data = [
+            'site_address' => '123 Sesame Street',
+            'postcode_id' => $postcode->id,
+            'trade_staff_id' => $tradeStaff->id,
+        ];
+
+        $this->authenticateHeadOfficeUser();
+
+        $this->post('api/leads/' . $lead->id . '/constructions', $data)
+            ->assertStatus(Response::HTTP_CREATED);
+
+        $tradeStaff->refresh();
+
+        $this->assertCount(1, $tradeStaff->tradeStaffSchedules);
+
+
+
+    }
+
 }

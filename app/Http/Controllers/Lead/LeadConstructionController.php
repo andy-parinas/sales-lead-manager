@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Lead;
 use Illuminate\Http\Request;
 use App\Http\Resources\Construction as ConstructionResource;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -72,8 +74,32 @@ class LeadConstructionController extends ApiController
             'final_inspection_date' => 'sometimes',
         ]);
 
-
         $construction = $lead->construction()->create($data);
+
+        // Create the TradeStaff Schedule
+        // Does not need to initial Database Transaction as this is a less critical component
+        // Should be under Try-Catch block to prevent any interuption in controller if the Schedule failed
+
+        try {
+            $scheduleData = [
+                'job_number' => $lead->lead_number,
+                'anticipated_start' => $construction->anticipated_construction_start,
+                'actual_start' => $construction->actual_construction_start,
+                'anticipated_end' => $construction->anticipated_construction_complete,
+                'actual_end' => $construction->actual_construction_complete,
+            ];
+
+            $tradeStaff = $construction->tradeStaff;
+
+            $tradeStaff->tradeStaffSchedules()->create($scheduleData);
+
+
+        }catch (\Exception $exception){
+
+            Log::error("Error Creating TradeStaffSchedule");
+            Log::error($exception);
+        }
+
 
         return $this->showOne($construction, Response::HTTP_CREATED);
 
