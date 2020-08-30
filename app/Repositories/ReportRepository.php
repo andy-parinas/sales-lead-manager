@@ -21,8 +21,7 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
                 'leads.lead_number as leadNumber',
                 'leads.lead_date',
                 'contracts.contract_price as contractPrice',
-                'contracts.total_contract as totalContract',
-
+                'contracts.total_contract as totalContract'
             )
             ->leftJoin('job_types', 'job_types.lead_id', '=', 'leads.id')
             ->leftJoin('appointments', 'appointments.lead_id', '=', 'leads.id')
