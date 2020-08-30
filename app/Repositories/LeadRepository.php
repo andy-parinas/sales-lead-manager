@@ -35,8 +35,13 @@ class LeadRepository implements LeadRepositoryInterface
         if(key_exists('search', $params) && key_exists('on', $params))
         {
 
-            return $query->where($params['on'], 'LIKE', '%' . $params['search'] . '%')
-                    ->orderBy($params['column'], $params['direction'])
+            if($params['on'] == 'lead_number' || $params['on'] == 'franchise_number') {
+                $query = $query->where($params['on'], 'LIKE', $params['search'] . '%');
+            }else {
+                $query = $query->where($params['on'], 'LIKE', '%' . $params['search'] . '%');
+            }
+
+            return $query->orderBy($params['column'], $params['direction'])
                     ->paginate($params['size']);
 
         }

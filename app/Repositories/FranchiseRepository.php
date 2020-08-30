@@ -71,14 +71,14 @@ class FranchiseRepository implements FranchiseRepositoryInterface
         {
             if (key_exists('size', $params) && $params['size'] > 0){
 
-                return Franchise::with('parent')->where('franchise_number', 'LIKE', '%' . $params['search'] . '%')
+                return Franchise::with('parent')->where('franchise_number', 'LIKE', $params['search'] . '%')
                     ->orWhere('name','LIKE', '%' . $params['search'] . '%' )
                     ->orderBy($params['column'], $params['direction'])
                     ->paginate($params['size']);
 
             }else {
 
-                return Franchise::with('parent')->where('franchise_number', 'LIKE', '%' . $params['search'] . '%')
+                return Franchise::with('parent')->where('franchise_number', 'LIKE',  $params['search'] . '%')
                     ->orWhere('name','LIKE', '%' . $params['search'] . '%' )
                     ->orderBy($params['column'], $params['direction'])
                     ->get();
@@ -191,8 +191,10 @@ class FranchiseRepository implements FranchiseRepositoryInterface
         if(key_exists('search', $params) && key_exists('on', $params) )
         {
 
-            if($params['on'] == 'parent'){
-                $query = $query->where('parent.franchise_number', 'LIKE', '%' . $params['search'] . '%');
+            if($params['on'] == 'parent') {
+                $query = $query->where('parent.franchise_number', 'LIKE',  $params['search'] . '%');
+            }elseif ($params['on'] == 'franchise_number'){
+                $query = $query->where('children.' . $params['on'], 'LIKE',  $params['search'] . '%');
             }else {
                 $query = $query->where('children.' . $params['on'], 'LIKE', '%' . $params['search'] . '%');
             }
