@@ -67,4 +67,11 @@ class Lead extends Model
         return $this->hasOne(Construction::class);
     }
 
+    public function buildingAuthority()
+    {
+        return $this->hasOne(BuildingAuthority::class);
+    }
+
+
+
 }

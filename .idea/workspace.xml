@@ -20,10 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
-      <change afterPath="$PROJECT_DIR$/database/seeds/ConstructionActualSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/FinanceActualSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/BuildingAuthority.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadBuildingAuthorityController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/BuildingAuthority.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/factories/BuildingAuthorityFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_08_31_043257_create_building_authorities_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Feature/BuildingAuthorityFeatureTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Lead.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lead.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +190,7 @@
       <recent name="G:\Projects\sales-lead-manager\storage\app\database" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.ConstructionFeatureTest.testTradeStaffScheduleIsCreatedWhenConstructionIsCreated">
+  <component name="RunManager" selected="PHPUnit.BuildingAuthorityFeatureTest.testCanCreateBuildingAuthority">
     <configuration name="BuildLogFeatureTest.testCanCreateBuildLog" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\BuildLogFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/BuildLogFeatureTest.php" method="testCanCreateBuildLog" scope="Method" />
       <method v="2" />
@@ -194,16 +199,16 @@
       <TestRunner class="Tests\Feature\BuildLogFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/BuildLogFeatureTest.php" method="testCanListBuildLogs" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="ConstructionFeatureTest.testCanCreateConstruction" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\ConstructionFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ConstructionFeatureTest.php" method="testCanCreateConstruction" scope="Method" />
+    <configuration name="BuildingAuthorityFeatureTest.testCanCreateBuildingAuthority" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\BuildingAuthorityFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/BuildingAuthorityFeatureTest.php" method="testCanCreateBuildingAuthority" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="BuildingAuthorityFeatureTest.testCanShowBuildingAuthority" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\BuildingAuthorityFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/BuildingAuthorityFeatureTest.php" method="testCanShowBuildingAuthority" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="ConstructionFeatureTest.testTradeStaffScheduleIsCreatedWhenConstructionIsCreated" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\ConstructionFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ConstructionFeatureTest.php" method="testTradeStaffScheduleIsCreatedWhenConstructionIsCreated" scope="Method" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TradeStaffFeatureTest.testCanSearchTradeStaff" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\TradeStaffFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/TradeStaffFeatureTest.php" method="testCanSearchTradeStaff" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -212,11 +217,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.BuildingAuthorityFeatureTest.testCanCreateBuildingAuthority" />
+        <item itemvalue="PHPUnit.BuildingAuthorityFeatureTest.testCanShowBuildingAuthority" />
         <item itemvalue="PHPUnit.ConstructionFeatureTest.testTradeStaffScheduleIsCreatedWhenConstructionIsCreated" />
         <item itemvalue="PHPUnit.BuildLogFeatureTest.testCanCreateBuildLog" />
         <item itemvalue="PHPUnit.BuildLogFeatureTest.testCanListBuildLogs" />
-        <item itemvalue="PHPUnit.ConstructionFeatureTest.testCanCreateConstruction" />
-        <item itemvalue="PHPUnit.TradeStaffFeatureTest.testCanSearchTradeStaff" />
       </list>
     </recent_temporary>
   </component>
@@ -291,7 +296,7 @@
       <workItem from="1597563793794" duration="12112000" />
       <workItem from="1597896280830" duration="12328000" />
       <workItem from="1598228745449" duration="78079000" />
-      <workItem from="1598687752134" duration="31185000" />
+      <workItem from="1598687752134" duration="40935000" />
     </task>
     <task id="LOCAL-00079" summary="created contract model, migration and factory">
       <created>1593389934097</created>
@@ -728,37 +733,41 @@
     <state x="740" y="274" key="FileChooserDialogImpl/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597104914896" />
     <state x="740" y="274" key="FileChooserDialogImpl/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595312427786" />
     <state x="740" y="274" key="FileChooserDialogImpl/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281964790" />
-    <state width="1877" height="505" key="GridCell.Tab.0.bottom" timestamp="1598687708652">
+    <state width="1877" height="321" key="GridCell.Tab.0.bottom" timestamp="1598858618487">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="767" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1597710199942" />
     <state width="1877" height="505" key="GridCell.Tab.0.bottom/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1598687708652" />
     <state width="1877" height="767" key="GridCell.Tab.0.bottom/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597145738312" />
     <state width="1877" height="767" key="GridCell.Tab.0.bottom/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1597137555069" />
+    <state width="1877" height="321" key="GridCell.Tab.0.bottom/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1598858618487" />
     <state width="1877" height="404" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
-    <state width="1877" height="505" key="GridCell.Tab.0.center" timestamp="1598687708651">
+    <state width="1877" height="321" key="GridCell.Tab.0.center" timestamp="1598858618486">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="767" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1597710199942" />
     <state width="1877" height="505" key="GridCell.Tab.0.center/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1598687708651" />
     <state width="1877" height="767" key="GridCell.Tab.0.center/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597145738312" />
     <state width="1877" height="767" key="GridCell.Tab.0.center/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1597137555069" />
+    <state width="1877" height="321" key="GridCell.Tab.0.center/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1598858618486" />
     <state width="1877" height="404" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
-    <state width="1877" height="505" key="GridCell.Tab.0.left" timestamp="1598687708650">
+    <state width="1877" height="321" key="GridCell.Tab.0.left" timestamp="1598858618486">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="767" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1597710199941" />
     <state width="1877" height="505" key="GridCell.Tab.0.left/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1598687708650" />
     <state width="1877" height="767" key="GridCell.Tab.0.left/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597145738312" />
     <state width="1877" height="767" key="GridCell.Tab.0.left/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1597137555069" />
+    <state width="1877" height="321" key="GridCell.Tab.0.left/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1598858618486" />
     <state width="1877" height="404" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
-    <state width="1877" height="505" key="GridCell.Tab.0.right" timestamp="1598687708651">
+    <state width="1877" height="321" key="GridCell.Tab.0.right" timestamp="1598858618487">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="767" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1597710199942" />
     <state width="1877" height="505" key="GridCell.Tab.0.right/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1598687708651" />
     <state width="1877" height="767" key="GridCell.Tab.0.right/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597145738312" />
     <state width="1877" height="767" key="GridCell.Tab.0.right/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1597137555069" />
+    <state width="1877" height="321" key="GridCell.Tab.0.right/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1598858618487" />
     <state width="1877" height="404" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1594875562399">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -806,13 +815,14 @@
     <state x="650" y="152" width="664" height="764" key="find.popup/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1598660977596" />
     <state x="650" y="152" width="664" height="764" key="find.popup/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1596594636773" />
     <state x="650" y="152" width="664" height="764" key="find.popup/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593669054808" />
-    <state x="623" y="226" width="945" height="680" key="search.everywhere.popup" timestamp="1598745470745">
+    <state x="623" y="226" width="945" height="680" key="search.everywhere.popup" timestamp="1598851599508">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="443" y="158" width="672" height="476" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1597621967475" />
     <state x="623" y="226" width="945" height="680" key="search.everywhere.popup/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1598745470745" />
     <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597315438589" />
     <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595915619185" />
+    <state x="623" y="226" width="945" height="680" key="search.everywhere.popup/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1598851599508" />
     <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594277025054" />
     <state x="689" y="426" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1594870566405">
       <screen x="0" y="0" width="1920" height="1035" />

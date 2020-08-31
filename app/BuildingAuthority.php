@@ -1,0 +1,27 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class BuildingAuthority extends Model
+{
+    protected $fillable = [
+        'approval_required',
+        'date_plans_sent_to_draftsman',
+        'date_plans_completed',
+        'date_plans_sent_to_authority',
+        'building_authority_comments',
+        'date_anticipated_approval',
+        'date_received_from_authority',
+        'permit_number',
+        'security_deposit_required',
+        'building_insurance_name',
+        'building_insurance_number',
+        'date_insurance_request_sent',
+    ];
+
+    public function lead(){
+        return $this->belongsTo(Lead::class);
+    }
+}
