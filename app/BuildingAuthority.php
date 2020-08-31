@@ -8,6 +8,7 @@ class BuildingAuthority extends Model
 {
     protected $fillable = [
         'approval_required',
+        'building_authority_name',
         'date_plans_sent_to_draftsman',
         'date_plans_completed',
         'date_plans_sent_to_authority',

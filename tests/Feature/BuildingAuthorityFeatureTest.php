@@ -28,7 +28,7 @@ class BuildingAuthorityFeatureTest extends TestCase
 
         $this->authenticateHeadOfficeUser();
 
-        $this->get('api/leads/' . $lead->id . '/building-authorities')
+        $this->get('api/leads/' . $lead->id . '/authorities')
             ->assertStatus(Response::HTTP_OK)
             ->assertJsonCount(1);
 
@@ -46,7 +46,7 @@ class BuildingAuthorityFeatureTest extends TestCase
 
         $this->authenticateHeadOfficeUser();
 
-        $this->post('api/leads/' . $lead->id . '/building-authorities', $data)
+        $this->post('api/leads/' . $lead->id . '/authorities', $data)
             ->assertStatus(Response::HTTP_CREATED);
 
 

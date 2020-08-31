@@ -54,15 +54,14 @@ Route::get('franchises/{franchise}/postcodes/{postcode}/check', 'Franchise\Franc
 /**
  * Lead Route
  */
-Route::resource('leads', 'Lead\LeadController', ['only' => ['index', 'show', 'destroy', 'update']]);
 Route::resource('leads.job-types', 'Lead\LeadJobTypeController', ['only' => ['update']]);
 Route::resource('leads.appointments', 'Lead\LeadAppointmentController', ['only' => ['update']]);
 Route::resource('leads.documents', 'Lead\LeadDocumentController', ['only' => ['index', 'show', 'store', 'destroy']]);
 Route::resource('leads.contracts', 'Lead\LeadContractController', ['except' => ['create', 'edit']]);
 Route::resource('leads.finances', 'Lead\LeadFinanceController', ['except' => ['create', 'edit']]);
 Route::resource('leads.constructions', 'Lead\LeadConstructionController', ['except' => ['create', 'edit']]);
-Route::resource('leads.building-authorities', 'Lead\LeadBuildingAuthorityController', ['except' => ['create', 'edit']]);
-
+Route::resource('leads.authorities', 'Lead\LeadBuildingAuthorityController', ['except' => ['create', 'edit']]);
+Route::resource('leads', 'Lead\LeadController', ['only' => ['index', 'show', 'destroy', 'update']]);
 
 /**
  * Finance Route

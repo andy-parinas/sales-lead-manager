@@ -24,7 +24,7 @@ class LeadBuildingAuthorityController extends ApiController
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index($leadId)
+    public function index(Request $request, $leadId)
     {
 
         $lead = Lead::findOrFail($leadId);
@@ -32,7 +32,7 @@ class LeadBuildingAuthorityController extends ApiController
         $buildingAuthority = $lead->buildingAuthority;
 
         if($buildingAuthority == null){
-            abort(Response::HTTP_NOT_FOUND, "Building Authority is not created");
+            return response()->json([], Response::HTTP_NO_CONTENT);
         }
 
         return $this->showOne(new BuildingAuthorityResource($buildingAuthority));
@@ -51,17 +51,18 @@ class LeadBuildingAuthorityController extends ApiController
 
         $data = $this->validate($request, [
             'approval_required' => 'required',
-            'date_plans_sent_to_draftsman'  => 'sometimes|date',
-            'date_plans_completed' => 'sometimes|date',
-            'date_plans_sent_to_authority' => 'sometimes|date',
+            'building_authority_name' => 'sometimes',
+            'date_plans_sent_to_draftsman'  => 'sometimes',
+            'date_plans_completed' => 'sometimes',
+            'date_plans_sent_to_authority' => 'sometimes',
             'building_authority_comments' => 'sometimes',
-            'date_anticipated_approval' => 'sometimes|date',
-            'date_received_from_authority' => 'sometimes|date',
+            'date_anticipated_approval' => 'sometimes',
+            'date_received_from_authority' => 'sometimes',
             'permit_number' => 'sometimes',
             'security_deposit_required' => 'sometimes',
             'building_insurance_name' => 'sometimes',
             'building_insurance_number' => 'sometimes',
-            'date_insurance_request_sent' => 'sometimes|date'
+            'date_insurance_request_sent' => 'sometimes'
         ]);
 
         $buildingAuthority = $lead->buildingAuthority()->create($data);

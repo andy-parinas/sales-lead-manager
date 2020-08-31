@@ -16,6 +16,7 @@ class CreateBuildingAuthoritiesTable extends Migration
         Schema::create('building_authorities', function (Blueprint $table) {
             $table->id();
             $table->string('approval_required');
+            $table->string('building_authority_name')->nullable();
             $table->date('date_plans_sent_to_draftsman')->nullable();
             $table->date('date_plans_completed')->nullable();
             $table->date('date_plans_sent_to_authority')->nullable();
