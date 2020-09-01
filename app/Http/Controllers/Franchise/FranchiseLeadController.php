@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Franchise;
 
+use App\Events\LeadCreated;
 use App\Franchise;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
@@ -11,6 +12,7 @@ use App\Lead;
 use App\Repositories\Interfaces\LeadRepositoryInterface;
 use App\SalesContact;
 use App\Services\Interfaces\PostcodeServiceInterface;
+use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -53,9 +55,10 @@ class FranchiseLeadController extends ApiController
      *
      * @param Request $request
      * @param $franchise_id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      * @throws AuthorizationException
      * @throws \Illuminate\Validation\ValidationException
+     * @throws Exception
      */
     public function store(Request $request, $franchise_id)
     {
@@ -98,12 +101,16 @@ class FranchiseLeadController extends ApiController
 
             DB::commit();
 
+            $lead->load('jobType');
+
+            LeadCreated::dispatch($lead);
+
             return $this->showOne(new LeadResource($lead), Response::HTTP_CREATED);
 
-        }catch (\Exception $exception){
+        }catch (Exception $exception){
             DB::rollBack();
 
-            throw new \Exception($exception);
+            throw new Exception($exception);
         }
 
     }
