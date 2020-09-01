@@ -9,6 +9,8 @@ use App\Services\FranchiseService;
 use App\Services\Interfaces\ContractFinanceServiceInterface;
 use App\Services\Interfaces\FranchiseServiceInterface;
 use App\Services\Interfaces\PostcodeServiceInterface;
+use App\Services\Interfaces\SmsServiceInterface;
+use App\Services\MessageMediaService;
 use App\Services\PostcodeService;
 use Illuminate\Support\ServiceProvider;
 
@@ -34,5 +36,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(PostcodeServiceInterface::class, PostcodeService::class);
         $this->app->bind(FranchiseServiceInterface::class, FranchiseService::class);
         $this->app->bind(ContractFinanceServiceInterface::class, ContractFinanceService::class);
+        $this->app->bind(SmsServiceInterface::class, MessageMediaService::class);
     }
 }

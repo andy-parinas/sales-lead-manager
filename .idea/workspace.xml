@@ -20,12 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
-      <change afterPath="$PROJECT_DIR$/app/Services/Interfaces/SmsServiceInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/MessageMediaService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Unit/MessageMediaServiceTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Franchise/FranchiseLeadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Franchise/FranchiseLeadController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Listeners/SendEmailNotification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/SendEmailNotification.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Listeners/SendSmsNotification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/SendSmsNotification.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/MessageMediaService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/MessageMediaService.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +187,7 @@
       <recent name="G:\Projects\sales-lead-manager\storage\app\database" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.MessageMediaServiceTest.testCanSendSMS">
+  <component name="RunManager" selected="PHPUnit.FranchiseLeadFeatureTest.testCanCreateLeadUnderStaffUsersFranchise">
     <configuration name="BuildingAuthorityFeatureTest.testCanCreateBuildingAuthority" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\BuildingAuthorityFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/BuildingAuthorityFeatureTest.php" method="testCanCreateBuildingAuthority" scope="Method" />
       <method v="2" />
@@ -196,8 +196,8 @@
       <TestRunner class="Tests\Feature\BuildingAuthorityFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/BuildingAuthorityFeatureTest.php" method="testCanShowBuildingAuthority" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="ConstructionFeatureTest.testTradeStaffScheduleIsCreatedWhenConstructionIsCreated" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\ConstructionFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ConstructionFeatureTest.php" method="testTradeStaffScheduleIsCreatedWhenConstructionIsCreated" scope="Method" />
+    <configuration name="FranchiseLeadFeatureTest.testCanCreateLeadUnderStaffUsersFranchise" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\FranchiseLeadFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/FranchiseLeadFeatureTest.php" method="testCanCreateLeadUnderStaffUsersFranchise" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="FranchisePostcodeFeatureTest.testCanSearchFranchiseAvailablePostcode" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -214,11 +214,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.FranchiseLeadFeatureTest.testCanCreateLeadUnderStaffUsersFranchise" />
         <item itemvalue="PHPUnit.MessageMediaServiceTest.testCanSendSMS" />
         <item itemvalue="PHPUnit.FranchisePostcodeFeatureTest.testCanSearchFranchiseAvailablePostcode" />
         <item itemvalue="PHPUnit.BuildingAuthorityFeatureTest.testCanCreateBuildingAuthority" />
         <item itemvalue="PHPUnit.BuildingAuthorityFeatureTest.testCanShowBuildingAuthority" />
-        <item itemvalue="PHPUnit.ConstructionFeatureTest.testTradeStaffScheduleIsCreatedWhenConstructionIsCreated" />
       </list>
     </recent_temporary>
   </component>
@@ -293,7 +293,7 @@
       <workItem from="1597563793794" duration="12112000" />
       <workItem from="1597896280830" duration="12328000" />
       <workItem from="1598228745449" duration="78079000" />
-      <workItem from="1598687752134" duration="57481000" />
+      <workItem from="1598687752134" duration="58565000" />
     </task>
     <task id="LOCAL-00079" summary="created contract model, migration and factory">
       <created>1593389934097</created>
@@ -732,41 +732,41 @@
     <state x="740" y="274" key="FileChooserDialogImpl/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597104914896" />
     <state x="740" y="274" key="FileChooserDialogImpl/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595312427786" />
     <state x="740" y="274" key="FileChooserDialogImpl/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281964790" />
-    <state width="1877" height="754" key="GridCell.Tab.0.bottom" timestamp="1598963333331">
+    <state width="1877" height="754" key="GridCell.Tab.0.bottom" timestamp="1598964393366">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="767" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1597710199942" />
     <state width="1877" height="505" key="GridCell.Tab.0.bottom/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1598687708652" />
     <state width="1877" height="767" key="GridCell.Tab.0.bottom/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597145738312" />
     <state width="1877" height="767" key="GridCell.Tab.0.bottom/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1597137555069" />
-    <state width="1877" height="754" key="GridCell.Tab.0.bottom/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1598963333331" />
+    <state width="1877" height="754" key="GridCell.Tab.0.bottom/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1598964393366" />
     <state width="1877" height="404" key="GridCell.Tab.0.bottom/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
-    <state width="1877" height="754" key="GridCell.Tab.0.center" timestamp="1598963333330">
+    <state width="1877" height="754" key="GridCell.Tab.0.center" timestamp="1598964393366">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="767" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1597710199942" />
     <state width="1877" height="505" key="GridCell.Tab.0.center/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1598687708651" />
     <state width="1877" height="767" key="GridCell.Tab.0.center/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597145738312" />
     <state width="1877" height="767" key="GridCell.Tab.0.center/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1597137555069" />
-    <state width="1877" height="754" key="GridCell.Tab.0.center/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1598963333330" />
+    <state width="1877" height="754" key="GridCell.Tab.0.center/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1598964393366" />
     <state width="1877" height="404" key="GridCell.Tab.0.center/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
-    <state width="1877" height="754" key="GridCell.Tab.0.left" timestamp="1598963333330">
+    <state width="1877" height="754" key="GridCell.Tab.0.left" timestamp="1598964393366">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="767" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1597710199941" />
     <state width="1877" height="505" key="GridCell.Tab.0.left/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1598687708650" />
     <state width="1877" height="767" key="GridCell.Tab.0.left/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597145738312" />
     <state width="1877" height="767" key="GridCell.Tab.0.left/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1597137555069" />
-    <state width="1877" height="754" key="GridCell.Tab.0.left/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1598963333330" />
+    <state width="1877" height="754" key="GridCell.Tab.0.left/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1598964393366" />
     <state width="1877" height="404" key="GridCell.Tab.0.left/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
-    <state width="1877" height="754" key="GridCell.Tab.0.right" timestamp="1598963333331">
+    <state width="1877" height="754" key="GridCell.Tab.0.right" timestamp="1598964393366">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="767" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1597710199942" />
     <state width="1877" height="505" key="GridCell.Tab.0.right/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1598687708651" />
     <state width="1877" height="767" key="GridCell.Tab.0.right/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597145738312" />
     <state width="1877" height="767" key="GridCell.Tab.0.right/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1597137555069" />
-    <state width="1877" height="754" key="GridCell.Tab.0.right/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1598963333331" />
+    <state width="1877" height="754" key="GridCell.Tab.0.right/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1598964393366" />
     <state width="1877" height="404" key="GridCell.Tab.0.right/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594281966226" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1594875562399">
       <screen x="0" y="0" width="1920" height="1040" />

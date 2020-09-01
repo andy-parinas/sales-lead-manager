@@ -27,6 +27,7 @@ class SendSmsNotification implements ShouldQueue
      */
     public function handle(LeadCreated $event)
     {
-        Log::info($event->lead->lead_number);
+
+        Log::info($event->lead->jobType->salesStaff->contact_number);
     }
 }

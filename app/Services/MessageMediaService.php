@@ -24,13 +24,13 @@ class MessageMediaService implements Interfaces\SmsServiceInterface
             ]]
         ];
 
-        
+
 
         $response = Http::withBasicAuth($key, $secret)
                         ->withHeaders([
                             'Accept' => 'application/json',
                             'Content-Type' => 'application/json'
-                        ])->post('https://api.messagemedia.com/v1/messages',$data);
+                        ])->post($url,$data);
 
 
         return $response;
