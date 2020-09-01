@@ -134,13 +134,12 @@ class PostcodeRepository implements Interfaces\PostcodeRepositoryInterface
             });
 
 
-
         if(key_exists('search', $params)) {
 
             $query = $query->where(function ($query) use ($params){
-                $query->where('pcode', 'LIKE', '%' . $params['search'] . '%')
-                    ->orWhere('locality','LIKE', '%' . $params['search'] . '%' )
-                    ->orWhere('state','LIKE', '%' . $params['search'] . '%' )
+                $query->where('postcodes.pcode', 'LIKE',  $params['search'] . '%')
+//                    ->orWhere('locality','LIKE', '%' . $params['search'] . '%' )
+//                    ->orWhere('state','LIKE', '%' . $params['search'] . '%' )
                     ->orderBy($params['column'], $params['direction']);
             });
 

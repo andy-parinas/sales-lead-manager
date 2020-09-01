@@ -491,4 +491,33 @@ class FranchisePostcodeFeatureTest extends TestCase
     }
 
 
+    public function testCanSearchFranchiseAvailablePostcode(){
+
+        $franchise = factory(Franchise::class)->create();
+
+        //Hay Stack
+        //Assigned Postcode to Franchise
+        for ($i = 1000; $i < 1020; $i++ ){
+
+            $postcode = factory(Postcode::class)->create(['pcode' => (string)$i]);
+            $franchise->postcodes()->attach($postcode->id);
+
+        }
+
+        // Needle
+        for ($i = 2000; $i < 2020; $i++ ){
+            factory(Postcode::class)->create(['pcode' => (string)$i]);
+        }
+
+        $this->authenticateHeadOfficeUser();
+
+        $response = $this->get('/api/franchises/'. $franchise->id .'/postcodes/available?search=2000');
+
+        //dd(json_decode($response->content()));
+
+        $response->assertJsonCount(1, 'data');
+
+
+    }
+
 }

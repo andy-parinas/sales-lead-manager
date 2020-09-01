@@ -28,9 +28,10 @@ class ApiController extends Controller
         if(request()->has('search') && request()->has('on')){
 
             $params = array_merge($params, ['search' => request()->search]);
-        }
 
-        if(request()->has('on')){
+        }elseif (request()->has('search')){
+            $params = array_merge($params, ['search' => request()->search]);
+        }elseif(request()->has('on')){
             $params = array_merge($params, ['on' => request()->on]);
         }
 
