@@ -30,4 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'sms' => [
+        'key' => env('SMS_ACCESS_KEY'),
+        'secret' => env('SMS_ACCESS_SECRET'),
+        'url' => env('SMS_MESSAGE_URL')
+    ]
 ];
