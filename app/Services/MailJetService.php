@@ -9,7 +9,7 @@ use Mailjet\Resources;
 class MailJetService implements Interfaces\EmailServiceInterface
 {
 
-    public function sendEmail($email, $message)
+    public function sendEmail($to, $from, $subject, $message)
     {
         $mj = new Client('e6ccf994d37470dbbb77972f4195d0f2','c9e8da84ffb166c5182f9a85327c6a86',
             true,['version' => 'v3.1']);

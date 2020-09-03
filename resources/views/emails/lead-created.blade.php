@@ -1,12 +1,13 @@
 @component('mail::message')
-# Introduction
 
-The body of your message.
+# A new Sales Lead has been assigned to you
 
-@component('mail::button', ['url' => ''])
-Button Text
-@endcomponent
+Lead Number: <strong>{{ $leadNumber }}</strong> <br>
+Name: <strong>{{ $leadName }}</strong> <br>
+Contact Number: <strong>{{ $leadContactNumber }}</strong> <br>
+Email: <strong>{{ $leadEmail }}</strong> <br>
+
 
 Thanks,<br>
-{{ config('app.name') }}
+Spanline
 @endcomponent

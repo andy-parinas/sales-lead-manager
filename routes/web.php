@@ -1,6 +1,6 @@
 <?php
 
-use App\Mail\LeadCreated;
+use App\Mail\LeadCreatedMail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -19,7 +19,8 @@ Route::get('/', function () {
 });
 
 Route::get('/email', function () {
-    return  new LeadCreated();
+    $lead = \App\Lead::with(['salesContact', 'jobType.salesStaff'])->first();
+    return  new LeadCreatedMail($lead);
 });
 
 

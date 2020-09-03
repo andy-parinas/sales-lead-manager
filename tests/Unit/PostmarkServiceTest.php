@@ -13,7 +13,9 @@ class PostmarkServiceTest extends TestCase
 
         $postmark = new PostmarkService();
 
-        $postmark->sendEmail('andyp@crystaltec.com.au', 'test');
+        $results = $postmark->sendEmail('andyp@crystaltec.com.au', 'andyp@crystaltec.com.au',  'test', 'test');
+
+        $this->assertEquals(0, $results);
 
     }
 

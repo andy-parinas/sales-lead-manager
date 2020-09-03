@@ -9,7 +9,7 @@ use Postmark\PostmarkClient;
 class PostmarkService implements Interfaces\EmailServiceInterface
 {
 
-    public function sendEmail($email, $message)
+    public function sendEmail($to, $from, $subject, $message)
     {
         $client = new PostmarkClient("23b169a0-3569-4d48-96a8-37995fa34c1f");
         $fromEmail = "andyp@crystaltec.com.au";
@@ -41,6 +41,6 @@ class PostmarkService implements Interfaces\EmailServiceInterface
             $messageStream
         );
 
-        dump($sendResult);
+        return $sendResult['errorcode'];
     }
 }
