@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class LeadCreated extends Mailable
+class UserCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,6 +28,6 @@ class LeadCreated extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.lead-created');
+        return $this->markdown('emails.user-created');
     }
 }

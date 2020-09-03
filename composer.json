@@ -17,7 +17,8 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "mailjet/mailjet-apiv3-php": "^1.4",
-        "wildbit/postmark-php": "^3.0"
+        "wildbit/postmark-php": "^3.0",
+        "wildbit/swiftmailer-postmark": "^3.1"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

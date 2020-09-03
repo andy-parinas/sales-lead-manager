@@ -104,6 +104,7 @@
       <path value="$PROJECT_DIR$/vendor/ramsey/collection" />
       <path value="$PROJECT_DIR$/vendor/mailjet/mailjet-apiv3-php" />
       <path value="$PROJECT_DIR$/vendor/wildbit/postmark-php" />
+      <path value="$PROJECT_DIR$/vendor/wildbit/swiftmailer-postmark" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

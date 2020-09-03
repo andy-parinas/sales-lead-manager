@@ -107,6 +107,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart/assert" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/wildbit/postmark-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/wildbit/swiftmailer-postmark" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
