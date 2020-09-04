@@ -11,13 +11,15 @@ class PostmarkService implements Interfaces\EmailServiceInterface
 
     public function sendEmail($to, $from, $subject, $message)
     {
-        $client = new PostmarkClient("23b169a0-3569-4d48-96a8-37995fa34c1f");
-        $fromEmail = "andyp@crystaltec.com.au";
-        $toEmail = "andyp@crystaltec.com.au";
-        $subject = "Hello from Postmark";
-        $htmlBody = "<strong>Hello</strong> dear Postmark user.";
-        $textBody = "Hello dear Postmark user.";
-        $tag = "example-email-tag";
+        $token = config('services.postmark.token');
+
+        $client = new PostmarkClient($token);
+        $fromEmail = $from;
+        $toEmail = $to;
+        $subject = $subject;
+        $htmlBody = $message;
+        $textBody = $message;
+        $tag = env('APP_NAME') . "-message";
         $trackOpens = true;
         $trackLinks = "None";
         $messageStream = "outbound";

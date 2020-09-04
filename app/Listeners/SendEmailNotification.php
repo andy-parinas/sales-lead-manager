@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\LeadCreated;
+use App\Services\Interfaces\EmailServiceInterface;
 use App\Services\Interfaces\SmsServiceInterface;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -13,15 +14,16 @@ use App\Mail\LeadCreatedMail;
 class SendEmailNotification implements ShouldQueue
 {
 
+    protected $mailService;
 
     /**
      * Create the event listener.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(EmailServiceInterface $mailService)
     {
-
+        $this->mailService = $mailService;
     }
 
     /**
@@ -32,22 +34,19 @@ class SendEmailNotification implements ShouldQueue
      */
     public function handle(LeadCreated $event)
     {
-//        Mail::to($event->lead->jobType->salesStaff->email)->send(new LeadCreatedMail($event->lead));
 
-        $data = [
-            'leadNumber' => $event->lead->lead_number,
-            'leadName' => $event->lead->salesContact->full_name,
-            'leadContactNumber' => $event->lead->salesContact->contact_numnber,
-            'leadEmail' => $event->lead->salesContact->email
-        ];
+        $to = $event->lead->jobType->salesStaff->email;
+        $from = config('mail.from.address');
 
-        Mail::send('emails.lead-created', $data, function ($message) use ($event) {
-            $message->from('andyp@crystaltec.com.au', 'Andy Parinas');
-            $message->to($event->lead->jobType->salesStaff->email);
-            $message->subject("Test Message");
-        });
-        Log::info("Email Notification 2");
-        Log::info($event->lead->jobType->salesStaff->email);
+        $subject = "New Sales Lead Assigned: {$event->lead->lead_number}";
+
+        $message = "<h1>A new Sales Lead has been assigned to you</h1>" .
+                    "<p>Lead Number: <strong>{$event->lead->lead_number}</strong> </p>" .
+                    "<p>Name: <strong>{$event->lead->salesContact->full_name}</strong></p>" .
+                    "<p>Contact Number: <strong>{$event->lead->salesContact->contact_number}</strong></p>" .
+                    "<p>Email: <strong>{$event->lead->salesContact->email}</strong></p>" ;
+
+        $this->mailService->sendEmail($to, $from, $subject, $message);
 
     }
 }
