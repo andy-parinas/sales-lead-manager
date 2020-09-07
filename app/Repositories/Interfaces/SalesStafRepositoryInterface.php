@@ -11,4 +11,9 @@ interface SalesStafRepositoryInterface
 
     public function searchAll($search);
 
+
+    public function getAllByFranchise(array $franchiseIds, array $params);
+
+    public function searchAllByFranchise(array $franchiseIds, $search);
+
 }

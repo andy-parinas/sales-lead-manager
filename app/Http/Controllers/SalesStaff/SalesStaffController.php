@@ -8,8 +8,10 @@ use App\Http\Resources\SalesStaffCollection;
 use App\Http\Resources\SalesStaffSearchCollection;
 use App\Repositories\Interfaces\SalesStafRepositoryInterface;
 use App\SalesStaff;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\SalesStaff as SalesStaffResource;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class SalesStaffController extends ApiController
@@ -30,10 +32,26 @@ class SalesStaffController extends ApiController
      */
     public function index()
     {
-        $salesStaffs = $this->salesStaffRepository->getAll($this->getRequestParams());
+
+        $user = Auth::user();
+
+        if($user->user_type == User::HEAD_OFFICE){
+
+            $salesStaffs = $this->salesStaffRepository->getAll($this->getRequestParams());
+
+            return $this->showApiCollection(new SalesStaffCollection($salesStaffs));
+
+        }else {
+
+            $userFranchiseIds = $user->franchises->pluck('id')->toArray();
 
 
-        return $this->showApiCollection(new SalesStaffCollection($salesStaffs));
+            $salesStaffs = $this->salesStaffRepository->getAllByFranchise($userFranchiseIds, $this->getRequestParams());
+
+            return $this->showApiCollection(new SalesStaffCollection($salesStaffs));
+
+        }
+
     }
 
 
