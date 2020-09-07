@@ -8,8 +8,10 @@ use App\Http\Resources\TradeStaffCollection;
 use App\Http\Resources\TradeStaffSearchCollection;
 use App\Repositories\Interfaces\TradeStaffRepositoryInterface;
 use App\TradeStaff;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\TradeStaff as TradeStaffResource;
+use Illuminate\Support\Facades\Auth;
 
 class TradeStaffController extends ApiController
 {
@@ -29,10 +31,26 @@ class TradeStaffController extends ApiController
      */
     public function index()
     {
-        $staffs = $this->tradeStaffRepository->getAll($this->getRequestParams());
+
+        $user = Auth::user();
+
+        if($user->user_type == User::HEAD_OFFICE){
+
+            $staffs = $this->tradeStaffRepository->getAll($this->getRequestParams());
+
+            return $this->showApiCollection(new TradeStaffCollection($staffs));
+
+        }else {
+
+            $userFranchiseIds = $user->franchises->pluck('id')->toArray();
+
+            $staffs = $this->tradeStaffRepository->getAllByFranchise($userFranchiseIds, $this->getRequestParams());
+
+            return $this->showApiCollection(new TradeStaffCollection($staffs));
+
+        }
 
 
-        return $this->showApiCollection(new TradeStaffCollection($staffs));
     }
 
     public function search(Request $request)
