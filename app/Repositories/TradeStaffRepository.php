@@ -37,17 +37,22 @@ class TradeStaffRepository implements Interfaces\TradeStaffRepositoryInterface
         {
 
             if($params['on'] == 'trade_type'){
-                $query->where('trade_types.name', 'LIKE', '%' . $params['search'] . '%');
-            }else if ($params['on'] == 'franchise_number') {
-                $query->where('franchises.franchise_number', 'LIKE', '%' . $params['search'] . '%');
+                $query = $query->where('trade_types.name', 'LIKE', '%' . $params['search'] . '%');
+            }elseif ($params['on'] == 'franchise_number') {
+                $query = $query->where('franchises.franchise_number', 'LIKE', '%' . $params['search'] . '%');
+
+            }elseif($params['on'] == 'franchise'){
+                $query = $query->where('franchises.franchise_number', 'LIKE', '%' . $params['search'] . '%');
             }else {
-                $query->where($params['on'], 'LIKE', '%' . $params['search'] . '%');
+                $query = $query->where($params['on'], 'LIKE', '%' . $params['search'] . '%');
             }
 
         }
 
-        return $query->orderBy($params['column'], $params['direction'])
-            ->paginate($params['size']);
+
+        $query = $this->sortColumn($query, $params);
+
+        return $query->paginate($params['size']);
     }
 
     public function searchAll($search)
@@ -107,8 +112,10 @@ class TradeStaffRepository implements Interfaces\TradeStaffRepositoryInterface
 
         }
 
-        return $query->orderBy($params['column'], $params['direction'])
-            ->paginate($params['size']);
+        $query = $this->sortColumn($query, $params);
+
+
+        return $query->paginate($params['size']);
     }
 
     public function searchAllByFranchise(array $franchiseIds, $search)
@@ -130,5 +137,21 @@ class TradeStaffRepository implements Interfaces\TradeStaffRepositoryInterface
                     ->orWhere('email', 'LIKE', '%' . $search . '%');
             })
             ->get();
+    }
+
+    private function sortColumn($query, $params){
+
+        if($params['column'] == 'trade_type'){
+            $query = $query->orderBy('trade_types.name', $params['direction']);
+        }elseif ($params['column'] == 'franchise_number') {
+            $query = $query->orderBy('franchises.franchise_number', $params['direction']);
+        }elseif($params['column'] == 'franchise'){
+            $query = $query->orderBy('franchises.franchise_number', $params['direction']);
+        }else {
+            $query = $query->orderBy($params['column'], $params['direction']);
+        }
+
+
+        return $query;
     }
 }
