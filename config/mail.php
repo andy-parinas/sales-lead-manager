@@ -60,6 +60,10 @@ return [
         'array' => [
             'transport' => 'array',
         ],
+
+        'postmark' => [
+            'transport' => 'postmark',
+        ],
     ],
 
     /*

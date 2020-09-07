@@ -102,7 +102,7 @@ class FranchiseLeadController extends ApiController
             DB::commit();
 
 
-            $lead->load('jobType.salesStaff');
+            $lead->load('jobType.salesStaff', 'salesContact');
 
             LeadCreated::dispatch($lead);
 

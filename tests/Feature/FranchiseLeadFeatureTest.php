@@ -10,6 +10,7 @@ use App\Lead;
 use App\LeadSource;
 use App\Postcode;
 use App\SalesContact;
+use App\SalesStaff;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Sanctum\Sanctum;
@@ -193,10 +194,14 @@ class FranchiseLeadFeatureTest extends TestCase
             'lead_date' => '2020-03-30'
         ];
 
+        $salesStaff = factory(SalesStaff::class)->create([
+            'email' => 'andyp@crystaltec.com.au'
+        ]);
 
         $jobTypeData = factory(JobType::class)->raw([
             'lead_id' => '', //So it wont create a lead automatically,
-            'date_allocated' => '2020-05-14'
+            'date_allocated' => '2020-05-14',
+            'sales_staff_id' => $salesStaff->id
         ]);
 
         $appointmentData = factory(Appointment::class)->raw([

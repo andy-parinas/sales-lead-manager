@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\LeadCreated;
+use App\Listeners\SendEmailNotification;
+use App\Listeners\SendSmsNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,9 +21,9 @@ class EventServiceProvider extends ServiceProvider
 //        Registered::class => [
 //            SendEmailVerificationNotification::class,
 //        ],
-        'App\Events\LeadCreated' => [
-            'App\Listeners\SendSmsNotification',
-            'App\Listeners\SendEmailNotification'
+        LeadCreated::class => [
+            SendSmsNotification::class,
+            SendEmailNotification::class
         ]
 
     ];
