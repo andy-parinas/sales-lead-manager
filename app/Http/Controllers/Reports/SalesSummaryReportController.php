@@ -15,12 +15,12 @@ class SalesSummaryReportController extends ApiController
 
     use ReportComputer;
 
-    protected $reportRepostitory;
+    protected $reportRepository;
 
     public function __construct(ReportRepositoryInterface $reportRepository)
     {
         $this->middleware('auth:sanctum');
-        $this->reportRepostitory = $reportRepository;
+        $this->reportRepository = $reportRepository;
     }
 
     public function index(Request $request)
@@ -32,11 +32,11 @@ class SalesSummaryReportController extends ApiController
             $results = [];
 
             if($user->user_type == User::HEAD_OFFICE){
-                $results = $this->reportRepostitory->generateSalesStaffProductSummary($request->all());
+                $results = $this->reportRepository->generateSalesStaffProductSummary($request->all());
             }else {
                 $franchiseIds = $user->franchises->pluck('id')->toArray();
-                
-                $results = $this->reportRepository->generateSalesSummaryByFranchises($franchiseIds, $request->all());
+
+                $results = $this->reportRepository->generateSalesStaffProductSummaryByFranchises($franchiseIds, $request->all());
             }
 
 

@@ -287,6 +287,83 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
     }
 
 
+    public function generateSalesStaffProductSummaryByFranchises($franchiseIds, $queryParams)
+    {
+        $jobTypeProductQuery = DB::table('job_types')
+            ->select('job_types.lead_id',
+                'job_types.sales_staff_id',
+                'products.name as productName', 'products.id as productId')
+            ->join('products', 'job_types.product_id', '=', 'products.id');
+
+
+        $leadsQuery = DB::table('leads')
+            ->select('leads.id as leadId',
+                'jobTypeJoin.sales_staff_id as salesStaffId',
+                'appointments.outcome as outcome',
+                'leads.lead_number as leadNumber',
+                'leads.lead_date',
+                'contracts.contract_price as contractPrice',
+                'contracts.total_contract as totalContract',
+                'jobTypeJoin.productName',
+                'jobTypeJoin.productId'
+            )
+            ->leftJoinSub($jobTypeProductQuery, 'jobTypeJoin', function ($join){
+                $join->on('jobTypeJoin.lead_id', '=', 'leads.id');
+            })
+            ->leftJoin('appointments', 'appointments.lead_id', '=', 'leads.id')
+            ->leftJoin('contracts', 'contracts.lead_id', '=', 'leads.id');
+
+
+        $mainQuery = DB::table('sales_staff')
+            ->select('franchises.franchise_number as franchiseNumber', 'leadsJoin.productName')
+            ->selectRaw("concat(sales_staff.first_name, ' ', sales_staff.last_name) as salesStaff")
+            ->selectRaw("count( IF (leadsJoin.contractPrice > 0 and leadsJoin.outcome = 'success' , 1, null) ) as numberOfSales")
+            ->selectRaw("count(leadsJoin.leadId) as numberOfLeads")
+            ->selectRaw("(count( IF (leadsJoin.contractPrice > 0 and leadsJoin.outcome = 'success' , 1, null) ) / count(leadsJoin.leadId)) * 100 as conversionRate")
+            ->selectRaw("avg(leadsJoin.contractPrice) as averageSalesPrice")
+            ->selectRaw("sum(leadsJoin.contractPrice) as totalContracts")
+            ->join('franchises', 'sales_staff.franchise_id', '=', 'franchises.id')
+            ->leftJoinSub($leadsQuery, 'leadsJoin', function ($join){
+                $join->on('sales_staff.id', '=', 'leadsJoin.salesStaffId');
+            })->where('sales_staff.status', SalesStaff::ACTIVE)
+            ->whereIn('franchises.id', $franchiseIds);
+
+
+        if($queryParams['start_date'] !== null && $queryParams['end_date'] !== null){
+
+            $mainQuery = $mainQuery
+                ->whereBetween('leadsJoin.lead_date', [$queryParams['start_date'], $queryParams['end_date']]);
+        }
+
+        if(key_exists("franchise_id", $queryParams) && $queryParams['franchise_id'] !== ""){
+
+            $mainQuery = $mainQuery->where('sales_staff.franchise_id',$queryParams['franchise_id'] );
+        }
+
+
+        if(key_exists("sales_staff_id", $queryParams) && $queryParams['sales_staff_id'] !== ""){
+
+            $mainQuery = $mainQuery->where('sales_staff.id',$queryParams['sales_staff_id'] );
+        }
+
+
+        if(key_exists("product_id", $queryParams) && $queryParams['product_id'] !== ""){
+
+            $mainQuery = $mainQuery->where('leadsJoin.productId',$queryParams['product_id'] );
+        }
+
+        $mainQuery = $mainQuery->groupBy([
+            'sales_staff.last_name',
+            'sales_staff.first_name',
+            'franchises.franchise_number',
+            'leadsJoin.productName'
+        ]);
+
+
+        return $mainQuery->get();
+    }
+
+
     public function generateProductSalesSummary($queryParams)
     {
 
@@ -333,4 +410,5 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
         return $mainQuery->get();
 
     }
+
 }
