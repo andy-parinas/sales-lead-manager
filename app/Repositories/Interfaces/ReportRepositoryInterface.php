@@ -8,6 +8,8 @@ interface ReportRepositoryInterface
 {
     public function generateSalesSummary($queryParams);
 
+    public function generateSalesSummaryByFranchises($franchiseIds, $queryParams);
+
     public function generateSalesStaffProductSummary($queryParams);
 
     public function generateProductSalesSummary($queryParams);

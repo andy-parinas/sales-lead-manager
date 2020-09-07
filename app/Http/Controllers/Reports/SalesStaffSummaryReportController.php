@@ -6,7 +6,9 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\ReportRepositoryInterface;
 use App\Traits\ReportComputer;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SalesStaffSummaryReportController extends ApiController
 {
@@ -24,10 +26,24 @@ class SalesStaffSummaryReportController extends ApiController
     public function index(Request $request)
     {
 
+        $user = Auth::user();
+
         if($request->has('start_date') && $request->has('end_date')){
 
+            $results = [];
 
-            $results = $this->reportRepository->generateSalesSummary($request->all());
+            if($user->user_type == User::HEAD_OFFICE){
+
+                $results = $this->reportRepository->generateSalesSummary($request->all());
+
+            }else {
+
+                $franchiseIds = $user->franchises->pluck('id')->toArray();
+
+                $results = $this->reportRepository->generateSalesSummaryByFranchises($franchiseIds, $request->all());
+            }
+
+
 
             if($results->count() > 0){
                 $total = $this->computeTotal($results);
