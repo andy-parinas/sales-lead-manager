@@ -15,7 +15,9 @@ class PaymentSchedule extends Model
         'payment_date',
         'description',
         'amount',
-        'status'
+        'status',
+        'payment',
+        'balance'
     ];
 
     public function finance()

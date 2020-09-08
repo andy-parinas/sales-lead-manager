@@ -19,7 +19,9 @@ class PaymentSchedule extends JsonResource
             'dueDate' => $this->due_date,
             'description' => $this->description,
             'status' => $this->status,
-            'amount' => $this->amount
+            'amount' => $this->amount,
+            'payment' => $this->payment,
+            'balance' => $this->balance,
         ];
     }
 }

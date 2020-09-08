@@ -54,6 +54,7 @@ class FinancePaymentScheduleController extends ApiController
             'amount' => 'required'
         ]);
 
+        $data['balance'] = $data['amount'];
 
         $payment = $finance->paymentsSchedule()->create($data);
 
@@ -163,5 +164,67 @@ class FinancePaymentScheduleController extends ApiController
             throw new \Exception($exception);
 
         }
+    }
+
+
+    public function pay(Request $request, $financeId, $paymentId)
+    {
+
+        $finance = Finance::findOrFail($financeId);
+        $paymentSchedule = PaymentSchedule::findOrFail($paymentId);
+
+        if($paymentSchedule->finance_id != $finance->id)
+            abort(Response::HTTP_BAD_REQUEST, "Payment is not associated with Finance");
+
+        $data = $this->validate($request, [
+            'payment' => 'required|numeric'
+        ]);
+
+        $scheduledPaymentsMade = $paymentSchedule->payment + $data['payment'];
+
+        if($scheduledPaymentsMade > $paymentSchedule->amount){
+            abort(Response::HTTP_BAD_REQUEST, "Payment would exceed the Payment Schedule Amount");
+        }
+
+        $balance = $paymentSchedule->amount - $scheduledPaymentsMade;
+
+        $paymentMadeData = [
+            'payment_date' => date("Y-m-d"),
+            'description' => $paymentSchedule->description,
+            'amount' => $data['payment']
+        ];
+
+        DB::beginTransaction();
+
+        try {
+
+            $payment = $finance->paymentsMade()->create($paymentMadeData);
+
+            $paymentSchedule->update([
+                'status' => $balance == 0 ?  PaymentSchedule::PAID : PaymentSchedule::NOT_PAID,
+                'payment' => $scheduledPaymentsMade,
+                'balance' => $balance
+            ]);
+
+            $total_payment = $finance->total_payment_made + $payment->amount;
+            $balance = $finance->total_contract - $finance->deposit - $total_payment;
+
+            $finance->update([
+                'total_payment_made' => $total_payment,
+                'balance' => $balance
+            ]);
+
+            DB::commit();
+
+            return $this->showOne(new PaymentMadeResource($payment), Response::HTTP_CREATED);
+
+
+        }catch (\Exception $exception){
+            DB::rollBack();
+            throw new \Exception($exception);
+
+        }
+
+
     }
 }

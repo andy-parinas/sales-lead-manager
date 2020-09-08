@@ -69,6 +69,7 @@ Route::resource('leads', 'Lead\LeadController', ['only' => ['index', 'show', 'de
 Route::resource('finances.payments-made', 'Finance\FinancePaymentMadeController',['except' => ['create', 'edit']] );
 Route::resource('finances.payment-schedules', 'Finance\FinancePaymentScheduleController',['except' => ['create', 'edit']] );
 Route::post('finances/{finance}/payment-schedules/{payment_schedule}/convert', 'Finance\FinancePaymentScheduleController@convert');
+Route::post('finances/{finance}/payment-schedules/{payment_schedule}/pay', 'Finance\FinancePaymentScheduleController@pay');
 
 /**
  * Lead Contract Route
