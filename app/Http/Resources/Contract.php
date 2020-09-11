@@ -25,6 +25,7 @@ class Contract extends JsonResource
              'totalVariation' => $this->total_variation,
              'warrantyRequired' => $this->warranty_required,
              'dateWarrantySent' => $this->date_warranty_sent,
+            'taxExempt' => $this->tax_exempt
         ];
     }
 }

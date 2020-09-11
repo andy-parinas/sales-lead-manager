@@ -96,6 +96,12 @@ class FinancePaymentScheduleController extends ApiController
             'amount' => 'sometimes'
         ]);
 
+        $data['balance'] = $data['amount'] - $payment->payment;
+
+        if ($data['balance'] < 0){
+            abort(Response::HTTP_BAD_REQUEST, "The amount value is less than the total payments made");
+        }
+
         $payment->update($data);
 
 
@@ -177,7 +183,7 @@ class FinancePaymentScheduleController extends ApiController
             abort(Response::HTTP_BAD_REQUEST, "Payment is not associated with Finance");
 
         $data = $this->validate($request, [
-            'payment' => 'required|numeric'
+            'payment' => 'required'
         ]);
 
         $scheduledPaymentsMade = $paymentSchedule->payment + $data['payment'];

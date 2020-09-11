@@ -25,9 +25,11 @@ class ContractFinanceService implements Interfaces\ContractFinanceServiceInterfa
     {
         $finance = new Finance();
 
+        $gstMultiplier = $contract->tax_exempt ? 0 : 0.10;
+
         $contract_price = $contract->contract_price;
-        $project_price = $contract_price / 1.1;
-        $gst = $project_price * 0.10;
+        $project_price = $contract_price / (1 + $gstMultiplier);
+        $gst = $project_price * $gstMultiplier;
         $total_contract = $contract->total_contract;
         $deposit = $contract->deposit_amount;
         $balance = $total_contract - $deposit;
@@ -65,9 +67,12 @@ class ContractFinanceService implements Interfaces\ContractFinanceServiceInterfa
 
     public function updateFinance($finance, $contract)
     {
+
+        $gstMultiplier = $contract->tax_exempt ? 0 : 0.10;
+
         $contract_price = $contract->contract_price;
-        $project_price = $contract_price / 1.1;
-        $gst = $project_price * 0.10;
+        $project_price = $contract_price / (1 + $gstMultiplier);
+        $gst = $project_price * $gstMultiplier;
         $total_contract = $contract->total_contract;
         $deposit = $contract->deposit_amount;
         $balance = $total_contract - $deposit - $finance->total_payment_made;

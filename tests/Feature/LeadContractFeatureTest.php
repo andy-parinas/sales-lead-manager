@@ -42,12 +42,39 @@ class LeadContractFeatureTest extends TestCase
 
         $lead->refresh();
         $contract = $lead->contract;
+        $finance = $lead->finance;
 
         $this->assertEquals(100,$contract->total_contract);
+        $this->assertEquals(100 / 1.1, $finance->project_price);
 
     }
 
     public function testCanCreateContractIfDepositIsMoreThanContract()
+    {
+
+        $lead = factory(Lead::class)->create();
+
+        $this->authenticateStaffUser();
+
+        $data = [
+            'contract_date' => '06/29/2020',
+            'contract_number' => 'AAA 111',
+            'contract_price' => 100.00,
+            'deposit_amount' => 125.00,
+            'date_deposit_received' => '06/29/2020',
+            'warranty_required' => 'yes',
+            'date_warranty_sent' => '06/29/2020',
+        ];
+
+        $response = $this->post('api/leads/' . $lead->id . '/contracts', $data);
+
+        $response->assertStatus(Response::HTTP_CREATED);
+
+        $this->assertCount(1, Contract::all());
+    }
+
+
+    public function testCanCreateContractWithTaxExempt()
     {
 
         $lead = factory(Lead::class)->create();
