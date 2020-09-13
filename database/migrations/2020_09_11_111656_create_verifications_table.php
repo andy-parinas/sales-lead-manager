@@ -27,10 +27,12 @@ class CreateVerificationsTable extends Migration
             $table->float('lineal_metres', 11,2);
             $table->string('franchise_authority');
             $table->date('authority_date');
+            $table->unsignedBigInteger('lead_id');
             $table->timestamps();
 
             $table->foreign('roof_sheet_id')->references('id')->on('roof_sheets');
             $table->foreign('roof_colour_id')->references('id')->on('roof_colours');
+            $table->foreign('lead_id')->references('id')->on('leads');
 
         });
     }

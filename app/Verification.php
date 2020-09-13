@@ -31,4 +31,9 @@ class Verification extends Model
     {
         return $this->belongsTo(RoofColour::class);
     }
+
+    public function lead()
+    {
+        return $this->belongsTo(Lead::class);
+    }
 }

@@ -72,6 +72,9 @@ class Lead extends Model
         return $this->hasOne(BuildingAuthority::class);
     }
 
-
+    public function verification()
+    {
+        return $this->hasOne(Verification::class);
+    }
 
 }
