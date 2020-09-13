@@ -2,30 +2,75 @@
 
 namespace App\Http\Controllers\Lead;
 
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Lead;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\Verification as VerificationResource;
 
-class LeadVerificationController extends Controller
+class LeadVerificationController extends ApiController
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request, $leadId)
     {
-        //
+        $lead = Lead::findOrFail($leadId);
+
+        $verification = $lead->verification;
+
+        if($verification == null){
+            return response()->json([], Response::HTTP_NO_CONTENT);
+        }
+
+        $verification->load('roofSheet', 'roofColour');
+
+        return $this->showOne(new VerificationResource($verification));
+
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(Request $request, $leadId)
     {
-        //
+
+        $lead = Lead::findOrFail($leadId);
+
+        $data = $this->validate($request, [
+            'design_correct' => 'required',
+            'date_design_check' => 'required',
+            'costing_correct' => 'sometimes',
+            'date_costing_check' => 'sometimes',
+            'estimated_build_days' => 'sometimes',
+            'trades_required' => 'sometimes',
+            'building_supervisor' => 'sometimes',
+            'roof_sheet_id' => 'sometimes',
+            'roof_colour_id' => 'sometimes',
+            'lineal_metres' => 'sometimes',
+            'franchise_authority' => 'sometimes',
+            'authority_date' => 'sometimes',
+        ]);
+
+
+        $verification = $lead->verification()->create($data);
+
+        $verification->load('roofSheet', 'roofColour');
+
+        return $this->showOne(new VerificationResource($verification), Response::HTTP_CREATED);
+
     }
 
     /**
