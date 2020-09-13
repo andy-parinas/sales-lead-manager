@@ -48,5 +48,29 @@ class LeadVerificationFeatureTest extends TestCase
         $this->assertCount(1, Verification::all());
     }
 
+    public function testCanUpdateLeadVerification()
+    {
+
+        $lead = factory(Lead::class)->create();
+
+        $verification = factory(Verification::class)->create([
+            'lead_id' => $lead->id
+        ]);
+
+        $updates = factory(Verification::class)->raw();
+
+
+        $this->authenticateHeadOfficeUser();
+
+        $this->patch("api/leads/{$lead->id}/verifications/$verification->id", $updates)
+            ->assertStatus(Response::HTTP_OK);
+
+        $verification->refresh();
+
+        $this->assertEquals($updates['franchise_authority'], $verification->franchise_authority);
+
+
+    }
+
 
 }

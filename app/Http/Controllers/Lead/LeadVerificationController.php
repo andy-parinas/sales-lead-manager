@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Lead;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Lead;
+use App\Verification;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Resources\Verification as VerificationResource;
@@ -91,9 +92,37 @@ class LeadVerificationController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $leadId, $verifcationId)
     {
-        //
+        $lead = Lead::findOrFail($leadId);
+
+        $verfication = Verification::findOrFail($verifcationId);
+
+        if($verfication->lead_id != $lead->id){
+            abort(Response::HTTP_BAD_REQUEST, "Lead and Verification do not match");
+        }
+
+        $data = $this->validate($request, [
+            'design_correct' => 'sometimes',
+            'date_design_check' => 'sometimes',
+            'costing_correct' => 'sometimes',
+            'date_costing_check' => 'sometimes',
+            'estimated_build_days' => 'sometimes',
+            'trades_required' => 'sometimes',
+            'building_supervisor' => 'sometimes',
+            'roof_sheet_id' => 'sometimes',
+            'roof_colour_id' => 'sometimes',
+            'lineal_metres' => 'sometimes',
+            'franchise_authority' => 'sometimes',
+            'authority_date' => 'sometimes',
+        ]);
+
+
+        $verfication->update($data);
+
+        $verfication->load('roofSheet', 'roofColour');
+
+        return $this->show(new VerificationResource($verfication));
     }
 
     /**
