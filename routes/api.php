@@ -147,4 +147,8 @@ Route::get('reports/product-sales-summary', 'Reports\ProductSalesSummaryReportCo
 Route::resource('constructions.build-logs', 'Construction\ConstructionBuildLogController', ['except' => ['create', 'edit']]);
 
 
-
+/**
+ * Roof Routes
+ */
+Route::resource('roof-sheets', 'Roof\RoofSheetController', ['except' => ['create', 'edit', 'show']] );
+Route::resource('roof-colours', 'Roof\RoofColourController', ['except' => ['create', 'edit', 'show']] );
