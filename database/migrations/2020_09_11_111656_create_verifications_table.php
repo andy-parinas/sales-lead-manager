@@ -17,16 +17,16 @@ class CreateVerificationsTable extends Migration
             $table->id();
             $table->string('design_correct');
             $table->date('date_design_check');
-            $table->string('costing_correct');
-            $table->date('date_costing_check');
-            $table->integer('estimated_build_days');
-            $table->string('trades_required');
-            $table->string('building_supervisor');
-            $table->unsignedBigInteger('roof_sheet_id');
-            $table->unsignedBigInteger('roof_colour_id');
-            $table->float('lineal_metres', 11,2);
-            $table->string('franchise_authority');
-            $table->date('authority_date');
+            $table->string('costing_correct')->nullable();
+            $table->date('date_costing_check')->nullable();
+            $table->integer('estimated_build_days')->nullable();
+            $table->string('trades_required')->nullable();
+            $table->string('building_supervisor')->nullable();
+            $table->unsignedBigInteger('roof_sheet_id')->nullable();
+            $table->unsignedBigInteger('roof_colour_id')->nullable();
+            $table->string('lineal_metres')->nullable();
+            $table->string('franchise_authority')->nullable();
+            $table->date('authority_date')->nullable();
             $table->unsignedBigInteger('lead_id');
             $table->timestamps();
 

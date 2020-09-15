@@ -19,7 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder" />
+    <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_11_111656_create_verifications_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_11_111656_create_verifications_table.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -293,7 +296,7 @@
       <workItem from="1599040220873" duration="36000" />
       <workItem from="1599104728559" duration="22856000" />
       <workItem from="1599452469681" duration="26796000" />
-      <workItem from="1599711275174" duration="32968000" />
+      <workItem from="1599711275174" duration="35051000" />
     </task>
     <task id="LOCAL-00079" summary="created contract model, migration and factory">
       <created>1593389934097</created>
