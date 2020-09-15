@@ -77,4 +77,9 @@ class Lead extends Model
         return $this->hasOne(Verification::class);
     }
 
+    public function customerReview()
+    {
+        return $this->hasOne(CustomerReview::class);
+    }
+
 }

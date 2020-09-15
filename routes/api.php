@@ -62,6 +62,7 @@ Route::resource('leads.finances', 'Lead\LeadFinanceController', ['except' => ['c
 Route::resource('leads.constructions', 'Lead\LeadConstructionController', ['except' => ['create', 'edit']]);
 Route::resource('leads.authorities', 'Lead\LeadBuildingAuthorityController', ['except' => ['create', 'edit']]);
 Route::resource('leads.verifications', 'Lead\LeadVerificationController', ['except' => ['create', 'edit']]);
+Route::resource('leads.customer-reviews', 'Lead\LeadCustomerReviewController', ['except' => ['create', 'edit']]);
 Route::resource('leads', 'Lead\LeadController', ['only' => ['index', 'show', 'destroy', 'update']]);
 
 /**

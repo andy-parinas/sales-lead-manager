@@ -20,8 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
+      <change afterPath="$PROJECT_DIR$/app/CustomerReview.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadCustomerReviewController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/CustomerReview.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/factories/CustomerReviewFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_09_15_044037_create_customer_reviews_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Feature/LeadCustomerReviewFeatureTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_11_111656_create_verifications_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_11_111656_create_verifications_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Lead.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lead.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,9 +193,13 @@
       <recent name="G:\Projects\sales-lead-manager\storage\app\database" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.LeadVerificationFeatureTest.testCanUpdateLeadVerification">
+  <component name="RunManager" selected="PHPUnit.LeadCustomerReviewFeatureTest.testCanShowCustomerReview">
     <configuration name="LeadContractFeatureTest.testCanCreateLeadContract" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\LeadContractFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadContractFeatureTest.php" method="testCanCreateLeadContract" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="LeadCustomerReviewFeatureTest.testCanShowCustomerReview" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\LeadCustomerReviewFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadCustomerReviewFeatureTest.php" method="testCanShowCustomerReview" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="LeadVerificationFeatureTest.testCanCreateLeadVerification" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -203,21 +214,17 @@
       <TestRunner class="Tests\Feature\LeadVerificationFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadVerificationFeatureTest.php" method="testCanUpdateLeadVerification" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="PaymentScheduleFeatureTest.testCanPayPaymentSchedule" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\PaymentScheduleFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/PaymentScheduleFeatureTest.php" method="testCanPayPaymentSchedule" scope="Method" />
-      <method v="2" />
-    </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.LeadCustomerReviewFeatureTest.testCanShowCustomerReview" />
         <item itemvalue="PHPUnit.LeadVerificationFeatureTest.testCanUpdateLeadVerification" />
         <item itemvalue="PHPUnit.LeadVerificationFeatureTest.testCanCreateLeadVerification" />
         <item itemvalue="PHPUnit.LeadVerificationFeatureTest.testCanShowLeadVerification" />
         <item itemvalue="PHPUnit.LeadContractFeatureTest.testCanCreateLeadContract" />
-        <item itemvalue="PHPUnit.PaymentScheduleFeatureTest.testCanPayPaymentSchedule" />
       </list>
     </recent_temporary>
   </component>
@@ -296,7 +303,7 @@
       <workItem from="1599040220873" duration="36000" />
       <workItem from="1599104728559" duration="22856000" />
       <workItem from="1599452469681" duration="26796000" />
-      <workItem from="1599711275174" duration="35051000" />
+      <workItem from="1599711275174" duration="38569000" />
     </task>
     <task id="LOCAL-00079" summary="created contract model, migration and factory">
       <created>1593389934097</created>
@@ -718,11 +725,12 @@
     <state x="668" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.0.1680.1010/235.1080.1366.728@0.0.1920.1040" timestamp="1599123174169" />
     <state x="668" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595327970420" />
     <state x="668" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1598961487272" />
-    <state x="491" y="192" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1599987247239">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1600147414382">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="491" y="192" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1599987247239" />
     <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1599468536843" />
+    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1600147414382" />
     <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594028642985" />
     <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1597104914896">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -815,7 +823,7 @@
     <state x="650" y="152" width="664" height="764" key="find.popup/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1599724149272" />
     <state x="650" y="152" width="664" height="764" key="find.popup/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1596594636773" />
     <state x="650" y="152" width="664" height="764" key="find.popup/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1593669054808" />
-    <state x="623" y="226" width="945" height="680" key="search.everywhere.popup" timestamp="1600078860170">
+    <state x="623" y="226" width="945" height="680" key="search.everywhere.popup" timestamp="1600146631745">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="443" y="158" width="672" height="476" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1599974915638" />
@@ -823,7 +831,7 @@
     <state x="623" y="226" width="945" height="680" key="search.everywhere.popup/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1599547449442" />
     <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597315438589" />
     <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595915619185" />
-    <state x="623" y="226" width="945" height="680" key="search.everywhere.popup/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1600078860170" />
+    <state x="623" y="226" width="945" height="680" key="search.everywhere.popup/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1600146631745" />
     <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/334.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594277025054" />
     <state x="689" y="426" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1594870566405">
       <screen x="0" y="0" width="1920" height="1035" />
