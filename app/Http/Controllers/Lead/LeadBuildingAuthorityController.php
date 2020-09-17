@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Lead;
 
+use App\BuildingAuthority;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Lead;
@@ -81,7 +82,7 @@ class LeadBuildingAuthorityController extends ApiController
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -89,11 +90,39 @@ class LeadBuildingAuthorityController extends ApiController
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $leadId, $buildingAuthorityId)
     {
-        //
+
+        $lead = Lead::findOrFail($leadId);
+
+        $buildingAuthority = BuildingAuthority::findOrFail($buildingAuthorityId);
+
+        if($buildingAuthority->lead_id != $lead->id){
+            abort(Response::HTTP_BAD_REQUEST, "Building Authority is not associated with the lead");
+        }
+
+        $data = $this->validate($request, [
+            'approval_required' => 'sometimes',
+            'building_authority_name' => 'sometimes',
+            'date_plans_sent_to_draftsman'  => 'sometimes',
+            'date_plans_completed' => 'sometimes',
+            'date_plans_sent_to_authority' => 'sometimes',
+            'building_authority_comments' => 'sometimes',
+            'date_anticipated_approval' => 'sometimes',
+            'date_received_from_authority' => 'sometimes',
+            'permit_number' => 'sometimes',
+            'security_deposit_required' => 'sometimes',
+            'building_insurance_name' => 'sometimes',
+            'building_insurance_number' => 'sometimes',
+            'date_insurance_request_sent' => 'sometimes'
+        ]);
+
+        $buildingAuthority->update($data);
+
+        return $this->showOne(new BuildingAuthorityResource($buildingAuthority));
+
     }
 
     /**
