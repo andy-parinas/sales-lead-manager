@@ -33,4 +33,24 @@ class LeadCustomerReviewFeatureTest extends TestCase
 
     }
 
+
+    public function testCanCreateCustomerReview()
+    {
+
+        $this->withoutExceptionHandling();
+
+        $lead = factory(Lead::class)->create();
+
+        $data = factory(CustomerReview::class)->raw();
+
+
+        $this->authenticateHeadOfficeUser();
+
+
+        $this->post("api/leads/{$lead->id}/customer-reviews", $data)
+            ->assertStatus(Response::HTTP_CREATED)
+            ->assertJsonCount(1);
+
+    }
+
 }

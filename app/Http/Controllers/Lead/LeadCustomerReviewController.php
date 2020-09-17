@@ -41,11 +41,32 @@ class LeadCustomerReviewController extends ApiController
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(Request $request, $leadId)
     {
-        //
+        $lead = Lead::findOrFail($leadId);
+
+
+
+        $data = $this->validate($request, [
+            'date_project_completed' => 'required',
+            'date_warranty_received' => 'required',
+            'home_addition_type' => 'sometimes',
+            'home_addition_description' => 'sometimes',
+            'service_received_rating' => 'sometimes',
+            'workmanship_rating' => 'sometimes',
+            'finished_product_rating' => 'sometimes',
+            'design_consultant_rating' => 'sometimes',
+            'comments' => 'sometimes',
+        ]);
+
+
+        $customerReview = $lead->customerReview()->create($data);
+
+
+        return $this->showOne(new CustomerReviewResource($customerReview), Response::HTTP_CREATED);
+
     }
 
     /**
