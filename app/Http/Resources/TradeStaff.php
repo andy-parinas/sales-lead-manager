@@ -28,6 +28,7 @@ class TradeStaff extends JsonResource
             'status' => $this->status,
             'tradeType' => $this->tradeType->name,
             'tradeTypeId' => $this->trade_type_id,
+            'title' => $this->first_name . ' ' . $this->last_name
         ];
     }
 }

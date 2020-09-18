@@ -122,11 +122,41 @@ class LeadConstructionController extends ApiController
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $leadId, $constructionId)
     {
-        //
+        $lead = Lead::findOrFail($leadId);
+
+        $construction = Construction::findOrFail($constructionId);
+
+        if($construction->lead_id != $lead->id){
+            abort(Response::HTTP_BAD_REQUEST, "Construction is not associated with the lead");
+        }
+
+        $data = $this->validate($request, [
+            'site_address' => 'sometimes',
+            'postcode_id' => 'sometimes',
+            'material_list' => 'sometimes',
+            'date_materials_received' => 'sometimes',
+            'date_assembly_completed' => 'sometimes',
+            'date_anticipated_delivery' => 'sometimes',
+            'date_finished_product_delivery' => 'sometimes',
+            'coil_number' => 'sometimes',
+            'trade_staff_id' => 'sometimes',
+            'anticipated_construction_start' => 'sometimes',
+            'anticipated_construction_complete' => 'sometimes',
+            'actual_construction_start' => 'sometimes',
+            'actual_construction_complete' => 'sometimes',
+            'comments' => 'sometimes',
+            'final_inspection_date' => 'sometimes',
+        ]);
+
+        $construction->update($data);
+
+        return $this->showOne(new ConstructionResource($construction));
+
+
     }
 
     /**

@@ -17,6 +17,7 @@ class Construction extends JsonResource
         return [
             'id' => $this->id,
             'siteAddress' => $this->site_address,
+            'postcodeId' => $this->postcode_id,
             'postcode' => [
                 'id' => $this->postcode->id,
                 'suburb' => $this->postcode->locality,
@@ -29,6 +30,7 @@ class Construction extends JsonResource
             'dateAnticipatedDelivery' => $this->date_anticipated_delivery,
             'dateFinishedProductDelivery' => $this->date_finished_product_delivery,
             'coilNumber' => $this->coil_number,
+            'tradeStaffId' => $this->trade_staff_id,
             'tradeStaff' => [
                 'id' => $this->tradeStaff->id,
                 'name' => $this->tradeStaff->fullName,

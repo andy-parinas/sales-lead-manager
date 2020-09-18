@@ -93,6 +93,14 @@ class TradeStaffController extends ApiController
     }
 
 
+    public function show($tradeStaffId)
+    {
+        $tradeStaff = TradeStaff::findOrFail($tradeStaffId);
+
+
+        return $this->showOne(new TradeStaffResource($tradeStaff));
+
+    }
 
 
     /**
