@@ -90,7 +90,7 @@ class LeadVerificationController extends ApiController
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $leadId, $verifcationId)
     {
@@ -122,7 +122,7 @@ class LeadVerificationController extends ApiController
 
         $verfication->load('roofSheet', 'roofColour');
 
-        return $this->show(new VerificationResource($verfication));
+        return $this->showOne(new VerificationResource($verfication));
     }
 
     /**

@@ -15,6 +15,7 @@ class Verification extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'designCorrect' => $this->design_correct,
             'dateDesignCheck' => $this->date_design_check,
             'costingCorrect' => $this->costing_correct,

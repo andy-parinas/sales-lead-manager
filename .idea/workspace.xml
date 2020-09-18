@@ -21,11 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadConstructionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadConstructionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TradeStaff/TradeStaffController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TradeStaff/TradeStaffController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Construction.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Construction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/TradeStaff.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/TradeStaff.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadVerificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadVerificationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Verification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Verification.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -301,7 +298,7 @@
       <workItem from="1599104728559" duration="22856000" />
       <workItem from="1599452469681" duration="26796000" />
       <workItem from="1599711275174" duration="48267000" />
-      <workItem from="1600397946988" duration="2642000" />
+      <workItem from="1600397946988" duration="6002000" />
     </task>
     <task id="LOCAL-00079" summary="created contract model, migration and factory">
       <created>1593389934097</created>
