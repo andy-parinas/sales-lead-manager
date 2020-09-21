@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Franchise;
 
+use App\Franchise;
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Postcode;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class FranchisePostcodeUploadController extends Controller
+class FranchisePostcodeUploadController extends ApiController
 {
 
 
@@ -29,14 +32,36 @@ class FranchisePostcodeUploadController extends Controller
 
             if ($count >= 2){
 
-                dump($data);
+                $post = Postcode::where('pcode', $data[0])
+                    ->where('locality', $data[1])
+                    ->first();
 
+                $mainFranchise = Franchise::where('franchise_number', $data[4])
+                    ->where('parent_id', null)
+                    ->first();
 
+                if($mainFranchise != null && $post != null){
+
+                    $subFranchise = Franchise::where('franchise_number', $data[3])
+                        ->where('parent_id', $mainFranchise->id)
+                        ->first();
+
+                    if ($subFranchise != null){
+                        $subFranchise->postcodes()->attach($post->id);
+                        $mainFranchise->postcodes()->attach($post->id);
+                    }
+
+                }
             }
 
             $count++;
 
         }
+
+        return $this->showOne([
+            'number_of_franchise_linked' => $count - 2
+        ], Response::HTTP_CREATED);
+
 
     }
 }
