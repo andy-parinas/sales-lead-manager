@@ -55,7 +55,10 @@ class LeadDocumentController extends ApiController
             'type' => 'required'
         ]);
 
-        $path = $request->file->store('files');
+        $filename = time() . "_" . preg_replace("/\s+/", "_", strtolower($data['title']));
+
+        $path = $request->file->storeAs('files', $filename);
+//        $path = $request->file->store('files');
 
         $data['path'] = $path;
 

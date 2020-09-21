@@ -33,6 +33,7 @@ Route::post('logout', 'Auth\LoginController@logout');
 /**
  * Franchise Route
  */
+Route::post('franchises/uploads', 'Franchise\FranchisePostcodeUploadController');
 Route::get('franchises/parents', 'Franchise\FranchiseController@parents');
 Route::get('franchises/sub-franchises', 'Franchise\FranchiseController@subFranchise');
 
@@ -50,6 +51,8 @@ Route::resource('franchises.postcodes', 'Franchise\FranchisePostcodeController',
 
 Route::post('franchises/{franchise}/postcodes/{postcode}/attach', 'Franchise\FranchisePostcodeController@attach');
 Route::get('franchises/{franchise}/postcodes/{postcode}/check', 'Franchise\FranchisePostcodeController@check');
+
+
 
 /**
  * Lead Route
