@@ -15,7 +15,7 @@ class CustomerReview extends JsonResource
     public function toArray($request)
     {
         return [
-
+            'id' => $this->id,
             'dateProjectCompleted' => $this->date_project_completed,
             'dateWarrantyReceived' => $this->date_warranty_received,
             'homeAdditionType' => $this->home_addition_type,

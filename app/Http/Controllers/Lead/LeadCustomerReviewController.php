@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Lead;
 
+use App\CustomerReview;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Lead;
@@ -85,11 +86,35 @@ class LeadCustomerReviewController extends ApiController
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $leadId, $customerReviewId)
     {
-        //
+        $lead = Lead::findOrFail($leadId);
+
+        $customerReview = CustomerReview::findOrFail($customerReviewId);
+
+        if($customerReview->lead_id != $lead->id){
+            abort(Response::HTTP_BAD_REQUEST, "Lead and Verification do not match");
+        }
+
+        $data = $this->validate($request, [
+            'date_project_completed' => 'sometimes',
+            'date_warranty_received' => 'sometimes',
+            'home_addition_type' => 'sometimes',
+            'home_addition_description' => 'sometimes',
+            'service_received_rating' => 'sometimes',
+            'workmanship_rating' => 'sometimes',
+            'finished_product_rating' => 'sometimes',
+            'design_consultant_rating' => 'sometimes',
+            'comments' => 'sometimes',
+        ]);
+
+
+        $customerReview->update($data);
+
+
+        return $this->showOne(new CustomerReviewResource($customerReview));
     }
 
     /**
