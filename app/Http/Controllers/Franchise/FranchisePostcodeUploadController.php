@@ -12,10 +12,22 @@ use Symfony\Component\HttpFoundation\Response;
 class FranchisePostcodeUploadController extends ApiController
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+
+    }
+
 
     public function __invoke(Request $request)
     {
-        $postcodeFile = storage_path() . '/app/files/postcodes/postcode-franchise-uploads.csv';
+
+
+        $filename = time() . "_" . preg_replace("/\s+/", "_", strtolower($request->title));
+
+        $uploadedFile = $request->file->storeAs('files/postcodes', $filename);
+
+        $postcodeFile = storage_path() . "/app/{$uploadedFile}";
 
         $file = fopen($postcodeFile, 'r');
         $count = 1;

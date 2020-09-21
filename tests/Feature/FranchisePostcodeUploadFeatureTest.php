@@ -6,6 +6,8 @@ use App\Franchise;
 use App\Postcode;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 use Tests\TestHelper;
@@ -58,7 +60,31 @@ class FranchisePostcodeUploadFeatureTest extends TestCase
             $count++;
         }
 
-        $this->post('api/franchises/uploads')
+        $upload = UploadedFile::createFromBase(
+            (new \Symfony\Component\HttpFoundation\File\UploadedFile(
+                $postcodeFile,
+                'postcode-franchise-uploads.csv',
+                'text/csv',
+                null,
+                true
+            ))
+        );
+
+        $data = [
+            'file' => $upload,
+            'title' => 'postcode-franchise-uploads.csv',
+            'type' => 'text/csv'
+        ];
+//
+//        $data = [
+//            'file' => 'required',
+//            'title' => 'required',
+//            'type' => 'required'
+//        ];
+
+        $this->authenticateHeadOfficeUser();
+
+        $this->post('api/franchises/uploads', $data)
             ->assertStatus(Response::HTTP_CREATED);
 
 
