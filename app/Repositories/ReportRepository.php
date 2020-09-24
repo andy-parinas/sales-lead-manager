@@ -411,4 +411,65 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
 
     }
 
+
+
+    public function generateOutcomeSummary($queryParams){
+
+        $salesStaffQuery = DB::table('job_types')
+            ->select(
+                'job_types.lead_id',
+                'sales_staff.first_name',
+                'sales_staff.last_name'
+            )->join('sales_staff', 'sales_staff.id', '=', 'job_types.sales_staff_id');
+
+
+        $mainQuery = DB::table('leads')
+            ->select(
+                'appointments.outcome',
+                'franchises.franchise_number'
+            )
+            ->selectRaw("concat(sales_staff.first_name, ' ', sales_staff.last_name) as salesStaff")
+            ->selectRaw("count(leads.id) as numberOfLeads")
+            ->join('appointments', 'appointments.lead_id', '=', 'leads.id')
+            ->join('franchises', 'franchises.id', '=', 'leads.franchise_id')
+            ->joinSub($salesStaffQuery, 'sales_staff', function ($join){
+                $join->on('sales_staff.lead_id', '=', 'leads.id');
+            });
+
+
+        if($queryParams['start_date'] !== null && $queryParams['end_date'] !== null){
+
+            $mainQuery = $mainQuery
+                ->whereBetween('leads.lead_date', [$queryParams['start_date'], $queryParams['end_date']]);
+        }
+
+        if(key_exists("outcome", $queryParams) && $queryParams['outcome'] !== ""){
+
+            $mainQuery = $mainQuery->where('appointments.outcome',$queryParams['outcome'] );
+        }
+
+
+        if(key_exists("franchise_id", $queryParams) && $queryParams['franchise_id'] !== ""){
+
+            $mainQuery = $mainQuery->where('leads.franchise_id',$queryParams['franchise_id'] );
+        }
+
+
+        $mainQuery = $mainQuery->groupBy([
+            'appointments.outcome',
+            'franchises.franchise_number',
+            'sales_staff.first_name',
+            'sales_staff.last_name'
+        ]);
+
+
+        return $mainQuery->get();
+
+
+    }
+
+    public function generateOutcomeSummaryByFranchise($franchiseIds, $queryParams){
+
+    }
+
 }
