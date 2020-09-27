@@ -18,7 +18,7 @@ interface ReportRepositoryInterface
 
     public function generateSalesSummaryV2($queryParams);
 
-    public function generateOutcomeSummary($queryParams);
+    public function generateOutcomeSalesStaff($queryParams);
 
-    public function generateOutcomeSummaryByFranchise($franchiseIds, $queryParams);
+    public function generateOutcomeSalesStaffByFranchise($franchiseIds, $queryParams);
 }

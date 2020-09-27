@@ -9,9 +9,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class OutcomeSummaryReportController extends ApiController
+class OutcomeSalesStaffReportController extends ApiController
 {
-
     protected $reportRepository;
 
     public function __construct(ReportRepositoryInterface $reportRepository)
@@ -19,7 +18,6 @@ class OutcomeSummaryReportController extends ApiController
         $this->reportRepository = $reportRepository;
         $this->middleware('auth:sanctum');
     }
-
 
     public function __invoke(Request $request)
     {
@@ -31,13 +29,13 @@ class OutcomeSummaryReportController extends ApiController
 
             if($user->user_type == User::HEAD_OFFICE){
 
-                $results = $this->reportRepository->generateOutcomeSummary($request->all());
+                $results = $this->reportRepository->generateOutcomeSalesStaff($request->all());
 
             }else {
 
                 $franchiseIds = $user->franchises->pluck('id')->toArray();
 
-                $results = $this->reportRepository->generateOutcomeSummaryByFranchise($franchiseIds, $request->all());
+                $results = $this->reportRepository->generateOutcomeSalesStaffByFranchise($franchiseIds, $request->all());
             }
 
             return $this->showOne([
@@ -45,4 +43,6 @@ class OutcomeSummaryReportController extends ApiController
             ]);
         }
     }
+
+
 }
