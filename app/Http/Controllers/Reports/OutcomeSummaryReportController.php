@@ -31,13 +31,23 @@ class OutcomeSummaryReportController extends ApiController
 
             if($user->user_type == User::HEAD_OFFICE){
 
-                $results = $this->reportRepository->generateOutcomeSummary($request->all());
+                $results = $this->reportRepository->generateOutcome($request->all());
 
             }else {
 
                 $franchiseIds = $user->franchises->pluck('id')->toArray();
 
-                $results = $this->reportRepository->generateOutcomeSummaryByFranchise($franchiseIds, $request->all());
+                $results = $this->reportRepository->generateOutcomeByFranchise($franchiseIds, $request->all());
+            }
+
+            if($results->count() > 0){
+                $total = $this->computeTotal($results);
+
+                return $this->showOne([
+                    'results' => $results,
+                    'total' => $total
+                ]);
+
             }
 
             return $this->showOne([
@@ -45,4 +55,22 @@ class OutcomeSummaryReportController extends ApiController
             ]);
         }
     }
+
+
+
+        private function computeTotal($results)
+    {
+            $totalOutcome = 0;
+
+
+            foreach ($results as $result){
+                $totalOutcome = $totalOutcome + $result->numberOfLeads;
+            }
+
+
+            return [
+                'totalOutcome' => $totalOutcome,
+            ];
+    }
+
 }

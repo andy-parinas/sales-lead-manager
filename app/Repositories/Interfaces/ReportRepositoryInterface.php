@@ -21,4 +21,8 @@ interface ReportRepositoryInterface
     public function generateOutcomeSalesStaff($queryParams);
 
     public function generateOutcomeSalesStaffByFranchise($franchiseIds, $queryParams);
+
+    public function generateOutcome($queryParams);
+
+    public function generateOutcomeByFranchise($franchiseIds, $queryParams);
 }
