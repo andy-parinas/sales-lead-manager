@@ -48,5 +48,7 @@ class SendEmailNotification implements ShouldQueue
 
         $this->mailService->sendEmail($to, $from, $subject, $message);
 
+        Log::info("Email Notification Sent");
+
     }
 }
