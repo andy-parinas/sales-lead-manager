@@ -145,6 +145,7 @@ Route::get('reports/sales-summary', 'Reports\SalesSummaryReportController@index'
 Route::get('reports/product-sales-summary', 'Reports\ProductSalesSummaryReportController@index');
 Route::get('reports/outcome', 'Reports\OutcomeSummaryReportController');
 Route::get('reports/outcome-sales-staff', 'Reports\OutcomeSalesStaffReportController');
+Route::get('reports/lead-sources', 'Reports\LeadSourceReportController');
 
 
 /**

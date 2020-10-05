@@ -611,4 +611,103 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
 
     }
 
+
+    public function generateLeadSource($queryParams){
+
+        $leadQuery = DB::table('leads')
+            ->select("leads.id as leadId",
+                "leads.lead_source_id",
+                "appointments.outcome",
+                "leads.lead_date"
+            )->join('appointments', 'appointments.lead_id', '=', 'leads.id');
+
+
+        $mainQuery = DB::table('lead_sources')
+            ->select("lead_sources.name", 'leads.outcome')
+            ->selectRaw("count(leads.leadId) as numberOfLeads")
+            ->joinSub($leadQuery, 'leads', function ($join){
+                $join->on('leads.lead_source_id', '=', 'lead_sources.id');
+            });
+
+
+        if($queryParams['start_date'] !== null && $queryParams['end_date'] !== null){
+
+            $mainQuery = $mainQuery
+                ->whereBetween('leads.lead_date', [$queryParams['start_date'], $queryParams['end_date']]);
+        }
+
+        if(key_exists("source", $queryParams) && $queryParams['source'] !== ""){
+
+            $mainQuery = $mainQuery->where('lead_sources.id',$queryParams['source'] );
+        }
+
+        if(key_exists("outcome", $queryParams) && $queryParams['outcome'] !== ""){
+
+            $mainQuery = $mainQuery->where('outcome',$queryParams['outcome'] );
+        }
+
+        $mainQuery = $mainQuery->groupBy([
+            'lead_sources.name',
+            'leads.outcome',
+        ]);
+
+        $mainQuery = $mainQuery->orderBy("leads.outcome", 'desc')
+                        ->orderBy("numberOfLeads", 'desc');
+
+        return $mainQuery->get();
+
+
+    }
+
+    public function generateLeadSourceByFranchise($franchiseIds, $queryParams){
+
+
+        $leadQuery = DB::table('leads')
+            ->select("leads.id as leadId",
+                "leads.lead_source_id",
+                "appointments.outcome",
+                "leads.lead_date",
+                'leads.franchise_id'
+            )->join('appointments', 'appointments.lead_id', '=', 'leads.id')
+            ->join('franchises', 'franchises.id', '=', 'leads.franchise_id')
+            ->whereIn('franchises.id', $franchiseIds);;
+
+
+        $mainQuery = DB::table('lead_sources')
+            ->select("lead_sources.name", 'leads.outcome')
+            ->selectRaw("count(leads.leadId) as numberOfLeads")
+            ->joinSub($leadQuery, 'leads', function ($join){
+                $join->on('leads.lead_source_id', '=', 'lead_sources.id');
+            });
+
+
+        if($queryParams['start_date'] !== null && $queryParams['end_date'] !== null){
+
+            $mainQuery = $mainQuery
+                ->whereBetween('leads.lead_date', [$queryParams['start_date'], $queryParams['end_date']]);
+        }
+
+        if(key_exists("sources", $queryParams) && $queryParams['sources'] !== ""){
+
+            $mainQuery = $mainQuery->where('lead_sources.name',$queryParams['sources'] );
+        }
+
+        if(key_exists("outcome", $queryParams) && $queryParams['outcome'] !== ""){
+
+            $mainQuery = $mainQuery->where('appointments.outcome',$queryParams['outcome'] );
+        }
+
+        $mainQuery = $mainQuery->groupBy([
+            'lead_sources.name',
+            'leads.outcome',
+        ]);
+
+        $mainQuery = $mainQuery->orderBy("leads.outcome", 'desc')
+            ->orderBy("numberOfLeads", 'desc');
+
+        return $mainQuery->get();
+
+
+    }
+
 }
