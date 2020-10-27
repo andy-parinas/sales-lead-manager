@@ -17,7 +17,7 @@ class CreateAppointmentsTable extends Migration
             $table->id();
             $table->dateTime('appointment_date');
             $table->text('appointment_notes')->nullable();
-            $table->unsignedFloat('quoted_price');
+            $table->unsignedFloat('quoted_price', 11, 2)->default(0.0);
             $table->string('outcome');
             $table->text('comments')->nullable();
             $table->unsignedBigInteger('lead_id');

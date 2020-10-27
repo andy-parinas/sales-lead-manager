@@ -19,10 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Created Login Authentication endpoint&#10;LoginController and login method&#10;Created Database seeder">
+    <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Added quoted price in the leads table">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/LeadRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/LeadRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_12_045709_create_appointments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_12_045709_create_appointments_table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -314,14 +313,7 @@
       <workItem from="1603086914894" duration="3205000" />
       <workItem from="1603166265997" duration="1910000" />
       <workItem from="1603422249945" duration="702000" />
-      <workItem from="1603687892331" duration="3567000" />
-    </task>
-    <task id="LOCAL-00079" summary="created contract model, migration and factory">
-      <created>1593389934097</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1593389934098</updated>
+      <workItem from="1603687892331" duration="4886000" />
     </task>
     <task id="LOCAL-00080" summary="Can Create Lead Contract">
       <created>1593394482604</created>
@@ -659,7 +651,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597060023653</updated>
     </task>
-    <option name="localTasksCounter" value="128" />
+    <task id="LOCAL-00128" summary="Added quoted price in the leads table">
+      <created>1603767317125</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1603767317126</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -681,7 +680,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Created FranchiseActualSeeder.php and Staged refactor for LeadSeeder.php" />
     <MESSAGE value="Fixed Broken test" />
     <MESSAGE value="Refactor SalesContact with Many-To-One relationship with Postcode&#10;Started working on fixing broken functionality and tests" />
     <MESSAGE value="Refactor SalesContact with Many-To-One relationship with Postcode&#10;Corrected broken functionality and tests" />
@@ -706,7 +704,8 @@
     <MESSAGE value="Created ProductSalesSummary Report" />
     <MESSAGE value="Working ProductSalesSummary Report" />
     <MESSAGE value="Added Product Selection in Product Sales Summary" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Product Selection in Product Sales Summary" />
+    <MESSAGE value="Added quoted price in the leads table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added quoted price in the leads table" />
   </component>
   <component name="WindowStateProjectService">
     <state x="480" y="167" key="#CLI_Interpreters" timestamp="1598238899275">
@@ -721,13 +720,11 @@
     <state x="657" y="309" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1599110690461">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="657" y="308" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1035@0.0.1920.1035" timestamp="1594869134115" />
     <state x="657" y="309" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040/1920.0.1680.1010/235.1080.1366.728@0.0.1920.1040" timestamp="1599110690461" />
     <state x="657" y="309" key="#com.intellij.ide.util.TreeClassChooserDialog/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1598961504764" />
     <state x="668" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1599123174169">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="668" y="289" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1035@0.0.1920.1035" timestamp="1594869096016" />
     <state x="668" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.0.1680.1010/235.1080.1366.728@0.0.1920.1040" timestamp="1599123174169" />
     <state x="668" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595327970420" />
     <state x="668" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1598961487272" />
@@ -779,26 +776,9 @@
     <state width="1877" height="767" key="GridCell.Tab.0.right/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597145738312" />
     <state width="1877" height="767" key="GridCell.Tab.0.right/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1597137555069" />
     <state width="1877" height="751" key="GridCell.Tab.0.right/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1600687609198" />
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1594875562399">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594875562399" />
-    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1594875562399">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.center/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594875562399" />
-    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1594875562398">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.left/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594875562398" />
-    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1594875562399">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.right/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594875562399" />
     <state x="698" y="242" width="797" height="565" key="NewPhpClassDialog" timestamp="1599110691783">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="698" y="241" width="797" height="565" key="NewPhpClassDialog/0.0.1920.1035@0.0.1920.1035" timestamp="1594870555637" />
     <state x="698" y="242" key="NewPhpClassDialog/0.0.1920.1040/1920.0.1680.1010/235.1080.1366.728@0.0.1920.1040" timestamp="1599110691783" />
     <state x="698" y="242" key="NewPhpClassDialog/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1598698885941" />
     <state x="698" y="242" key="NewPhpClassDialog/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1598961537210" />
@@ -811,9 +791,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="791" y="222" key="RollbackChangesDialog/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595819355307" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1597060025262">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1603767319215">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1603767319215" />
     <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597060025262" />
     <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1596530022251" />
     <state x="650" y="152" width="664" height="764" key="find.popup" timestamp="1599724149272">
@@ -830,9 +811,5 @@
     <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597315438589" />
     <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595915619185" />
     <state x="623" y="226" width="945" height="680" key="search.everywhere.popup/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1601118991876" />
-    <state x="689" y="426" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1594870566405">
-      <screen x="0" y="0" width="1920" height="1035" />
-    </state>
-    <state x="689" y="426" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1920.1035@0.0.1920.1035" timestamp="1594870566405" />
   </component>
 </project>
