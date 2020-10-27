@@ -119,7 +119,8 @@ class LeadRepository implements LeadRepositoryInterface
                 'postcodes.locality as suburb',
                 'postcodes.state',
                 'postcodes.pcode as postcode',
-                'appointments.outcome as outcome'
+                'appointments.outcome as outcome',
+                'appointments.quoted_price as quotedPrice'
             );
 
         if(key_exists('search', $params) && key_exists('on', $params))
@@ -163,7 +164,8 @@ class LeadRepository implements LeadRepositoryInterface
                 'postcodes.locality as suburb',
                 'postcodes.state',
                 'postcodes.pcode as postcode',
-                'appointments.outcome as outcome'
+                'appointments.outcome as outcome',
+                'appointments.quoted_price as quotedPrice'
             );
 
         if(key_exists('search', $params) && key_exists('on', $params))
