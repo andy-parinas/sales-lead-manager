@@ -19,6 +19,7 @@ class Verification extends Model
         'lineal_metres',
         'franchise_authority',
         'authority_date',
+        'date_maintenance_letter_sent'
     ];
 
 

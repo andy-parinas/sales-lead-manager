@@ -30,6 +30,7 @@ class Verification extends JsonResource
             'roofSheet' => $this->roofSheet? $this->roofSheet->name : null,
             'roofColourId' => $this->roof_colour_id,
             'roofColour' => $this->roofColour? $this->roofColour->name : null,
+            'dateMaintenanceLetterSent' => $this->date_maintenance_letter_sent
         ];
     }
 }

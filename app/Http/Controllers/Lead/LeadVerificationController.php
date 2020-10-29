@@ -63,6 +63,7 @@ class LeadVerificationController extends ApiController
             'lineal_metres' => 'sometimes',
             'franchise_authority' => 'sometimes',
             'authority_date' => 'sometimes',
+            'date_maintenance_letter_sent' => 'sometimes'
         ]);
 
 
@@ -115,6 +116,7 @@ class LeadVerificationController extends ApiController
             'lineal_metres' => 'sometimes',
             'franchise_authority' => 'sometimes',
             'authority_date' => 'sometimes',
+            'date_maintenance_letter_sent' => 'sometimes'
         ]);
 
 
