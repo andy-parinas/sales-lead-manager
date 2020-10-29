@@ -19,12 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Optional Quoted Price">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_10_27_065105_add_date_maintenance_letter_sent_column_to_verifications_table.php" afterDir="false" />
+    <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Added maintenance letter sent">
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_10_29_060002_add_received_via_column_to_leads_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadVerificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadVerificationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Verification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Verification.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Verification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Verification.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Franchise/FranchiseLeadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Franchise/FranchiseLeadController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Lead.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Lead.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Lead.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lead.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -316,14 +317,7 @@
       <workItem from="1603086914894" duration="3205000" />
       <workItem from="1603166265997" duration="1910000" />
       <workItem from="1603422249945" duration="702000" />
-      <workItem from="1603687892331" duration="11679000" />
-    </task>
-    <task id="LOCAL-00081" summary="Showing Lead Contract">
-      <created>1593471597465</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1593471597467</updated>
+      <workItem from="1603687892331" duration="18816000" />
     </task>
     <task id="LOCAL-00082" summary="Started working contract variation">
       <created>1593499294071</created>
@@ -661,7 +655,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603772156841</updated>
     </task>
-    <option name="localTasksCounter" value="130" />
+    <task id="LOCAL-00130" summary="Added maintenance letter sent">
+      <created>1603944009655</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1603944009656</updated>
+    </task>
+    <option name="localTasksCounter" value="131" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -683,7 +684,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactor SalesContact with Many-To-One relationship with Postcode&#10;Started working on fixing broken functionality and tests" />
     <MESSAGE value="Refactor SalesContact with Many-To-One relationship with Postcode&#10;Corrected broken functionality and tests" />
     <MESSAGE value="Refactor Seeder to use Actual Data" />
     <MESSAGE value="Created endpoint for SubFranchises" />
@@ -708,7 +708,8 @@
     <MESSAGE value="Added Product Selection in Product Sales Summary" />
     <MESSAGE value="Added quoted price in the leads table" />
     <MESSAGE value="Optional Quoted Price" />
-    <option name="LAST_COMMIT_MESSAGE" value="Optional Quoted Price" />
+    <MESSAGE value="Added maintenance letter sent" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added maintenance letter sent" />
   </component>
   <component name="WindowStateProjectService">
     <state x="480" y="167" key="#CLI_Interpreters" timestamp="1598238899275">
@@ -794,10 +795,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="791" y="222" key="RollbackChangesDialog/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595819355307" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1603772158723">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1603944012687">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1603772158723" />
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1603944012687" />
     <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597060025262" />
     <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1596530022251" />
     <state x="650" y="152" width="664" height="764" key="find.popup" timestamp="1599724149272">

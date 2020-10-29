@@ -92,6 +92,7 @@ class LeadController extends ApiController
         $data = $this->validate($request, [
             'lead_source_id' => '',
             'lead_date' => '',
+            'received_via' => '',
         ]);
 
         if($user->isFranchiseAdmin()){
@@ -100,6 +101,7 @@ class LeadController extends ApiController
                 'franchise_id' => '',
                 'lead_source_id' => '',
                 'lead_date' => '',
+                'received_via' => '',
             ]);
 
             if ($request->has('franchise_id')){
@@ -119,6 +121,7 @@ class LeadController extends ApiController
                 'franchise_id' => '',
                 'lead_source_id' => '',
                 'lead_date' => '',
+                'received_via' => '',
             ]);
 
             if ($request->has('franchise_id')){
