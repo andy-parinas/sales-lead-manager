@@ -58,7 +58,10 @@ class Lead extends JsonResource
                 'notes' => $this->appointment->appointment_notes,
                 'quotedPrice' => $this->appointment->quoted_price,
                 'outcome' => $this->appointment->outcome,
-                'comments' => $this->appointment->comments
+                'comments' => $this->appointment->comments,
+                'followUp' => $this->appointment->followup_date,
+                'followUpDate' => $this->appointment->FollowUpDateString,
+                'followUpTime' => $this->appointment->followUpTime,
             ] : null
         ];
     }

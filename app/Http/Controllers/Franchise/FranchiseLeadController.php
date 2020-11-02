@@ -80,6 +80,7 @@ class FranchiseLeadController extends ApiController
             'job_type.product_id' => 'required',
             'job_type.sales_staff_id' => 'required',
             'appointment.appointment_date' => 'required',
+            'appointment.followup_date' => '',
             'appointment.appointment_notes' => '',
             'appointment.quoted_price' => 'required',
             'appointment.outcome' => 'required',

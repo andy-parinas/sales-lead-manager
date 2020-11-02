@@ -82,6 +82,7 @@ class LeadRepository implements LeadRepositoryInterface
                     'job_types.description as job_type_description as jobDescription',
                     'appointments.id as appointment_id',
                     'appointments.appointment_date as appointmentDate ',
+                    'appointments.followup_date as followUpDate ',
                     'appointments.appointment_notes as appointmentNotes',
                     'appointments.quoted_price as quotedPrice',
                     'appointments.outcome',
