@@ -133,7 +133,7 @@ class FranchiseLeadController extends ApiController
         // DB::enableQueryLog();
 
         $lead = Lead::with(['franchise', 'salesContact', 'leadSource', 'jobType',
-                            'appointment' ,'jobType.product', 'jobType.salesStaff'])->findOrFail($lead_id);
+                            'appointment' ,'jobType.product', 'jobType.salesStaff', 'contracts'])->findOrFail($lead_id);
 
         // $lead = $this->leadRepository->findLeadById($lead_id);
 

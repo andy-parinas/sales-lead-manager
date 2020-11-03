@@ -62,6 +62,7 @@ class Lead extends JsonResource
                 'followUp' => $this->appointment->followup_date,
                 'followUpDate' => $this->appointment->FollowUpDateString,
                 'followUpTime' => $this->appointment->followUpTime,
+                'withContract' => $this->contract ? true : false
             ] : null
         ];
     }
