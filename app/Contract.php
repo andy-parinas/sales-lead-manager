@@ -17,7 +17,8 @@ class Contract extends Model
         'warranty_required',
         'date_warranty_sent',
         'lead_id',
-        'tax_exempt'
+        'tax_exempt',
+        'roof_sheet_profile'
     ];
 
 

@@ -19,14 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Added Lead Received Via">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_10_29_110608_add_followup_date_column_to_appointments_table.php" afterDir="false" />
+    <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Added Followup Date">
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_11_02_050619_add_roof_sheet_profile_to_contracts_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Appointment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Appointment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Franchise/FranchiseLeadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Franchise/FranchiseLeadController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadAppointmentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadAppointmentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Lead.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Lead.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/LeadRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/LeadRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Contract.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadContractController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Contract.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Contract.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -318,14 +316,7 @@
       <workItem from="1603086914894" duration="3205000" />
       <workItem from="1603166265997" duration="1910000" />
       <workItem from="1603422249945" duration="702000" />
-      <workItem from="1603687892331" duration="28693000" />
-    </task>
-    <task id="LOCAL-00083" summary="Creating Contract Variations">
-      <created>1593671435858</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1593671435858</updated>
+      <workItem from="1603687892331" duration="33073000" />
     </task>
     <task id="LOCAL-00084" summary="Updating the Contract Values">
       <created>1593677585292</created>
@@ -663,7 +654,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603968365557</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="Added Followup Date">
+      <created>1604292738369</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1604292738371</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -685,7 +683,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactor Seeder to use Actual Data" />
     <MESSAGE value="Created endpoint for SubFranchises" />
     <MESSAGE value="Created Lead Seeder" />
     <MESSAGE value="Created Sales Summary Report" />
@@ -710,7 +707,8 @@
     <MESSAGE value="Optional Quoted Price" />
     <MESSAGE value="Added maintenance letter sent" />
     <MESSAGE value="Added Lead Received Via" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Lead Received Via" />
+    <MESSAGE value="Added Followup Date" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Followup Date" />
   </component>
   <component name="WindowStateProjectService">
     <state x="480" y="167" key="#CLI_Interpreters" timestamp="1598238899275">

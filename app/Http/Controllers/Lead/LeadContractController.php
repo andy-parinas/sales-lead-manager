@@ -152,7 +152,8 @@ class LeadContractController extends ApiController
             'contract_price' => 'required|numeric',
             'warranty_required' => 'required',
             'date_warranty_sent' => 'sometimes',
-            'tax_exempt' => 'sometimes'
+            'tax_exempt' => 'sometimes',
+            'roof_sheet_profile' => 'sometimes'
         ]);
 
         if($request->deposit_amount)
@@ -177,7 +178,8 @@ class LeadContractController extends ApiController
             'deposit_amount' => 'sometimes|numeric',
             'warranty_required' => 'sometimes|string',
             'date_warranty_sent' => 'sometimes|',
-            'tax_exempt' => 'sometimes'
+            'tax_exempt' => 'sometimes',
+            'roof_sheet_profile' => 'sometimes'
         ]);
 
         if($request->deposit_amount > 0 ){
