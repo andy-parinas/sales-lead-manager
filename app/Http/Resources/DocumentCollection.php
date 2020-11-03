@@ -21,6 +21,7 @@ class DocumentCollection extends ResourceCollection
                     'title' => $document->title,
                     'path' => $document->path,
                     'type' => $document->type,
+                    'description' => $document->description
                 ];
             }),
         ];

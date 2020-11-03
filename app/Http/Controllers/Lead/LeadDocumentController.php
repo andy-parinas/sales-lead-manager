@@ -52,7 +52,8 @@ class LeadDocumentController extends ApiController
         $data = $this->validate($request, [
             'file' => 'required|file',
             'title' => 'required',
-            'type' => 'required'
+            'type' => 'required',
+            'description' => 'sometimes'
         ]);
 
         $filename = time() . "_" . preg_replace("/\s+/", "_", strtolower($data['title']));

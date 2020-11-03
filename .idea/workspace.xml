@@ -19,12 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Added Followup Date">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_11_02_050619_add_roof_sheet_profile_to_contracts_table.php" afterDir="false" />
+    <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Added Roof Sheet Profile">
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_11_03_063940_add_description_column_to_documents_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contract.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contract.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadContractController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Contract.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Contract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Document.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Document.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadDocumentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadDocumentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/DocumentCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/DocumentCollection.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -316,14 +316,7 @@
       <workItem from="1603086914894" duration="3205000" />
       <workItem from="1603166265997" duration="1910000" />
       <workItem from="1603422249945" duration="702000" />
-      <workItem from="1603687892331" duration="33073000" />
-    </task>
-    <task id="LOCAL-00084" summary="Updating the Contract Values">
-      <created>1593677585292</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1593677585292</updated>
+      <workItem from="1603687892331" duration="36841000" />
     </task>
     <task id="LOCAL-00085" summary="Listing Contract Variations">
       <created>1593733638226</created>
@@ -661,7 +654,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604292738371</updated>
     </task>
-    <option name="localTasksCounter" value="133" />
+    <task id="LOCAL-00133" summary="Added Roof Sheet Profile">
+      <created>1604380446165</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1604380446165</updated>
+    </task>
+    <option name="localTasksCounter" value="134" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -683,7 +683,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Created endpoint for SubFranchises" />
     <MESSAGE value="Created Lead Seeder" />
     <MESSAGE value="Created Sales Summary Report" />
     <MESSAGE value="Refactor Postcode Search to use Repository" />
@@ -708,7 +707,8 @@
     <MESSAGE value="Added maintenance letter sent" />
     <MESSAGE value="Added Lead Received Via" />
     <MESSAGE value="Added Followup Date" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Followup Date" />
+    <MESSAGE value="Added Roof Sheet Profile" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Roof Sheet Profile" />
   </component>
   <component name="WindowStateProjectService">
     <state x="480" y="167" key="#CLI_Interpreters" timestamp="1598238899275">
@@ -794,10 +794,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="791" y="222" key="RollbackChangesDialog/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595819355307" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1603968372358">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1604380448889">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1603968372358" />
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1604380448889" />
     <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597060025262" />
     <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1596530022251" />
     <state x="650" y="152" width="664" height="764" key="find.popup" timestamp="1599724149272">
