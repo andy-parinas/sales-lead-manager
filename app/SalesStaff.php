@@ -18,9 +18,9 @@ class SalesStaff extends Model
         return $this->first_name . ' ' . $this->last_name;
     }
 
-    public function franchise()
+    public function franchises()
     {
-        return $this->belongsTo(Franchise::class);
+        return $this->belongsToMany(Franchise::class);
     }
 
     public function jobTypes()

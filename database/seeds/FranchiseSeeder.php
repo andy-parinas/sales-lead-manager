@@ -35,7 +35,8 @@ class FranchiseSeeder extends Seeder
                 Franchise::create([
                     'franchise_number' => $child->franchise_number,
                     'name' => $child->name,
-                    'parent_id' => $newFranchise->id
+                    'parent_id' => $newFranchise->id,
+                    'type' => $child->type
                 ]);
             }
         }

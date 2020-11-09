@@ -18,13 +18,17 @@ class CreateSalesStaffTable extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('legacy_name')->nullable();
+            $table->string('sales_code')->nullable();
             $table->string('email');
+            $table->string('email2')->nullable();
             $table->string('contact_number');
+            $table->string('sales_phone');
             $table->string('status')->default(SalesStaff::ACTIVE);
-            $table->unsignedBigInteger('franchise_id');
+            //$table->unsignedBigInteger('franchise_id');
             $table->timestamps();
 
-            $table->foreign('franchise_id')->references('id')->on('franchises');
+            //$table->foreign('franchise_id')->references('id')->on('franchises');
         });
     }
 

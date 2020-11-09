@@ -17,6 +17,7 @@ class CreateFranchisesTable extends Migration
             $table->id();
             $table->string('franchise_number');
             $table->string('name');
+            $table->string('type')->nullable();
             $table->string('description')->nullable();
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->timestamps();

@@ -39,7 +39,7 @@ class Franchise extends Model
 
     public function salesStaffs()
     {
-        return $this->hasMany(SalesStaff::class);
+        return $this->belongsToMany(SalesStaff::class);
     }
 
     public function users()
