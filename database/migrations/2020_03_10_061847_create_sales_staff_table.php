@@ -23,7 +23,7 @@ class CreateSalesStaffTable extends Migration
             $table->string('email');
             $table->string('email2')->nullable();
             $table->string('contact_number');
-            $table->string('sales_phone');
+            $table->string('sales_phone')->nullable();
             $table->string('status')->default(SalesStaff::ACTIVE);
             //$table->unsignedBigInteger('franchise_id');
             $table->timestamps();

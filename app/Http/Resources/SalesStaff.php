@@ -21,8 +21,7 @@ class SalesStaff extends JsonResource
             'email' => $this->email,
             'contactNumber' => $this->contact_number,
             'status' => $this->status,
-            'franchiseId' => $this->franchise_id,
-            'franchise' => $this->franchise->franchise_number,
+            'franchise' => $this->franchises,
             'title' => $this->first_name . " " . $this->last_name
         ];
     }
