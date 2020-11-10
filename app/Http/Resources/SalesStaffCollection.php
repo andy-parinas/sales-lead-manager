@@ -23,8 +23,7 @@ class SalesStaffCollection extends ResourceCollection
                     'email' => $staff->email,
                     'contactNumber' => $staff->contact_number,
                     'status' => $staff->status,
-                    'franchiseId' => $staff->franchise_id,
-                    'franchise' => $staff->franchise->franchise_number
+                    'franchises' => $staff->franchises
                 ];
             }),
             'pagination' => [

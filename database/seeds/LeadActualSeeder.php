@@ -158,13 +158,23 @@ class LeadActualSeeder extends Seeder
 
                 $nameArray = explode(" ", trim($data[19]));
                 $designAdvisorFirstName = $nameArray[0];
-                $designAdvisorLastName = count($nameArray) > 1 ? $nameArray[1] : " ";
+                $designAdvisorLastName = " ";
+
+                if(count($nameArray) >= 3){
+                    $designAdvisorFirstName = $nameArray[0] . " " . $nameArray[1];
+                    $designAdvisorLastName = $nameArray[2];
+                }
+
+                if(count($nameArray) == 2){
+                    $designAdvisorLastName = $nameArray[1];
+                }
 
                 $designAdvisor = SalesStaff::where('first_name', $designAdvisorFirstName)
                                     ->where('last_name', $designAdvisorLastName)->first();
 
                 if($designAdvisor){
 
+                    print "Sales Staff Found \n";
                     $product = Product::where('name', 'LIKE', '%' . trim($data[20]) . '%')->first();
 
                     if($product == null){
@@ -184,8 +194,8 @@ class LeadActualSeeder extends Seeder
                     print "Lead Job Type Create \n";
 
                 }else {
-                    Log::alert("Sales Staff Not found {$designAdvisorFirstName} at Count: {$count}");
-                    print "Sales Staff Not found\n";
+                    Log::alert("Sales Staff Not found {$designAdvisorFirstName} {$designAdvisorLastName} at Count: {$count}");
+                    print "Sales Staff Not found {$designAdvisorFirstName} {$designAdvisorLastName} \n";
                 }
 
                 /**

@@ -19,15 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Added Contract Alert">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_11_06_034325_create_franchise_sales_staff_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/SalesStaffActualSeeder.php" afterDir="false" />
+    <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Refactor Sales_Staff to have many-to-many relationship with franchise">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Franchise.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Franchise.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/SalesStaff.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/SalesStaff.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_09_035550_create_franchises_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_09_035550_create_franchises_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_10_061847_create_sales_staff_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_10_061847_create_sales_staff_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/FranchiseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/FranchiseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/SalesStaffCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/SalesStaffCollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/SalesStaffRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/SalesStaffRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/LeadActualSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/LeadActualSeeder.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -320,14 +316,7 @@
       <workItem from="1603166265997" duration="1910000" />
       <workItem from="1603422249945" duration="702000" />
       <workItem from="1603687892331" duration="39694000" />
-      <workItem from="1604632472338" duration="16396000" />
-    </task>
-    <task id="LOCAL-00087" summary="Corrected computation on Total Contract when creating variation">
-      <created>1593743000064</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1593743000065</updated>
+      <workItem from="1604632472338" duration="20979000" />
     </task>
     <task id="LOCAL-00088" summary="Corrected Migrations and validations">
       <created>1593757941755</created>
@@ -665,7 +654,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604399920340</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="Refactor Sales_Staff to have many-to-many relationship with franchise">
+      <created>1604902861584</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1604902861586</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -687,7 +683,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactor Postcode Search to use Repository" />
     <MESSAGE value="Refactor Updating Sales Contact" />
     <MESSAGE value="created methods for checking franchise postcode" />
     <MESSAGE value="Added functionality in querying franchise" />
@@ -712,7 +707,8 @@
     <MESSAGE value="Added Roof Sheet Profile" />
     <MESSAGE value="Added Document Description" />
     <MESSAGE value="Added Contract Alert" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Contract Alert" />
+    <MESSAGE value="Refactor Sales_Staff to have many-to-many relationship with franchise" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor Sales_Staff to have many-to-many relationship with franchise" />
   </component>
   <component name="WindowStateProjectService">
     <state x="480" y="167" key="#CLI_Interpreters" timestamp="1598238899275">
@@ -733,7 +729,6 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="668" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.0.1680.1010/235.1080.1366.728@0.0.1920.1040" timestamp="1599123174169" />
-    <state x="668" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595327970420" />
     <state x="668" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1598961487272" />
     <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601624353136">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -746,7 +741,6 @@
     </state>
     <state x="526" y="192" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1602938166841" />
     <state x="740" y="274" key="FileChooserDialogImpl/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597104914896" />
-    <state x="740" y="274" key="FileChooserDialogImpl/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595312427786" />
     <state width="1877" height="751" key="GridCell.Tab.0.bottom" timestamp="1600818733186">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -794,14 +788,10 @@
     </state>
     <state x="795" y="443" key="NewPhpFileDialog/0.0.1920.1040/1920.0.1680.1010/235.1080.1366.728@0.0.1920.1040" timestamp="1599114388227" />
     <state x="795" y="443" key="NewPhpFileDialog/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1598698853933" />
-    <state x="791" y="222" key="RollbackChangesDialog" timestamp="1595819355307">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1604902865445">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="791" y="222" key="RollbackChangesDialog/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595819355307" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1604399922833">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1604399922833" />
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1604902865445" />
     <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597060025262" />
     <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1596530022251" />
     <state x="650" y="152" width="664" height="764" key="find.popup" timestamp="1599724149272">
@@ -816,7 +806,6 @@
     <state x="623" y="226" width="945" height="680" key="search.everywhere.popup/0.0.1920.1040/1920.0.1680.1010/235.1080.1366.728@0.0.1920.1040" timestamp="1599123191205" />
     <state x="623" y="226" width="945" height="680" key="search.everywhere.popup/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1601629836738" />
     <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597315438589" />
-    <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/235.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1595915619185" />
     <state x="623" y="226" width="945" height="680" key="search.everywhere.popup/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1601118991876" />
   </component>
 </project>

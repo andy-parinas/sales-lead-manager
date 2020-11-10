@@ -14,12 +14,12 @@ class SalesStaffRepository implements Interfaces\SalesStafRepositoryInterface
     {
         if(key_exists('search', $params) && key_exists('on', $params))
         {
-            return SalesStaff::with('franchise')->where($params['on'], 'LIKE', '%' . $params['search'] . '%')
+            return SalesStaff::with('franchises')->where($params['on'], 'LIKE', '%' . $params['search'] . '%')
                 ->orderBy($params['column'], $params['direction'])
                 ->paginate($params['size']);
         }
 
-        return SalesStaff::with('franchise')->orderBy($params['column'], $params['direction'])
+        return SalesStaff::with('franchises')->orderBy($params['column'], $params['direction'])
             ->paginate($params['size']);
     }
 
