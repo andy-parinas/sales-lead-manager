@@ -34,7 +34,6 @@ class SalesStaffRepository implements Interfaces\SalesStafRepositoryInterface
                 'email',
                 'status',
                 'contact_number',
-                'franchise_id'
             )
             ->where('status', 'active')
             ->where(function ($query) use ($search){

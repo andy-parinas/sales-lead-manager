@@ -22,7 +22,6 @@ class SalesStaffSearchCollection extends ResourceCollection
                     'email' => $staff->email,
                     'contactNumber' => $staff->contact_number,
                     'status' => $staff->status,
-                    'franchiseId' => $staff->franchise_id,
                     'title' => $staff->first_name . " " . $staff->last_name
                 ];
             });

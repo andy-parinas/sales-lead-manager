@@ -30,14 +30,15 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
 
 
         $mainQuery = DB::table('sales_staff')
-            ->select('franchises.franchise_number as franchiseNumber')
+            ->select("franchises.franchise_number as franchiseNumber")
             ->selectRaw("concat(sales_staff.first_name, ' ', sales_staff.last_name) as salesStaff")
             ->selectRaw("count( IF (leadsJoin.contractPrice > 0 and leadsJoin.outcome = 'success' , 1, null) ) as numberOfSales")
             ->selectRaw("count(leadsJoin.leadId) as numberOfLeads")
             ->selectRaw("(count( IF (leadsJoin.contractPrice > 0 and leadsJoin.outcome = 'success' , 1, null) ) / count(leadsJoin.leadId)) * 100 as conversionRate")
             ->selectRaw("avg(leadsJoin.contractPrice) as averageSalesPrice")
             ->selectRaw("sum(leadsJoin.contractPrice) as totalContracts")
-            ->join('franchises', 'sales_staff.franchise_id', '=', 'franchises.id')
+            ->join("franchise_sales_staff", "sales_staff.id", '=', "franchise_sales_staff.sales_staff_id")
+            ->join("franchises", "franchises.id", '=', "franchise_sales_staff.franchise_id")
             ->leftJoinSub($leadsQuery, 'leadsJoin', function ($join){
                 $join->on('sales_staff.id', '=', 'leadsJoin.salesStaffId');
             });
