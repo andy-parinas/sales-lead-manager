@@ -21,9 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Update Sales Staff Reporting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SalesStaff/SalesStaffController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SalesStaff/SalesStaffController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TradeStaff/TradeStaffController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TradeStaff/TradeStaffController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/ReportRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ReportRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/SalesStaffRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/SalesStaffRepository.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -317,14 +316,7 @@
       <workItem from="1603422249945" duration="702000" />
       <workItem from="1603687892331" duration="39694000" />
       <workItem from="1604632472338" duration="31653000" />
-      <workItem from="1605223264173" duration="4151000" />
-    </task>
-    <task id="LOCAL-00091" summary="Created Fianance model. Adjusted Contract Total to not include deposit">
-      <created>1593993040502</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1593993040504</updated>
+      <workItem from="1605223264173" duration="8203000" />
     </task>
     <task id="LOCAL-00092" summary="Creating Finance when Contract is created.&#10;Refactor the controllers to use the services in creating Contract and Finance Object">
       <created>1594007810321</created>
@@ -662,7 +654,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605158909953</updated>
     </task>
-    <option name="localTasksCounter" value="140" />
+    <task id="LOCAL-00140" summary="Update Sales Staff Reporting">
+      <created>1605510147366</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1605510147367</updated>
+    </task>
+    <option name="localTasksCounter" value="141" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -789,10 +788,10 @@
     </state>
     <state x="795" y="443" key="NewPhpFileDialog/0.0.1920.1040/1920.0.1680.1010/235.1080.1366.728@0.0.1920.1040" timestamp="1599114388227" />
     <state x="795" y="443" key="NewPhpFileDialog/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1598698853933" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1605158911547">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1605510150074">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1605158911547" />
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1605510150074" />
     <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597060025262" />
     <state x="650" y="152" width="664" height="764" key="find.popup" timestamp="1599724149272">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -803,12 +802,12 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1605223281358" />
-    <state x="623" y="226" width="945" height="680" key="search.everywhere.popup" timestamp="1605004316643">
+    <state x="623" y="226" width="945" height="680" key="search.everywhere.popup" timestamp="1605511624924">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="443" y="158" width="672" height="476" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1600659472049" />
     <state x="623" y="226" width="945" height="680" key="search.everywhere.popup/0.0.1920.1040/1920.0.1680.1010/235.1080.1366.728@0.0.1920.1040" timestamp="1599123191205" />
-    <state x="623" y="226" width="945" height="680" key="search.everywhere.popup/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1605004316643" />
+    <state x="623" y="226" width="945" height="680" key="search.everywhere.popup/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1605511624924" />
     <state x="623" y="226" width="768" height="679" key="search.everywhere.popup/235.1080.1366.728/0.0.1920.1040/1920.0.1920.1160@0.0.1920.1040" timestamp="1597315438589" />
     <state x="623" y="226" width="945" height="680" key="search.everywhere.popup/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1601118991876" />
   </component>

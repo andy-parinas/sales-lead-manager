@@ -67,21 +67,22 @@ class SalesStaffRepository implements Interfaces\SalesStafRepositoryInterface
     public function searchAllByFranchise(array $franchiseIds, $search)
     {
         return DB::table('sales_staff')
-            ->select('id',
+            ->select('sales_staff.id',
                 'first_name',
                 'last_name',
                 'email',
                 'status',
-                'contact_number',
-                'franchise_id'
+                'contact_number'
             )
+            ->join("franchise_sales_staff", "sales_staff.id", '=', "franchise_sales_staff.sales_staff_id")
+            ->join("franchises", "franchises.id", '=', "franchise_sales_staff.franchise_id")
             ->where('status', 'active')
             ->where(function ($query) use ($search){
                 $query->where('first_name','LIKE', '%' . $search . '%' )
                     ->orWhere('last_name','LIKE', '%' . $search . '%' )
                     ->orWhere('email', 'LIKE', '%' . $search . '%');
             })
-            ->whereIn('franchise_id', $franchiseIds)
+            ->whereIn('franchises.id', $franchiseIds)
             ->get();
     }
 }

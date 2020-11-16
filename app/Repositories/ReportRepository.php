@@ -97,7 +97,8 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             ->selectRaw("(count( IF (leadsJoin.contractPrice > 0 and leadsJoin.outcome = 'success' , 1, null) ) / count(leadsJoin.leadId)) * 100 as conversionRate")
             ->selectRaw("avg(leadsJoin.contractPrice) as averageSalesPrice")
             ->selectRaw("sum(leadsJoin.contractPrice) as totalContracts")
-            ->join('franchises', 'sales_staff.franchise_id', '=', 'franchises.id')
+            ->join("franchise_sales_staff", "sales_staff.id", '=', "franchise_sales_staff.sales_staff_id")
+            ->join("franchises", "franchises.id", '=', "franchise_sales_staff.franchise_id")
             ->leftJoinSub($leadsQuery, 'leadsJoin', function ($join){
                 $join->on('sales_staff.id', '=', 'leadsJoin.salesStaffId');
             })->where('sales_staff.status', SalesStaff::ACTIVE)
@@ -112,7 +113,7 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
 
         if(key_exists("franchise_id", $queryParams) && $queryParams['franchise_id'] !== ""){
 
-            $mainQuery = $mainQuery->where('sales_staff.franchise_id',$queryParams['franchise_id'] );
+            $mainQuery = $mainQuery->where('franchises.id',$queryParams['franchise_id'] );
         }
 
 
@@ -245,7 +246,8 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             ->selectRaw("(count( IF (leadsJoin.contractPrice > 0 and leadsJoin.outcome = 'success' , 1, null) ) / count(leadsJoin.leadId)) * 100 as conversionRate")
             ->selectRaw("avg(leadsJoin.contractPrice) as averageSalesPrice")
             ->selectRaw("sum(leadsJoin.contractPrice) as totalContracts")
-            ->join('franchises', 'sales_staff.franchise_id', '=', 'franchises.id')
+            ->join("franchise_sales_staff", "sales_staff.id", '=', "franchise_sales_staff.sales_staff_id")
+            ->join("franchises", "franchises.id", '=', "franchise_sales_staff.franchise_id")
             ->leftJoinSub($leadsQuery, 'leadsJoin', function ($join){
                 $join->on('sales_staff.id', '=', 'leadsJoin.salesStaffId');
             });
@@ -259,7 +261,7 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
 
         if(key_exists("franchise_id", $queryParams) && $queryParams['franchise_id'] !== ""){
 
-            $mainQuery = $mainQuery->where('sales_staff.franchise_id',$queryParams['franchise_id'] );
+            $mainQuery = $mainQuery->where('franchises.id',$queryParams['franchise_id'] );
         }
 
 
@@ -323,7 +325,8 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             ->selectRaw("(count( IF (leadsJoin.contractPrice > 0 and leadsJoin.outcome = 'success' , 1, null) ) / count(leadsJoin.leadId)) * 100 as conversionRate")
             ->selectRaw("avg(leadsJoin.contractPrice) as averageSalesPrice")
             ->selectRaw("sum(leadsJoin.contractPrice) as totalContracts")
-            ->join('franchises', 'sales_staff.franchise_id', '=', 'franchises.id')
+            ->join("franchise_sales_staff", "sales_staff.id", '=', "franchise_sales_staff.sales_staff_id")
+            ->join("franchises", "franchises.id", '=', "franchise_sales_staff.franchise_id")
             ->leftJoinSub($leadsQuery, 'leadsJoin', function ($join){
                 $join->on('sales_staff.id', '=', 'leadsJoin.salesStaffId');
             })->where('sales_staff.status', SalesStaff::ACTIVE)
@@ -338,7 +341,7 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
 
         if(key_exists("franchise_id", $queryParams) && $queryParams['franchise_id'] !== ""){
 
-            $mainQuery = $mainQuery->where('sales_staff.franchise_id',$queryParams['franchise_id'] );
+            $mainQuery = $mainQuery->where('franchises.id',$queryParams['franchise_id'] );
         }
 
 
