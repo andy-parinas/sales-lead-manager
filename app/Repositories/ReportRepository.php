@@ -44,7 +44,7 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             });
 
 
-        if($queryParams['start_date'] !== null && $queryParams['end_date'] !== null){
+            if($queryParams['start_date'] !== null && $queryParams['end_date'] !== null){
 
                 $mainQuery = $mainQuery
                     ->whereBetween('leadsJoin.lead_date', [$queryParams['start_date'], $queryParams['end_date']]);
@@ -53,6 +53,11 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             if(key_exists("franchise_id", $queryParams) && $queryParams['franchise_id'] !== ""){
 
                 $mainQuery = $mainQuery->where('franchises.id', $queryParams['franchise_id'] );
+            }
+
+            if(key_exists("franchise_type", $queryParams) && $queryParams['franchise_type'] !== ""){
+
+                $mainQuery = $mainQuery->where('franchises.type', $queryParams['franchise_type'] );
             }
 
 
@@ -114,6 +119,11 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
         if(key_exists("franchise_id", $queryParams) && $queryParams['franchise_id'] !== ""){
 
             $mainQuery = $mainQuery->where('franchises.id',$queryParams['franchise_id'] );
+        }
+
+        if(key_exists("franchise_type", $queryParams) && $queryParams['franchise_type'] !== ""){
+
+            $mainQuery = $mainQuery->where('franchises.type', $queryParams['franchise_type'] );
         }
 
 
@@ -264,6 +274,11 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             $mainQuery = $mainQuery->where('franchises.id',$queryParams['franchise_id'] );
         }
 
+        if(key_exists("franchise_type", $queryParams) && $queryParams['franchise_type'] !== ""){
+
+            $mainQuery = $mainQuery->where('franchises.type', $queryParams['franchise_type'] );
+        }
+
 
         if(key_exists("sales_staff_id", $queryParams) && $queryParams['sales_staff_id'] !== ""){
 
@@ -342,6 +357,11 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
         if(key_exists("franchise_id", $queryParams) && $queryParams['franchise_id'] !== ""){
 
             $mainQuery = $mainQuery->where('franchises.id',$queryParams['franchise_id'] );
+        }
+
+        if(key_exists("franchise_type", $queryParams) && $queryParams['franchise_type'] !== ""){
+
+            $mainQuery = $mainQuery->where('franchises.type', $queryParams['franchise_type'] );
         }
 
 
@@ -458,6 +478,11 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             $mainQuery = $mainQuery->where('leads.franchise_id',$queryParams['franchise_id'] );
         }
 
+        if(key_exists("franchise_type", $queryParams) && $queryParams['franchise_type'] !== ""){
+
+            $mainQuery = $mainQuery->where('franchises.type', $queryParams['franchise_type'] );
+        }
+
 
         $mainQuery = $mainQuery->groupBy([
             'appointments.outcome',
@@ -513,6 +538,11 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             $mainQuery = $mainQuery->where('leads.franchise_id',$queryParams['franchise_id'] );
         }
 
+        if(key_exists("franchise_type", $queryParams) && $queryParams['franchise_type'] !== ""){
+
+            $mainQuery = $mainQuery->where('franchises.type', $queryParams['franchise_type'] );
+        }
+
 
         $mainQuery = $mainQuery->groupBy([
             'appointments.outcome',
@@ -561,6 +591,12 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
         }
 
 
+        if(key_exists("franchise_type", $queryParams) && $queryParams['franchise_type'] !== ""){
+
+            $mainQuery = $mainQuery->where('franchises.type', $queryParams['franchise_type'] );
+        }
+
+
         $mainQuery = $mainQuery->groupBy([
             'appointments.outcome',
             'franchises.franchise_number',
@@ -600,6 +636,11 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
         if(key_exists("franchise_id", $queryParams) && $queryParams['franchise_id'] !== ""){
 
             $mainQuery = $mainQuery->where('leads.franchise_id',$queryParams['franchise_id'] );
+        }
+
+        if(key_exists("franchise_type", $queryParams) && $queryParams['franchise_type'] !== ""){
+
+            $mainQuery = $mainQuery->where('franchises.type', $queryParams['franchise_type'] );
         }
 
 
