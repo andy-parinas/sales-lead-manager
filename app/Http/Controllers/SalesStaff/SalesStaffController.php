@@ -116,7 +116,7 @@ class SalesStaffController extends ApiController
     public function show($id)
     {
 
-        $salesStaff = SalesStaff::with('franchise') ->findOrFail($id);
+        $salesStaff = SalesStaff::with('franchises') ->findOrFail($id);
 
         return $this->showOne(new SalesStaffResource($salesStaff));
     }

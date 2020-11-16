@@ -95,7 +95,7 @@ class TradeStaffController extends ApiController
 
     public function show($tradeStaffId)
     {
-        $tradeStaff = TradeStaff::findOrFail($tradeStaffId);
+        $tradeStaff = TradeStaff::with('franchises')->findOrFail($tradeStaffId);
 
 
         return $this->showOne(new TradeStaffResource($tradeStaff));

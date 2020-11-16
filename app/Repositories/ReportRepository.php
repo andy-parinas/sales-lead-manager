@@ -52,7 +52,7 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
 
             if(key_exists("franchise_id", $queryParams) && $queryParams['franchise_id'] !== ""){
 
-                $mainQuery = $mainQuery->where('sales_staff.franchise_id',$queryParams['franchise_id'] );
+                $mainQuery = $mainQuery->where('franchises.id', $queryParams['franchise_id'] );
             }
 
 
