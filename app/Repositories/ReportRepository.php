@@ -72,6 +72,11 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
                 'franchises.franchise_number'
             ]);
 
+            if(key_exists("sort_by", $queryParams) && $queryParams['sort_by'] !== "" && key_exists("direction", $queryParams) && $queryParams['direction'] !== ""){
+
+                $mainQuery = $mainQuery->orderBy($queryParams['sort_by'], $queryParams['direction']);
+            }
+
 
         return $mainQuery->get();
 
@@ -138,6 +143,10 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             'franchises.franchise_number'
         ]);
 
+        if(key_exists("sort_by", $queryParams) && $queryParams['sort_by'] !== "" && key_exists("direction", $queryParams) && $queryParams['direction'] !== ""){
+
+            $mainQuery = $mainQuery->orderBy($queryParams['sort_by'], $queryParams['direction']);
+        }
 
         return $mainQuery->get();
 
@@ -298,6 +307,11 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             'leadsJoin.productName'
         ]);
 
+        if(key_exists("sort_by", $queryParams) && $queryParams['sort_by'] !== "" && key_exists("direction", $queryParams) && $queryParams['direction'] !== ""){
+
+            $mainQuery = $mainQuery->orderBy($queryParams['sort_by'], $queryParams['direction']);
+        }
+
 
         return $mainQuery->get();
 
@@ -383,6 +397,10 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             'leadsJoin.productName'
         ]);
 
+        if(key_exists("sort_by", $queryParams) && $queryParams['sort_by'] !== "" && key_exists("direction", $queryParams) && $queryParams['direction'] !== ""){
+
+            $mainQuery = $mainQuery->orderBy($queryParams['sort_by'], $queryParams['direction']);
+        }
 
         return $mainQuery->get();
     }
@@ -430,6 +448,10 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             'products.name',
         ]);
 
+        if(key_exists("sort_by", $queryParams) && $queryParams['sort_by'] !== "" && key_exists("direction", $queryParams) && $queryParams['direction'] !== ""){
+
+            $mainQuery = $mainQuery->orderBy($queryParams['sort_by'], $queryParams['direction']);
+        }
 
         return $mainQuery->get();
 
@@ -491,6 +513,10 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             'sales_staff.last_name'
         ]);
 
+        if(key_exists("sort_by", $queryParams) && $queryParams['sort_by'] !== "" && key_exists("direction", $queryParams) && $queryParams['direction'] !== ""){
+
+            $mainQuery = $mainQuery->orderBy($queryParams['sort_by'], $queryParams['direction']);
+        }
 
         return $mainQuery->get();
 
@@ -551,6 +577,10 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             'sales_staff.last_name'
         ]);
 
+        if(key_exists("sort_by", $queryParams) && $queryParams['sort_by'] !== "" && key_exists("direction", $queryParams) && $queryParams['direction'] !== ""){
+
+            $mainQuery = $mainQuery->orderBy($queryParams['sort_by'], $queryParams['direction']);
+        }
 
         return $mainQuery->get();
 
@@ -602,6 +632,10 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             'franchises.franchise_number',
         ]);
 
+        if(key_exists("sort_by", $queryParams) && $queryParams['sort_by'] !== "" && key_exists("direction", $queryParams) && $queryParams['direction'] !== ""){
+
+            $mainQuery = $mainQuery->orderBy($queryParams['sort_by'], $queryParams['direction']);
+        }
 
         return $mainQuery->get();
 
@@ -650,6 +684,12 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
         ]);
 
 
+        if(key_exists("sort_by", $queryParams) && $queryParams['sort_by'] !== "" && key_exists("direction", $queryParams) && $queryParams['direction'] !== ""){
+
+            $mainQuery = $mainQuery->orderBy($queryParams['sort_by'], $queryParams['direction']);
+        }
+
+
         return $mainQuery->get();
 
 
@@ -668,7 +708,7 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
 
 
         $mainQuery = DB::table('lead_sources')
-            ->select("lead_sources.name", 'leads.outcome')
+            ->select("lead_sources.name as name", 'leads.outcome as outcome')
             ->selectRaw("count(leads.leadId) as numberOfLeads")
             ->joinSub($leadQuery, 'leads', function ($join){
                 $join->on('leads.lead_source_id', '=', 'lead_sources.id');
@@ -696,8 +736,18 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             'leads.outcome',
         ]);
 
-        $mainQuery = $mainQuery->orderBy("leads.outcome", 'desc')
-                        ->orderBy("numberOfLeads", 'desc');
+//        $mainQuery = $mainQuery->orderBy("leads.outcome", 'desc')
+//                        ->orderBy("numberOfLeads", 'desc');
+
+
+        if(key_exists("sort_by", $queryParams) && $queryParams['sort_by'] !== "" && key_exists("direction", $queryParams) && $queryParams['direction'] !== ""){
+
+            $mainQuery = $mainQuery->orderBy($queryParams['sort_by'], $queryParams['direction']);
+        }else {
+            $mainQuery = $mainQuery->orderBy("leads.outcome", 'desc')
+                ->orderBy("numberOfLeads", 'desc');
+
+        }
 
         return $mainQuery->get();
 
@@ -747,8 +797,12 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             'leads.outcome',
         ]);
 
-        $mainQuery = $mainQuery->orderBy("leads.outcome", 'desc')
-            ->orderBy("numberOfLeads", 'desc');
+//        $mainQuery = $mainQuery->orderBy("leads.outcome", 'desc')
+//            ->orderBy("numberOfLeads", 'desc');
+        if(key_exists("sort_by", $queryParams) && $queryParams['sort_by'] !== "" && key_exists("direction", $queryParams) && $queryParams['direction'] !== ""){
+
+            $mainQuery = $mainQuery->orderBy($queryParams['sort_by'], $queryParams['direction']);
+        }
 
         return $mainQuery->get();
 
