@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             FranchiseSeeder::class,
             PostcodeSeeder::class,
             UserSeeder::class,
-            SalesStaffSeeder::class,
+            SalesStaffActualSeeder::class,
             TradeStaffActualSeeder::class,
             LeadActualSeeder::class,
             ContractActualSeeder::class,
