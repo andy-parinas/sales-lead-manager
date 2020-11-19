@@ -159,3 +159,11 @@ Route::resource('constructions.build-logs', 'Construction\ConstructionBuildLogCo
  */
 Route::resource('roof-sheets', 'Roof\RoofSheetController', ['except' => ['create', 'edit', 'show']] );
 Route::resource('roof-colours', 'Roof\RoofColourController', ['except' => ['create', 'edit', 'show']] );
+
+
+/**
+ * Letter Route
+ */
+Route::post('letters/unassigned-intro/{sales_contact}', 'Letter\UnassignedIntroLetterController@send');
+Route::post('letters/assigned-intro/{sales_contact}', 'Letter\AssignedIntroLetterController@send');
+Route::post('letters/welcome/{sales_contact}', 'Letter\WelcomeLetterController@send');
