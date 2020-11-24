@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Letter;
 
 use App\Http\Controllers\Controller;
+use App\Lead;
 use App\SalesContact;
 use App\Services\Interfaces\EmailServiceInterface;
 use Illuminate\Http\Request;
@@ -19,9 +20,10 @@ class AssignedIntroLetterController extends Controller
     }
 
 
-    public function send(Request $request, $salesContactId)
+    public function send(Request $request, $leadid, $salesContactId)
     {
         $salesContact = SalesContact::with('postcode')->findOrFail($salesContactId);
+        $lead = Lead::findOrFail($leadid);
 
         $to = $salesContact->email;
         $from = config('mail.from.address');
@@ -56,8 +58,14 @@ class AssignedIntroLetterController extends Controller
 
         $this->emailService->sendEmail($to, $from, $subject, $message);
 
-        Log::info("Unassigned Intro Letter Sent");
+        $lead->update([
+            'assigned_intro_sent' => date("Y-m-d")
+        ]);
 
-        return response(['status' => 'sent'], Response::HTTP_OK);
+        $lead->refresh();
+
+        Log::info("Unassigned Intro Letter Sent {$to}");
+
+        return response(['data' => $lead], Response::HTTP_OK);
     }
 }

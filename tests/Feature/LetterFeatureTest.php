@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Lead;
 use App\SalesContact;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -24,9 +25,13 @@ class LetterFeatureTest extends TestCase
             'email' => 'andyp@crystaltec.com.au'
         ]);
 
+        $lead = factory(Lead::class)->create([
+            'sales_contact_id' => $salesContact->id
+        ]);
+
         $this->authenticateHeadOfficeUser();
 
-        $this->post('api/letters/unassigned-intro/' . $salesContact->id)
+        $this->post('api/leads/'. $lead->id .'/letters/unassigned-intro/' . $salesContact->id)
             ->assertStatus(Response::HTTP_OK);
 
     }
@@ -42,9 +47,13 @@ class LetterFeatureTest extends TestCase
             'email' => 'andyp@crystaltec.com.au'
         ]);
 
+        $lead = factory(Lead::class)->create([
+            'sales_contact_id' => $salesContact->id
+        ]);
+
         $this->authenticateHeadOfficeUser();
 
-        $this->post('api/letters/assigned-intro/' . $salesContact->id)
+        $this->post('api/leads/'. $lead->id .'letters/assigned-intro/' . $salesContact->id)
             ->assertStatus(Response::HTTP_OK);
 
     }

@@ -18,7 +18,9 @@ class Lead extends Model
         'lead_date',
         'postcode_status',
         'franchise_id',
-        'received_via'
+        'received_via',
+        'unassigned_intro_sent',
+        'assigned_intro_sent'
     ];
 
 

@@ -24,6 +24,7 @@ class Lead extends JsonResource
                'franchiseNumber' => $this->franchise->franchise_number,
                'leadSourceId' =>$this->leadSource->id,
                'leadSource' => $this->leadSource->name,
+               'salesContactId' => $this->salesContact->id,
                'firstName' => $this->salesContact->first_name,
                'lastName' => $this->salesContact->last_name,
                'email' => $this->salesContact->email,
@@ -36,7 +37,9 @@ class Lead extends JsonResource
                'postcode' => $this->salesContact->postcode,
                'customerType' => $this->salesContact->customer_type,
                'created_at' => $this->created_at,
-               'receivedVia' => $this->received_via
+               'receivedVia' => $this->received_via,
+               'unAssignedIntroSent' => $this->unassigned_intro_sent,
+               'assignedIntroSent' => $this->assigned_intro_sent
            ],
             'jobType' => $this->jobType ? [
                 'id' => $this->jobType->id,
