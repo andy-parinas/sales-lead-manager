@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Letter;
 
 use App\Http\Controllers\Controller;
+use App\Lead;
 use App\SalesContact;
 use App\Services\Interfaces\EmailServiceInterface;
 use Illuminate\Http\Request;
@@ -19,9 +20,18 @@ class WelcomeLetterController extends Controller
     }
 
 
-    public function send(Request $request, $salesContactId)
+    public function send(Request $request, $leadId)
     {
-        $salesContact = SalesContact::with('postcode')->findOrFail($salesContactId);
+
+        $lead = Lead::findOrFail($leadId);
+
+        $salesContact = $lead->salesContact;
+
+        $contract = $lead->contract;
+
+        if($contract == null){
+            abort(Response::HTTP_BAD_REQUEST, "Lead must have contract.");
+        }
 
         $to = $salesContact->email;
         $from = config('mail.from.address');
@@ -54,8 +64,14 @@ class WelcomeLetterController extends Controller
 
         $this->emailService->sendEmail($to, $from, $subject, $message);
 
-        Log::info("Unassigned Intro Letter Sent");
+        $contract->update([
+            'welcome_letter_sent' => date("Y-m-d")
+        ]);
 
-        return response(['status' => 'sent'], Response::HTTP_OK);
+        $contract->refresh();
+
+        Log::info("Welcome Letter Sent {$contract->welcome_letter_sent}");
+
+        return response(['data' => $contract], Response::HTTP_OK);
     }
 }

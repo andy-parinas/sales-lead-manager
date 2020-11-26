@@ -26,7 +26,8 @@ class Contract extends JsonResource
             'warrantyRequired' => $this->warranty_required,
             'dateWarrantySent' => $this->date_warranty_sent,
             'taxExempt' => $this->tax_exempt,
-            'roofSheetProfile' => $this->roof_sheet_profile
+            'roofSheetProfile' => $this->roof_sheet_profile,
+            'welcomeLetterSent' => $this->welcome_letter_sent
         ];
     }
 }

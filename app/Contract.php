@@ -18,7 +18,8 @@ class Contract extends Model
         'date_warranty_sent',
         'lead_id',
         'tax_exempt',
-        'roof_sheet_profile'
+        'roof_sheet_profile',
+        'welcome_letter_sent'
     ];
 
 

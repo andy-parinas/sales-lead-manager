@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Contract;
 use App\Lead;
 use App\SalesContact;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -68,9 +69,17 @@ class LetterFeatureTest extends TestCase
             'email' => 'andyp@crystaltec.com.au'
         ]);
 
+        $lead = factory(Lead::class)->create([
+            'sales_contact_id' => $salesContact->id
+        ]);
+
+        factory(Contract::class)->create([
+            'lead_id' => $lead->id
+        ]);
+
         $this->authenticateHeadOfficeUser();
 
-        $this->post('api/letters/welcome/' . $salesContact->id)
+        $this->post('api/contracts/'. $lead->id. '/letters/welcome/')
             ->assertStatus(Response::HTTP_OK);
 
     }
