@@ -167,6 +167,6 @@ Route::resource('roof-colours', 'Roof\RoofColourController', ['except' => ['crea
 Route::post('leads/{lead}/letters/unassigned-intro/{sales_contact}', 'Letter\UnassignedIntroLetterController@send');
 Route::post('leads/{lead}/letters/assigned-intro/{sales_contact}', 'Letter\AssignedIntroLetterController@send');
 Route::post('contracts/{lead}/letters/welcome/', 'Letter\WelcomeLetterController@send');
-Route::post('letters/council-intro/{sales_contact}', 'Letter\CouncilIntroLetterController@send');
-Route::post('letters/no-council/{sales_contact}', 'Letter\NoCouncilLetterController@send');
-Route::post('letters/out-of-council/{sales_contact}', 'Letter\OutOfCouncilLetterController@send');
+Route::post('authorities/{lead}/letters/council-intro', 'Letter\CouncilIntroLetterController@send');
+Route::post('authorities/{lead}/letters/no-council', 'Letter\NoCouncilLetterController@send');
+Route::post('authorities/{lead}/letters/out-of-council', 'Letter\OutOfCouncilLetterController@send');
