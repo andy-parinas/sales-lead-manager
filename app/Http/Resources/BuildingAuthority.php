@@ -29,6 +29,9 @@ class BuildingAuthority extends JsonResource
             'buildingInsuranceName' => $this->building_insurance_name,
             'buildingInsuranceNumber' => $this->building_insurance_number,
             'dateInsuranceRequestSent' => $this->date_insurance_request_sent,
+            'introCouncilLetterSent'=> $this->intro_council_letter_sent,
+            'outOfCouncilLetterSent'=> $this->out_of_council_letter_sent,
+            'noCouncilLetterSent'=> $this->no_council_letter_sent
         ];
     }
 }

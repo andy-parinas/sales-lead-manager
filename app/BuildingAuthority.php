@@ -20,6 +20,9 @@ class BuildingAuthority extends Model
         'building_insurance_name',
         'building_insurance_number',
         'date_insurance_request_sent',
+        'intro_council_letter_sent',
+        'out_of_council_letter_sent',
+        'no_council_letter_sent'
     ];
 
     public function lead(){

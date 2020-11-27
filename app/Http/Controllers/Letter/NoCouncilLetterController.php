@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Letter;
 
 use App\Http\Controllers\Controller;
+use App\Lead;
 use App\SalesContact;
 use App\Services\Interfaces\EmailServiceInterface;
 use Illuminate\Http\Request;
@@ -19,9 +20,17 @@ class NoCouncilLetterController extends Controller
     }
 
 
-    public function send(Request $request, $salesContactId)
+    public function send(Request $request, $leadId)
     {
-        $salesContact = SalesContact::with('postcode')->findOrFail($salesContactId);
+        $lead = Lead::findOrFail($leadId);
+
+        $salesContact = $lead->salesContact;
+
+        $buildingAuthority = $lead->buildingAuthority;
+
+        if($buildingAuthority == null){
+            abort(Response::HTTP_BAD_REQUEST, "Building Authority Is Required");
+        }
 
         $to = $salesContact->email;
         $from = config('mail.from.address');
@@ -49,8 +58,14 @@ class NoCouncilLetterController extends Controller
 
         $this->emailService->sendEmail($to, $from, $subject, $message);
 
+        $buildingAuthority->update([
+            'no_council_letter_sent' => date("Y-m-d")
+        ]);
+
+        $buildingAuthority->refresh();
+
         Log::info("Unassigned Intro Letter Sent");
 
-        return response(['status' => 'sent'], Response::HTTP_OK);
+        return response(['data' => $buildingAuthority], Response::HTTP_OK);
     }
 }

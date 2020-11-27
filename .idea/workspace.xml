@@ -19,10 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Contract Welcome Letter">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_11_26_081309_add_letters_column_to_building_authorities_table.php" afterDir="false" />
+    <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Started working on Authorities Letter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/BuildingAuthority.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/BuildingAuthority.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Letter/CouncilIntroLetterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Letter/CouncilIntroLetterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Letter/NoCouncilLetterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Letter/NoCouncilLetterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Letter/OutOfCouncilLetterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Letter/OutOfCouncilLetterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/BuildingAuthority.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/BuildingAuthority.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -344,14 +347,7 @@
       <workItem from="1605223264173" duration="17571000" />
       <workItem from="1605769414949" duration="33435000" />
       <workItem from="1606366258728" duration="144000" />
-      <workItem from="1606368947592" duration="8743000" />
-    </task>
-    <task id="LOCAL-00100" summary="Fixed Broken test">
-      <created>1594940704503</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1594940704503</updated>
+      <workItem from="1606368947592" duration="15984000" />
     </task>
     <task id="LOCAL-00101" summary="Refactor SalesContact with Many-To-One relationship with Postcode&#10;Started working on fixing broken functionality and tests">
       <created>1594943922003</created>
@@ -689,7 +685,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606378232744</updated>
     </task>
-    <option name="localTasksCounter" value="149" />
+    <task id="LOCAL-00149" summary="Started working on Authorities Letter">
+      <created>1606385571549</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1606385571549</updated>
+    </task>
+    <option name="localTasksCounter" value="150" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -711,7 +714,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactor franchise_postcode table cascadeOnDelete" />
     <MESSAGE value="refactor report query to use DB:query instead of Raw sql" />
     <MESSAGE value="Created ProductSalesSummary Report" />
     <MESSAGE value="Working ProductSalesSummary Report" />
@@ -736,7 +738,8 @@
     <MESSAGE value="Additional Letter Controllers" />
     <MESSAGE value="Lead Intro Letters" />
     <MESSAGE value="Contract Welcome Letter" />
-    <option name="LAST_COMMIT_MESSAGE" value="Contract Welcome Letter" />
+    <MESSAGE value="Started working on Authorities Letter" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started working on Authorities Letter" />
   </component>
   <component name="WindowStateProjectService">
     <state x="480" y="167" key="#CLI_Interpreters" timestamp="1606371147117">
@@ -811,10 +814,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="164" key="SettingsEditor/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1605772024204" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1606378237544">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1606385573764">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1606378237544" />
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1606385573764" />
     <state x="650" y="152" width="664" height="764" key="find.popup" timestamp="1606371940089">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
