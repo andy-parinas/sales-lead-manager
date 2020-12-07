@@ -36,7 +36,7 @@ class WelcomeLetterController extends Controller
         $to = $salesContact->email;
         $from = config('mail.from.address');
 
-        $subject = "Welcome";
+        $subject = "Welcome to Spanline Home Additions";
 
         $message = "<p> Monday, November 16, 2020 </p> <br/> <br/>" .
             "<div>{$salesContact->title}. {$salesContact->frist_name} {$salesContact->last_name} </div>" .

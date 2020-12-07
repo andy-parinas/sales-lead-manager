@@ -35,7 +35,7 @@ class NoCouncilLetterController extends Controller
         $to = $salesContact->email;
         $from = config('mail.from.address');
 
-        $subject = "No Council";
+        $subject = "Spanline Home Additions – Project Update";
 
         $message = "<p> Monday, November 16, 2020 </p> <br/> <br/>" .
             "<div>{$salesContact->title}. {$salesContact->frist_name} {$salesContact->last_name} </div>" .

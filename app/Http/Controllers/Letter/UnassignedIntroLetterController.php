@@ -29,7 +29,7 @@ class UnassignedIntroLetterController extends Controller
         $to = $salesContact->email;
         $from = config('mail.from.address');
 
-        $subject = "Unassigned Intro";
+        $subject = "Spanline Home Additions Design Consultation";
 
         $message = "<p> Monday, November 16, 2020 </p> <br/> <br/>" .
             "<div>{$salesContact->title}. {$salesContact->frist_name} {$salesContact->last_name} </div>" .
