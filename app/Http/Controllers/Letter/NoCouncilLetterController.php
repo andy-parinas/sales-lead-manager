@@ -7,6 +7,7 @@ use App\Lead;
 use App\SalesContact;
 use App\Services\Interfaces\EmailServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -32,8 +33,10 @@ class NoCouncilLetterController extends Controller
             abort(Response::HTTP_BAD_REQUEST, "Building Authority Is Required");
         }
 
+        $user = Auth::user();
+
         $to = $salesContact->email;
-        $from = config('mail.from.address');
+        $from = $user->email;
 
         $subject = "Spanline Home Additions – Project Update";
 

@@ -7,6 +7,7 @@ use App\Lead;
 use App\SalesContact;
 use App\Services\Interfaces\EmailServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -26,9 +27,11 @@ class UnassignedIntroLetterController extends Controller
         $salesContact = SalesContact::with('postcode')->findOrFail($salesContactId);
         $lead = Lead::findOrFail($leadid);
 
-        $to = $salesContact->email;
-        $from = config('mail.from.address');
+        $user = Auth::user();
 
+
+        $to = $salesContact->email;
+        $from = $user->email;
         $subject = "Spanline Home Additions Design Consultation";
 
         $message = "<p> Monday, November 16, 2020 </p> <br/> <br/>" .

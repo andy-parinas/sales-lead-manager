@@ -7,6 +7,7 @@ use App\Lead;
 use App\SalesContact;
 use App\Services\Interfaces\EmailServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -25,8 +26,10 @@ class AssignedIntroLetterController extends Controller
         $salesContact = SalesContact::with('postcode')->findOrFail($salesContactId);
         $lead = Lead::findOrFail($leadid);
 
+        $user = Auth::user();
+
         $to = $salesContact->email;
-        $from = config('mail.from.address');
+        $from = $user->email;
 
         $subject = "Spanline Home Additions Design Consultation";
 

@@ -7,6 +7,7 @@ use App\Lead;
 use App\SalesContact;
 use App\Services\Interfaces\EmailServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -33,8 +34,10 @@ class WelcomeLetterController extends Controller
             abort(Response::HTTP_BAD_REQUEST, "Lead must have contract.");
         }
 
+        $user = Auth::user();
+
         $to = $salesContact->email;
-        $from = config('mail.from.address');
+        $from = $user->email;
 
         $subject = "Welcome to Spanline Home Additions";
 
