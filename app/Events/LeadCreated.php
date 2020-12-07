@@ -16,15 +16,17 @@ class LeadCreated
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $lead;
+    public $user;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Lead $lead)
+    public function __construct(array $info)
     {
-        $this->lead = $lead;
+        $this->lead = $info['lead'];
+        $this->user = $info['user'];
     }
 
     /**

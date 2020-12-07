@@ -7,6 +7,7 @@ use App\Services\Interfaces\EmailServiceInterface;
 use App\Services\Interfaces\SmsServiceInterface;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\LeadCreatedMail;
@@ -36,8 +37,8 @@ class SendEmailNotification implements ShouldQueue
     {
 
         $to = $event->lead->jobType->salesStaff->email;
-        $from = config('mail.from.address');
-
+        //$from = config('mail.from.address');
+        $from = $event->user->email;
         $subject = "New Sales Lead Assigned: {$event->lead->lead_number}";
 
         $message = "<h1>A new Sales Lead has been assigned to you</h1>" .

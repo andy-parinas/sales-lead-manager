@@ -21,14 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Building Authorities Letter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Letter/AssignedIntroLetterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Letter/AssignedIntroLetterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Letter/CouncilIntroLetterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Letter/CouncilIntroLetterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Letter/NoCouncilLetterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Letter/NoCouncilLetterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Letter/OutOfCouncilLetterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Letter/OutOfCouncilLetterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Letter/UnassignedIntroLetterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Letter/UnassignedIntroLetterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Letter/WelcomeLetterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Letter/WelcomeLetterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_09_035600_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_09_035600_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/LetterFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/LetterFeatureTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Events/LeadCreated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Events/LeadCreated.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Franchise/FranchiseLeadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Franchise/FranchiseLeadController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Listeners/SendEmailNotification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/SendEmailNotification.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -354,14 +349,7 @@
       <workItem from="1606966081785" duration="1387000" />
       <workItem from="1606975139828" duration="665000" />
       <workItem from="1607154339265" duration="31000" />
-      <workItem from="1607299185838" duration="5677000" />
-    </task>
-    <task id="LOCAL-00103" summary="Refactor Seeder to use Actual Data">
-      <created>1594973231110</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1594973231111</updated>
+      <workItem from="1607299185838" duration="8289000" />
     </task>
     <task id="LOCAL-00104" summary="Created endpoint for SubFranchises">
       <created>1594986232546</created>
@@ -699,7 +687,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607302812615</updated>
     </task>
-    <option name="localTasksCounter" value="152" />
+    <task id="LOCAL-00152" summary="Changed Email Letters to send based on users email">
+      <created>1607307370512</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1607307370512</updated>
+    </task>
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -721,7 +716,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Working ProductSalesSummary Report" />
     <MESSAGE value="Added Product Selection in Product Sales Summary" />
     <MESSAGE value="Added quoted price in the leads table" />
     <MESSAGE value="Optional Quoted Price" />
@@ -746,7 +740,8 @@
     <MESSAGE value="Started working on Authorities Letter" />
     <MESSAGE value="Building Authorities Letter" />
     <MESSAGE value="Changed the Subject Line of letters" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed the Subject Line of letters" />
+    <MESSAGE value="Changed Email Letters to send based on users email" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed Email Letters to send based on users email" />
   </component>
   <component name="WindowStateProjectService">
     <state x="480" y="167" key="#CLI_Interpreters" timestamp="1606371147117">
@@ -821,10 +816,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="164" key="SettingsEditor/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1605772024204" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1607302814837">
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1607307372121">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1607302814837" />
+    <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1607307372121" />
     <state x="650" y="152" width="664" height="764" key="find.popup" timestamp="1606371940089">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
