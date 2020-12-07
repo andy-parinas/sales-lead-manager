@@ -44,6 +44,22 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             });
 
 
+            if(key_exists("status", $queryParams) && $queryParams['status'] !== ""){
+
+                if($queryParams['status'] == 'active'){
+
+                    $mainQuery = $mainQuery->where('sales_staff.status', SalesStaff::ACTIVE);
+                }else {
+
+                    $mainQuery = $mainQuery->where('sales_staff.status', SalesStaff::BLOCKED);
+                }
+
+            }else {
+
+                $mainQuery = $mainQuery->where('sales_staff.status', SalesStaff::ACTIVE);
+            }
+
+
             if($queryParams['start_date'] !== null && $queryParams['end_date'] !== null){
 
                 $mainQuery = $mainQuery
@@ -111,8 +127,22 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             ->join("franchises", "franchises.id", '=', "franchise_sales_staff.franchise_id")
             ->leftJoinSub($leadsQuery, 'leadsJoin', function ($join){
                 $join->on('sales_staff.id', '=', 'leadsJoin.salesStaffId');
-            })->where('sales_staff.status', SalesStaff::ACTIVE)
+            })
             ->whereIn('franchises.id', $franchiseIds);
+
+
+        if(key_exists("status", $queryParams) && $queryParams['status'] !== ""){
+
+            if($queryParams['status'] !== 'active'){
+                $mainQuery = $mainQuery->where('sales_staff.status', SalesStaff::ACTIVE);
+            }else {
+                $mainQuery = $mainQuery->where('sales_staff.status', SalesStaff::BLOCKED);
+            }
+
+        }else {
+
+            $mainQuery = $mainQuery->where('sales_staff.status', SalesStaff::ACTIVE);
+        }
 
 
         if($queryParams['start_date'] !== null && $queryParams['end_date'] !== null){
@@ -294,6 +324,22 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             $mainQuery = $mainQuery->where('sales_staff.id',$queryParams['sales_staff_id'] );
         }
 
+        if(key_exists("status", $queryParams) && $queryParams['status'] !== ""){
+
+            if($queryParams['status'] == 'active'){
+
+                $mainQuery = $mainQuery->where('sales_staff.status', SalesStaff::ACTIVE);
+            }else {
+
+                $mainQuery = $mainQuery->where('sales_staff.status', SalesStaff::BLOCKED);
+            }
+
+        }else {
+
+            $mainQuery = $mainQuery->where('sales_staff.status', SalesStaff::ACTIVE);
+        }
+
+
 
         if(key_exists("product_id", $queryParams) && $queryParams['product_id'] !== ""){
 
@@ -383,6 +429,22 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
 
             $mainQuery = $mainQuery->where('sales_staff.id',$queryParams['sales_staff_id'] );
         }
+
+        if(key_exists("status", $queryParams) && $queryParams['status'] !== ""){
+
+            if($queryParams['status'] == 'active'){
+
+                $mainQuery = $mainQuery->where('sales_staff.status', SalesStaff::ACTIVE);
+            }else {
+
+                $mainQuery = $mainQuery->where('sales_staff.status', SalesStaff::BLOCKED);
+            }
+
+        }else {
+
+            $mainQuery = $mainQuery->where('sales_staff.status', SalesStaff::ACTIVE);
+        }
+
 
 
         if(key_exists("product_id", $queryParams) && $queryParams['product_id'] !== ""){
