@@ -47,10 +47,8 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             if(key_exists("status", $queryParams) && $queryParams['status'] !== ""){
 
                 if($queryParams['status'] == 'active'){
-
                     $mainQuery = $mainQuery->where('sales_staff.status', SalesStaff::ACTIVE);
-                }else {
-
+                }elseif ($queryParams['status'] == 'blocked'){
                     $mainQuery = $mainQuery->where('sales_staff.status', SalesStaff::BLOCKED);
                 }
 
@@ -135,7 +133,7 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
 
             if($queryParams['status'] !== 'active'){
                 $mainQuery = $mainQuery->where('sales_staff.status', SalesStaff::ACTIVE);
-            }else {
+            }elseif ($queryParams['status'] == 'blocked') {
                 $mainQuery = $mainQuery->where('sales_staff.status', SalesStaff::BLOCKED);
             }
 
@@ -329,7 +327,7 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             if($queryParams['status'] == 'active'){
 
                 $mainQuery = $mainQuery->where('sales_staff.status', SalesStaff::ACTIVE);
-            }else {
+            }elseif ($queryParams['status'] == 'blocked') {
 
                 $mainQuery = $mainQuery->where('sales_staff.status', SalesStaff::BLOCKED);
             }
@@ -435,7 +433,7 @@ class ReportRepository implements Interfaces\ReportRepositoryInterface
             if($queryParams['status'] == 'active'){
 
                 $mainQuery = $mainQuery->where('sales_staff.status', SalesStaff::ACTIVE);
-            }else {
+            }elseif ($queryParams['status'] == 'blocked') {
 
                 $mainQuery = $mainQuery->where('sales_staff.status', SalesStaff::BLOCKED);
             }
