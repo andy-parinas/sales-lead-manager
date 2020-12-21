@@ -85,6 +85,7 @@ class FranchiseLeadController extends ApiController
             'appointment.quoted_price' => 'required',
             'appointment.outcome' => 'required',
             'appointment.comments' => '',
+            'appointment.customer_touch_point' => '',
         ]);
 
         /**

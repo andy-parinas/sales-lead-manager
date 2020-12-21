@@ -35,7 +35,8 @@ class LeadAppointmentController extends ApiController
             'quoted_price' => '',
             'outcome' => '',
             'comments' => '',
-            'followup_date' => ''
+            'followup_date' => '',
+            'customer_touch_point' => ''
         ]);
 
         $appointment->update($data);

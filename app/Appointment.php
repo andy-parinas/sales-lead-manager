@@ -7,7 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Appointment extends Model
 {
     protected $fillable = [
-        'appointment_date', 'appointment_notes', 'quoted_price', 'outcome', 'comments', 'lead_id', 'followup_date'
+        'appointment_date',
+        'appointment_notes',
+        'quoted_price',
+        'outcome',
+        'comments',
+        'lead_id',
+        'followup_date',
+        'customer_touch_point'
     ];
 
     public function lead()
