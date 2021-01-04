@@ -20,8 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Building Authorities Letter">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/JobType/JobTypeEmailController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/JobType/JobTypeSmsController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_04_023713_add_sms_email_column_to_job_types_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Feature/NotificationFeatureTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/ReportRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ReportRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Franchise/FranchiseLeadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Franchise/FranchiseLeadController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Lead.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Lead.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/JobType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/JobType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/SalesStaffFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/SalesStaffFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +43,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SET_USER_NAME_GLOBALLY" value="false" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
@@ -167,7 +183,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TODO_SCOPE" value="Project Files" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Sandbox/Laravel/livewire_cms_yt" />
+    <property name="last_opened_file_path" value="C:/php/php-7.3.7-Win32-VC15-x64/php.exe" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -188,7 +204,7 @@
       <recent name="G:\Projects\sales-lead-manager\storage\app\files\postcodes" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.LetterFeatureTest.testCanSendUnassingedIntroLetter">
+  <component name="RunManager" selected="PHPUnit.NotificationFeatureTest.testCanSendSmsToDesignAdvisor">
     <configuration name="LetterFeatureTest.testCanSendAssingedIntroLetter" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <CommandLine>
         <PhpTestInterpreterSettings>
@@ -196,24 +212,6 @@
         </PhpTestInterpreterSettings>
       </CommandLine>
       <TestRunner class="Tests\Feature\LetterFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LetterFeatureTest.php" method="testCanSendAssingedIntroLetter" scope="Method" />
-      <method v="2" />
-    </configuration>
-    <configuration name="LetterFeatureTest.testCanSendNoCouncilLetter" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <CommandLine>
-        <PhpTestInterpreterSettings>
-          <option name="interpreterName" value="PHP" />
-        </PhpTestInterpreterSettings>
-      </CommandLine>
-      <TestRunner class="Tests\Feature\LetterFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LetterFeatureTest.php" method="testCanSendNoCouncilLetter" scope="Method" />
-      <method v="2" />
-    </configuration>
-    <configuration name="LetterFeatureTest.testCanSendOutOfCouncilLetter" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <CommandLine>
-        <PhpTestInterpreterSettings>
-          <option name="interpreterName" value="PHP" />
-        </PhpTestInterpreterSettings>
-      </CommandLine>
-      <TestRunner class="Tests\Feature\LetterFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LetterFeatureTest.php" method="testCanSendOutOfCouncilLetter" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="LetterFeatureTest.testCanSendUnassingedIntroLetter" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -234,17 +232,35 @@
       <TestRunner class="Tests\Feature\LetterFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LetterFeatureTest.php" method="testCanSendWelcomeLetter" scope="Method" />
       <method v="2" />
     </configuration>
+    <configuration name="NotificationFeatureTest.testCanSendEmailToDesignAdvisor" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="Tests\Feature\NotificationFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/NotificationFeatureTest.php" method="testCanSendEmailToDesignAdvisor" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="NotificationFeatureTest.testCanSendSmsToDesignAdvisor" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="Tests\Feature\NotificationFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/NotificationFeatureTest.php" method="testCanSendSmsToDesignAdvisor" scope="Method" />
+      <method v="2" />
+    </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.NotificationFeatureTest.testCanSendSmsToDesignAdvisor" />
+        <item itemvalue="PHPUnit.NotificationFeatureTest.testCanSendEmailToDesignAdvisor" />
         <item itemvalue="PHPUnit.LetterFeatureTest.testCanSendUnassingedIntroLetter" />
         <item itemvalue="PHPUnit.LetterFeatureTest.testCanSendWelcomeLetter" />
         <item itemvalue="PHPUnit.LetterFeatureTest.testCanSendAssingedIntroLetter" />
-        <item itemvalue="PHPUnit.LetterFeatureTest.testCanSendOutOfCouncilLetter" />
-        <item itemvalue="PHPUnit.LetterFeatureTest.testCanSendNoCouncilLetter" />
       </list>
     </recent_temporary>
   </component>
@@ -351,14 +367,10 @@
       <workItem from="1607506571424" duration="7000" />
       <workItem from="1607655196102" duration="1249000" />
       <workItem from="1607926053548" duration="6288000" />
-      <workItem from="1608512062234" duration="3305000" />
-    </task>
-    <task id="LOCAL-00107" summary="Refactor Postcode Search to use Repository">
-      <created>1595229751249</created>
-      <option name="number" value="00107" />
-      <option name="presentableId" value="LOCAL-00107" />
-      <option name="project" value="LOCAL" />
-      <updated>1595229751251</updated>
+      <workItem from="1608512062234" duration="4222000" />
+      <workItem from="1608697735985" duration="3627000" />
+      <workItem from="1609723350894" duration="1212000" />
+      <workItem from="1609726213049" duration="16185000" />
     </task>
     <task id="LOCAL-00108" summary="Refactor Updating Sales Contact">
       <created>1595239187887</created>
@@ -696,7 +708,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608514152863</updated>
     </task>
-    <option name="localTasksCounter" value="156" />
+    <task id="LOCAL-00156" summary="Add all option for sales_staff status in reports">
+      <created>1608516422346</created>
+      <option name="number" value="00156" />
+      <option name="presentableId" value="LOCAL-00156" />
+      <option name="project" value="LOCAL" />
+      <updated>1608516422346</updated>
+    </task>
+    <option name="localTasksCounter" value="157" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -718,7 +737,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added maintenance letter sent" />
     <MESSAGE value="Added Lead Received Via" />
     <MESSAGE value="Added Followup Date" />
     <MESSAGE value="Added Roof Sheet Profile" />
@@ -743,75 +761,7 @@
     <MESSAGE value="Use users email address in sending" />
     <MESSAGE value="Updated report to include salesstaff status" />
     <MESSAGE value="Added Customer Touchpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Customer Touchpoint" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="480" y="167" key="#CLI_Interpreters" timestamp="1606371147117">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="480" y="167" key="#CLI_Interpreters/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1606371147117" />
-    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1607307328867">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="491" y="192" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1599987247239" />
-    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1607307328867" />
-    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1601118979936" />
-    <state x="739" y="274" key="FileChooserDialogImpl" timestamp="1607683725543">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="526" y="192" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1602938166841" />
-    <state x="739" y="274" key="FileChooserDialogImpl/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1607683725543" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1607428486763">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606870323907" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1607428486763" />
-    <state width="1877" height="751" key="GridCell.Tab.0.bottom/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1600687609198" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1607428486762">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1606870323907" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1607428486762" />
-    <state width="1877" height="751" key="GridCell.Tab.0.center/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1600687609198" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1607428486762">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1606870323905" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1607428486762" />
-    <state width="1877" height="751" key="GridCell.Tab.0.left/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1600687609198" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1607428486763">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1606870323907" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1607428486763" />
-    <state width="1877" height="751" key="GridCell.Tab.0.right/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1600687609198" />
-    <state x="540" y="262" key="IDE.errors.dialog" timestamp="1607325880102">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="540" y="262" key="IDE.errors.dialog/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1607325880102" />
-    <state x="461" y="164" key="SettingsEditor" timestamp="1605772024204">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="461" y="164" key="SettingsEditor/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1605772024204" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1608514158759">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1680.1010/235.1080.1366.728@0.0.1920.1040" timestamp="1608514158759" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1607325324120" />
-    <state x="650" y="152" width="664" height="764" key="find.popup" timestamp="1606371940089">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="650" y="152" width="664" height="764" key="find.popup/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1606371940089" />
-    <state x="339" y="162" key="run.anything.popup" timestamp="1605223281358">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1605223281358" />
-    <state x="623" y="226" width="945" height="680" key="search.everywhere.popup" timestamp="1608512865426">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="443" y="158" width="672" height="476" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1600659472049" />
-    <state x="623" y="226" width="945" height="680" key="search.everywhere.popup/0.0.1920.1040/1920.0.1680.1010/235.1080.1366.728@0.0.1920.1040" timestamp="1608512865426" />
-    <state x="623" y="226" width="945" height="680" key="search.everywhere.popup/235.1080.1366.728/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1606382684952" />
-    <state x="623" y="226" width="945" height="680" key="search.everywhere.popup/235.1080.1366.728/1920.0.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1601118991876" />
+    <MESSAGE value="Add all option for sales_staff status in reports" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add all option for sales_staff status in reports" />
   </component>
 </project>

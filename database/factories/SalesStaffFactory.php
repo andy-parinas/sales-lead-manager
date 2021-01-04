@@ -2,6 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Franchise;
 use App\SalesStaff;
 use Faker\Generator as Faker;
 
@@ -12,6 +13,5 @@ $factory->define(SalesStaff::class, function (Faker $faker) {
         'email' => $faker->email,
         'contact_number' => $faker->phoneNumber,
         'status' => $faker->randomElement([SalesStaff::ACTIVE, SalesStaff::BLOCKED]),
-        'franchise_id' => factory(\App\Franchise::class)
     ];
 });

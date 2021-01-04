@@ -43,6 +43,7 @@ class Lead extends JsonResource
            ],
             'jobType' => $this->jobType ? [
                 'id' => $this->jobType->id,
+                'leadId' => $this->id,
                 'takenBy' => $this->jobType->taken_by,
                 'dateAllocated' => $this->jobType->date_allocated,
                 'description' => $this->jobType->description,
@@ -51,7 +52,9 @@ class Lead extends JsonResource
                 'designAssessorId' => $this->jobType->salesStaff->id,
                 'designAssessor' => $this->jobType->salesStaff->full_name,
                 'designAssessorEmail' => $this->jobType->salesStaff->email,
-                'designAssessorContactNumber' => $this->jobType->salesStaff->contact_number
+                'designAssessorContactNumber' => $this->jobType->salesStaff->contact_number,
+                'emailSentToDesignAdvisor' => $this->jobType->email_sent_to_design_advisor,
+                'smsSentToDesignAdvisor' => $this->jobType->sms_sent_to_design_advisor
             ] : null,
             'appointment' => $this->appointment ? [
                 'id' => $this->appointment->id,

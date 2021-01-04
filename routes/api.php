@@ -170,3 +170,5 @@ Route::post('contracts/{lead}/letters/welcome/', 'Letter\WelcomeLetterController
 Route::post('authorities/{lead}/letters/council-intro', 'Letter\CouncilIntroLetterController@send');
 Route::post('authorities/{lead}/letters/no-council', 'Letter\NoCouncilLetterController@send');
 Route::post('authorities/{lead}/letters/out-of-council', 'Letter\OutOfCouncilLetterController@send');
+Route::post('job-types/{lead}/email/{sales_staff}', 'JobType\JobTypeEmailController@send');
+Route::post('job-types/{lead}/sms/{sales_staff}', 'JobType\JobTypeSmsController@send');

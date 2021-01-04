@@ -107,7 +107,8 @@ class FranchiseLeadController extends ApiController
 
             $lead->load('jobType.salesStaff', 'salesContact');
 
-            LeadCreated::dispatch(['lead' => $lead, 'user' => Auth::user()]);
+            // Disabling Automated sending of email
+            //LeadCreated::dispatch(['lead' => $lead, 'user' => Auth::user()]);
 
             return $this->showOne(new LeadResource($lead), Response::HTTP_CREATED);
 
