@@ -20,8 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Building Authorities Letter">
-      <change afterPath="$PROJECT_DIR$/database/seeds/CustomerSatisfactionSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Reports/CustomerReviewReportController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/CustomerReviewReportRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/CustomerReviewReportInterface.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/RepositoryServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RepositoryServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/LeadActualSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/LeadActualSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/ReportFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ReportFeatureTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,16 +203,7 @@
       <recent name="G:\Projects\sales-lead-manager\sqls" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.NotificationFeatureTest.testCanSendSmsToDesignAdvisor">
-    <configuration name="LetterFeatureTest.testCanSendAssingedIntroLetter" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <CommandLine>
-        <PhpTestInterpreterSettings>
-          <option name="interpreterName" value="PHP" />
-        </PhpTestInterpreterSettings>
-      </CommandLine>
-      <TestRunner class="Tests\Feature\LetterFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LetterFeatureTest.php" method="testCanSendAssingedIntroLetter" scope="Method" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="PHPUnit.ReportFeatureTest.testSalesSummaryReport">
     <configuration name="LetterFeatureTest.testCanSendUnassingedIntroLetter" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <CommandLine>
         <PhpTestInterpreterSettings>
@@ -242,17 +240,26 @@
       <TestRunner class="Tests\Feature\NotificationFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/NotificationFeatureTest.php" method="testCanSendSmsToDesignAdvisor" scope="Method" />
       <method v="2" />
     </configuration>
+    <configuration name="ReportFeatureTest.testSalesSummaryReport" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="Tests\Feature\ReportFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ReportFeatureTest.php" method="testSalesSummaryReport" scope="Method" />
+      <method v="2" />
+    </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.ReportFeatureTest.testSalesSummaryReport" />
         <item itemvalue="PHPUnit.NotificationFeatureTest.testCanSendSmsToDesignAdvisor" />
         <item itemvalue="PHPUnit.NotificationFeatureTest.testCanSendEmailToDesignAdvisor" />
         <item itemvalue="PHPUnit.LetterFeatureTest.testCanSendUnassingedIntroLetter" />
         <item itemvalue="PHPUnit.LetterFeatureTest.testCanSendWelcomeLetter" />
-        <item itemvalue="PHPUnit.LetterFeatureTest.testCanSendAssingedIntroLetter" />
       </list>
     </recent_temporary>
   </component>
@@ -365,14 +372,8 @@
       <workItem from="1609726213049" duration="18274000" />
       <workItem from="1610322680502" duration="1951000" />
       <workItem from="1610413768972" duration="89000" />
-      <workItem from="1610515521501" duration="5260000" />
-    </task>
-    <task id="LOCAL-00109" summary="created methods for checking franchise postcode">
-      <created>1595243364058</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1595243364058</updated>
+      <workItem from="1610515521501" duration="5920000" />
+      <workItem from="1610672556465" duration="14699000" />
     </task>
     <task id="LOCAL-00110" summary="Added functionality in querying franchise">
       <created>1595250408289</created>
@@ -710,7 +711,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609756778482</updated>
     </task>
-    <option name="localTasksCounter" value="158" />
+    <task id="LOCAL-00158" summary="Started working on Customer Review Report">
+      <created>1610530737245</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1610530737246</updated>
+    </task>
+    <option name="localTasksCounter" value="159" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -732,7 +740,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added Followup Date" />
     <MESSAGE value="Added Roof Sheet Profile" />
     <MESSAGE value="Added Document Description" />
     <MESSAGE value="Added Contract Alert" />
@@ -757,6 +764,7 @@
     <MESSAGE value="Added Customer Touchpoint" />
     <MESSAGE value="Add all option for sales_staff status in reports" />
     <MESSAGE value="Changed to Manual sending of email to DesignAdvisor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed to Manual sending of email to DesignAdvisor" />
+    <MESSAGE value="Started working on Customer Review Report" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started working on Customer Review Report" />
   </component>
 </project>

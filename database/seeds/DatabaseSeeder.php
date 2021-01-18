@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
             ContractActualSeeder::class,
             ContractVariationActualSeeder::class,
             RoofSheetSeeder::class,
-            RoofColourSeeder::class
+            RoofColourSeeder::class,
+            CustomerSatisfactionSeeder::class
         ]);
 
     }

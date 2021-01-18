@@ -55,9 +55,6 @@ class LeadActualSeeder extends Seeder
     public function run()
     {
 
-
-
-
         $leadFile = storage_path() . '/app/database/leads_01.csv';
 
         $file = fopen($leadFile, 'r');

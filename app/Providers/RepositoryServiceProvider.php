@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Repositories\CustomerReviewReportRepository;
 use App\Repositories\DocumentRepository;
 use App\Repositories\FranchiseRepository;
+use App\Repositories\Interfaces\CustomerReviewReportInterface;
 use App\Repositories\Interfaces\DocumentRepositoryInterface;
 use App\Repositories\Interfaces\FranchiseRepositoryInterface;
 use App\Repositories\Interfaces\LeadRepositoryInterface;
@@ -51,5 +53,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(PostcodeRepositoryInterface::class, PostcodeRepository::class);
         $this->app->bind(TradeStaffRepositoryInterface::class, TradeStaffRepository::class);
         $this->app->bind(ReportRepositoryInterface::class, ReportRepository::class);
+        $this->app->bind(CustomerReviewReportInterface::class, CustomerReviewReportRepository::class);
     }
 }
