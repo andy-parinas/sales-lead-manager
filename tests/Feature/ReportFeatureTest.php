@@ -32,7 +32,7 @@ class ReportFeatureTest extends TestCase
 
         $this->authenticateHeadOfficeUser();
 
-        $response = $this->get('api/reports/customer-reviews?start_date=2020-01-01&end_date=2020-07-19');
+        $response = $this->get('api/reports/customer-reviews?start_date=2020-01-01&end_date=2020-07-19&franchise_id=9');
 
         dd(json_decode($response->content()));
 
