@@ -19,6 +19,7 @@ class CustomerReviewReportRepository implements CustomerReviewReportInterface
                 'leads.lead_date',
                 'sales_staff.first_name',
                 'sales_staff.last_name',
+                'sales_staff.id as sales_staff_id',
                 'products.name as product_name',
                 'franchises.franchise_number',
                 'franchises.id as franchise_id',
@@ -46,7 +47,8 @@ class CustomerReviewReportRepository implements CustomerReviewReportInterface
                 'leads.lead_number',
                 'leads.franchise_number',
                 'leads.franchise_id',
-                'leads.franchise_type'
+                'leads.franchise_type',
+                'leads.sales_staff_id'
             )
             ->joinSub($subQuery, 'leads', function ($join){
                 $join->on('leads.id', '=', 'customer_reviews.lead_id');
@@ -71,6 +73,17 @@ class CustomerReviewReportRepository implements CustomerReviewReportInterface
             $mainQuery = $mainQuery->where('leads.franchise_type', $queryParams['franchise_type'] );
         }
 
+        if(key_exists("sales_staff_id", $queryParams) && $queryParams['sales_staff_id'] !== ""){
+
+            $mainQuery = $mainQuery->where('leads.sales_staff_id',$queryParams['sales_staff_id'] );
+        }
+
+
+        if(key_exists("sort_by", $queryParams) && $queryParams['sort_by'] !== "" && key_exists("direction", $queryParams) && $queryParams['direction'] !== ""){
+
+            $mainQuery = $mainQuery->orderBy($queryParams['sort_by'], $queryParams['direction']);
+        }
+
 
         $mainQuery->groupBy([
             'customer_reviews.date_project_completed',
@@ -86,7 +99,8 @@ class CustomerReviewReportRepository implements CustomerReviewReportInterface
             'leads.lead_date',
             'leads.franchise_number',
             'leads.franchise_id',
-            'leads.franchise_type'
+            'leads.franchise_type',
+            'leads.sales_staff_id'
         ]);
 
 
