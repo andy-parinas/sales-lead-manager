@@ -59,6 +59,7 @@ class LeadCustomerReviewController extends ApiController
             'workmanship_rating' => 'sometimes',
             'finished_product_rating' => 'sometimes',
             'design_consultant_rating' => 'sometimes',
+            'maintenance_letter_sent' => 'sometimes',
             'comments' => 'sometimes',
         ]);
 
@@ -107,6 +108,7 @@ class LeadCustomerReviewController extends ApiController
             'workmanship_rating' => 'sometimes',
             'finished_product_rating' => 'sometimes',
             'design_consultant_rating' => 'sometimes',
+            'maintenance_letter_sent' => 'sometimes',
             'comments' => 'sometimes',
         ]);
 

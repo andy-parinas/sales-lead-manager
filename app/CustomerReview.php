@@ -15,6 +15,7 @@ class CustomerReview extends Model
         'workmanship_rating',
         'finished_product_rating',
         'design_consultant_rating',
+        'maintenance_letter_sent',
         'comments'
     ];
 

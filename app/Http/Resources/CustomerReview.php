@@ -24,6 +24,7 @@ class CustomerReview extends JsonResource
             'workmanshipRating' => $this->workmanship_rating,
             'finishedProductRating' => $this->finished_product_rating,
             'designConsultantRating' => $this->design_consultant_rating,
+            'dateMaintenanceLetterSent' => $this->maintenance_letter_sent,
             'comments' => $this->comments,
 
         ];
