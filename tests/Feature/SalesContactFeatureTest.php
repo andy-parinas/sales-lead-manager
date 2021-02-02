@@ -2,11 +2,13 @@
 
 namespace Tests\Feature;
 
+use App\Franchise;
 use App\Lead;
 use App\Postcode;
 use App\SalesContact;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Laravel\Sanctum\Sanctum;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 use Tests\TestHelper;
@@ -61,18 +63,78 @@ class SalesContactFeatureTest extends TestCase
 
     }
 
-    public function testCanListPaginatedSalesContactByAuthenticatedUSers()
+    public function testCanListPaginatedSalesContactByStaffUsers()
     {
         $this->withoutExceptionHandling();
 
-        factory(SalesContact::class, 30)->create();
+        // Needle
+        $postcodes = factory(Postcode::class, 5)->create();
+        $postcodeIds = $postcodes->pluck('id')->toArray();
 
-        $this->authenticateStaffUser();
+        $franchise = factory(Franchise::class)->create();
+        $franchise->postcodes()->attach($postcodeIds);
+
+
+        foreach ($postcodes as $postcode){
+            factory(SalesContact::class)->create(['postcode_id' => $postcode->id]);
+        }
+
+        $user = $this->createStaffUser();
+        $user->franchises()->attach($franchise->id);
+
+        //Haystack
+        factory(SalesContact::class, 10)->create();
+
+
+        Sanctum::actingAs($user, ['*']);
 
 
         $this->get('api/contacts?size=10')
             ->assertStatus(Response::HTTP_OK)
-            ->assertJsonCount(10, 'data');
+            ->assertJsonCount(5, 'data');
+    }
+
+    public function testCanListPaginatedSalesContactByFranchiseAdminUsers()
+    {
+        $this->withoutExceptionHandling();
+
+        // Needle
+        //First Set of Franchise and Postcode
+        $postcodes1 = factory(Postcode::class, 4)->create();
+        $postcodeIds1 = $postcodes1->pluck('id')->toArray();
+
+        $franchise1 = factory(Franchise::class)->create();
+        $franchise1->postcodes()->attach($postcodeIds1);
+
+        foreach ($postcodes1 as $postcode){
+            factory(SalesContact::class)->create(['postcode_id' => $postcode->id]);
+        }
+
+        //2nd Set of Franchise Postcode
+        $postcodes2 = factory(Postcode::class, 4)->create();
+        $postcodeIds2 = $postcodes2->pluck('id')->toArray();
+
+        $franchise2 = factory(Franchise::class)->create();
+        $franchise2->postcodes()->attach($postcodeIds2);
+
+
+        foreach ($postcodes2 as $postcode){
+            factory(SalesContact::class)->create(['postcode_id' => $postcode->id]);
+        }
+
+        $user = $this->createFranchiseAdminUser();
+        $user->franchises()->attach([$franchise1->id, $franchise2->id]);
+
+        //Haystack
+        factory(SalesContact::class, 10)->create();
+
+
+        Sanctum::actingAs($user, ['*']);
+
+
+        $this->get('api/contacts?size=10')
+            ->assertStatus(Response::HTTP_OK)
+            ->assertJsonCount(8, 'data');
     }
 
     public function testCanSortSalesContactByFields()

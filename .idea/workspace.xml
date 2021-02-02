@@ -20,12 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Building Authorities Letter">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_25_100201_add_maintenance_letter_sent_to_customer_reviews_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/CustomerReview.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/CustomerReview.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadCustomerReviewController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lead/LeadCustomerReviewController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CustomerReview.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CustomerReview.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/CustomerReviewFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/CustomerReviewFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SalesContact/SalesContactController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SalesContact/SalesContactController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/Interfaces/SalesContactRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/SalesContactRepositoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/SalesContactRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/SalesContactRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +56,7 @@
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.3">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
       <path value="$PROJECT_DIR$/vendor/nesbot/carbon" />
@@ -200,7 +199,7 @@
       <recent name="G:\Projects\sales-lead-manager\sqls" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.LeadCustomerReviewFeatureTest.testCanCreateCustomerReview">
+  <component name="RunManager" selected="PHPUnit.SalesContactFeatureTest.testCanListPaginatedSalesContactByFranchiseAdminUsers">
     <configuration name="LeadCustomerReviewFeatureTest.testCanCreateCustomerReview" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <CommandLine>
         <PhpTestInterpreterSettings>
@@ -210,40 +209,25 @@
       <TestRunner class="Tests\Feature\LeadCustomerReviewFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LeadCustomerReviewFeatureTest.php" method="testCanCreateCustomerReview" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="LetterFeatureTest.testCanSendUnassingedIntroLetter" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <CommandLine>
-        <PhpTestInterpreterSettings>
-          <option name="interpreterName" value="PHP 7.3" />
-        </PhpTestInterpreterSettings>
-      </CommandLine>
-      <TestRunner class="Tests\Feature\LetterFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/LetterFeatureTest.php" method="testCanSendUnassingedIntroLetter" scope="Method" />
-      <method v="2" />
-    </configuration>
-    <configuration name="NotificationFeatureTest.testCanSendEmailToDesignAdvisor" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+    <configuration name="SalesContactFeatureTest.testCanListPaginatedSalesContactByAuthenticatedUSers" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <CommandLine>
         <PhpTestInterpreterSettings>
           <option name="interpreterName" value="PHP" />
         </PhpTestInterpreterSettings>
       </CommandLine>
-      <TestRunner class="Tests\Feature\NotificationFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/NotificationFeatureTest.php" method="testCanSendEmailToDesignAdvisor" scope="Method" />
+      <TestRunner class="Tests\Feature\SalesContactFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" method="testCanListPaginatedSalesContactByAuthenticatedUSers" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="NotificationFeatureTest.testCanSendSmsToDesignAdvisor" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <CommandLine>
-        <PhpTestInterpreterSettings>
-          <option name="interpreterName" value="PHP" />
-        </PhpTestInterpreterSettings>
-      </CommandLine>
-      <TestRunner class="Tests\Feature\NotificationFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/NotificationFeatureTest.php" method="testCanSendSmsToDesignAdvisor" scope="Method" />
+    <configuration name="SalesContactFeatureTest.testCanListPaginatedSalesContactByFranchiseAdminUsers" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\SalesContactFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" method="testCanListPaginatedSalesContactByFranchiseAdminUsers" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="ReportFeatureTest.testSalesSummaryReport" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <CommandLine>
-        <PhpTestInterpreterSettings>
-          <option name="interpreterName" value="PHP" />
-        </PhpTestInterpreterSettings>
-      </CommandLine>
-      <TestRunner class="Tests\Feature\ReportFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ReportFeatureTest.php" method="testSalesSummaryReport" scope="Method" />
+    <configuration name="SalesContactFeatureTest.testCanListPaginatedSalesContactByStaffUsers" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\SalesContactFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" method="testCanListPaginatedSalesContactByStaffUsers" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="SalesContactFeatureTest.testCanSortSalesContactByFields" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\SalesContactFeatureTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" method="testCanSortSalesContactByFields" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -252,11 +236,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.SalesContactFeatureTest.testCanListPaginatedSalesContactByFranchiseAdminUsers" />
+        <item itemvalue="PHPUnit.SalesContactFeatureTest.testCanSortSalesContactByFields" />
+        <item itemvalue="PHPUnit.SalesContactFeatureTest.testCanListPaginatedSalesContactByStaffUsers" />
+        <item itemvalue="PHPUnit.SalesContactFeatureTest.testCanListPaginatedSalesContactByAuthenticatedUSers" />
         <item itemvalue="PHPUnit.LeadCustomerReviewFeatureTest.testCanCreateCustomerReview" />
-        <item itemvalue="PHPUnit.ReportFeatureTest.testSalesSummaryReport" />
-        <item itemvalue="PHPUnit.NotificationFeatureTest.testCanSendSmsToDesignAdvisor" />
-        <item itemvalue="PHPUnit.NotificationFeatureTest.testCanSendEmailToDesignAdvisor" />
-        <item itemvalue="PHPUnit.LetterFeatureTest.testCanSendUnassingedIntroLetter" />
       </list>
     </recent_temporary>
   </component>
@@ -372,14 +356,10 @@
       <workItem from="1610515521501" duration="5920000" />
       <workItem from="1610672556465" duration="14699000" />
       <workItem from="1610959491732" duration="9357000" />
-      <workItem from="1611563588713" duration="2160000" />
-    </task>
-    <task id="LOCAL-00113" summary="Adjusted the Seeder.&#10;Issue on the test server">
-      <created>1595328020130</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1595328020130</updated>
+      <workItem from="1611563588713" duration="5359000" />
+      <workItem from="1611824330823" duration="2690000" />
+      <workItem from="1611834937034" duration="797000" />
+      <workItem from="1612259625522" duration="2697000" />
     </task>
     <task id="LOCAL-00114" summary="Adjusted the Seeder.&#10;Issue on the test server">
       <created>1595328488438</created>
@@ -717,7 +697,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611315569871</updated>
     </task>
-    <option name="localTasksCounter" value="162" />
+    <task id="LOCAL-00162" summary="Customer Review maintenance letter sent">
+      <created>1611571913918</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1611571913919</updated>
+    </task>
+    <option name="localTasksCounter" value="163" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -739,7 +726,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added Contract Alert" />
     <MESSAGE value="Refactor Sales_Staff to have many-to-many relationship with franchise" />
     <MESSAGE value="Adjusted functionality List sales staff" />
     <MESSAGE value="Update Creating SalesStaff" />
@@ -764,6 +750,7 @@
     <MESSAGE value="Started working on Customer Review Report" />
     <MESSAGE value="Ongoing Customer Review reports" />
     <MESSAGE value="Completed Customer Review Report" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completed Customer Review Report" />
+    <MESSAGE value="Customer Review maintenance letter sent" />
+    <option name="LAST_COMMIT_MESSAGE" value="Customer Review maintenance letter sent" />
   </component>
 </project>

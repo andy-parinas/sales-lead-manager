@@ -8,7 +8,9 @@ use App\Http\Resources\SalesContactCollection;
 use App\Postcode;
 use App\Repositories\Interfaces\SalesContactRepositoryInterface;
 use App\SalesContact;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Resources\SalesContact as SalesContactResource;
 use Illuminate\Support\Facades\Gate;
@@ -30,10 +32,38 @@ class SalesContactController extends ApiController
      */
     public function index()
     {
-        $salesContacts = $this->salesContactRepository->sortAndPaginate($this->getRequestParams());
+
+        $user = Auth::user();
+
+        if($user->user_type == User::HEAD_OFFICE){
+
+            $salesContacts = $this->salesContactRepository->sortAndPaginate($this->getRequestParams());
+
+            return $this->showApiCollection(new SalesContactCollection($salesContacts));
+
+        }else {
+
+            $postcodeIds = [];
+
+            $franchises = $user->franchises;
+
+            foreach ($franchises as $franchise){
+
+                $postcodes = $franchise->postcodes->pluck('id')->toArray();
+
+                $postcodeIds = array_merge($postcodeIds, $postcodes);
+
+            }
+
+            $salesContacts = $this->salesContactRepository->sortAndPaginateByFranchise($postcodeIds, $this->getRequestParams());
+
+            return $this->showApiCollection(new SalesContactCollection($salesContacts));
+
+        }
 
 
-        return $this->showApiCollection(new SalesContactCollection($salesContacts));
+
+
     }
 
 

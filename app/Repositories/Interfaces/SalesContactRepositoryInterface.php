@@ -10,4 +10,6 @@ interface SalesContactRepositoryInterface
 
     public function simpleSearch(Array $params);
 
+    public function sortAndPaginateByFranchise(array $postcodeIds, array $params);
+
 }
