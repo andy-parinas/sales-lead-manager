@@ -21,10 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5a7deac6-9171-4175-86f7-e0b0f838cba8" name="Default Changelist" comment="Building Authorities Letter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SalesContact/SalesContactController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SalesContact/SalesContactController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/Interfaces/SalesContactRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/SalesContactRepositoryInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/SalesContactRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/SalesContactRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/SalesContactFeatureTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/SalesStaffCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/SalesStaffCollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/SalesStaffRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/SalesStaffRepository.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +176,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TODO_SCOPE" value="Project Files" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/storage/app/database" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -359,14 +357,8 @@
       <workItem from="1611563588713" duration="5359000" />
       <workItem from="1611824330823" duration="2690000" />
       <workItem from="1611834937034" duration="797000" />
-      <workItem from="1612259625522" duration="2697000" />
-    </task>
-    <task id="LOCAL-00114" summary="Adjusted the Seeder.&#10;Issue on the test server">
-      <created>1595328488438</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1595328488438</updated>
+      <workItem from="1612259625522" duration="6622000" />
+      <workItem from="1612348912623" duration="1468000" />
     </task>
     <task id="LOCAL-00115" summary="Adjusted the Seeder.&#10;Issue on the test server">
       <created>1595328757294</created>
@@ -704,7 +696,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611571913919</updated>
     </task>
-    <option name="localTasksCounter" value="163" />
+    <task id="LOCAL-00163" summary="Limit Sales Contact display to Users Franchise Postcode">
+      <created>1612263460002</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1612263460003</updated>
+    </task>
+    <option name="localTasksCounter" value="164" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -726,7 +725,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactor Sales_Staff to have many-to-many relationship with franchise" />
     <MESSAGE value="Adjusted functionality List sales staff" />
     <MESSAGE value="Update Creating SalesStaff" />
     <MESSAGE value="Update Sales Staff Reporting" />
@@ -751,6 +749,7 @@
     <MESSAGE value="Ongoing Customer Review reports" />
     <MESSAGE value="Completed Customer Review Report" />
     <MESSAGE value="Customer Review maintenance letter sent" />
-    <option name="LAST_COMMIT_MESSAGE" value="Customer Review maintenance letter sent" />
+    <MESSAGE value="Limit Sales Contact display to Users Franchise Postcode" />
+    <option name="LAST_COMMIT_MESSAGE" value="Limit Sales Contact display to Users Franchise Postcode" />
   </component>
 </project>

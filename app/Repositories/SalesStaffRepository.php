@@ -12,15 +12,31 @@ class SalesStaffRepository implements Interfaces\SalesStafRepositoryInterface
 
     public function getAll(array $params)
     {
+
+        $query = DB::table('sales_staff')
+            ->select('sales_staff.id', 'first_name', 'last_name', 'email', 'contact_number', 'status', 'franchises.franchise_number')
+            ->leftJoin('franchise_sales_staff', 'franchise_sales_staff.sales_staff_id', '=', 'sales_staff.id')
+            ->leftJoin('franchises', 'franchises.id', '=','franchise_sales_staff.franchise_id' );
+
         if(key_exists('search', $params) && key_exists('on', $params))
         {
-            return SalesStaff::with('franchises')->where($params['on'], 'LIKE', '%' . $params['search'] . '%')
-                ->orderBy($params['column'], $params['direction'])
-                ->paginate($params['size']);
+
+            $query = $query->where($params['on'], 'LIKE', '%' . $params['search'] . '%');
+
         }
 
-        return SalesStaff::with('franchises')->orderBy($params['column'], $params['direction'])
+        return $query ->orderBy($params['column'], $params['direction'])
             ->paginate($params['size']);
+
+//        if(key_exists('search', $params) && key_exists('on', $params))
+//        {
+//            return SalesStaff::with('franchises')->where($params['on'], 'LIKE', '%' . $params['search'] . '%')
+//                ->orderBy($params['column'], $params['direction'])
+//                ->paginate($params['size']);
+//        }
+//
+//        return SalesStaff::with('franchises')->orderBy($params['column'], $params['direction'])
+//            ->paginate($params['size']);
     }
 
 
@@ -33,7 +49,7 @@ class SalesStaffRepository implements Interfaces\SalesStafRepositoryInterface
                 'last_name',
                 'email',
                 'status',
-                'contact_number',
+                'contact_number'
             )
             ->where('status', 'active')
             ->where(function ($query) use ($search){
@@ -48,20 +64,40 @@ class SalesStaffRepository implements Interfaces\SalesStafRepositoryInterface
 
     public function getAllByFranchise(array $franchiseIds, array $params)
     {
+
+
+        $query = DB::table('sales_staff')
+            ->select('sales_staff.id', 'first_name', 'last_name', 'email', 'contact_number', 'status', 'franchises.franchise_number')
+            ->leftJoin('franchise_sales_staff', 'franchise_sales_staff.sales_staff_id', '=', 'sales_staff.id')
+            ->leftJoin('franchises', 'franchises.id', '=','franchise_sales_staff.franchise_id' )
+            ->whereIn('franchises.id', $franchiseIds);
+
         if(key_exists('search', $params) && key_exists('on', $params))
         {
-            return SalesStaff::with('franchise')->where($params['on'], 'LIKE', '%' . $params['search'] . '%')
-                ->where('status', SalesStaff::ACTIVE)
-                ->whereIn('franchise_id', $franchiseIds)
-                ->orderBy($params['column'], $params['direction'])
-                ->paginate($params['size']);
+
+            $query = $query->where($params['on'], 'LIKE', '%' . $params['search'] . '%');
+
         }
 
-        return SalesStaff::with('franchise')
-            ->where('status', SalesStaff::ACTIVE)
-            ->whereIn('franchise_id', $franchiseIds)
-            ->orderBy($params['column'], $params['direction'])
+        return $query ->orderBy($params['column'], $params['direction'])
             ->paginate($params['size']);
+
+
+
+//        if(key_exists('search', $params) && key_exists('on', $params))
+//        {
+//            return SalesStaff::with('franchises')->where($params['on'], 'LIKE', '%' . $params['search'] . '%')
+//                ->where('status', SalesStaff::ACTIVE)
+//                ->whereIn('franchises.id', $franchiseIds)
+//                ->orderBy($params['column'], $params['direction'])
+//                ->paginate($params['size']);
+//        }
+//
+//        return SalesStaff::with('franchises')
+//            ->where('status', SalesStaff::ACTIVE)
+//            ->whereIn('franchises.id', $franchiseIds)
+//            ->orderBy($params['column'], $params['direction'])
+//            ->paginate($params['size']);
     }
 
     public function searchAllByFranchise(array $franchiseIds, $search)

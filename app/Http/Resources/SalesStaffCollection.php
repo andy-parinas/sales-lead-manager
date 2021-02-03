@@ -18,12 +18,13 @@ class SalesStaffCollection extends ResourceCollection
             'data' => $this->collection->transform(function($staff){
                 return [
                     'id' => $staff->id,
+                    'key' => uniqid(),
                     'firstName' => $staff->first_name,
                     'lastName' => $staff->last_name,
                     'email' => $staff->email,
                     'contactNumber' => $staff->contact_number,
                     'status' => $staff->status,
-                    'franchises' => $staff->franchises
+                    'franchises' =>$staff->franchise_number
                 ];
             }),
             'pagination' => [
